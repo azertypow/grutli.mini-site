@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "static": "rm -rf docs/ && npm run generate && mv .output/public docs"
   },
   "dependencies": {
     "@nuxt/content": "^2.13.4",
