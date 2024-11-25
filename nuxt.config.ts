@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/content'],
   ssr: false,
+  app: {
+    baseURL: '/grutli.mini-site/',
+  },
   content: {
     experimental: {
       clientDB: true
