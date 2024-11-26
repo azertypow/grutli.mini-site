@@ -1,25 +1,28 @@
 ---
+title: Chapitres de la chute Saga des Lehman Brothers
+headerDate: 9 - 19 janvier 2025
+headerSpace: Scène du Bas
 headerTitle: Chapitres de la chute Saga des Lehman Brothers
 headerPeoplesIntro: [Thierry Romanens, Andrea Novicov, Stefano Massini]
 headerType: Format A’3 Ateliers Midi XIII
 headerPeoples: [
-    Alexis Gfeller
-    Andrea Novicov
-    Anne-Laure Futin
-    Bernard Amaudruz
-    Benoît Boulian
-    Dany Petermann
-    Fabien Sevilla
-    Kristelle Paré
-    Lauriane Tissot
-    Matthieu Baumann
-    Marianne Caplan
-    Mercedes Riedy
-    Patrick Dufresne
-    Pierre-Louis Chantre
-    Stefano Massini
-    Thierry Romanens
-    Virginie Pasquier
+    Alexis Gfeller,
+    Andrea Novicov,
+    Anne-Laure Futin,
+    Bernard Amaudruz,
+    Benoît Boulian,
+    Dany Petermann,
+    Fabien Sevilla,
+    Kristelle Paré,
+    Lauriane Tissot,
+    Matthieu Baumann,
+    Marianne Caplan,
+    Mercedes Riedy,
+    Patrick Dufresne,
+    Pierre-Louis Chantre,
+    Stefano Massini,
+    Thierry Romanens,
+    Virginie Pasquier,
 ]
 headerProduction: Salut la Compagnie & Cie Angledange
 headerCoproduction: Théâtre de l’Orangerie

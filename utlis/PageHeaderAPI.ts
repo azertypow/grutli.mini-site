@@ -9,4 +9,5 @@ export interface PageHeaderAPI extends ParsedContent{
     headerCoproduction: string
     headerSoutiens: string[]
     headerImageLeft: string
+    headerDate: string
 }

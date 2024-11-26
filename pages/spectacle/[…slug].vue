@@ -3,9 +3,13 @@
         class="v-spectacle-slug"
     >
       <img alt="image texte"
-           class="v-spectacle-slug__img-text"
+           class="v-spectacle-slug__img"
            :src="pageData.headerImageLeft"
       />
+      <div class="v-spectacle-slug__content">
+        <h1>{{pageData.headerTitle}}</h1>
+        <ContentDoc/>
+      </div>
     </section>
 </template>
 
@@ -29,7 +33,7 @@ const pageData = await queryContent().findOne() as PageHeaderAPI
 .v-spectacle-slug {
 }
 
-.v-spectacle-slug__img-text {
+.v-spectacle-slug__img {
   display: block;
   width: 100%;
 }
