@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   ssr: false,
   app: {
-    baseURL: '/grutli.mini-site/',
+    baseURL: '/',
   },
   content: {
     experimental: {
