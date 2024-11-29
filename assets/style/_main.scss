@@ -1,0 +1,58 @@
+:root {
+  --app-header-height: 5rem;
+  --app-gutter: .5rem;
+}
+
+//font-variation-settings: "slnt" -13, "wght" 100;
+//font-variation-settings: "slnt" 0, "wght" 900;
+
+@font-face {
+  font-family: 'ABCOracleWebSite';
+  src: url('/fonts/ABCOracleTripleVariable.woff') format('woff');
+  font-weight: normal; /* ou "bold" si c'est une version bold */
+  font-style: normal; /* ou "italic" si c'est une version italique */
+}
+
+html, body {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-family: 'ABCOracleWebSite', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: normal;
+  font-variation-settings: "slnt" 0, "wght" 500;
+  position: relative;
+}
+
+html {
+  height: 100%;
+  font-size: 18px;
+  background: url('/s.jpg');
+  background-size: cover;
+}
+
+body {
+  font-size: .8rem;
+  line-height: 1rem;
+  display: flex;
+  align-items: end;
+  min-height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.__nuxt {
+  width: 100%;
+}
+
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
