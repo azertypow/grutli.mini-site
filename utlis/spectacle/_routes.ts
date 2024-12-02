@@ -18,19 +18,17 @@ import smoke from "~/utlis/spectacle/smoke";
 export const _routes: { [key: string]: PageHeaderAPI } = {
     'chapitres-de-la-chute':     chapitresDeLaChute,
     'quand-viendra-la-vague':    quandViendraLaVague,
+    'madame-de':                 madameDe,
+    'smoke':                     smoke,
     'les-enfants-du-rhone':      lesEnfantsDuRhone,
-
     'dans-le-decor-de':          dansLeDecorDe,
     'gnocchi':                   gnocchi,
     'disperses':                 disperses,
+    'queer-crip-becoming':       queerCripBecoming,
     'murer-la-peur':             murerLaPeur,
     'famille':                   famille,
     'choc':                      choc,
     'la-grosse-deprime':         laGrosseDeprime,
-    'au-bout-de-la-laisse':      auBoutDeLaLaisse,
-
-    'madame-de':                 madameDe,
     'quasimodo-aux-miroirs':     quasimodoAuxMiroirs,
-    'queer-crip-becoming':       queerCripBecoming,
-    'smoke':                     smoke,
+    'au-bout-de-la-laisse':      auBoutDeLaLaisse,
 }
