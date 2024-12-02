@@ -22,15 +22,14 @@ export const _routes: { [key: string]: PageHeaderAPI } = {
 
     'dans-le-decor-de':          dansLeDecorDe,
     'gnocchi':                   gnocchi,
+    'smoke':                     smoke,
+    'madame-de':                 madameDe,
+    'queer-crip-becoming':       queerCripBecoming,
     'disperses':                 disperses,
     'murer-la-peur':             murerLaPeur,
     'famille':                   famille,
     'choc':                      choc,
+    'quasimodo-aux-miroirs':     quasimodoAuxMiroirs,
     'la-grosse-deprime':         laGrosseDeprime,
     'au-bout-de-la-laisse':      auBoutDeLaLaisse,
-
-    'madame-de':                 madameDe,
-    'quasimodo-aux-miroirs':     quasimodoAuxMiroirs,
-    'queer-crip-becoming':       queerCripBecoming,
-    'smoke':                     smoke,
 }
