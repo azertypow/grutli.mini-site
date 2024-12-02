@@ -10,6 +10,10 @@ import laGrosseDeprime from "~/utlis/spectacle/la-grosse-deprime";
 import lesEnfantsDuRhone from "~/utlis/spectacle/les-enfants-du-rhone";
 import murerLaPeur from "~/utlis/spectacle/murer-la-peur";
 import quandViendraLaVague from "~/utlis/spectacle/quand-viendra-la-vague";
+import madameDe from "~/utlis/spectacle/madame-de";
+import quasimodoAuxMiroirs from "~/utlis/spectacle/quasimodo-aux-miroirs";
+import queerCripBecoming from "~/utlis/spectacle/queer-crip-becoming";
+import smoke from "~/utlis/spectacle/smoke";
 
 export const _routes: { [key: string]: PageHeaderAPI } = {
     'chapitres-de-la-chute':     chapitresDeLaChute,
@@ -24,4 +28,9 @@ export const _routes: { [key: string]: PageHeaderAPI } = {
     'choc':                      choc,
     'la-grosse-deprime':         laGrosseDeprime,
     'au-bout-de-la-laisse':      auBoutDeLaLaisse,
+
+    'madame-de':                 madameDe,
+    'quasimodo-aux-miroirs':     quasimodoAuxMiroirs,
+    'queer-crip-becoming':       queerCripBecoming,
+    'smoke':                     smoke,
 }

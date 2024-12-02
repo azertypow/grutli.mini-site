@@ -54,13 +54,14 @@ const pages = _routes
 
 .v-index__item {
   width: 100%;
+  color: white;
 
   a {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-top: solid 1px black;
+    border-top: solid 1px currentColor;
   }
 
   &:nth-child(-n+3) {
@@ -69,7 +70,6 @@ const pages = _routes
     padding-left: var(--app-gutter);
     padding-right: var(--app-gutter);
     max-width: 30rem;
-    color: white;
 
     @media (max-width: 1100px) {
       width: 100%;

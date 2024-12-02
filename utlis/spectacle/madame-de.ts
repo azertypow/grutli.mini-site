@@ -2,13 +2,13 @@ import type {PageHeaderAPI} from "../PageHeaderAPI";
 
 export default {
     title: "Madame de",
-    headerDate: "lorem",
+    headerDate: "8 -9 mars 2025",
     peoples: [
         ''
     ],
-    headerImageLeft: "/images/241122_Grutli_Flyers_19.jpg",
-    headerImageRight: "/images/241122_Grutli_Flyers_20.jpg",
-    headerColor: '#5ec8e5',
+    headerImageLeft: "/images/241122_Grutli_Flyers_23.jpg",
+    headerImageRight: "/images/241122_Grutli_Flyers_30--bas.jpg",
+    headerColor: '#1a975d',
     textColor: 'white',
-    ticketUrl: '',
+    ticketUrl: 'https://infomaniak.events/shop/UwCaGkGB7O/events/1341864/',
 } as PageHeaderAPI

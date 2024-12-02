@@ -2,13 +2,13 @@ import type {PageHeaderAPI} from "../PageHeaderAPI";
 
 export default {
     title: "Smoke",
-    headerDate: "lorem",
+    headerDate: "19 - 21 février 2025",
     peoples: [
         ''
     ],
-    headerImageLeft: "/images/241122_Grutli_Flyers_19.jpg",
-    headerImageRight: "/images/241122_Grutli_Flyers_20.jpg",
-    headerColor: '#5ec8e5',
+    headerImageLeft: "/images/241122_Grutli_Flyers_23.jpg",
+    headerImageRight: "/images/241122_Grutli_Flyers_28--haut.jpg",
+    headerColor: '#1a975d',
     textColor: 'white',
-    ticketUrl: 'https://infomaniak.events/shop/UwCaGkGB7O/events/1319052/',
+    ticketUrl: '',
 } as PageHeaderAPI

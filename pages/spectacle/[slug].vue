@@ -14,9 +14,13 @@
         />
         <div class="v-spectacle-slug__ticket">
           <a style="display: block"
+             v-if="pageData.ticketUrl"
              :href="pageData.ticketUrl"
              target="_blank"
           >prendre un billet</a>
+          <div style="display: block"
+             v-else
+          >billeterie à venir</div>
         </div>
       </div>
     </section>
