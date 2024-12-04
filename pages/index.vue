@@ -79,7 +79,7 @@ const pages = _routes
       border: none;
       aspect-ratio: 1/1;
       background-image: url('/s.jpg');
-      background-size: 200% auto;
+      background-size: 160rem auto;
       box-sizing: border-box;
       padding: var(--app-gutter);
       border-radius: 2rem;
@@ -106,19 +106,19 @@ const pages = _routes
 
   &:nth-child(1) {
     a {
-      background-position: 0 0;
+      background-position: 30rem 20rem;
     }
   }
 
   &:nth-child(2) {
     a {
-      background-position: 730px 120px;
+      background-position: 35rem 23rem;
     }
   }
   &:nth-child(3) {
     margin-bottom: 5rem;
     a {
-      background-position: 0 220px;
+      background-position: -7rem 60rem;
     }
   }
 }

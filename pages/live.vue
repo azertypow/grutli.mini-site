@@ -2,7 +2,6 @@
     <section
         class="v-live"
     >
-      <iframe src="https://grutli.mixlr.com/embed" frameborder="0" scrolling="no" height="200px" width="100%"></iframe>
     </section>
 </template>
 
