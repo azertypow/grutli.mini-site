@@ -20,7 +20,6 @@
       </nuxt-link>
 
       <a class="v-app-header__right"
-         style="display: flex; align-items: center; flex-wrap: nowrap; gap: var(--app-gutter)"
          href="https://infomaniak.events/shop/UwCaGkGB7O/"
          target="_blank"
       >
@@ -94,6 +93,8 @@ const props = defineProps<{
 
 .v-app-header__left {
   font-size: 1rem;
+  width: 25%;
+
   @media (max-width: 800px) {
     display: none;
   }
@@ -101,6 +102,12 @@ const props = defineProps<{
 
 .v-app-header__right {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--app-gutter);
+  width: 25%;
+  justify-content: flex-end;
 }
 
 </style>

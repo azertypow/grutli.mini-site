@@ -106,7 +106,7 @@ const pages = _routes
 
   &:nth-child(1) {
     a {
-      background-position: 30rem 20rem;
+      background-position: 24rem 0rem;
     }
   }
 
