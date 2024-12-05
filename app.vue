@@ -6,6 +6,8 @@
     <div class="app-app__content">
       <NuxtPage/>
     </div>
+
+    <AudioPlayer/>
   </div>
 </template>
 

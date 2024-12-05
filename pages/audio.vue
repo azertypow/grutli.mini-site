@@ -1,7 +1,8 @@
 <template>
     <section
-        class="v-live"
+        class="v-audio"
     >
+
     </section>
 </template>
 
@@ -22,7 +23,7 @@ const props = defineProps<{
 
 
 <style lang="scss" scoped >
-.v-live {
+.v-audio {
   position: fixed;
   top: var(--app-header-height);
   left: 0;
