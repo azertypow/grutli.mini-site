@@ -228,6 +228,10 @@ spectacle-slug
     margin-bottom: 0;
   }
 
+  .v-audio-player__container__header__title {
+    color: black;
+  }
+
   .v-audio-player__container__header__ui {
     color: black;
 
