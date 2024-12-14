@@ -7,7 +7,8 @@
       <div class="v-audio-player__container">
         <div class="v-audio-player__container__header">
           <div class="v-audio-player__container__header__title">
-            Présentation de l'Arbre-Monde <nuxt-link to="/audio">(accès au texte)</nuxt-link>
+            Présentation de l'Arbre-Monde
+            <nuxt-link to="/audio">(accès au texte)</nuxt-link>
           </div>
           <div class="v-audio-player__container__header__ui">
             <div @click="playerIsOpen = !playerIsOpen">
@@ -166,6 +167,18 @@ function toggleSoundcloudStatus() {
   align-items: center;
   padding: 1rem;
   box-sizing: border-box;
+
+  > *:last-child {
+    margin-left: auto;
+  }
+}
+
+
+.v-audio-player__container__header__title {
+  display: none;
+  @media (min-width: 900px) {
+    display: block;
+  }
 }
 
 .v-audio-player__container__header__ui {
