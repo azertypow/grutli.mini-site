@@ -133,6 +133,7 @@ function toggleSoundcloudStatus() {
 .v-audio-player {
   --v-audio-player-header-height: 3rem;
   --v-audio-player-iframe-height: 166px;
+  --v-audio-player-header-spacing: 2rem;
 
   position: fixed;
   bottom: 0;
@@ -203,6 +204,41 @@ function toggleSoundcloudStatus() {
 iframe {
   display: block;
   height: 166px !important;
+}
+
+
+/***
+spectacle-slug
+ */
+.spectacle-slug {
+  .v-audio-player {
+    pointer-events: none;
+    bottom: var(--v-audio-player-header-spacing);
+
+    &.v-audio-player--is-open {
+      bottom: 0;
+    }
+  }
+
+  .v-audio-player__container__header {
+    margin-bottom: var(--v-audio-player-header-spacing);
+    pointer-events: auto;
+  }
+  .v-audio-player--is-open .v-audio-player__container__header {
+    margin-bottom: 0;
+  }
+
+  .v-audio-player__container__header__ui {
+    color: black;
+
+    svg {
+      fill: black;
+    }
+  }
+
+  .v-audio-player__iframe-container {
+    pointer-events: auto;
+  }
 }
 
 </style>

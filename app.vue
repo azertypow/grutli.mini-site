@@ -1,5 +1,9 @@
 <template>
-  <div class="app-app">
+  <div class="app-app"
+       :class="
+         useRouter().currentRoute.value.name
+       "
+  >
     <div class="app-app__header">
       <AppHeader/>
     </div>
