@@ -70,6 +70,7 @@ const pages = _routes
     padding-left: var(--app-gutter);
     padding-right: var(--app-gutter);
     max-width: 30rem;
+    margin-bottom: 2rem;
 
     @media (max-width: 1100px) {
       width: 100%;
