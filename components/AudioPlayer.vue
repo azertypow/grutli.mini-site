@@ -144,6 +144,7 @@ function toggleSoundcloudStatus() {
   justify-content: center;
   color: white;
   transform: translate(0, var(--v-audio-player-iframe-height));
+  transition: transform .25s ease-in-out;
 
   &.v-audio-player--is-open {
     transform: translate(0, 0);
