@@ -4,7 +4,7 @@
                 'v-audio-player--is-open': playerIsOpen
              }"
     >
-      <div class="v-audio-player__container app-font-small">
+      <div class="v-audio-player__container app-font-extra-small">
         <div class="v-audio-player__container__header">
           <div class="v-audio-player__container__header__title">
             Présentation de l'Arbre-Monde
@@ -121,8 +121,6 @@ function toggleSoundcloudStatus() {
     widget.toggle()
     widget.isPaused((value) => playerIsPaused.value = value)
 }
-
-
 </script>
 
 
@@ -131,7 +129,7 @@ function toggleSoundcloudStatus() {
 
 <style lang="scss" scoped >
 .v-audio-player {
-  --v-audio-player-header-height: 2rem;
+  --v-audio-player-header-height: 1rem;
   --v-audio-player-iframe-height: 166px;
   --v-audio-player-header-spacing: 2rem;
 
@@ -142,9 +140,10 @@ function toggleSoundcloudStatus() {
   height: calc( var(--v-audio-player-header-height) + var(--v-audio-player-iframe-height));
   display: flex;
   justify-content: center;
-  color: white;
+  color: black;
   transform: translate(0, var(--v-audio-player-iframe-height));
   transition: transform .25s ease-in-out;
+  background: white;
 
   &.v-audio-player--is-open {
     transform: translate(0, 0);
@@ -167,7 +166,7 @@ function toggleSoundcloudStatus() {
   justify-content: space-between;
   height: var(--v-audio-player-header-height);
   align-items: center;
-  padding: var(--app-gutter-xl);
+  padding: 0 var(--app-gutter-xl);
   box-sizing: border-box;
 
   > *:last-child {
@@ -188,7 +187,6 @@ function toggleSoundcloudStatus() {
   align-items: center;
   user-select: none;
   gap: var(--app-gutter);
-  color: white;
 
   > * {
     cursor: pointer;
@@ -196,9 +194,9 @@ function toggleSoundcloudStatus() {
 
   svg {
     display: block;
-    height: 1.5rem;
+    height: 1rem;
     width: auto;
-    fill: white;
+    fill: black;
   }
 }
 
@@ -206,44 +204,4 @@ iframe {
   display: block;
   height: 166px !important;
 }
-
-
-/***
-spectacle-slug
- */
-.spectacle-slug {
-  .v-audio-player {
-    pointer-events: none;
-    bottom: var(--v-audio-player-header-spacing);
-
-    &.v-audio-player--is-open {
-      bottom: 0;
-    }
-  }
-
-  .v-audio-player__container__header {
-    margin-bottom: var(--v-audio-player-header-spacing);
-    pointer-events: auto;
-  }
-  .v-audio-player--is-open .v-audio-player__container__header {
-    margin-bottom: 0;
-  }
-
-  .v-audio-player__container__header__title {
-    color: black;
-  }
-
-  .v-audio-player__container__header__ui {
-    color: black;
-
-    svg {
-      fill: black;
-    }
-  }
-
-  .v-audio-player__iframe-container {
-    pointer-events: auto;
-  }
-}
-
 </style>
