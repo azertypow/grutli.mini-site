@@ -4,7 +4,7 @@
                 'v-audio-player--is-open': playerIsOpen
              }"
     >
-      <div class="v-audio-player__container">
+      <div class="v-audio-player__container app-font-small">
         <div class="v-audio-player__container__header">
           <div class="v-audio-player__container__header__title">
             Présentation de l'Arbre-Monde
@@ -131,7 +131,7 @@ function toggleSoundcloudStatus() {
 
 <style lang="scss" scoped >
 .v-audio-player {
-  --v-audio-player-header-height: 3rem;
+  --v-audio-player-header-height: 2rem;
   --v-audio-player-iframe-height: 166px;
   --v-audio-player-header-spacing: 2rem;
 
@@ -167,7 +167,7 @@ function toggleSoundcloudStatus() {
   justify-content: space-between;
   height: var(--v-audio-player-header-height);
   align-items: center;
-  padding: 1rem;
+  padding: var(--app-gutter-xl);
   box-sizing: border-box;
 
   > *:last-child {
@@ -187,7 +187,7 @@ function toggleSoundcloudStatus() {
   display: flex;
   align-items: center;
   user-select: none;
-  gap: 1rem;
+  gap: var(--app-gutter);
   color: white;
 
   > * {
@@ -196,7 +196,7 @@ function toggleSoundcloudStatus() {
 
   svg {
     display: block;
-    height: 2rem;
+    height: 1.5rem;
     width: auto;
     fill: white;
   }

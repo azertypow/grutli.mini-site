@@ -1,0 +1,29 @@
+html, body {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-family: 'ABCOracleWebSite', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: normal;
+  font-variation-settings: "slnt" 0, "wght" 500;
+  position: relative;
+}
+
+html {
+  height: 100%;
+  font-size: 30px;
+  background-color: black;
+  background-image: url('/s.jpg');
+  background-size: cover;
+}
+
+body {
+  font-size: var(--app-font-size);
+  line-height: var(--app-line-height);
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  justify-content: center;
+}

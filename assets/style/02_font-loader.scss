@@ -1,0 +1,9 @@
+//font-variation-settings: "slnt" -13, "wght" 100;
+//font-variation-settings: "slnt" 0, "wght" 900;
+
+@font-face {
+  font-family: 'ABCOracleWebSite';
+  src: url('/fonts/ABCOracleTripleVariable.woff') format('woff');
+  font-weight: normal; /* ou "bold" si c'est une version bold */
+  font-style: normal; /* ou "italic" si c'est une version italique */
+}

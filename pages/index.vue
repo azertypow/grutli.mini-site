@@ -2,17 +2,28 @@
     <section class="v-index"
     >
       <div class="v-index__list">
-        <template v-for="(value, key) of pages">
+        <template v-for="value of Object.entries(pages).slice(0, 3)">
           <div class="v-index__item">
-            <nuxt-link :to="'/spectacle/' + key">
-              <h2 class="v-index__item__title">{{value.title}}</h2>
-              <div class="v-index__item__date">
-                {{value.headerDate}}
+            <nuxt-link :to="'/spectacle/' + value[0]">
+              <h2 class="v-index__item__title app-font-h3">{{value[1].title}}</h2>
+              <div class="v-index__item__date app-font-small">
+                {{value[1].headerDate}}
               </div>
               <div class="v-index__item__peoples">
-                <div v-for="people of value.peoples">
+                <div v-for="people of value[1].peoples">
                   {{people}}
                 </div>
+              </div>
+            </nuxt-link>
+          </div>
+        </template>
+
+        <template v-for="value of pageToShowInHome">
+          <div class="v-index__item">
+            <nuxt-link :to="'/' + value.pageContent.slug">
+              <h2 class="v-index__item__title app-font-h3">{{value.pageContent.content.title}}</h2>
+              <div class="v-index__item__date app-font-small">
+                16 DÉCEMBRE 2024
               </div>
             </nuxt-link>
           </div>
@@ -28,8 +39,20 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import {_routes} from "~/utlis/spectacle/_routes";
+import type {PageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
 
 const pages = _routes
+
+const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
+
+const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
+
+    console.log(siteInfo.value?.['page-simple'])
+
+    return siteInfo.value?.['page-simple'].filter(page => page.pageContent.content.showinhome === 'true') || []
+})
+
+
 </script>
 
 
@@ -53,8 +76,12 @@ const pages = _routes
 }
 
 .v-index__item {
-  width: 100%;
   color: white;
+  box-sizing: border-box;
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
+  margin-bottom: 2rem;
+  width: 50%;
 
   a {
     display: flex;
@@ -65,59 +92,63 @@ const pages = _routes
   }
 
   &:nth-child(-n+3) {
-    box-sizing: border-box;
-    width: calc(100% / 3);
-    padding-left: var(--app-gutter);
-    padding-right: var(--app-gutter);
     max-width: 30rem;
-    margin-bottom: 2rem;
-
-    @media (max-width: 1100px) {
-      width: 100%;
-    }
+    width: calc(100% / 3);
 
     a {
       border: none;
       aspect-ratio: 1/1;
-      background-image: url('/s.jpg');
-      background-size: 160rem auto;
-      box-sizing: border-box;
-      padding: var(--app-gutter);
-      border-radius: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
-      position: relative;
-    }
-
-    .v-index__item__date {
-      position: absolute;
-      top:  1rem;
-      left: 1rem;
-      width: calc(100% - 2rem);
-    }
-
-    .v-index__item__peoples {
-      display: block;
-      font-size: 1rem;
+      height: auto;
     }
   }
 
-  &:nth-child(1) {
+  @media (max-width: 1100px) {
+    width: 100%;
+  }
+
+  a {
+    border: none;
+    aspect-ratio: initial;
+    height: 20rem;
+    background-image: url('/s.jpg');
+    background-size: 80rem auto;
+    box-sizing: border-box;
+    padding: var(--app-gutter);
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+  }
+
+  .v-index__item__date {
+    position: absolute;
+    top: var(--app-gutter-xl);
+    left: var(--app-gutter-xl);
+    width: calc(100% - var(--app-gutter-xl));
+  }
+
+  .v-index__item__peoples {
+    display: block;
+  }
+
+  &:nth-child(1n) {
     a {
-      background-position: 24rem 0rem;
+      background-position: 24rem 0;
     }
   }
 
-  &:nth-child(2) {
+  &:nth-child(2n) {
     a {
       background-position: 35rem 23rem;
     }
   }
-  &:nth-child(3) {
+
+  &:nth-child(3n) {
     margin-bottom: 5rem;
+
     a {
       background-position: -7rem 60rem;
     }
@@ -125,6 +156,6 @@ const pages = _routes
 }
 
 .v-index__item__title {
-  line-height: 1em;
+  text-align: center;
 }
 </style>

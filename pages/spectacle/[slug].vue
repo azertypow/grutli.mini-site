@@ -12,7 +12,7 @@
              class="v-spectacle-slug__img"
              :src="pageData.headerImageRight"
         />
-        <div class="v-spectacle-slug__ticket">
+        <div class="v-spectacle-slug__ticket app-font-h3">
           <a style="display: block"
              v-if="pageData.ticketUrl"
              :href="pageData.ticketUrl"
@@ -79,7 +79,5 @@ const textColor = computed(() => pageData.textColor)
   text-align: center;
   background-color: v-bind(color);
   color: v-bind(textColor);
-  font-size: 2rem;
-  line-height: 1.25em;
 }
 </style>

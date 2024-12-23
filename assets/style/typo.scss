@@ -1,0 +1,20 @@
+h2, .app-font-h2 {
+  line-height: 2rem;
+  font-size: 1.8rem;
+}
+
+h3, .app-font-h3 {
+  line-height: 1.5rem;
+  font-size: 1.25rem;
+}
+
+p, .app-font-base {
+  font-size: var(--app-font-size);
+  line-height: var(--app-line-height);
+}
+
+.app-font-small {
+  line-height: .75rem;
+  font-size: .65rem;
+}
+
