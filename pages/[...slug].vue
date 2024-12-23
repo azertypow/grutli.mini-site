@@ -92,14 +92,6 @@ onMounted(async () => {
   margin-top: 0;
 }
 
-//:global(.v-spectacle-slug__coll__content h2) {
-//  line-height: 1em;
-//}
-//
-//:global(.v-spectacle-slug__coll__content p) {
-//  line-height: 1.25em;
-//}
-
 :global(.v-spectacle-slug__coll__content img) {
   display: block;
   width: 100%;
