@@ -22,7 +22,12 @@ export async function fetchSiteInfo(): Promise<SiteInfo | null> {
     }
 }
 
-export async function fetchPage(slug: string): Promise<ApiSimplePage | null> {
+export async function fetchPage(slugParams: string | string[]): Promise<ApiSimplePage | null> {
+
+    const slug: string = Array.isArray(slugParams) ?
+        slugParams.join('/')
+        : slugParams
+
     const url = apiBaseUrl + '/' + slug + '.json'
 
     try {
