@@ -91,18 +91,20 @@
 }
 
 .v-app-header__center__top {
+  margin: 0;
+
   @media (max-width: 800px) {
     display: none;
   }
 }
 
 .v-app-header__center__center {
-  line-height: 1.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin: 0;
 }
 
 .v-app-header__center__bottom {
+  margin: 0;
+
   @media (max-width: 800px) {
     display: none;
   }

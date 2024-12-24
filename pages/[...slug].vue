@@ -10,7 +10,7 @@
     <div class="v-spectacle-slug__coll">
       <div class="v-spectacle-slug__coll__content">
         <div class="v-spectacle-slug__coll__content__text" v-if="pageData">
-          <h2>{{pageData.pageContent.content.title}}</h2>
+          <h1 class="app-font-h2">{{pageData.pageContent.content.title}}</h1>
 
           <template v-if="useFalkIsActive().value">
             <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
@@ -74,6 +74,8 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
 
 
 <style lang="scss" scoped >
+@use '../assets/style/typo';
+
 .v-spectacle-slug {
   bottom: 0;
   left: 0;
@@ -81,6 +83,7 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   width: 100%;
   flex-direction: column-reverse;
   flex-wrap: wrap;
+  padding-bottom: var(--v-audio-player-header-height);
 
   @media (min-width: 1200px) {
     flex-direction: row;
@@ -102,6 +105,14 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
 
 :global(.v-spectacle-slug__coll__content__text > *:first-child) {
   margin-top: 0;
+}
+
+:global(.v-spectacle-slug__coll__content__text > *:last-child) {
+  margin-top: 0;
+}
+
+:global(.v-spectacle-slug__coll__content__text h2) {
+  @extend .app-font-h3;
 }
 
 :global(.v-spectacle-slug__coll__content__text > *:last-child) {
