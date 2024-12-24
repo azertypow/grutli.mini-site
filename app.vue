@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import {apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak"
 import {fetchSiteInfo} from "~/utlis/apiCmsFetch";
-import {useSiteInfo} from "~/composables/cmsData";
+import {useFalkIsActive, useSiteInfo} from "~/composables/cmsData";
 
 onMounted(async () => {
     console.log( await apiTicketInfomaniak_fetchEvents({
@@ -44,5 +44,11 @@ onMounted(async () => {
     }) )
 
     useSiteInfo().value = await fetchSiteInfo()
+})
+
+watch(useFalkIsActive, (value) => {
+    value.value ?
+        document.documentElement.classList.add('nuxt-watch-falk-is-active')
+        : document.documentElement.classList.remove('nuxt-watch-falk-is-active')
 })
 </script>

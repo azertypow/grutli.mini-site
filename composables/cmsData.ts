@@ -7,9 +7,3 @@ export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
 export const useFalkIsActive: () => Ref<boolean> = () => {
     return useState('useFalkIsActive', () => false )
 }
-
-// watch(useFalkIsActive, (value) => {
-//     value ?
-//         document.body.classList.add('nuxt-watch-falk-is-active')
-//         : document.body.classList.remove('nuxt-watch-falk-is-active')
-// })

@@ -83,12 +83,18 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   margin-bottom: 2rem;
   width: 50%;
 
+
   a {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-top: solid 1px currentColor;
+
+    .nuxt-watch-falk-is-active & {
+      background: white;
+      color: black;
+      border: solid 1px;
+    }
   }
 
   &:nth-child(-n+3) {
@@ -96,7 +102,6 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
     width: calc(100% / 3);
 
     a {
-      border: none;
       aspect-ratio: 1/1;
       height: auto;
     }

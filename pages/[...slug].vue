@@ -12,14 +12,27 @@
         <div class="v-spectacle-slug__coll__content__text" v-if="pageData">
           <h2>{{pageData.pageContent.content.title}}</h2>
 
-          <template v-for="content of pageData.pageContent.content.htmlcontent">
+          <template v-if="useFalkIsActive().value">
+            <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
 
-            <div v-if="content.type === 'textWithTitle'"
-                 v-html="content.content.text"
-            ></div>
+              <div v-if="content.type === 'textWithTitle'"
+                   v-html="content.content.text"
+              ></div>
 
-            <img v-if="content.type === 'image'" v-for="image of content.images" :src="image.resize.large">
+              <img v-if="content.type === 'image'" v-for="image of content.images" :src="image.resize.large">
 
+            </template>
+          </template>
+          <template v-else>
+            <template v-for="content of pageData.pageContent.content.htmlcontent">
+
+              <div v-if="content.type === 'textWithTitle'"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-if="content.type === 'image'" v-for="image of content.images" :src="image.resize.large">
+
+            </template>
           </template>
         </div>
 
@@ -41,6 +54,7 @@
 
 import {fetchPage} from "~/utlis/apiCmsFetch";
 import type {ApiSimplePage} from "~/utlis/ApiCmsTypes";
+import {useFalkIsActive} from "~/composables/cmsData";
 
 const { slug } = useRoute().params;
 
@@ -50,6 +64,8 @@ onMounted(async () => {
     pageData.value = await fetchPage(slug)
     console.log(useRoute().params)
 })
+
+const flakIsActive: Ref<boolean> = useFalkIsActive()
 
 </script>
 

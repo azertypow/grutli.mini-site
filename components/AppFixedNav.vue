@@ -38,8 +38,11 @@ import {useSiteInfo} from "~/composables/cmsData";
   background-size: cover;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 var(--app-gutter-xl);
   color: white;
   gap: var(--app-gutter-xl);
+
+  .nuxt-watch-falk-is-active & {
+    color: black;
+  }
 }
 </style>

@@ -13,9 +13,13 @@ html, body {
 html {
   height: 100%;
   font-size: 30px;
-  background-color: black;
+  background-color: white;
   background-image: url('/s.jpg');
   background-size: cover;
+
+  &.nuxt-watch-falk-is-active {
+    background-image: none;
+  }
 }
 
 body {

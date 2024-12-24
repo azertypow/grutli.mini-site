@@ -42,7 +42,7 @@ export type ApiCmsSpectacle = {
                 };
                 id: string;
                 isHidden: boolean;
-                type: string;
+                type: 'textWithTitle' | 'image';
                 images?: Array<{
                     caption: string | null;
                     alt: string | null;
@@ -170,15 +170,58 @@ export type ApiSimplePage_PageContent = {
         title: string;
         showinnavigation: string;
         showinhome: string;
-        htmlcontent: {
+        htmlcontent: Array<{
             content: {
-                text: string;
+                text?: string;
+                image?: string[];
             };
             id: string;
             isHidden: boolean;
-            type: 'image' | 'textWithTitle';
-        }[];
-        htmlcontent_falk: any[]; // Modifiez à `string[]` ou un autre type précis si nécessaire
+            type: 'textWithTitle' | 'image';
+            images?: Array<{
+                caption: string | null;
+                alt: string | null;
+                link: string | null;
+                photoCredit: string | null;
+                url: string;
+                mediaUrl: string;
+                width: number;
+                height: number;
+                resize: {
+                    tiny: string;
+                    small: string;
+                    reg: string;
+                    large: string;
+                    xxl: string;
+                };
+            }>;
+        }>;
+        htmlcontent_falk: Array<{
+            content: {
+                text?: string;
+                image?: string[];
+            };
+            id: string;
+            isHidden: boolean;
+            type: 'textWithTitle' | 'image';
+            images?: Array<{
+                caption: string | null;
+                alt: string | null;
+                link: string | null;
+                photoCredit: string | null;
+                url: string;
+                mediaUrl: string;
+                width: number;
+                height: number;
+                resize: {
+                    tiny: string;
+                    small: string;
+                    reg: string;
+                    large: string;
+                    xxl: string;
+                };
+            }>;
+        }>;
         uuid: string;
     };
     translations: any[]; // Modifiez à un type précis si nécessaire

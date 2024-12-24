@@ -144,6 +144,10 @@ function toggleSoundcloudStatus() {
   &.v-audio-player--is-open {
     transform: translate(0, 0);
   }
+
+  .nuxt-watch-falk-is-active & {
+    border-top: solid 1px;
+  }
 }
 
 .v-audio-player__container {

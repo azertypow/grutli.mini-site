@@ -5,7 +5,7 @@
         <template v-for="(value, key) of pages">
           <div class="v-programmation__item">
             <nuxt-link :to="'/spectacle/' + key">
-              <h2 class="v-programmation__item__title">{{value.title}}</h2>
+              <h4 class="v-programmation__item__title">{{value.title}}</h4>
               <div class="v-programmation__item__date">
                 {{value.headerDate}}
               </div>
@@ -62,6 +62,10 @@ const pages = _routes
     align-items: center;
     justify-content: space-between;
     border-top: solid 1px currentColor;
+  }
+
+  .nuxt-watch-falk-is-active & {
+    color: black;
   }
 }
 
