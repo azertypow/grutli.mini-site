@@ -1,11 +1,20 @@
 h2, .app-font-h2 {
   line-height: 2rem;
   font-size: 1.8rem;
+  font-weight: 600;
 }
 
 h3, .app-font-h3 {
   line-height: 1.5rem;
   font-size: 1.25rem;
+  font-weight: 600;
+}
+
+h4, .app-font-h4 {
+  font-size: var(--app-font-size);
+  line-height: var(--app-line-height);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 p, .app-font-base {

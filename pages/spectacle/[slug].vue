@@ -70,6 +70,8 @@ const textColor = computed(() => pageData.textColor)
   width: 100%;
   user-select: none;
   pointer-events: none;
+  position: sticky;
+  top: 0;
 }
 
 .v-spectacle-slug__ticket {

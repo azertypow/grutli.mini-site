@@ -24,7 +24,7 @@
         </div>
 
         <div class="v-spectacle-slug__coll__content__children-link" v-if="pageData">
-          <nuxt-link :href="childLink.pageContent.slug" v-for="childLink of pageData.childrenDetails"
+          <nuxt-link :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug" v-for="childLink of pageData.childrenDetails"
           >{{childLink.pageContent.content.title}}</nuxt-link>
         </div>
 
@@ -47,7 +47,7 @@ const { slug } = useRoute().params;
 const pageData: Ref<ApiSimplePage | null> = ref(null)
 
 onMounted(async () => {
-    pageData.value = await fetchPage(slug as string)
+    pageData.value = await fetchPage(slug)
     console.log(useRoute().params)
 })
 
@@ -111,5 +111,7 @@ onMounted(async () => {
   width: 100%;
   user-select: none;
   pointer-events: none;
+  position: sticky;
+  top: 0;
 }
 </style>

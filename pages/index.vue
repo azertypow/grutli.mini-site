@@ -5,7 +5,7 @@
         <template v-for="value of Object.entries(pages).slice(0, 3)">
           <div class="v-index__item">
             <nuxt-link :to="'/spectacle/' + value[0]">
-              <h2 class="v-index__item__title app-font-h3">{{value[1].title}}</h2>
+              <h2 class="v-index__item__title app-font-h4">{{value[1].title}}</h2>
               <div class="v-index__item__date app-font-small">
                 {{value[1].headerDate}}
               </div>
@@ -21,7 +21,7 @@
         <template v-for="value of pageToShowInHome">
           <div class="v-index__item">
             <nuxt-link :to="'/' + value.pageContent.slug">
-              <h2 class="v-index__item__title app-font-h3">{{value.pageContent.content.title}}</h2>
+              <h2 class="v-index__item__title app-font-h4">{{value.pageContent.content.title}}</h2>
               <div class="v-index__item__date app-font-small">
                 16 DÉCEMBRE 2024
               </div>
