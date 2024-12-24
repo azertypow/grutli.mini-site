@@ -83,6 +83,8 @@
   align-items: flex-start;
   user-select: none;
   color: white;
+  background-image: url('/s.jpg');
+  background-size: cover;
 }
 
 .v-app-header__center {
