@@ -146,6 +146,8 @@
   flex-direction: row;
   align-items: center;
   gap: .5rem;
+  user-select: none;
+  cursor: pointer;
 }
 
 .v-app-header__link-abonnement {
