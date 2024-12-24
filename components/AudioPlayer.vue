@@ -129,10 +129,6 @@ function toggleSoundcloudStatus() {
 
 <style lang="scss" scoped >
 .v-audio-player {
-  --v-audio-player-header-height: 1rem;
-  --v-audio-player-iframe-height: 166px;
-  --v-audio-player-header-spacing: 2rem;
-
   position: fixed;
   bottom: 0;
   left: 0;

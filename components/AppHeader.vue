@@ -29,6 +29,11 @@
         </div>
 
         <div class="v-app-header__right__tickets" >
+          <div>
+            <nuxt-link href="/programmation">
+              programmation
+            </nuxt-link>
+          </div>
           <a href="https://infomaniak.events/shop/tsyU0nZLR0/"
              target="_blank"
              class="v-app-header__link-abonnement"
@@ -48,25 +53,7 @@
             </svg>
           </a>
         </div>
-
-        <div class="v-app-header__right__nav"
-             v-if="useSiteInfo().value">
-
-          <div>
-            <nuxt-link href="/programmation">
-              programmation
-            </nuxt-link>
-          </div>
-
-          <div v-for="page of useSiteInfo().value?.['page-simple']">
-            <template v-if="page.pageContent.content.showinnavigation === 'true'">
-              <nuxt-link :href="page.pageContent.slug">
-                {{page.pageContent.content.title}}
-              </nuxt-link>
-            </template>
-          </div>
-        </div>
-
+        <AppFixedNav/>
       </div>
     </section>
 </template>
@@ -132,13 +119,6 @@
   @media (max-width: 800px) {
     width: auto;
   }
-}
-
-.v-app-header__right__nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
 }
 
 .v-app-header__falk-ui {
