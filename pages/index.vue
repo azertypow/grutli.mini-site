@@ -64,10 +64,7 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
-  padding-top: 5rem;
-  padding-bottom: 25vh;
+  padding: var(--app-gutter-xl) var(--app-gutter) calc( var(--v-audio-player-header-height) + var(--app-gutter));
   justify-content: center;
 }
 
