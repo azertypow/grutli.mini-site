@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import {apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak"
 import {fetchSiteInfo} from "~/utlis/apiCmsFetch";
-import {useFalkIsActive, useSiteInfo} from "~/composables/cmsData";
+import {useSiteInfo} from "~/composables/cmsData";
 
 onMounted(async () => {
     console.log( await apiTicketInfomaniak_fetchEvents({
