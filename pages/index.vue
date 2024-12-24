@@ -80,7 +80,7 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   box-sizing: border-box;
   padding-left: var(--app-gutter);
   padding-right: var(--app-gutter);
-  margin-bottom: 2rem;
+  margin-bottom: var(--app-gutter-xl);
   width: 50%;
 
 
@@ -152,8 +152,6 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   }
 
   &:nth-child(3n) {
-    margin-bottom: 5rem;
-
     a {
       background-position: -7rem 60rem;
     }
