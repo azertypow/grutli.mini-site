@@ -10,7 +10,7 @@
     <div class="v-spectacle-slug__coll">
       <div class="v-spectacle-slug__coll__content">
         <div class="v-spectacle-slug__coll__content__text" v-if="pageData">
-          <h1 class="app-font-h2">{{pageData.pageContent.content.title}}</h1>
+          <h1 class="app-font-align-center app-font-h2">{{pageData.pageContent.content.title}}</h1>
 
           <template v-if="useFalkIsActive().value">
             <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
@@ -128,9 +128,9 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   display: block;
   box-sizing: border-box;
   border: solid;
-  padding: 1rem;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
+  padding: var(--app-gutter-xl);
+  border-radius: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
 }
 
 .v-spectacle-slug__img {
