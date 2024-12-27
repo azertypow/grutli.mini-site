@@ -5,6 +5,13 @@ h2, .app-font-h2 {
   font-variation-settings: "slnt" 0, "wght" 600;
   margin-top: 4rem;
   margin-bottom: 1rem;
+  max-width: 12.5em;
+}
+
+.app-font-align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h3, .app-font-h3 {
