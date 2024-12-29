@@ -5,11 +5,11 @@
         <template v-for="value of Object.entries(pages).slice(0, 3)">
           <div class="v-index__item">
             <nuxt-link :to="'/spectacle/' + value[0]">
-              <h2 class="v-index__item__title app-font-h4">{{value[1].title}}</h2>
+              <h2 class="v-index__item__title app-font-h4 app-font-align-center">{{value[1].title}}</h2>
               <div class="v-index__item__date app-font-small">
                 {{value[1].headerDate}}
               </div>
-              <div class="v-index__item__peoples">
+              <div class="v-index__item__peoples app-font-align-center">
                 <div v-for="people of value[1].peoples">
                   {{people}}
                 </div>
@@ -80,12 +80,30 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   margin-bottom: var(--app-gutter-xl);
   width: 50%;
 
+  @media (max-width: 1100px) {
+    width: 100%;
+  }
 
   a {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    border: none;
+    aspect-ratio: initial;
+    background-image: url('/s.jpg');
+    background-size: 80rem auto;
+    box-sizing: border-box;
+    padding: var(--app-gutter);
+    border-radius: 1rem;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    height: calc( (100vh - var(--app-header-height) - var(--v-audio-player-header-height)) / 2 - var(--app-gutter-xl) * 2);
+
+    > * {
+      width: 100%;
+    }
 
     .nuxt-watch-falk-is-active & {
       background: white;
@@ -98,42 +116,9 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
     max-width: 30rem;
     width: calc(100% / 3);
 
-    a {
-      aspect-ratio: 1/1;
-      height: auto;
+    @media (max-width: 1100px) {
+      width: 100%;
     }
-  }
-
-  @media (max-width: 1100px) {
-    width: 100%;
-  }
-
-  a {
-    border: none;
-    aspect-ratio: initial;
-    height: 20rem;
-    background-image: url('/s.jpg');
-    background-size: 80rem auto;
-    box-sizing: border-box;
-    padding: var(--app-gutter);
-    border-radius: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    position: relative;
-  }
-
-  .v-index__item__date {
-    position: absolute;
-    top: var(--app-gutter-xl);
-    left: var(--app-gutter-xl);
-    width: calc(100% - var(--app-gutter-xl));
-  }
-
-  .v-index__item__peoples {
-    display: block;
   }
 
   &:nth-child(1n) {
@@ -155,7 +140,14 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   }
 }
 
-.v-index__item__title {
-  text-align: center;
+.v-index__item__date {
+  position: absolute;
+  top: var(--app-gutter-xl);
+  left: var(--app-gutter-xl);
+  width: calc(100% - var(--app-gutter-xl));
+}
+
+.v-index__item__peoples {
+  display: block;
 }
 </style>
