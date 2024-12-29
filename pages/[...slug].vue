@@ -19,7 +19,11 @@
                    v-html="content.content.text"
               ></div>
 
-              <img v-if="content.type === 'image'" v-for="image of content.images" :src="image.resize.large">
+              <img v-if="content.type === 'image'"
+                   v-for="image of content.images"
+                   :src="image.resize.large"
+                   :alt="image.alt || 'pas de texte alt'"
+              >
 
             </template>
           </template>
@@ -30,7 +34,11 @@
                    v-html="content.content.text"
               ></div>
 
-              <img v-if="content.type === 'image'" v-for="image of content.images" :src="image.resize.large">
+              <img v-if="content.type === 'image'"
+                   v-for="image of content.images"
+                   :src="image.resize.large"
+                   :alt="image.alt || 'pas de texte alt'"
+              >
 
             </template>
           </template>
