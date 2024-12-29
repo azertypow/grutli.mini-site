@@ -7,14 +7,27 @@
       <div class="v-audio-player__container app-font-extra-small">
         <div class="v-audio-player__container__header">
           <div class="v-audio-player__container__header__title">
-            Présentation de l'Arbre-Monde
-            <nuxt-link to="/audio">(accès au texte)</nuxt-link>
+            <div class="v-audio-player__container__header__title__text"
+            >
+              Présentation de l'Arbre-Monde&emsp;
+            </div>
+            <nuxt-link class="v-audio-player__container__header__title__link"
+                       to="/audio"
+            >
+              (accès au texte ->)
+            </nuxt-link>
           </div>
           <div class="v-audio-player__container__header__ui">
             <div @click="playerIsOpen = !playerIsOpen">
-              <template v-if="playerIsOpen">masquer</template>
-              <template v-else>afficher</template>
-              le lecteur
+                <img :src="playerIsOpen ?
+                            '/icons/close_fullscreen_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg'
+                            : '/icons/open_in_full_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg'
+                          "
+                     :alt="playerIsOpen ?
+                            'Fermer le player SoundCloud'
+                            : 'Ouvrir le player SoundCloud'
+                          "
+                />
             </div>
             <div @click="toggleSoundcloudStatus"
             >
@@ -163,19 +176,20 @@ function toggleSoundcloudStatus() {
 .v-audio-player__container__header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: var(--v-audio-player-header-height);
   align-items: center;
   padding: 0 var(--app-gutter-xl);
   box-sizing: border-box;
-
-  > *:last-child {
-    margin-left: auto;
-  }
+  gap: var(--app-gutter-xl);
 }
 
 
 .v-audio-player__container__header__title {
+  display: flex;
+}
+
+.v-audio-player__container__header__title__text {
   display: none;
   @media (min-width: 900px) {
     display: block;
