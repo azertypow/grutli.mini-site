@@ -21,7 +21,7 @@
         <template v-for="value of pageToShowInHome">
           <div class="v-index__item">
             <nuxt-link :to="'/' + value.pageContent.slug">
-              <h2 class="v-index__item__title app-font-h4">{{value.pageContent.content.title}}</h2>
+              <h2 class="v-index__item__title app-font-align-center app-font-h4">{{value.pageContent.content.title}}</h2>
               <div class="v-index__item__date app-font-small">
                 16 DÉCEMBRE 2024
               </div>
