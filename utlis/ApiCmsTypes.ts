@@ -1,67 +1,35 @@
-export type ApiCmsSpectacle = {
+export type ApiCmsPageSpectacle = {
+    childrenDetails: ApiSimplePage_ChildDetails[];
+    cover: ApiCmsImage[];
     pageContent: {
         content: {
-            title: string;
-            eventtitle: string;
-            iscover: string;
-            cover: string;
-            places: string;
-            company: string;
-            linked_spectacle: string | null;
-            peoples: string;
-            htmlcontent: Array<{
-                content: {
-                    text?: string;
-                    image?: string[];
-                };
-                id: string;
-                isHidden: boolean;
-                type: 'textWithTitle' | 'image';
-                images?: Array<{
-                    caption: string | null;
-                    alt: string | null;
-                    link: string | null;
-                    photoCredit: string | null;
-                    url: string;
-                    mediaUrl: string;
-                    width: number;
-                    height: number;
-                    resize: {
-                        tiny: string;
-                        small: string;
-                        reg: string;
-                        large: string;
-                        xxl: string;
-                    };
-                }>;
-            }>;
-            htmlcontent_falk: Array<{
-                content: {
-                    text?: string;
-                    image?: string[];
-                };
-                id: string;
-                isHidden: boolean;
-                type: 'textWithTitle' | 'image';
-                images?: Array<{
-                    caption: string | null;
-                    alt: string | null;
-                    link: string | null;
-                    photoCredit: string | null;
-                    url: string;
-                    mediaUrl: string;
-                    width: number;
-                    height: number;
-                    resize: {
-                        tiny: string;
-                        small: string;
-                        reg: string;
-                        large: string;
-                        xxl: string;
-                    };
-                }>;
-            }>;
-        };
+            title: string,
+            eventtitle: string,
+            iscover: string,
+            cover: string,
+            places: string,
+            company: string,
+            linked_spectacle: string,
+            peoples: string,
+            htmlcontent: ApiHTMLContent[],
+            htmlcontent_falk: ApiHTMLContent[],
+            details: string,
+            htmldetails: ApiHTMLContent[],
+            uuid: string
+        },
+        translations: [],
+        children: [],
+        files: [],
+        id: string,
+        mediaUrl: string,
+        mediaRoot: string,
+        num: number,
+        parent: string,
+        slug: string,
+        template: {},
+        uid: string,
+        uri: string,
+        url: string
     };
 };
 
@@ -72,7 +40,7 @@ export interface SiteInfo {
 }
 
 export interface PageSimple {
-    cover: any[]; // Si "cover" est toujours un tableau vide, laisse `any[]`. Sinon, précise le type.
+    cover: ApiCmsImage[];
     pageContent: PageContent;
 }
 
@@ -103,11 +71,11 @@ export interface PageContentDetails {
 }
 
 export interface Spectacle {
-    cover: Cover[];
+    cover: ApiCmsImage[];
     pageContent: SpectaclePageContent;
 }
 
-export interface Cover {
+export interface ApiCmsImage {
     caption: string;
     alt: string;
     link: string | null;
@@ -170,58 +138,8 @@ export type ApiSimplePage_PageContent = {
         title: string;
         showinnavigation: string;
         showinhome: string;
-        htmlcontent: Array<{
-            content: {
-                text?: string;
-                image?: string[];
-            };
-            id: string;
-            isHidden: boolean;
-            type: 'textWithTitle' | 'image';
-            images?: Array<{
-                caption: string | null;
-                alt: string | null;
-                link: string | null;
-                photoCredit: string | null;
-                url: string;
-                mediaUrl: string;
-                width: number;
-                height: number;
-                resize: {
-                    tiny: string;
-                    small: string;
-                    reg: string;
-                    large: string;
-                    xxl: string;
-                };
-            }>;
-        }>;
-        htmlcontent_falk: Array<{
-            content: {
-                text?: string;
-                image?: string[];
-            };
-            id: string;
-            isHidden: boolean;
-            type: 'textWithTitle' | 'image';
-            images?: Array<{
-                caption: string | null;
-                alt: string | null;
-                link: string | null;
-                photoCredit: string | null;
-                url: string;
-                mediaUrl: string;
-                width: number;
-                height: number;
-                resize: {
-                    tiny: string;
-                    small: string;
-                    reg: string;
-                    large: string;
-                    xxl: string;
-                };
-            }>;
-        }>;
+        htmlcontent: ApiHTMLContent[];
+        htmlcontent_falk: ApiHTMLContent[];
         uuid: string;
     };
     translations: any[]; // Modifiez à un type précis si nécessaire
@@ -238,6 +156,33 @@ export type ApiSimplePage_PageContent = {
     uri: string;
     url: string;
 };
+
+export type ApiHTMLContent = {
+    content: {
+        text?: string;
+        image?: string[];
+    };
+    id: string;
+    isHidden: boolean;
+    type: 'textWithTitle' | 'image';
+    images?: Array<{
+        caption: string | null;
+        alt: string | null;
+        link: string | null;
+        photoCredit: string | null;
+        url: string;
+        mediaUrl: string;
+        width: number;
+        height: number;
+        resize: {
+            tiny: string;
+            small: string;
+            reg: string;
+            large: string;
+            xxl: string;
+        };
+    }>;
+}
 
 export type ApiSimplePage_ChildDetails = {
     cover: any[]; // Modifiez à un type précis si nécessaire

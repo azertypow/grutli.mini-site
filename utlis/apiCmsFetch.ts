@@ -30,6 +30,8 @@ export async function fetchPage(slugParams: string | string[]): Promise<ApiSimpl
 
     const url = apiBaseUrl + '/' + slug + '.json'
 
+    console.log(url)
+
     try {
         const response = await fetch(url);
 

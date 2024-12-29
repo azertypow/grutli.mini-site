@@ -33,11 +33,16 @@
 <script setup lang="ts">
 import {_routes} from "~/utlis/spectacle/_routes";
 import type {PageHeaderAPI} from "~/utlis/PageHeaderAPI";
+import {fetchPage} from "~/utlis/apiCmsFetch";
 
 const pageData: PageHeaderAPI = _routes[useRoute().params.slug as string]
 
 const color = computed(() => pageData.headerColor)
 const textColor = computed(() => pageData.textColor)
+
+onMounted(async () => {
+    console.log(await fetchPage(['spectacles', useRoute().params.slug as string]))
+})
 
 </script>
 
