@@ -21,6 +21,7 @@ h3, .app-font-h3 {
   font-variation-settings: "slnt" 0, "wght" 600;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
+  max-width: none;
 }
 
 h4, .app-font-h4 {
@@ -31,6 +32,7 @@ h4, .app-font-h4 {
   text-transform: uppercase;
   margin-top: calc(var(--app-line-height) * 2);
   margin-bottom: var(--app-line-height);
+  max-width: none;
 }
 
 p, .app-font-base {
@@ -38,6 +40,7 @@ p, .app-font-base {
   line-height: var(--app-line-height);
   margin-top: 0;
   margin-bottom: var(--app-line-height);
+  max-width: none;
 }
 
 .app-font-small {
@@ -45,6 +48,7 @@ p, .app-font-base {
   font-size: .65rem;
   margin-top: 0;
   margin-bottom: .75rem;
+  max-width: none;
 }
 
 .app-font-extra-small {
@@ -52,5 +56,6 @@ p, .app-font-base {
   font-size: .5rem;
   margin-top: 0;
   margin-bottom: .5rem;
+  max-width: none;
 }
 
