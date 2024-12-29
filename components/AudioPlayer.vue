@@ -11,11 +11,11 @@
             >
               Présentation de l'Arbre-Monde&emsp;
             </div>
-            <nuxt-link class="v-audio-player__container__header__title__link"
-                       to="/audio"
-            >
-              (accès au texte ->)
-            </nuxt-link>
+<!--            <nuxt-link class="v-audio-player__container__header__title__link"-->
+<!--                       to="/audio"-->
+<!--            >-->
+<!--              (accès au texte ->)-->
+<!--            </nuxt-link>-->
           </div>
           <div class="v-audio-player__container__header__ui">
             <div @click="playerIsOpen = !playerIsOpen">
