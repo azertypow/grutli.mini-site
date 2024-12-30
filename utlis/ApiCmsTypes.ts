@@ -8,7 +8,7 @@ export type ApiCmsPageSpectacle = {
             iscover: string,
             cover: string,
             places: string,
-            company: string,
+            company: ApiCmsCompany[],
             linked_spectacle: string,
             peoples: string,
             htmlcontent: ApiHTMLContent[],
@@ -32,6 +32,12 @@ export type ApiCmsPageSpectacle = {
         url: string
     };
 };
+
+export type ApiCmsCompany = {
+    authors_name: string,
+        authors_link: string,
+        id: string //string number
+}
 
 
 export interface SiteInfo {
