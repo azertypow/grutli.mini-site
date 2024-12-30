@@ -1,4 +1,4 @@
-import type {ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {ApiCmsPageSpectacle, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
 
 const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
 
@@ -46,4 +46,8 @@ export async function fetchPage(slugParams: string | string[]): Promise<ApiSimpl
         console.error("Failed to fetch site info:", error);
         return null;
     }
+}
+
+export async function fetchPageSpectacle(slug: string): Promise<ApiCmsPageSpectacle | null> {
+    return await fetchPage(['spectacles', slug]) as unknown as ApiCmsPageSpectacle | null
 }

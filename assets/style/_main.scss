@@ -16,3 +16,13 @@ a {
   color: inherit;
 }
 
+
+.app-remove-first-last-child-margin {
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  > *:last-child {
+    margin-top: 0 !important;
+  }
+}

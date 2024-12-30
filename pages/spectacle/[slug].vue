@@ -4,18 +4,84 @@
       <div class="v-spectacle-slug__coll">
         <img alt="image texte"
              class="v-spectacle-slug__img"
-             :src="pageData.headerImageLeft"
+             :src="pageData?.cover[0].resize.xxl"
         />
       </div>
-      <div class="v-spectacle-slug__coll">
-        <img alt="image texte"
-             class="v-spectacle-slug__img"
-             :src="pageData.headerImageRight"
-        />
+      <div class="v-spectacle-slug__coll"
+      >
+
+        <div class="v-spectacle-slug__coll__header">
+          <div class="v-spectacle-slug__coll__header__content"
+               v-if="firstAndLAstDate">{{firstAndLAstDate}}</div>
+        </div>
+        <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
+
+          <h1 class="app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
+
+          <template v-if="useFalkIsActive().value">
+            <template v-for="content of pageData?.pageContent.content.htmlcontent_falk">
+
+              <div v-if="content.type === 'text'"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-if="content.type === 'image'"
+                   v-for="image of content.images"
+                   :src="image.resize.large"
+                   :alt="image.alt || 'pas de texte alt'"
+              >
+
+            </template>
+          </template>
+          <template v-else>
+            <template v-for="content of pageData?.pageContent.content.htmlcontent">
+              <div v-if="content.type === 'text'"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-if="content.type === 'image'"
+                   v-for="image of content.images"
+                   :src="image.resize.large"
+                   :alt="image.alt || 'pas de texte alt'"
+              >
+
+            </template>
+          </template>
+
+          <div class="v-spectacle-slug__coll__text-content__peoples"
+               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
+          />
+
+          <template v-if="ticketInfo">
+            <div class="v-spectacle-slug__dates">
+              <div class="v-spectacle-slug__dates__item"
+                   v-for="(mounthItem, mounthName) of groupedByMonth"
+              >
+                <div class="v-spectacle-slug__dates__item__mouth">
+                  {{ mounthName }}
+                </div>
+                <div class="v-spectacle-slug__dates__item__days">
+                  <div class="v-spectacle-slug__dates__item__days__day"
+                       v-for="dayDate of mounthItem.map(wrapNumbersInSpan)"
+                       v-html="dayDate"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="v-spectacle-slug__duration">
+              Durée {{ticketInfo[0].duration_in_minutes}} minutes
+            </div>
+          </template>
+          <template v-else>
+            <div>Récupération des informaitons de la billeterie…</div>
+          </template>
+        </div>
+
+
         <div class="v-spectacle-slug__ticket app-font-h3">
           <a style="display: block"
-             v-if="pageData.ticketUrl"
-             :href="pageData.ticketUrl"
+             v-if="ticketInfo"
+             :href="ticketInfo[0].portal_link_preview"
              target="_blank"
           >prendre un billet</a>
           <div style="display: block"
@@ -31,17 +97,60 @@
 
 
 <script setup lang="ts">
-import {_routes} from "~/utlis/spectacle/_routes";
-import type {PageHeaderAPI} from "~/utlis/PageHeaderAPI";
-import {fetchPage} from "~/utlis/apiCmsFetch";
+import {fetchPageSpectacle} from "~/utlis/apiCmsFetch";
+import type {ApiCmsPageSpectacle} from "~/utlis/ApiCmsTypes";
+import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
+import {useFalkIsActive} from "~/composables/cmsData";
 
-const pageData: PageHeaderAPI = _routes[useRoute().params.slug as string]
+const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
+const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
 
-const color = computed(() => pageData.headerColor)
-const textColor = computed(() => pageData.textColor)
+const color = '#ff6c2f'
+const textColor = 'white'
+
+const firstAndLAstDate = computed(() => {
+    if(!ticketInfo.value) return null
+
+    return `${new Date(ticketInfo.value[0].date).toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+    })} - ${new Date(ticketInfo.value.at(-1)?.date || ticketInfo.value[0].date).toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+    })}`
+})
+
+const groupedByMonth: ComputedRef<{[month: string]: string[]} | null> = computed(() => {
+    if (ticketInfo.value === null) return null
+
+    return ticketInfo.value.reduce((acc: {[month: string]: string[]}, eventItem) => {
+        const date = new Date(eventItem.date);
+        const monthKey = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+
+        if (!acc[monthKey]) {
+            acc[monthKey] = [];
+        }
+
+        acc[monthKey].push(new Date(eventItem.date).toLocaleDateString('fr-FR',{
+            weekday: 'long',
+            day: 'numeric',
+        }));
+        return acc;
+    }, {})
+});
+
+const wrapNumbersInSpan = (text: string): string => {
+    return text.replace(/\b(\d+)\b/g, "<span>$1</span>");
+};
 
 onMounted(async () => {
-    console.log(await fetchPage(['spectacles', useRoute().params.slug as string]))
+
+
+    pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
+    ticketInfo.value = await apiTicketInfomaniak_fetchEvents({
+        search: pageData.value?.pageContent.content.eventtitle || ''
+    })
+    console.log( ticketInfo.value )
 })
 
 </script>
@@ -51,6 +160,8 @@ onMounted(async () => {
 
 
 <style lang="scss" scoped >
+@use '@/assets/style/typo';
+
 .v-spectacle-slug {
   bottom: 0;
   left: 0;
@@ -70,6 +181,35 @@ onMounted(async () => {
   width: 100%;
 }
 
+.v-spectacle-slug__coll__text-content {
+  background: white;
+  box-sizing: border-box;
+  padding: var(--app-gutter-xl) var(--app-gutter-xl) 1rem;
+}
+
+.v-spectacle-slug__coll__header {
+  --top-position: 1.5rem;
+  box-sizing: border-box;
+  padding-top: var(--top-position);
+  background-color: white;
+  position: sticky;
+  top: calc(var(--app-header-height) - var(--top-position) );
+}
+
+.v-spectacle-slug__coll__header__content {
+  box-sizing: border-box;
+  background-color: v-bind(color);
+  color: v-bind(textColor);
+  padding: 0 var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__coll__text-content__peoples {
+  text-align: center;
+}
+:global( .v-spectacle-slug__coll__text-content__peoples > *) {
+  @extend .app-font-small;
+}
+
 .v-spectacle-slug__img {
   display: block;
   width: 100%;
@@ -79,12 +219,47 @@ onMounted(async () => {
   top: 0;
 }
 
+.v-spectacle-slug__dates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__dates__item {
+  display: flex;
+  gap: var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__dates__item__mouth {
+  width: 5rem;
+  flex-shrink: 0;
+}
+
+.v-spectacle-slug__dates__item__days {
+  display: flex;
+  gap: var(--app-gutter) 1rem;
+  flex-wrap: wrap;
+}
+
+:global(.v-spectacle-slug__dates__item__days__day span) {
+  color: v-bind(color);
+  //font-variation-settings: "slnt" 0, "wght" 800;
+}
+
+.v-spectacle-slug__duration {
+  border-top: solid 2px;
+  text-align: right;
+  margin-top: var(--app-gutter-xl);
+}
+
 .v-spectacle-slug__ticket {
   position: sticky;
-  bottom: 0;
+  bottom: var(--v-audio-player-header-height);
+  top: var(--app-header-height);
   left: 0;
   text-align: center;
   background-color: v-bind(color);
   color: v-bind(textColor);
+  margin: 0;
 }
 </style>

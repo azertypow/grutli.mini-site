@@ -2,7 +2,7 @@
     <section class="v-index"
     >
       <div class="v-index__list">
-        <template v-for="value of Object.entries(pages).slice(0, 3)">
+        <template v-for="value of siteInfo?.spectacles.slice(0, 3)">
           <div class="v-index__item">
             <nuxt-link :to="'/spectacle/' + value[0]">
               <h2 class="v-index__item__title app-font-h4 app-font-align-center">{{value[1].title}}</h2>
@@ -36,7 +36,6 @@
 
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import {_routes} from "~/utlis/spectacle/_routes";
 import type {PageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
 

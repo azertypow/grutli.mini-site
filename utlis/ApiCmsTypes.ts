@@ -164,7 +164,7 @@ export type ApiHTMLContent = {
     };
     id: string;
     isHidden: boolean;
-    type: 'textWithTitle' | 'image';
+    type: 'textWithTitle' | 'image' | 'text';
     images?: Array<{
         caption: string | null;
         alt: string | null;
