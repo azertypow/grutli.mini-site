@@ -19,19 +19,45 @@
           <h1 class="app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
 
           <template v-if="useFalkIsActive().value">
-            <template v-for="content of pageData?.pageContent.content.htmlcontent_falk">
 
-              <div v-if="content.type === 'text'"
-                   v-html="content.content.text"
-              ></div>
+            <template v-if="pageData?.pageContent.content.htmlcontent_falk.length">
+              <!--FALK est activé et il y a du texte FLAK-->
 
-              <img v-if="content.type === 'image'"
-                   v-for="image of content.images"
-                   :src="image.resize.large"
-                   :alt="image.alt || 'pas de texte alt'"
-              >
+              <template v-for="content of pageData?.pageContent.content.htmlcontent_falk">
+                <div v-if="content.type === 'text'"
+                     v-html="content.content.text"
+                ></div>
+
+                <img v-if="content.type === 'image'"
+                     v-for="image of content.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+              </template>
 
             </template>
+
+            <template v-else>
+              <!--FALK est activé mais PAS de FALK, on prend le texte normal et on ajoute une phrase-->
+
+              <h4 class="app-font-align-center"
+                  style="color: var(--app-color-orange)"
+              >(La version FALK n'est pas encore mise en ligne)</h4>
+
+              <template v-for="content of pageData?.pageContent.content.htmlcontent">
+                <div v-if="content.type === 'text'"
+                     v-html="content.content.text"
+                ></div>
+
+                <img v-if="content.type === 'image'"
+                     v-for="image of content.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+
+              </template>
+            </template>
+
           </template>
           <template v-else>
             <template v-for="content of pageData?.pageContent.content.htmlcontent">
