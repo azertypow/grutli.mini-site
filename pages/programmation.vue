@@ -37,14 +37,19 @@ const pages = _routes
 
 
 <style lang="scss" scoped >
+.v-programmation {
+
+
+  a {
+    text-decoration: none;
+  }
+}
+
 .v-programmation__list {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
-  padding-top: 5rem;
-  padding-bottom: 25vh;
+  padding: 5rem var(--app-gutter) 25vh;
   justify-content: center;
 }
 
@@ -70,6 +75,7 @@ const pages = _routes
 }
 
 .v-programmation__item__title {
-  line-height: 1em;
+  //line-height: 1em;
+  margin: 1rem 0;
 }
 </style>
