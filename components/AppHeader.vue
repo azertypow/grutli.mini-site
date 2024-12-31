@@ -113,6 +113,10 @@
     height: 1.5rem;
     width: auto;
     fill: white;
+
+    .nuxt-watch-falk-is-active & {
+      fill: black !important;
+    }
   }
 
   @media (max-width: 900px) {
