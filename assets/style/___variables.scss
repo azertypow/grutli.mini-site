@@ -12,4 +12,8 @@
 
   --app-color-purple: #9678b4;
   --app-color-orange: #ed6936;
+
+  @media (max-width: 900px) {
+    --app-header-height: 2rem;
+  }
 }

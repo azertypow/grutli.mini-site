@@ -4,13 +4,18 @@
   >
     <h4 class="v-app-event-item__item__title">{{ event.pageContent.content.title }}</h4>
     <div class="v-app-event-item__item__date">
-      {{ dateFromTicketService }}
+      <template v-if="dateFromTicketService">
+        {{ dateFromTicketService }}
+      </template>
+      <template v-else>
+        billeterie à venir
+      </template>
     </div>
-    <div class="v-app-event-item__item__peoples">
+<!--    <div class="v-app-event-item__item__peoples">-->
 <!--      <div v-for="people of event.pageContent.content.company">-->
 <!--        {{ people }}-->
 <!--      </div>-->
-    </div>
+<!--    </div>-->
   </nuxt-link>
 </template>
 
@@ -74,6 +79,11 @@ async function setDateToShow() {
   align-items: center;
   justify-content: space-between;
   border-top: solid 1px currentColor;
+  padding: 1rem 0;
+
+  @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 
   .nuxt-watch-falk-is-active & {
     color: black;
@@ -81,7 +91,6 @@ async function setDateToShow() {
 }
 
 .v-app-event-item__item__title {
-  //line-height: 1em;
-  margin: 1rem 0;
+  margin: 0;
 }
 </style>

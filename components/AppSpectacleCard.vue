@@ -112,6 +112,11 @@ async function setDateToShow() {
     color: black;
     border: solid 1px;
   }
+
+  @media (max-width: 900px) {
+    height: auto;
+    padding: 0.5rem;
+  }
 }
 
 .v-app-spectacle-card__item__date {

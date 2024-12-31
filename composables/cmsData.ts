@@ -7,3 +7,7 @@ export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
 export const useFalkIsActive: () => Ref<boolean> = () => {
     return useState('useFalkIsActive', () => false )
 }
+
+export const useMenuIsOpen: () => Ref<boolean> = () => {
+    return useState('useMenuIsOpen', () => false )
+}

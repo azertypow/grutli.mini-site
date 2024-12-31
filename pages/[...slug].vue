@@ -139,6 +139,7 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   padding: var(--app-gutter-xl);
   border-radius: var(--app-gutter-xl);
   margin-bottom: var(--app-gutter-xl);
+  text-decoration: none;
 }
 
 .v-spectacle-slug__img {

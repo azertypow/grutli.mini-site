@@ -38,8 +38,13 @@ import {useSiteInfo} from "~/composables/cmsData";
   background-size: cover;
   width: 100%;
   box-sizing: border-box;
-  color: white;
+  color: inherit;
   gap: var(--app-gutter-xl);
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
   .nuxt-watch-falk-is-active & {
     color: black;
@@ -47,6 +52,10 @@ import {useSiteInfo} from "~/composables/cmsData";
 
   a {
     text-decoration: none;
+  }
+
+  > * {
+    margin: 0;
   }
 }
 </style>

@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import {fetchSiteInfo} from "~/utlis/apiCmsFetch";
-import {useFalkIsActive, useSiteInfo} from "~/composables/cmsData";
+import {useFalkIsActive, useMenuIsOpen, useSiteInfo} from "~/composables/cmsData";
 
 onMounted(async () => {
     useSiteInfo().value = await fetchSiteInfo()
@@ -46,4 +46,9 @@ watch(useFalkIsActive, (value) => {
         document.documentElement.classList.add('nuxt-watch-falk-is-active')
         : document.documentElement.classList.remove('nuxt-watch-falk-is-active')
 })
+
+useRouter().afterEach(() => {
+    useMenuIsOpen().value = false
+})
+
 </script>
