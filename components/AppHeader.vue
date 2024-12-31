@@ -80,6 +80,10 @@
     color: black;
     border-bottom: solid 1px;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .v-app-header__center {

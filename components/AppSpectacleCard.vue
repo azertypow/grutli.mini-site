@@ -101,6 +101,7 @@ async function setDateToShow() {
   align-content: center;
   position: relative;
   height: calc( (100vh - var(--app-header-height) - var(--v-audio-player-header-height)) / 2 - var(--app-gutter-xl) * 2);
+  text-decoration: none;
 
   > * {
     width: 100%;

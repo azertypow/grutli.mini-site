@@ -44,5 +44,9 @@ import {useSiteInfo} from "~/composables/cmsData";
   .nuxt-watch-falk-is-active & {
     color: black;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 </style>
