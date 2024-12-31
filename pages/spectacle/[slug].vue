@@ -94,7 +94,9 @@
                 </div>
               </div>
             </div>
-            <div class="v-spectacle-slug__duration">
+            <div class="v-spectacle-slug__duration"
+                 v-if="ticketInfo[0].duration_in_minutes"
+            >
               Durée {{ticketInfo[0].duration_in_minutes}} minutes
             </div>
           </template>
@@ -227,6 +229,8 @@ onMounted(async () => {
   background-color: v-bind(color);
   color: v-bind(textColor);
   padding: 0 var(--app-gutter-xl);
+  display: flex;
+  justify-content: space-between;
 }
 
 .v-spectacle-slug__coll__text-content__peoples {
