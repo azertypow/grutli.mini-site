@@ -88,7 +88,7 @@ async function setDateToShow() {
 .v-app-spectacle-card {
   display: flex;
   align-items: center;
-  border: none;
+  border: solid 1px white;
   aspect-ratio: initial;
   background-image: url('/s.jpg');
   background-size: 80rem auto;
