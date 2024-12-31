@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       '~/assets/style/_main.scss'
   ],
 
-  ssr: false,
+  ssr: true,
 
   app: {
     baseURL: '/',
