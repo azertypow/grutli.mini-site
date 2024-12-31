@@ -116,7 +116,7 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
 }
 
 :global(.v-spectacle-slug__coll__content__text > *:last-child) {
-  margin-top: 0;
+  margin-bottom: 0;
 }
 
 :global(.v-spectacle-slug__coll__content__text h2) {
@@ -124,7 +124,7 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
 }
 
 :global(.v-spectacle-slug__coll__content__text > *:last-child) {
-  margin-top: 0;
+  margin-bottom: 0;
 }
 
 :global(.v-spectacle-slug__coll__content img) {
