@@ -12,7 +12,10 @@
 
         <div class="v-spectacle-slug__coll__header">
           <div class="v-spectacle-slug__coll__header__content"
-               v-if="firstAndLAstDate">{{firstAndLAstDate}}</div>
+               v-if="firstAndLAstDate">
+            <div>{{firstAndLAstDate}}</div>
+            <div>{{pageData?.pageContent.content.places}}</div>
+          </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
 
