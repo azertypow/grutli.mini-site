@@ -4,7 +4,7 @@ export type ApiCmsPageSpectacle = {
     pageContent: {
         content: {
             title: string,
-            eventtitle: string,
+            eventtitle: string[],
             iscover: string,
             cover: string,
             places: string,
@@ -120,7 +120,7 @@ export interface SpectaclePageContent {
 
 export interface SpectacleContentDetails {
     title: string;
-    eventtitle: string;
+    eventtitle: string[];
     iscover: string; // Probablement un boolean représenté en string.
     cover: string;
     places: string;

@@ -33,7 +33,7 @@ interface Props {
     peoples?: string[]
     date?:string
     getDateFromTicketService?: boolean
-    eventTitle?: string
+    eventTitle?: string[]
 }
 const props = withDefaults(defineProps<Props>(), {
     getDateFromTicketService: false
@@ -59,7 +59,7 @@ async function setDateToShow() {
     }
 
     const eventsFromTicketService = await apiTicketInfomaniak_fetchEvents({
-        search: props.eventTitle
+        search: props.eventTitle[0]
     })
 
     const firstDate = new Date(eventsFromTicketService[0].date).toLocaleDateString('fr-FR', {

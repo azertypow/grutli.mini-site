@@ -3,6 +3,7 @@
     >
       <div class="v-spectacle-slug__coll">
         <img alt="image texte"
+             v-if="pageData"
              class="v-spectacle-slug__img"
              :src="pageData?.cover[0].resize.xxl"
         />
@@ -123,9 +124,9 @@
               Durée {{ticketInfo[0].duration_in_minutes}} minutes
             </div>
           </template>
-          <template v-else>
-            <div>Récupération des informaitons de la billeterie…</div>
-          </template>
+<!--          <template v-else>-->
+<!--            <div>Récupération des informaitons de la billeterie…</div>-->
+<!--          </template>-->
 
 
           <template v-for="content of pageData?.pageContent.content.htmldetails">
@@ -215,8 +216,10 @@ onMounted(async () => {
 
 
     pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
+
+    if( !pageData.value) return
     ticketInfo.value = await apiTicketInfomaniak_fetchEvents({
-        search: pageData.value?.pageContent.content.eventtitle || ''
+        search: pageData.value.pageContent.content.eventtitle[0]
     })
     console.log( ticketInfo.value )
 })
