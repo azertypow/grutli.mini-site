@@ -19,7 +19,22 @@
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
 
-          <h1 class="app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
+          <h1 class="v-spectacle-slug__coll__text-content__title app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
+
+          <div class="v-spectacle-slug__coll__text-content__company">
+            <div v-for="companyPeople of pageData?.pageContent.content.company">
+              <template v-if="companyPeople.authors_link">
+                <a target="_blank" :href="companyPeople.authors_link">
+                  {{companyPeople.authors_name}}
+                </a>
+              </template>
+              <template v-else>
+                <div>
+                  {{companyPeople.authors_name}}
+                </div>
+              </template>
+            </div>
+          </div>
 
           <template v-if="useFalkIsActive().value">
 
@@ -60,9 +75,10 @@
 
               </template>
             </template>
-
           </template>
+
           <template v-else>
+            <!--texte original-->
             <template v-for="content of pageData?.pageContent.content.htmlcontent">
               <div v-if="content.type === 'text'"
                    v-html="content.content.text"
@@ -77,8 +93,12 @@
             </template>
           </template>
 
-          <div class="v-spectacle-slug__coll__text-content__peoples"
+          <div class="v-spectacle-slug__coll__text-content__peoples app-font-align-center"
                v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
+          />
+
+          <div class="v-spectacle-slug__coll__text-content__details app-font-align-center"
+               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
           />
 
           <template v-if="ticketInfo">
@@ -106,11 +126,28 @@
           <template v-else>
             <div>Récupération des informaitons de la billeterie…</div>
           </template>
+
+
+          <template v-for="content of pageData?.pageContent.content.htmldetails">
+            <div class="app-remove-first-last-child-margin v-spectacle-slug__detailsHtml">
+              <div v-if="content.type === 'text'"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-if="content.type === 'image'"
+                   v-for="image of content.images"
+                   :src="image.resize.large"
+                   :alt="image.alt || 'pas de texte alt'"
+              >
+            </div>
+          </template>
+
+
         </div>
 
 
         <div class="v-spectacle-slug__ticket app-font-h3">
-          <a style="display: block"
+          <a style="display: block; text-decoration: none"
              v-if="ticketInfo"
              :href="ticketInfo[0].portal_link_preview"
              target="_blank"
@@ -215,7 +252,15 @@ onMounted(async () => {
 .v-spectacle-slug__coll__text-content {
   background: white;
   box-sizing: border-box;
-  padding: var(--app-gutter-xl) var(--app-gutter-xl) 1rem;
+  padding: var(--app-gutter-xl) var(--app-gutter-xl) 1.5rem;
+}
+
+.v-spectacle-slug__coll__text-content__title {
+  margin-bottom: .5rem;
+}
+.v-spectacle-slug__coll__text-content__company {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .v-spectacle-slug__coll__header {
@@ -236,10 +281,11 @@ onMounted(async () => {
   justify-content: space-between;
 }
 
-.v-spectacle-slug__coll__text-content__peoples {
-  text-align: center;
-}
 :global( .v-spectacle-slug__coll__text-content__peoples > *) {
+  @extend .app-font-small;
+}
+
+:global( .v-spectacle-slug__coll__text-content__details > *) {
   @extend .app-font-small;
 }
 
@@ -256,6 +302,8 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   gap: var(--app-gutter-xl);
+  margin-top: 1rem;
+  margin-bottom: .5rem;
 }
 
 .v-spectacle-slug__dates__item {
@@ -282,7 +330,12 @@ onMounted(async () => {
 .v-spectacle-slug__duration {
   border-top: solid 2px;
   text-align: right;
-  margin-top: var(--app-gutter-xl);
+  padding-top: var(--app-gutter);
+  padding-bottom: var(--app-gutter);
+}
+
+:global(.v-spectacle-slug__detailsHtml > div:last-child > *:last-child) {
+  margin-bottom: 0;
 }
 
 .v-spectacle-slug__ticket {

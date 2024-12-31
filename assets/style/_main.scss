@@ -16,6 +16,11 @@ a {
   color: inherit;
 }
 
+blockquote {
+  text-align: right;
+  margin: 1rem 0;
+}
+
 
 .app-remove-first-last-child-margin {
   > *:first-child {
