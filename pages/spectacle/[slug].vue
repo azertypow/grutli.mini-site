@@ -150,7 +150,7 @@
         <div class="v-spectacle-slug__ticket app-font-h3">
           <a style="display: block; text-decoration: none"
              v-if="ticketInfo"
-             :href="ticketInfo[0].portal_link_preview"
+             :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
              target="_blank"
           >prendre un billet</a>
           <div style="display: block"
@@ -189,10 +189,10 @@ const firstAndLAstDate = computed(() => {
     })}`
 })
 
-const groupedByMonth: ComputedRef<{[month: string]: string[]} | null> = computed(() => {
+const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: number}[]} | null> = computed(() => {
     if (ticketInfo.value === null) return null
 
-    return ticketInfo.value.reduce((acc: {[month: string]: string[]}, eventItem) => {
+    return ticketInfo.value.reduce((acc: {[month: string]: {text: string, eventID: number}[]}, eventItem) => {
         const date = new Date(eventItem.date);
         const monthKey = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
 
@@ -200,16 +200,21 @@ const groupedByMonth: ComputedRef<{[month: string]: string[]} | null> = computed
             acc[monthKey] = [];
         }
 
-        acc[monthKey].push(new Date(eventItem.date).toLocaleDateString('fr-FR',{
-            weekday: 'long',
-            day: 'numeric',
-        }));
+        acc[monthKey].push({
+            text: new Date(eventItem.date).toLocaleDateString('fr-FR',{
+                weekday: 'long',
+                day: 'numeric',
+            }),
+            eventID: eventItem.event_id
+        });
         return acc;
     }, {})
 });
 
-const wrapNumbersInSpan = (text: string): string => {
-    return text.replace(/\b(\d+)\b/g, "<span>$1</span>");
+const wrapNumbersInSpan = (value: { text: string, eventID: number }): string => {
+
+    const wrappedText = value.text.replace(/\b(\d+)\b/g, "<span>$1</span>");
+    return `<a target="_blank" href="https://infomaniak.events/shop/UwCaGkGB7O/event/${value.eventID}">${wrappedText}</a>`;
 };
 
 onMounted(async () => {
