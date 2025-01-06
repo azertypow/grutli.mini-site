@@ -8,7 +8,7 @@
         {{ dateFromTicketService }}
       </template>
       <template v-else>
-        billeterie à venir
+        billetterie à venir
       </template>
     </div>
 <!--    <div class="v-app-event-item__item__peoples">-->

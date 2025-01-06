@@ -55,7 +55,7 @@
              target="_blank"
              class="v-app-header__link-billeterie"
           >
-            billeterie
+            billetterie
             <svg style="display: block; height: .75rem; width: auto"
                  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
             >

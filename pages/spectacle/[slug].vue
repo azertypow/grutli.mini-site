@@ -155,7 +155,7 @@
           >prendre un billet</a>
           <div style="display: block"
              v-else
-          >billeterie à venir</div>
+          >billetterie à venir</div>
         </div>
       </div>
     </section>
