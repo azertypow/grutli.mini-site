@@ -130,4 +130,8 @@ async function setDateToShow() {
   display: block;
 }
 
+.v-app-spectacle-card__item__title {
+  text-transform: none;
+}
+
 </style>
