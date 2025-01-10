@@ -176,13 +176,28 @@
             <!--            /block system -->
           </template>
 
-          <div class="v-spectacle-slug__coll__text-content__peoples app-font-align-center"
+          <div class="v-spectacle-slug__coll__text-content__peoples"
+               v-if="showDetails"
                v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
           />
 
-          <div class="v-spectacle-slug__coll__text-content__details app-font-align-center"
+          <div class="v-spectacle-slug__coll__text-content__details"
+               v-if="showDetails"
                v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
           />
+
+          <div class="v-spectacle-slug__toggle-details"
+          >
+            <div class="v-spectacle-slug__toggle-details__button"
+                 @click="showDetails = !showDetails"
+            >
+              <template v-if="showDetails">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
+              </template>
+              <template v-else><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/></svg></template>
+              <div>détails</div>
+            </div>
+          </div>
 
           <template v-if="ticketInfo">
             <div class="v-spectacle-slug__dates">
@@ -263,6 +278,8 @@ import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
 const dateContainSundayDay = ref(false)
+
+const showDetails = ref(false)
 
 const color = '#ff6c2f'
 const textColor = 'white'
@@ -470,6 +487,25 @@ onMounted(async () => {
   pointer-events: none;
   position: sticky;
   top: 0;
+}
+
+.v-spectacle-slug__toggle-details {
+  display: flex;
+  justify-content: center;
+}
+
+.v-spectacle-slug__toggle-details__button {
+  background: white;
+  color: black;
+  border: solid 2px;
+  padding: .5rem 1.5rem;
+  border-radius: .5rem;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--app-gutter);
 }
 
 .v-spectacle-slug__dates {
