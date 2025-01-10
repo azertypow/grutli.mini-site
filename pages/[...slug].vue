@@ -155,6 +155,59 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   overflow: hidden;
 }
 
+.v-spectacle-slug__coll__content__text__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__coll__content__text__gallery {
+  display: flex;
+  flex-direction: row;
+  gap: var(--app-gutter-xl);
+  overflow-x: scroll;
+  height: 50vh;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+
+  /***
+  scroll
+  */
+
+  /* CSS pseudos elements (firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--app-color-orange) transparent;
+  scrollbar-gutter: stable both-edges;
+
+  /* WebKit (Chrome, Edge, Safari) */
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--app-color-orange);
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
+
+  /***
+  / scroll
+  */
+
+  img {
+    display: block;
+    width: auto;
+    height: 100%;
+    flex-shrink: 0;
+  }
+}
+
+
 :global(.v-spectacle-slug__coll__content__text > *:first-child) {
   margin-top: 0;
 }
