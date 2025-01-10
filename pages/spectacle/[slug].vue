@@ -157,7 +157,7 @@
           <template v-if="ticketInfo">
             <div class="v-spectacle-slug__dates">
               <div class="v-spectacle-slug__dates__item"
-                   v-for="(mounthItem, mounthName) of groupedByMonth"
+                     v-for="(mounthItem, mounthName) of groupedByMonth"
               >
                 <div class="v-spectacle-slug__dates__item__mouth">
                   {{ mounthName }}
@@ -170,10 +170,14 @@
                 </div>
               </div>
             </div>
-            <div class="v-spectacle-slug__duration"
-                 v-if="ticketInfo[0].duration_in_minutes"
-            >
-              Durée {{ticketInfo[0].duration_in_minutes}} minutes
+            <div class="v-spectacle-slug__time-info">
+              <div>
+                <div><span>jeudi - samedi</span> à 19h30</div>
+                <div v-if="dateContainSundayDay"><span>dimanche</span> à 18h</div>
+              </div>
+              <div v-if="ticketInfo[0].duration_in_minutes">
+                Durée {{ticketInfo[0].duration_in_minutes}} minutes
+              </div>
             </div>
           </template>
 <!--          <template v-else>-->
@@ -224,6 +228,7 @@ import {useFalkIsActive} from "~/composables/cmsData";
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
+const dateContainSundayDay = ref(false)
 
 const color = '#ff6c2f'
 const textColor = 'white'
@@ -274,10 +279,18 @@ onMounted(async () => {
     pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
 
     if( !pageData.value) return
-    ticketInfo.value = await apiTicketInfomaniak_fetchEvents({
+
+    apiTicketInfomaniak_fetchEvents({
         search: pageData.value.pageContent.content.eventtitle[0]
+    }).then((ticketInfomaniakEvents: ApiTicketInfomaniak_event[]) => {
+        ticketInfo.value = ticketInfomaniakEvents
+
+        dateContainSundayDay.value = ticketInfomaniakEvents.some((value: ApiTicketInfomaniak_event) => {
+            return new Date(value.date).getDay() === 0
+        })
     })
-    console.log( ticketInfo.value )
+
+
 })
 
 </script>
@@ -427,6 +440,12 @@ onMounted(async () => {
 .v-spectacle-slug__dates__item {
   display: flex;
   gap: var(--app-gutter-xl);
+  flex-direction: row;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    gap: var(--app-gutter);
+  }
 }
 
 .v-spectacle-slug__dates__item__mouth {
@@ -436,8 +455,13 @@ onMounted(async () => {
 
 .v-spectacle-slug__dates__item__days {
   display: flex;
+  flex-direction: column;
   gap: var(--app-gutter) 1rem;
   flex-wrap: wrap;
+
+  @media (max-width: 700px) {
+    padding-left: var(--app-gutter-xl);
+  }
 }
 
 :global(.v-spectacle-slug__dates__item__days__day span) {
@@ -445,11 +469,18 @@ onMounted(async () => {
   //font-variation-settings: "slnt" 0, "wght" 800;
 }
 
-.v-spectacle-slug__duration {
+.v-spectacle-slug__time-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   border-top: solid 2px;
   text-align: right;
   padding-top: var(--app-gutter);
   padding-bottom: var(--app-gutter);
+
+  span {
+    color: var(--app-color-orange);
+  }
 }
 
 :global(.v-spectacle-slug__detailsHtml > div:last-child > *:last-child) {
