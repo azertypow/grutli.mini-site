@@ -4,7 +4,9 @@
     <template v-if="useSiteInfo().value">
       <template v-for="page of useSiteInfo().value?.['page-simple']">
         <div class="app-font-small"
-             v-if="page.pageContent.content.showinnavigation === 'true'">
+             v-if="page.pageContent.content.showinnavigation === 'true'"
+             style="white-space: nowrap"
+        >
           <nuxt-link :href="'/' + page.pageContent.slug">
             {{ page.pageContent.content.title.toLocaleLowerCase() }}
           </nuxt-link>
