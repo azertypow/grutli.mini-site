@@ -11,10 +11,10 @@ export type ApiCmsPageSpectacle = {
             company: ApiCmsCompany[],
             linked_spectacle: string,
             peoples: string,
-            htmlcontent: ApiHTMLContent[],
-            htmlcontent_falk: ApiHTMLContent[],
+            htmlcontent: ApiHTMLContent_Blocks[],
+            htmlcontent_falk: ApiHTMLContent_Blocks[],
             details: string,
-            htmldetails: ApiHTMLContent[],
+            htmldetails: ApiHTMLContent_Blocks[],
             uuid: string
         },
         translations: [],
@@ -144,8 +144,8 @@ export type ApiSimplePage_PageContent = {
         title: string;
         showinnavigation: string;
         showinhome: string;
-        htmlcontent: ApiHTMLContent[];
-        htmlcontent_falk: ApiHTMLContent[];
+        htmlcontent: ApiHTMLContent_Blocks[];
+        htmlcontent_falk: ApiHTMLContent_Blocks[];
         uuid: string;
     };
     translations: any[]; // Modifiez à un type précis si nécessaire
@@ -163,14 +163,32 @@ export type ApiSimplePage_PageContent = {
     url: string;
 };
 
-export type ApiHTMLContent = {
-    content: {
-        text?: string;
-        image?: string[];
-    };
+type ApiHTMLContent = {
     id: string;
     isHidden: boolean;
-    type: 'textWithTitle' | 'image' | 'text';
+    type: 'textWithTitle' | 'image' | 'text' | 'imageGallery';
+}
+
+export type ApiHTMLContent_text = ApiHTMLContent & {
+    type: 'text';
+    content: {
+        text: string;
+    }
+}
+
+export type ApiHTMLContent_textWithTitle = ApiHTMLContent & {
+    type: 'textWithTitle';
+    content: {
+        text: string;
+    }
+}
+
+
+export type ApiHTMLContent_image = ApiHTMLContent & {
+    type: 'image';
+    content: {
+        image: string[];
+    };
     images?: Array<{
         caption: string | null;
         alt: string | null;
@@ -189,6 +207,36 @@ export type ApiHTMLContent = {
         };
     }>;
 }
+
+export type ApiHTMLContent_imageGallery = ApiHTMLContent & {
+    type: 'imageGallery';
+    content: {
+        image: string[];
+    };
+    images: {
+        caption: string | null;
+        alt: string | null;
+        link: string | null;
+        photoCredit: string | null;
+        url: string;
+        mediaUrl: string;
+        width: number;
+        height: number;
+        resize: {
+            tiny: string;
+            small: string;
+            reg: string;
+            large: string;
+            xxl: string;
+        };
+    }[];
+}
+
+export type ApiHTMLContent_Blocks =
+    ApiHTMLContent_text
+    | ApiHTMLContent_textWithTitle
+    | ApiHTMLContent_image
+    | ApiHTMLContent_imageGallery
 
 export type ApiSimplePage_ChildDetails = {
     cover: any[]; // Modifiez à un type précis si nécessaire
