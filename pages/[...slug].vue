@@ -13,34 +13,68 @@
           <h1 class="app-font-align-center app-font-h2">{{pageData.pageContent.content.title}}</h1>
 
           <template v-if="useFalkIsActive().value">
+            <!--            block system -->
             <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
-
               <div v-if="content.type === 'textWithTitle'"
+                   class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
 
-              <img v-if="content.type === 'image'"
+              <div v-else-if="content.type === 'text'"
+                   class="v-spectacle-slug__coll__content__text__text"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-else-if="content.type === 'image'"
+                   class="v-spectacle-slug__coll__content__text__image"
                    v-for="image of content.images"
                    :src="image.resize.large"
                    :alt="image.alt || 'pas de texte alt'"
               >
 
+              <div v-else-if="content.type === 'imageGallery'"
+                   class="v-spectacle-slug__coll__content__text__gallery"
+              >
+                <img v-for="image of content.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+              </div>
             </template>
+            <!--            /block system -->
+
           </template>
-          <template v-else>
-            <template v-for="content of pageData.pageContent.content.htmlcontent">
 
+          <template v-else>
+            <!--            block system -->
+            <template v-for="content of pageData.pageContent.content.htmlcontent">
               <div v-if="content.type === 'textWithTitle'"
+                   class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
 
-              <img v-if="content.type === 'image'"
+              <div v-else-if="content.type === 'text'"
+                   class="v-spectacle-slug__coll__content__text__text"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-else-if="content.type === 'image'"
+                   class="v-spectacle-slug__coll__content__text__image"
                    v-for="image of content.images"
                    :src="image.resize.large"
                    :alt="image.alt || 'pas de texte alt'"
               >
 
+              <div v-else-if="content.type === 'imageGallery'"
+                   class="v-spectacle-slug__coll__content__text__gallery"
+              >
+                <img v-for="image of content.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+              </div>
             </template>
+            <!--            /block system -->
           </template>
         </div>
 
@@ -95,12 +129,16 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
 
   @media (min-width: 1200px) {
     flex-direction: row;
-    flex-wrap: nowrap;
   }
 }
 
 .v-spectacle-slug__coll {
+  flex-shrink: 0;
   width: 100%;
+
+  @media (min-width: 1200px) {
+    width: 50%;
+  }
 }
 
 .v-spectacle-slug__coll__content {
@@ -108,7 +146,13 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   min-height: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  padding: calc(var(--app-gutter) * 2 );
+  padding: var(--app-gutter-xl) var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__coll__content__text {
+  background: white;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 :global(.v-spectacle-slug__coll__content__text > *:first-child) {

@@ -42,17 +42,35 @@
             <template v-if="pageData?.pageContent.content.htmlcontent_falk.length">
               <!--FALK est activé et il y a du texte FLAK-->
 
+              <!--            block system -->
               <template v-for="content of pageData?.pageContent.content.htmlcontent_falk">
-                <div v-if="content.type === 'text'"
+                <div v-if="content.type === 'textWithTitle'"
+                     class="v-spectacle-slug__coll__content__text__text"
                      v-html="content.content.text"
                 ></div>
 
-                <img v-if="content.type === 'image'"
+                <div v-else-if="content.type === 'text'"
+                     class="v-spectacle-slug__coll__content__text__text"
+                     v-html="content.content.text"
+                ></div>
+
+                <img v-else-if="content.type === 'image'"
+                     class="v-spectacle-slug__coll__content__text__image"
                      v-for="image of content.images"
                      :src="image.resize.large"
                      :alt="image.alt || 'pas de texte alt'"
                 >
+
+                <div v-else-if="content.type === 'imageGallery'"
+                     class="v-spectacle-slug__coll__content__text__gallery"
+                >
+                  <img v-for="image of content.images"
+                       :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                </div>
               </template>
+              <!--            /block system -->
 
             </template>
 
@@ -63,35 +81,69 @@
                   style="color: var(--app-color-orange)"
               >(La version FALK n'est pas encore mise en ligne)</h4>
 
+              <!--            block system -->
               <template v-for="content of pageData?.pageContent.content.htmlcontent">
-                <div v-if="content.type === 'text'"
+                <div v-if="content.type === 'textWithTitle'"
+                     class="v-spectacle-slug__coll__content__text__text"
                      v-html="content.content.text"
                 ></div>
 
-                <img v-if="content.type === 'image'"
+                <div v-else-if="content.type === 'text'"
+                     class="v-spectacle-slug__coll__content__text__text"
+                     v-html="content.content.text"
+                ></div>
+
+                <img v-else-if="content.type === 'image'"
+                     class="v-spectacle-slug__coll__content__text__image"
                      v-for="image of content.images"
                      :src="image.resize.large"
                      :alt="image.alt || 'pas de texte alt'"
                 >
 
+                <div v-else-if="content.type === 'imageGallery'"
+                     class="v-spectacle-slug__coll__content__text__gallery"
+                >
+                  <img v-for="image of content.images"
+                       :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                </div>
               </template>
+              <!--            /block system -->
             </template>
           </template>
 
           <template v-else>
             <!--texte original-->
+            <!--            block system -->
             <template v-for="content of pageData?.pageContent.content.htmlcontent">
-              <div v-if="content.type === 'text'"
+              <div v-if="content.type === 'textWithTitle'"
+                   class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
 
-              <img v-if="content.type === 'image'"
+              <div v-else-if="content.type === 'text'"
+                   class="v-spectacle-slug__coll__content__text__text"
+                   v-html="content.content.text"
+              ></div>
+
+              <img v-else-if="content.type === 'image'"
+                   class="v-spectacle-slug__coll__content__text__image"
                    v-for="image of content.images"
                    :src="image.resize.large"
                    :alt="image.alt || 'pas de texte alt'"
               >
 
+              <div v-else-if="content.type === 'imageGallery'"
+                   class="v-spectacle-slug__coll__content__text__gallery"
+              >
+                <img v-for="image of content.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+              </div>
             </template>
+            <!--            /block system -->
           </template>
 
           <div class="v-spectacle-slug__coll__text-content__peoples app-font-align-center"
@@ -151,7 +203,6 @@
           <a style="display: block; text-decoration: none"
              v-if="ticketInfo"
              :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
-             target="_blank"
           >prendre un billet</a>
           <div style="display: block"
              v-else
@@ -214,7 +265,7 @@ const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: numb
 const wrapNumbersInSpan = (value: { text: string, eventID: number }): string => {
 
     const wrappedText = value.text.replace(/\b(\d+)\b/g, "<span>$1</span>");
-    return `<a target="_blank" href="https://infomaniak.events/shop/UwCaGkGB7O/event/${value.eventID}">${wrappedText}</a>`;
+    return `<a href="https://infomaniak.events/shop/UwCaGkGB7O/event/${value.eventID}">${wrappedText}</a>`;
 };
 
 onMounted(async () => {
@@ -254,13 +305,19 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll {
+  flex-shrink: 0;
   width: 100%;
+
+  @media (min-width: 1200px) {
+    width: 50%;
+  }
 }
 
 .v-spectacle-slug__coll__text-content {
   background: white;
   box-sizing: border-box;
   padding: var(--app-gutter-xl) var(--app-gutter-xl) 1.5rem;
+  overflow: hidden;
 }
 
 .v-spectacle-slug__coll__text-content__title {
