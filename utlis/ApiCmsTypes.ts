@@ -166,7 +166,7 @@ export type ApiSimplePage_PageContent = {
 type ApiHTMLContent = {
     id: string;
     isHidden: boolean;
-    type: 'textWithTitle' | 'image' | 'text' | 'imageGallery';
+    type: 'textWithTitle' | 'image' | 'text' | 'imageGallery' | 'video';
 }
 
 export type ApiHTMLContent_text = ApiHTMLContent & {
@@ -181,6 +181,15 @@ export type ApiHTMLContent_textWithTitle = ApiHTMLContent & {
     content: {
         text: string;
     }
+}
+
+export type ApiHTMLContent_video = ApiHTMLContent & {
+    content: {
+        url: string,
+        credit: string,
+        title: string
+    },
+    type: "video"
 }
 
 
@@ -237,6 +246,7 @@ export type ApiHTMLContent_Blocks =
     | ApiHTMLContent_textWithTitle
     | ApiHTMLContent_image
     | ApiHTMLContent_imageGallery
+    | ApiHTMLContent_video
 
 export type ApiSimplePage_ChildDetails = {
     cover: any[]; // Modifiez à un type précis si nécessaire

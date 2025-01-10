@@ -25,6 +25,16 @@
                    v-html="content.content.text"
               ></div>
 
+              <iframe v-if="content.type === 'video'"
+                      class="v-spectacle-slug__coll__content__text__youtube"
+                      :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(content.content.url)}`"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+              ></iframe>
+
               <img v-else-if="content.type === 'image'"
                    class="v-spectacle-slug__coll__content__text__image"
                    v-for="image of content.images"
@@ -57,6 +67,16 @@
                    class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
+
+              <iframe v-if="content.type === 'video'"
+                      class="v-spectacle-slug__coll__content__text__youtube"
+                      :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(content.content.url)}`"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+              ></iframe>
 
               <img v-else-if="content.type === 'image'"
                    class="v-spectacle-slug__coll__content__text__image"
@@ -97,6 +117,7 @@
 import {fetchPage} from "~/utlis/apiCmsFetch";
 import type {ApiSimplePage} from "~/utlis/ApiCmsTypes";
 import {useFalkIsActive} from "~/composables/cmsData";
+import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 
 const { slug } = useRoute().params;
 
@@ -205,6 +226,15 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
     height: 100%;
     flex-shrink: 0;
   }
+}
+
+.v-spectacle-slug__coll__content__text__youtube {
+  display: block;
+  border: none;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 
