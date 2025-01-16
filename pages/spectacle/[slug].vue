@@ -245,7 +245,7 @@
                 <div v-if="dateContainSundayDay"><span>dimanche</span> à 18h</div>
               </div>
               <div v-if="ticketInfo[0].duration_in_minutes">
-                Durée {{ticketInfo[0].duration_in_minutes}} minutes
+                Durée {{convertMinutesToHoursAndMinutes(ticketInfo[0].duration_in_minutes)}}
               </div>
             </div>
           </template>
@@ -295,6 +295,7 @@ import type {ApiCmsPageSpectacle} from "~/utlis/ApiCmsTypes";
 import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
 import {useFalkIsActive} from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
+import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
