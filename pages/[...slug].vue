@@ -20,6 +20,13 @@
                    v-html="content.content.text"
               ></div>
 
+              <div v-if="content.type === 'quote'"
+                   class="v-spectacle-slug__coll__content__text__quote"
+              >
+                <div v-html="content.content.text"></div>
+                <div v-html="content.content.citation"></div>
+              </div>
+
               <div v-else-if="content.type === 'text'"
                    class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
@@ -62,6 +69,13 @@
                    class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
+
+              <div v-if="content.type === 'quote'"
+                   class="v-spectacle-slug__coll__content__text__quote"
+              >
+                <div v-html="content.content.text"></div>
+                <div v-html="content.content.citation"></div>
+              </div>
 
               <div v-else-if="content.type === 'text'"
                    class="v-spectacle-slug__coll__content__text__text"

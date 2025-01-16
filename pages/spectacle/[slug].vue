@@ -49,6 +49,13 @@
                      v-html="content.content.text"
                 ></div>
 
+                <div v-if="content.type === 'quote'"
+                     class="v-spectacle-slug__coll__content__text__quote"
+                >
+                  <div v-html="content.content.text"></div>
+                  <div v-html="content.content.citation"></div>
+                </div>
+
                 <div v-else-if="content.type === 'text'"
                      class="v-spectacle-slug__coll__content__text__text"
                      v-html="content.content.text"
@@ -98,6 +105,13 @@
                      v-html="content.content.text"
                 ></div>
 
+                <div v-if="content.type === 'quote'"
+                     class="v-spectacle-slug__coll__content__text__quote"
+                >
+                  <div v-html="content.content.text"></div>
+                  <div v-html="content.content.citation"></div>
+                </div>
+
                 <div v-else-if="content.type === 'text'"
                      class="v-spectacle-slug__coll__content__text__text"
                      v-html="content.content.text"
@@ -141,6 +155,13 @@
                    class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
+
+              <div v-if="content.type === 'quote'"
+                   class="v-spectacle-slug__coll__content__text__quote"
+              >
+                <div v-html="content.content.text"></div>
+                <div v-html="content.content.citation"></div>
+              </div>
 
               <div v-else-if="content.type === 'text'"
                    class="v-spectacle-slug__coll__content__text__text"
@@ -451,6 +472,20 @@ onMounted(async () => {
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+}
+
+.v-spectacle-slug__coll__content__text__quote {
+  > div:first-child {
+    color: var(--app-color-orange);
+  }
+
+  > div:nth-child(2) {
+    text-align: right;
+  }
+
+}
+:global(.v-spectacle-slug__coll__content__text__quote > div:nth-child(2) em) {
+  color: var(--app-color-orange);
 }
 
 

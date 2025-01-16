@@ -166,7 +166,6 @@ export type ApiSimplePage_PageContent = {
 type ApiHTMLContent = {
     id: string;
     isHidden: boolean;
-    type: 'textWithTitle' | 'image' | 'text' | 'imageGallery' | 'video';
 }
 
 export type ApiHTMLContent_text = ApiHTMLContent & {
@@ -190,6 +189,16 @@ export type ApiHTMLContent_video = ApiHTMLContent & {
         title: string
     },
     type: "video"
+}
+
+export type ApiHTMLContent_quote = ApiHTMLContent & {
+    content: {
+        text: string /**html string*/
+        citation: string /**html string: "<em>L’Arbre-Monde</em>, Richard Powers"*/
+    },
+    id: string,
+    isHidden: boolean,
+    type: "quote"
 }
 
 
@@ -247,6 +256,7 @@ export type ApiHTMLContent_Blocks =
     | ApiHTMLContent_image
     | ApiHTMLContent_imageGallery
     | ApiHTMLContent_video
+    | ApiHTMLContent_quote
 
 export type ApiSimplePage_ChildDetails = {
     cover: any[]; // Modifiez à un type précis si nécessaire
