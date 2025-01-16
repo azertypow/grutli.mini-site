@@ -13,7 +13,7 @@
          v-if="peoples"
     >
       <div v-for="people of peoples">
-        {{ people }}
+        {{ people.authors_name }}
       </div>
     </div>
   </nuxt-link>
@@ -26,11 +26,12 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import {apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
+import type {ApiCmsCompany} from "~/utlis/ApiCmsTypes";
 
 interface Props {
     to: string
     title: string
-    peoples?: string[]
+    peoples?: ApiCmsCompany[]
     date?:string
     getDateFromTicketService?: boolean
     eventTitle?: string[]

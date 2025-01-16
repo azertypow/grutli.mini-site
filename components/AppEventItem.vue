@@ -92,5 +92,6 @@ async function setDateToShow() {
 
 .v-app-event-item__item__title {
   margin: 0;
+  text-transform: none;
 }
 </style>

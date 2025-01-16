@@ -124,7 +124,7 @@ export interface SpectacleContentDetails {
     iscover: string; // Probablement un boolean représenté en string.
     cover: string;
     places: string;
-    company: string;
+    company: ApiCmsCompany[];
     linked_spectacle: string;
     peoples: string;
     htmlcontent: string;
