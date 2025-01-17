@@ -240,10 +240,6 @@
               </div>
             </div>
             <div class="v-spectacle-slug__time-info">
-              <div>
-                <div><span>jeudi - samedi</span> à 19h30</div>
-                <div v-if="dateContainSundayDay"><span>dimanche</span> à 18h</div>
-              </div>
               <div v-if="ticketInfo[0].duration_in_minutes">
                 Durée {{convertMinutesToHoursAndMinutes(ticketInfo[0].duration_in_minutes)}}
               </div>
@@ -333,9 +329,12 @@ const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: numb
             text: new Date(eventItem.date).toLocaleDateString('fr-FR',{
                 weekday: 'long',
                 day: 'numeric',
-            }),
+                hour: 'numeric',
+                minute: '2-digit',
+            }).replace(':', 'h').replace(/\b(\d{1,2}h\d{2})\b/g, 'à $1'),
             eventID: eventItem.event_id
         });
+
         return acc;
     }, {})
 });
