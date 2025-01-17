@@ -473,6 +473,8 @@ onMounted(async () => {
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
 }
 
 .v-spectacle-slug__coll__content__text__quote {

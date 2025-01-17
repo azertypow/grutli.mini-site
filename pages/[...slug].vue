@@ -249,6 +249,8 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
 }
 
 
