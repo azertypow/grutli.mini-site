@@ -295,7 +295,6 @@ import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
-const dateContainSundayDay = ref(false)
 
 const showDetails = ref(false)
 
@@ -356,10 +355,6 @@ onMounted(async () => {
         search: pageData.value.pageContent.content.eventtitle[0]
     }).then((ticketInfomaniakEvents: ApiTicketInfomaniak_event[]) => {
         ticketInfo.value = ticketInfomaniakEvents
-
-        dateContainSundayDay.value = ticketInfomaniakEvents.some((value: ApiTicketInfomaniak_event) => {
-            return new Date(value.date).getDay() === 0
-        })
     })
 
 
