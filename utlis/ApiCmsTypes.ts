@@ -6,6 +6,7 @@ export type ApiCmsPageSpectacle = {
             title: string,
             eventtitle: string[],
             iscover: string,
+            showinhome: "true" | "false",
             cover: string,
             places: string,
             company: ApiCmsCompany[],
@@ -122,6 +123,7 @@ export interface SpectacleContentDetails {
     title: string;
     eventtitle: string[];
     iscover: string; // Probablement un boolean représenté en string.
+    showinhome: "true" | "false",
     cover: string;
     places: string;
     company: ApiCmsCompany[];
