@@ -2,7 +2,7 @@
     <section class="v-index"
     >
       <div class="v-index__list">
-        <template v-for="value of siteInfo?.spectacles.slice(0, 3)">
+        <template v-for="value of siteInfo?.spectacles.filter(value => value.pageContent.content.showinhome === 'true').slice(0, 3)">
           <div class="v-index__item">
             <AppSpectacleCard
                     :to="'/spectacle/' + value.pageContent.slug"
