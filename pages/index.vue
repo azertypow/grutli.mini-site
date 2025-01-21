@@ -1,27 +1,33 @@
 <template>
     <section class="v-index"
     >
-      <div class="v-index__list">
-        <template v-for="value of siteInfo?.spectacles.filter(value => value.pageContent.content.showinhome === 'true').slice(0, 3)">
-          <div class="v-index__item">
-            <AppSpectacleCard
-                    :to="'/spectacle/' + value.pageContent.slug"
-                    :title="value.pageContent.content.title"
-                    :peoples="value.pageContent.content.company"
-                    :get-date-from-ticket-service="true"
-                    :event-title="value.pageContent.content.eventtitle"
-            />
-          </div>
-        </template>
+      <div class="v-index__list-wrap"
+      >
+        <div class="v-index__list"
+        >
+          <template v-for="value of siteInfo?.spectacles.filter(value => value.pageContent.content.showinhome === 'true').slice(0, 4)">
+            <div class="v-index__item">
+              <AppSpectacleCard
+                      :to="'/spectacle/' + value.pageContent.slug"
+                      :title="value.pageContent.content.title"
+                      :peoples="value.pageContent.content.company"
+                      :get-date-from-ticket-service="true"
+                      :event-title="value.pageContent.content.eventtitle"
+              />
+            </div>
+          </template>
+        </div>
 
-        <template v-for="value of pageToShowInHome">
-          <div class="v-index__item">
-            <AppSpectacleCard
-                    :to="'/' + value.pageContent.slug"
-                    :title="value.pageContent.content.title"
-            />
-          </div>
-        </template>
+        <div class="v-index__list">
+          <template v-for="value of pageToShowInHome">
+            <div class="v-index__item">
+              <AppSpectacleCard
+                      :to="'/' + value.pageContent.slug"
+                      :title="value.pageContent.content.title"
+              />
+            </div>
+          </template>
+        </div>
       </div>
     </section>
 </template>
@@ -54,11 +60,14 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
 
 
 <style lang="scss" scoped >
+.v-index__list-wrap {
+  padding: var(--app-gutter-xl) var(--app-gutter) calc( var(--v-audio-player-header-height) + var(--app-gutter));
+}
+
 .v-index__list {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: var(--app-gutter-xl) var(--app-gutter) calc( var(--v-audio-player-header-height) + var(--app-gutter));
   justify-content: center;
 }
 
@@ -72,15 +81,17 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   padding-left: var(--app-gutter);
   padding-right: var(--app-gutter);
   margin-bottom: var(--app-gutter-xl);
-  width: 50%;
+  width: calc(100% / 3 );
+  flex-grow: 1;
 
   @media (max-width: 1100px) {
     width: 100%;
   }
 
+
+
   &:nth-child(-n+3) {
     max-width: 30rem;
-    width: calc(100% / 3);
 
     @media (max-width: 1100px) {
       width: 100%;
