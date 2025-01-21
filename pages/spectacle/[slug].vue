@@ -240,7 +240,7 @@
               </div>
             </div>
             <div class="v-spectacle-slug__time-info">
-              <div v-if="ticketInfo[0].duration_in_minutes">
+              <div v-if="ticketInfo[0]?.duration_in_minutes">
                 Durée {{convertMinutesToHoursAndMinutes(ticketInfo[0].duration_in_minutes)}}
               </div>
             </div>
@@ -266,9 +266,12 @@
 
         <div class="v-spectacle-slug__ticket app-font-h3">
           <a style="display: block; text-decoration: none"
-             v-if="ticketInfo"
+             v-if="ticketInfo && ticketInfo.length > 0"
              :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
           >prendre un billet</a>
+          <div style="display: block"
+             v-else-if="ticketInfo && ticketInfo.length === 0"
+          >plus de dates</div>
           <div style="display: block"
              v-else
           >billetterie à venir</div>
@@ -299,6 +302,8 @@ const textColor = 'white'
 
 const firstAndLAstDate = computed(() => {
     if(!ticketInfo.value) return null
+
+    if(ticketInfo.value.length < 1) return null
 
     return `${new Date(ticketInfo.value[0].date).toLocaleDateString('fr-FR', {
         day: 'numeric',
