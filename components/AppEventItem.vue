@@ -47,6 +47,8 @@ async function setDateToShow() {
         search: props.event.pageContent.content.eventtitle[0]
     })
 
+    if( eventsFromTicketService.length < 1 ) return 'événement passé'
+
     const firstDate = new Date(eventsFromTicketService[0].date).toLocaleDateString('fr-FR', {
         day: 'numeric',
         month: 'long',
