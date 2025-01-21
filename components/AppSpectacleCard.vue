@@ -116,7 +116,7 @@ async function setDateToShow() {
 
   @media (max-width: 1100px) {
     height: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 2rem;
   }
 }
 
