@@ -245,10 +245,6 @@
               </div>
             </div>
           </template>
-<!--          <template v-else>-->
-<!--            <div>Récupération des informaitons de la billeterie…</div>-->
-<!--          </template>-->
-
 
           <template v-for="content of pageData?.pageContent.content.htmldetails">
             <div class="app-remove-first-last-child-margin v-spectacle-slug__detailsHtml">
