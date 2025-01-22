@@ -5,6 +5,8 @@ export type ApiCmsPageSpectacle = {
         content: {
             title: string,
             eventtitle: string[],
+            externalticketservicelink: string,
+            externalticketservicename: string,
             iscover: string,
             showinhome: "true" | "false",
             cover: string,
@@ -122,6 +124,8 @@ export interface SpectaclePageContent {
 export interface SpectacleContentDetails {
     title: string;
     eventtitle: string[];
+    externalticketservicelink: string,
+    externalticketservicename: string,
     iscover: string; // Probablement un boolean représenté en string.
     showinhome: "true" | "false",
     cover: string;

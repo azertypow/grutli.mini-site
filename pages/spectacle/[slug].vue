@@ -265,15 +265,27 @@
 
 
         <div class="v-spectacle-slug__ticket app-font-h3">
-          <a style="display: block; text-decoration: none"
-             v-if="ticketInfo && ticketInfo.length > 0"
+
+          <a v-if="pageData?.pageContent.content.externalticketservicelink"
+             :href="pageData.pageContent.content.externalticketservicelink"
+             target="_blank"
+          >
+            <template v-if="pageData.pageContent.content.externalticketservicename">
+              {{pageData.pageContent.content.externalticketservicename}}
+            </template>
+            <template v-else="pageData.pageContent.content.externalticketservicename">
+              prendre un billet
+            </template>
+          </a>
+
+          <a v-else-if="ticketInfo && ticketInfo.length > 0"
              :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
           >prendre un billet</a>
-          <div style="display: block"
-             v-else-if="ticketInfo && ticketInfo.length === 0"
+
+          <div v-else-if="ticketInfo && ticketInfo.length === 0"
           >plus de dates</div>
-          <div style="display: block"
-             v-else
+
+          <div v-else
           >billetterie à venir</div>
         </div>
       </div>
@@ -634,5 +646,10 @@ onMounted(async () => {
   background-color: v-bind(color);
   color: v-bind(textColor);
   margin: 0;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
 }
 </style>
