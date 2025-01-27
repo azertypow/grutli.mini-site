@@ -40,22 +40,6 @@
       </div>
 
       <div class="v-app-header__footer">
-        <div class="v-app-header__footer__tickets" >
-          <div>
-            <nuxt-link href="/programmation">
-              programmation
-            </nuxt-link>
-          </div>
-          <a href="https://infomaniak.events/shop/tsyU0nZLR0/"
-             target="_blank"
-          >abonnements</a>
-
-          <a href="https://infomaniak.events/shop/UwCaGkGB7O/"
-             target="_blank"
-          >
-            billetterie
-          </a>
-        </div>
         <AppFixedNav/>
       </div>
     </section>
@@ -205,30 +189,6 @@
 .v-app-header__footer {
   width: 100%;
 }
-
-.v-app-header__footer__tickets {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: var(--app-gutter);
-  flex-direction: row;
-
-  > * {
-    display: block;
-    color: black;
-    background: var(--app-color-grey);
-    padding: .25rem .5rem;
-    border-radius: 1rem;
-    font-size: .65rem;
-    line-height: .75rem;
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
 
 </style>
 
