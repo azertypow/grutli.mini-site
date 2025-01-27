@@ -303,6 +303,7 @@ import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~
 import {useFalkIsActive} from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
+import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
@@ -313,17 +314,15 @@ const color = '#ff6c2f'
 const textColor = 'white'
 
 const firstAndLAstDate = computed(() => {
-    if(!ticketInfo.value) return null
 
-    if(ticketInfo.value.length < 1) return null
+    if( !pageData.value ) return null
 
-    return `${new Date(ticketInfo.value[0].date).toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-    })} - ${new Date(ticketInfo.value.at(-1)?.date || ticketInfo.value[0].date).toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-    })}`
+    const currentDate = new Date()
+    const dateEnd = new Date(pageData.value.pageContent.content.dateend)
+
+    if (currentDate > dateEnd) return 'passé'
+
+    return formatDateStartAndDateEndToString(pageData.value.pageContent.content.datestart, pageData.value.pageContent.content.dateend)
 })
 
 const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: number}[]} | null> = computed(() => {
