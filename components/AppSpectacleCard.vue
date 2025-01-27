@@ -3,11 +3,10 @@
              :to="to"
   >
     <h2 class="v-app-spectacle-card__item__title app-font-h4 app-font-align-center">{{ title }}</h2>
-    <div class="v-app-spectacle-card__item__date app-font-small">
-      <template v-if="getDateFromTicketService">
-        <template v-if="dateFromTicketService">{{dateFromTicketService}}</template>
-        <template v-else>chargement…</template>
-      </template>
+    <div class="v-app-spectacle-card__item__date app-font-small"
+         v-if="dateFromTicketService"
+    >
+        {{dateFromTicketService}}
     </div>
     <div class="v-app-spectacle-card__item__peoples app-font-align-center"
          v-if="peoples"
@@ -25,60 +24,30 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import {apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
 import type {ApiCmsCompany} from "~/utlis/ApiCmsTypes";
+import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
 
 interface Props {
     to: string
     title: string
     peoples?: ApiCmsCompany[]
-    date?:string
-    getDateFromTicketService?: boolean
     eventTitle?: string[]
+    dates?: {start: string, end: string}
 }
 const props = withDefaults(defineProps<Props>(), {
-    getDateFromTicketService: false
 })
 
-const dateFromTicketService: Ref<string | null> = ref(null)
+const dateFromTicketService = computed(() => {
 
-onMounted(() => {
-    setDateToShow().then(value => {
-        dateFromTicketService.value = value
-    })
+    if( !props.dates ) return null
+
+    const currentDate = new Date()
+    const dateEnd = new Date(props.dates.end)
+
+    if (currentDate > dateEnd) return 'passé'
+
+    return formatDateStartAndDateEndToString(props.dates.start, props.dates.end)
 })
-
-async function setDateToShow() {
-    if(! props.getDateFromTicketService) return null
-    if(! props.eventTitle) {
-        console.error('props.eventTitle is necessary if you set props.getDateFromTicketService to TRUE')
-        return null
-    }
-
-    if(props.getDateFromTicketService && props.date) {
-        console.error('if you give "date" prop value and set "getDateFromTicketService" prop value tu "true", "getDateFromTicketService" erase "date" prop value. Don_t use "getDateFromTicketService" to true with a value in "date" property.')
-    }
-
-    const eventsFromTicketService = await apiTicketInfomaniak_fetchEvents({
-        search: props.eventTitle[0]
-    })
-
-    const firstDate = new Date(eventsFromTicketService[0].date).toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-    })
-
-    const lastDateString = eventsFromTicketService.at(-1)?.date
-
-    const lastDate = lastDateString ? new Date(lastDateString).toLocaleDateString('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-        })
-        : ''
-
-    return `${firstDate} - ${lastDate}`
-
-}
 </script>
 
 

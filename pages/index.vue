@@ -11,8 +11,8 @@
                       :to="'/spectacle/' + value.pageContent.slug"
                       :title="value.pageContent.content.title"
                       :peoples="value.pageContent.content.company"
-                      :get-date-from-ticket-service="true"
                       :event-title="value.pageContent.content.eventtitle"
+                      :dates="{start: value.pageContent.content.datestart, end: value.pageContent.content.dateend}"
               />
             </div>
           </template>
