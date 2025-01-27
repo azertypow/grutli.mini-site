@@ -113,7 +113,9 @@
         </div>
 
         <div class="v-spectacle-slug__coll__content__children-link" v-if="pageData">
-          <nuxt-link :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug" v-for="childLink of pageData.childrenDetails"
+          <nuxt-link class="app-button"
+                     :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
+                     v-for="childLink of pageData.childrenDetails"
           >{{childLink.pageContent.content.title}}</nuxt-link>
         </div>
 
@@ -276,13 +278,7 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
 }
 
 :global(.v-spectacle-slug__coll__content__children-link a) {
-  display: block;
-  box-sizing: border-box;
-  border: solid;
-  padding: var(--app-gutter-xl);
-  border-radius: var(--app-gutter-xl);
   margin-bottom: var(--app-gutter-xl);
-  text-decoration: none;
 }
 
 .v-spectacle-slug__img {
