@@ -37,6 +37,7 @@ import {useSiteInfo} from "~/composables/cmsData";
 <style lang="scss" scoped >
 .v-app-fixed-nav {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -47,10 +48,6 @@ import {useSiteInfo} from "~/composables/cmsData";
   padding-top: var(--app-gutter);
   gap: var(--app-gutter);
 
-  @media (max-width: 900px) {
-    //flex-direction: column;
-    gap: 1rem;
-  }
 
   .nuxt-watch-falk-is-active & {
     color: black;
