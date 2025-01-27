@@ -13,7 +13,9 @@
         </div>
       </template>
     </template>
-    <nuxt-link href="/programmation">
+    <nuxt-link class="app-font-small"
+               href="/programmation"
+    >
       programmation
     </nuxt-link>
   </section>
