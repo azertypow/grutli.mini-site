@@ -56,11 +56,11 @@ const dateFromTicketService = computed(() => {
 
 <style lang="scss" scoped >
 .v-app-spectacle-card {
+  color: black;
   display: flex;
   align-items: center;
-  border: solid 1px white;
   aspect-ratio: initial;
-  background-image: url('/s.jpg');
+  background: var(--app-color-grey);
   background-size: 80rem auto;
   box-sizing: border-box;
   padding: var(--app-gutter);

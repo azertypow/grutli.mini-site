@@ -16,9 +16,6 @@
               />
             </div>
           </template>
-        </div>
-
-        <div class="v-index__list">
           <template v-for="value of pageToShowInHome">
             <div class="v-index__item">
               <AppSpectacleCard
@@ -76,7 +73,6 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
 }
 
 .v-index__item {
-  color: white;
   box-sizing: border-box;
   padding-left: var(--app-gutter);
   padding-right: var(--app-gutter);

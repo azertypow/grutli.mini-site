@@ -34,17 +34,16 @@ import {useSiteInfo} from "~/composables/cmsData";
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
-  //background: url('/s.jpg');
-  //background: var(--app-color-purple);
+  justify-content: flex-start;
   background-size: cover;
   width: 100%;
   box-sizing: border-box;
   color: inherit;
-  gap: var(--app-gutter-xl);
+  padding-top: var(--app-gutter);
+  gap: var(--app-gutter);
 
   @media (max-width: 900px) {
-    flex-direction: column;
+    //flex-direction: column;
     gap: 1rem;
   }
 
@@ -54,6 +53,13 @@ import {useSiteInfo} from "~/composables/cmsData";
 
   a {
     text-decoration: none;
+
+    display: block;
+    color: black;
+    background: var(--app-color-grey);
+    padding: .25rem .5rem;
+    border-radius: 1rem;
+    font-size: .65rem;
   }
 
   > * {
