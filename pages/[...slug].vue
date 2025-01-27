@@ -13,52 +13,131 @@
           <h1 class="app-font-align-center app-font-h2">{{pageData.pageContent.content.title}}</h1>
 
           <template v-if="useFalkIsActive().value">
-            <!--            block system -->
-            <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
-              <div v-if="content.type === 'textWithTitle'"
-                   class="v-spectacle-slug__coll__content__text__text"
-                   v-html="content.content.text"
-              ></div>
 
-              <div v-if="content.type === 'quote'"
-                   class="v-spectacle-slug__coll__content__text__quote"
-              >
-                <div v-html="content.content.text"></div>
-                <div v-html="content.content.citation"></div>
-              </div>
+            <template v-if="pageData.pageContent.content.htmlcontent_falk.length">
+              <!--            block system -->
+              <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
+                <div v-if="content.type === 'textWithTitle'"
+                     class="v-spectacle-slug__coll__content__text__text"
+                     v-html="content.content.text"
+                ></div>
 
-              <div v-else-if="content.type === 'text'"
-                   class="v-spectacle-slug__coll__content__text__text"
-                   v-html="content.content.text"
-              ></div>
+                <div v-if="content.type === 'link'"
+                     class="v-spectacle-slug__coll__content__text__link"
+                >
+                  <a class="app-button"
+                     :href="content.content.link"
+                  >
+                    <span>{{content.content.text}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                  </a>
+                </div>
 
-              <iframe v-if="content.type === 'video'"
-                      class="v-spectacle-slug__coll__content__text__youtube"
-                      :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(content.content.url)}`"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
-                      allowfullscreen
-              ></iframe>
+                <div v-if="content.type === 'quote'"
+                     class="v-spectacle-slug__coll__content__text__quote"
+                >
+                  <div v-html="content.content.text"></div>
+                  <div v-html="content.content.citation"></div>
+                </div>
 
-              <img v-else-if="content.type === 'image'"
-                   class="v-spectacle-slug__coll__content__text__image"
-                   v-for="image of content.images"
-                   :src="image.resize.large"
-                   :alt="image.alt || 'pas de texte alt'"
-              >
+                <div v-else-if="content.type === 'text'"
+                     class="v-spectacle-slug__coll__content__text__text"
+                     v-html="content.content.text"
+                ></div>
 
-              <div v-else-if="content.type === 'imageGallery'"
-                   class="v-spectacle-slug__coll__content__text__gallery"
-              >
-                <img v-for="image of content.images"
+                <iframe v-if="content.type === 'video'"
+                        class="v-spectacle-slug__coll__content__text__youtube"
+                        :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(content.content.url)}`"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                ></iframe>
+
+                <img v-else-if="content.type === 'image'"
+                     class="v-spectacle-slug__coll__content__text__image"
+                     v-for="image of content.images"
                      :src="image.resize.large"
                      :alt="image.alt || 'pas de texte alt'"
                 >
-              </div>
+
+                <div v-else-if="content.type === 'imageGallery'"
+                     class="v-spectacle-slug__coll__content__text__gallery"
+                >
+                  <img v-for="image of content.images"
+                       :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                </div>
+              </template>
+              <!--            /block system -->
             </template>
-            <!--            /block system -->
+
+            <template v-else>
+              <h4 class="app-font-align-center"
+                  style="color: var(--app-color-orange)"
+              >(La version FALK n'est pas encore mise en ligne)</h4>
+
+              <!--            block system -->
+              <template v-for="content of pageData.pageContent.content.htmlcontent">
+                <div v-if="content.type === 'textWithTitle'"
+                     class="v-spectacle-slug__coll__content__text__text"
+                     v-html="content.content.text"
+                ></div>
+
+                <div v-if="content.type === 'link'"
+                     class="v-spectacle-slug__coll__content__text__link"
+                >
+                  <a class="app-button"
+                     :href="content.content.link"
+                  >
+                    <span>{{content.content.text}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                  </a>
+                </div>
+
+                <div v-if="content.type === 'quote'"
+                     class="v-spectacle-slug__coll__content__text__quote"
+                >
+                  <div v-html="content.content.text"></div>
+                  <div v-html="content.content.citation"></div>
+                </div>
+
+                <div v-else-if="content.type === 'text'"
+                     class="v-spectacle-slug__coll__content__text__text"
+                     v-html="content.content.text"
+                ></div>
+
+                <iframe v-if="content.type === 'video'"
+                        class="v-spectacle-slug__coll__content__text__youtube"
+                        :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(content.content.url)}`"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                ></iframe>
+
+                <img v-else-if="content.type === 'image'"
+                     class="v-spectacle-slug__coll__content__text__image"
+                     v-for="image of content.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+
+                <div v-else-if="content.type === 'imageGallery'"
+                     class="v-spectacle-slug__coll__content__text__gallery"
+                >
+                  <img v-for="image of content.images"
+                       :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                </div>
+              </template>
+              <!--            /block system -->
+
+            </template>
 
           </template>
 
@@ -69,6 +148,17 @@
                    class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
+
+              <div v-if="content.type === 'link'"
+                   class="v-spectacle-slug__coll__content__text__link"
+              >
+                <a class="app-button"
+                   :href="content.content.link"
+                >
+                  <span>{{content.content.text}}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                </a>
+              </div>
 
               <div v-if="content.type === 'quote'"
                    class="v-spectacle-slug__coll__content__text__quote"

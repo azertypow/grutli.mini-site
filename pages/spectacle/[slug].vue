@@ -49,6 +49,17 @@
                      v-html="content.content.text"
                 ></div>
 
+                <div v-if="content.type === 'link'"
+                     class="v-spectacle-slug__coll__content__text__link"
+                >
+                  <a class="app-button"
+                     :href="content.content.link"
+                  >
+                    <span>{{content.content.text}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                  </a>
+                </div>
+
                 <div v-if="content.type === 'quote'"
                      class="v-spectacle-slug__coll__content__text__quote"
                 >
@@ -105,6 +116,17 @@
                      v-html="content.content.text"
                 ></div>
 
+                <div v-if="content.type === 'link'"
+                     class="v-spectacle-slug__coll__content__text__link"
+                >
+                  <a class="app-button"
+                     :href="content.content.link"
+                  >
+                    <span>{{content.content.text}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                  </a>
+                </div>
+
                 <div v-if="content.type === 'quote'"
                      class="v-spectacle-slug__coll__content__text__quote"
                 >
@@ -155,6 +177,17 @@
                    class="v-spectacle-slug__coll__content__text__text"
                    v-html="content.content.text"
               ></div>
+
+              <div v-if="content.type === 'link'"
+                   class="v-spectacle-slug__coll__content__text__link"
+              >
+                <a class="app-button"
+                   :href="content.content.link"
+                >
+                  <span>{{content.content.text}}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                </a>
+              </div>
 
               <div v-if="content.type === 'quote'"
                    class="v-spectacle-slug__coll__content__text__quote"
@@ -471,6 +504,23 @@ onMounted(async () => {
     width: auto;
     height: 100%;
     flex-shrink: 0;
+  }
+}
+
+.v-spectacle-slug__coll__content__text__link {
+  .app-button {
+    margin-bottom: var(--app-gutter-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      display: block;
+      height: 1rem;
+      width: auto;
+      flex-shrink: 0;
+      fill: var(--app-color-orange);
+    }
   }
 }
 
