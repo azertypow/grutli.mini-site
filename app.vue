@@ -78,7 +78,6 @@ import {fetchNews, fetchPlacesInfo, fetchSiteInfo} from "~/utlis/apiCmsFetch";
 import {
     type AppNewsItem,
     useFalkIsActive,
-    useMenuIsOpen,
     useNews,
     usePlacesInfo,
     useSiteInfo
@@ -110,10 +109,6 @@ watch(useFalkIsActive, (value) => {
     value.value ?
         document.documentElement.classList.add('nuxt-watch-falk-is-active')
         : document.documentElement.classList.remove('nuxt-watch-falk-is-active')
-})
-
-useRouter().afterEach(() => {
-    useMenuIsOpen().value = false
 })
 
 const newsList = useNews()

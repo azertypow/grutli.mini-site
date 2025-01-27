@@ -1,9 +1,5 @@
 <template>
-    <section class="v-app-header"
-             :class="{
-              'is-open': useMenuIsOpen().value
-             }"
-    >
+    <section class="v-app-header">
       <nuxt-link class="v-app-header__left app-font-small"
          to="/"
       >
@@ -18,11 +14,6 @@
         <div class="v-app-header__center__center app-font-h3">L’Arbre-Monde</div>
         <div class="v-app-header__center__bottom app-font-small">janvier - juin</div>
       </nuxt-link>
-
-      <div class="v-app-header__menu-toggle" @click="useMenuIsOpen().value = !useMenuIsOpen().value">
-        <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-        <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-      </div>
 
       <div class="v-app-header__right app-font-small">
 
@@ -75,29 +66,8 @@
 .v-app-header__center {
   text-align: center;
 
-  @media (max-width: 1300px) {
-    text-align: left;
-  }
-}
-
-.v-app-header__menu-toggle {
-  cursor: pointer;
-
-  display: none;
-
-  > svg {
-    display: block;
-    height: 1.5rem;
-    width: auto;
-    fill: white;
-
-    .nuxt-watch-falk-is-active & {
-      fill: black !important;
-    }
-  }
-
-  @media (max-width: 900px) {
-    display: block;
+  @media (max-width: 800px) {
+    display: none;
   }
 }
 
@@ -123,9 +93,10 @@
 
 .v-app-header__left {
   width: calc(100%/3);
+  margin-bottom: 0;
 
-  @media (max-width: 1300px) {
-    display: none;
+  @media (max-width: 800px) {
+    width: auto;
   }
 }
 
@@ -136,30 +107,10 @@
   gap: var(--app-gutter-xl);
   width: calc(100%/3);
   flex-direction: column;
+  margin-bottom: 0;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 800px) {
     width: auto;
-  }
-
-  @media (max-width: 900px) {
-    position: fixed;
-    top: var(--app-header-height);
-    left: 0;
-    box-sizing: border-box;
-    width: 100%;
-    color: black;
-    background: white;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: calc( 100% - var(--app-header-height) );
-    gap: 1rem;
-
-    display: none;
-
-    .is-open & {
-      display: flex;
-    }
   }
 }
 
@@ -192,5 +143,5 @@
 </style>
 
 <script setup lang="ts">
-import {useFalkIsActive, useMenuIsOpen} from "~/composables/cmsData";
+import {useFalkIsActive} from "~/composables/cmsData";
 </script>

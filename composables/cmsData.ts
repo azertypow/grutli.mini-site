@@ -19,7 +19,3 @@ export type AppNewsItem = ApiNewsItem & {
 export const useFalkIsActive: () => Ref<boolean> = () => {
     return useState('useFalkIsActive', () => false )
 }
-
-export const useMenuIsOpen: () => Ref<boolean> = () => {
-    return useState('useMenuIsOpen', () => false )
-}
