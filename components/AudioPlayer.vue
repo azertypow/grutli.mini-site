@@ -11,11 +11,10 @@
             >
               Présentation de l'Arbre-Monde&emsp;
             </div>
-<!--            <nuxt-link class="v-audio-player__container__header__title__link"-->
-<!--                       to="/audio"-->
-<!--            >-->
-<!--              (accès au texte ->)-->
-<!--            </nuxt-link>-->
+            <a class="v-audio-player__container__header__title__link"
+               target="_blank"
+               href="https://grutli-admin.sdrvl.ch/00_transcription_podcast_arbre_monde.docx"
+            >(télécharger la transcription)</a>
           </div>
           <div class="v-audio-player__container__header__ui">
             <div @click="playerIsOpen = !playerIsOpen">
