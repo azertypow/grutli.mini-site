@@ -1,4 +1,4 @@
-import type {ApiCmsPageSpectacle, ApiPlaces, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {ApiCmsPageSpectacle, ApiNews, ApiPlaces, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
 
 const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
 
@@ -60,4 +60,16 @@ export async function fetchPlacesInfo(): Promise<ApiPlaces | null> {
     }
 
     return await response.json() as ApiPlaces
+}
+
+export async function fetchNews(): Promise<ApiNews | null> {
+    const url = apiBaseUrl + '/news.json'
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json() as ApiNews
 }

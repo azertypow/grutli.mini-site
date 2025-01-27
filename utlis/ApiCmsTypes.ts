@@ -294,3 +294,14 @@ export type ApiPlaces = {
         slug: string
     }[]
 }
+
+
+export type ApiNews = {
+    value: [
+        {
+            text: string,
+            link: string,
+            id: string
+        }
+    ]
+}

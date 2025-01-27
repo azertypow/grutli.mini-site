@@ -1,4 +1,4 @@
-import type {ApiPlaces, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {ApiNews, ApiPlaces, SiteInfo} from "~/utlis/ApiCmsTypes";
 
 export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
     return useState('useSiteInfo', () => null )
@@ -6,6 +6,10 @@ export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
 
 export const usePlacesInfo: () => Ref<null | ApiPlaces> = () => {
     return useState('usePlacesInfo', () => null )
+}
+
+export const useNews: () => Ref<null | ApiNews> = () => {
+    return useState('useNews', () => null )
 }
 
 export const useFalkIsActive: () => Ref<boolean> = () => {
