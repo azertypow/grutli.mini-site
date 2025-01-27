@@ -2,12 +2,12 @@
   <nuxt-link class="v-app-spectacle-card"
              :to="to"
   >
-    <h2 class="v-app-spectacle-card__item__title app-font-h4 app-font-align-center">{{ title }}</h2>
     <div class="v-app-spectacle-card__item__date app-font-small"
          v-if="dateFromTicketService"
     >
         {{dateFromTicketService}}
     </div>
+    <h2 class="v-app-spectacle-card__item__title app-font-h4 app-font-align-center">{{ title }}</h2>
     <div class="v-app-spectacle-card__item__peoples app-font-align-center"
          v-if="peoples"
     >
@@ -72,6 +72,8 @@ const dateFromTicketService = computed(() => {
   position: relative;
   height: calc( (100vh - var(--app-header-height) - var(--v-audio-player-header-height)) / 2.15 - var(--app-gutter-xl) * 2);
   text-decoration: none;
+  overflow: hidden;
+  min-height: 8rem;
 
   > * {
     width: 100%;
@@ -97,11 +99,13 @@ const dateFromTicketService = computed(() => {
 }
 
 .v-app-spectacle-card__item__peoples {
+  margin-top: .5rem;
   display: block;
 }
 
 .v-app-spectacle-card__item__title {
   text-transform: none;
+  margin: 0;
 }
 
 </style>
