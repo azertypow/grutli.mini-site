@@ -70,7 +70,7 @@ const dateFromTicketService = computed(() => {
   justify-content: center;
   align-content: center;
   position: relative;
-  height: calc( (100vh - var(--app-header-height) - var(--v-audio-player-header-height)) / 2.15 - var(--app-gutter-xl) * 2);
+  height: calc( (100vh - var(--app-header-height) - var(--v-audio-player-header-height)) / 2 - var(--app-gutter-xl) * 2);
   text-decoration: none;
   overflow: hidden;
   min-height: 8rem;
