@@ -34,11 +34,12 @@
 </style>
 
 <script setup lang="ts">
-import {fetchSiteInfo} from "~/utlis/apiCmsFetch";
-import {useFalkIsActive, useMenuIsOpen, useSiteInfo} from "~/composables/cmsData";
+import {fetchPlacesInfo, fetchSiteInfo} from "~/utlis/apiCmsFetch";
+import {useFalkIsActive, useMenuIsOpen, usePlacesInfo, useSiteInfo} from "~/composables/cmsData";
 
 onMounted(async () => {
     useSiteInfo().value = await fetchSiteInfo()
+    usePlacesInfo().value = await fetchPlacesInfo()
 })
 
 watch(useFalkIsActive, (value) => {

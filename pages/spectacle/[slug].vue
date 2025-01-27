@@ -15,7 +15,7 @@
           <div class="v-spectacle-slug__coll__header__content"
                v-if="firstAndLAstDate">
             <div>{{firstAndLAstDate}}</div>
-            <div>{{pageData?.pageContent.content.places}}</div>
+            <div>{{placeName}}</div>
           </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
@@ -338,7 +338,7 @@
 import {fetchPageSpectacle} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle} from "~/utlis/ApiCmsTypes";
 import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
-import {useFalkIsActive} from "~/composables/cmsData";
+import {useFalkIsActive, usePlacesInfo} from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
 import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
@@ -350,6 +350,20 @@ const showDetails = ref(false)
 
 const color = '#ff6c2f'
 const textColor = 'white'
+
+const placeName: ComputedRef<string | null> = computed(() => {
+
+    if( !pageData.value ) return null
+
+    const placesInfo = usePlacesInfo().value
+    if( ! placesInfo ) return pageData.value.pageContent.content.places
+
+    const translatedPlaceBySlug =
+        placesInfo.value.find(placeItem => placeItem.slug === pageData.value?.pageContent.content.places)
+
+    if(translatedPlaceBySlug) return translatedPlaceBySlug.title
+    return null
+})
 
 const firstAndLAstDate = computed(() => {
 
