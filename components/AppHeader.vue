@@ -4,13 +4,12 @@
               'is-open': useMenuIsOpen().value
              }"
     >
-      <a class="v-app-header__left app-font-small"
-         href="https://maps.app.goo.gl/vfnYHQpAnQWwTXxHA"
-         target="_blank"
+      <nuxt-link class="v-app-header__left app-font-small"
+         to="/"
       >
         Scènes
         <br>du Grütli
-      </a>
+      </nuxt-link>
 
       <nuxt-link class="v-app-header__center"
                  to="/"
