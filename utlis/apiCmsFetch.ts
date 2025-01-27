@@ -1,4 +1,4 @@
-import type {ApiCmsPageSpectacle, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {ApiCmsPageSpectacle, ApiPlaces, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
 
 const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
 
@@ -30,8 +30,6 @@ export async function fetchPage(slugParams: string | string[]): Promise<ApiSimpl
 
     const url = apiBaseUrl + '/' + slug + '.json'
 
-    console.log(url)
-
     try {
         const response = await fetch(url);
 
@@ -50,4 +48,16 @@ export async function fetchPage(slugParams: string | string[]): Promise<ApiSimpl
 
 export async function fetchPageSpectacle(slug: string): Promise<ApiCmsPageSpectacle | null> {
     return await fetchPage(['spectacles', slug]) as unknown as ApiCmsPageSpectacle | null
+}
+
+export async function fetchPlacesInfo(): Promise<ApiPlaces | null> {
+    const url = apiBaseUrl + '/places.json'
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json() as ApiPlaces
 }

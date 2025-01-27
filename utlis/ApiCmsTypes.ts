@@ -287,3 +287,10 @@ export type ApiSimplePage = {
     pageContent: ApiSimplePage_PageContent;
     childrenDetails: ApiSimplePage_ChildDetails[];
 };
+
+export type ApiPlaces = {
+    value: {
+        title: string,
+        slug: string
+    }[]
+}
