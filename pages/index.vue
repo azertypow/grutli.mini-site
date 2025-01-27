@@ -59,6 +59,7 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
 <style lang="scss" scoped >
 .v-index__list-wrap {
   padding: var(--app-gutter-xl) var(--app-gutter) calc( var(--v-audio-player-header-height) + var(--app-gutter));
+  //background: red;
 }
 
 .v-index__list {
@@ -66,6 +67,7 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
   flex-wrap: wrap;
   box-sizing: border-box;
   justify-content: center;
+  gap: var(--app-gutter-xl);
 }
 
 .v-index__item__peoples {
@@ -74,10 +76,7 @@ const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
 
 .v-index__item {
   box-sizing: border-box;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
-  margin-bottom: var(--app-gutter-xl);
-  width: calc(100% / 3 );
+  width: calc( (100% / 3) - var(--app-gutter-xl) );
   flex-grow: 1;
 
   @media (max-width: 1100px) {

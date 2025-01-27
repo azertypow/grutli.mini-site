@@ -296,12 +296,12 @@ export type ApiPlaces = {
 }
 
 
-export type ApiNews = {
-    value: [
-        {
-            text: string,
-            link: string,
-            id: string
-        }
-    ]
-}
+    export type ApiNews = {
+        value: ApiNewsItem[]
+    }
+
+    export type ApiNewsItem = {
+        text: string,
+        link: string,
+        id: string
+    }

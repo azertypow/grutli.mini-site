@@ -12,9 +12,11 @@
     <AudioPlayer/>
 
     <div class="app-app__news"
-         v-if="useNews().value?.value.length"
+         v-if="newsList"
     >
-      <div v-for="news of useNews().value?.value">
+      <div v-for="news of newsListToShow"
+           @click="toggleItemState(news.id)"
+      >
         {{news.text}}
       </div>
     </div>
@@ -25,6 +27,7 @@
 .app-app {
   padding-top: var(--app-header-height);
   width: 100%;
+  padding-bottom: calc( v-bind(numberOfOpenNews) * 1rem);
 }
 
 .app-app__header {
@@ -45,13 +48,15 @@
   bottom: var(--v-audio-player-header-height);
   width: 100%;
   left: 0;
-  line-height: .75rem;
+  line-height: 1rem;
   font-size: .65rem;
+  user-select: none;
 
   > div {
     box-sizing: border-box;
     padding-left: var(--app-gutter-xl);
     padding-right: var(--app-gutter-xl);
+    white-space: nowrap;
   }
 
   > div:nth-child(1n) {
@@ -61,17 +66,44 @@
   > div:nth-child(2n) {
     background: var(--app-color-grey);
   }
+
+  > div:nth-child(3n) {
+    background: var(--app-color-orange);
+  }
 }
 </style>
 
 <script setup lang="ts">
 import {fetchNews, fetchPlacesInfo, fetchSiteInfo} from "~/utlis/apiCmsFetch";
-import {useFalkIsActive, useMenuIsOpen, useNews, usePlacesInfo, useSiteInfo} from "~/composables/cmsData";
+import {
+    type AppNewsItem,
+    useFalkIsActive,
+    useMenuIsOpen,
+    useNews,
+    usePlacesInfo,
+    useSiteInfo
+} from "~/composables/cmsData";
+import items from "@redocly/ajv/lib/vocabularies/applicator/items";
 
 onMounted(async () => {
-    useSiteInfo().value = await fetchSiteInfo()
-    usePlacesInfo().value = await fetchPlacesInfo()
-    useNews().value = await fetchNews()
+
+    fetchSiteInfo().then(value => useSiteInfo().value = value)
+
+    fetchPlacesInfo().then(value => usePlacesInfo().value = value)
+
+    fetchNews().then(value => {
+
+        if( !value ) return
+
+        useNews().value = value.value.map(items => {
+            return {
+                link: items.link,
+                text: items.text,
+                id: items.id,
+                isOpen: true,
+            }
+        })
+    })
 })
 
 watch(useFalkIsActive, (value) => {
@@ -84,4 +116,14 @@ useRouter().afterEach(() => {
     useMenuIsOpen().value = false
 })
 
+const newsList = useNews()
+const numberOfOpenNews = computed(() => newsList.value?.filter(item => item.isOpen).length)
+const newsListToShow = computed(() => newsList.value?.filter(item => item.isOpen))
+
+const toggleItemState = (id: string) => {
+    const item = newsList.value?.find((item) => item.id === id)
+    if (item) {
+        item.isOpen = false
+    }
+}
 </script>
