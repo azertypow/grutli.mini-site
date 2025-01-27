@@ -367,7 +367,9 @@ onMounted(async () => {
     apiTicketInfomaniak_fetchEvents({
         search: pageData.value.pageContent.content.eventtitle[0]
     }).then((ticketInfomaniakEvents: ApiTicketInfomaniak_event[]) => {
-        ticketInfo.value = ticketInfomaniakEvents
+        ticketInfo.value = ticketInfomaniakEvents.filter(value => {
+            return pageData.value!.pageContent.content.eventtitle.includes(value.name)
+        })
     })
 
 

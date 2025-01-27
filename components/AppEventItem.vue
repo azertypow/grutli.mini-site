@@ -4,18 +4,8 @@
   >
     <h4 class="v-app-event-item__item__title">{{ event.pageContent.content.title }}</h4>
     <div class="v-app-event-item__item__date">
-      <template v-if="dateFromTicketService">
-        {{ dateFromTicketService }}
-      </template>
-      <template v-else>
-        billetterie à venir
-      </template>
+        {{dateString}}
     </div>
-<!--    <div class="v-app-event-item__item__peoples">-->
-<!--      <div v-for="people of event.pageContent.content.company">-->
-<!--        {{ people }}-->
-<!--      </div>-->
-<!--    </div>-->
   </nuxt-link>
 </template>
 
@@ -27,6 +17,7 @@
 import { defineProps } from 'vue'
 import type {Spectacle} from "~/utlis/ApiCmsTypes";
 import {apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
+import {formatDateStartAndDateEndToString} from "../utlis/formatDate";
 
 const props = defineProps<{
     event: Spectacle
@@ -35,6 +26,16 @@ const props = defineProps<{
 
 
 const dateFromTicketService: Ref<string | null> = ref(null)
+
+const dateString: ComputedRef<string> = computed(() => {
+
+    const currentDate = new Date()
+    const dateEnd = new Date(props.event.pageContent.content.dateend)
+
+    if (currentDate > dateEnd) return 'passé'
+
+    return formatDateStartAndDateEndToString(props.event.pageContent.content.datestart, props.event.pageContent.content.dateend)
+})
 
 onMounted(() => {
     setDateToShow().then(value => {
