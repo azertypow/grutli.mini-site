@@ -21,6 +21,11 @@
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
 
           <h1 class="v-spectacle-slug__coll__text-content__title app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
+          <div class="v-spectacle-slug__coll__text-content__is-cover app-font-align-center app-font-small"
+               v-if="pageData?.pageContent.content.iscover"
+          >
+            Reprise
+          </div>
 
           <div class="v-spectacle-slug__coll__text-content__company">
             <div v-for="companyPeople of pageData?.pageContent.content.company">
@@ -450,6 +455,12 @@ onMounted(async () => {
 .v-spectacle-slug__coll__text-content__title {
   margin-bottom: .5rem;
 }
+
+.v-spectacle-slug__coll__text-content__is-cover {
+  margin-bottom: .5rem;
+  color: var(--app-color-orange);
+}
+
 .v-spectacle-slug__coll__text-content__company {
   text-align: center;
   margin-bottom: 1rem;
