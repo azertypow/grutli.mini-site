@@ -317,6 +317,7 @@
           </a>
 
           <a v-else-if="ticketInfo && ticketInfo.length > 0"
+             target="_blank"
              :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
           >prendre un billet</a>
 
@@ -405,7 +406,7 @@ const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: numb
 const wrapNumbersInSpan = (value: { text: string, eventID: number }): string => {
 
     const wrappedText = value.text.replace(/\b(\d+)\b/g, "<span>$1</span>");
-    return `<a href="https://infomaniak.events/shop/UwCaGkGB7O/event/${value.eventID}">${wrappedText}</a>`;
+    return `<a target="_blank" href="https://infomaniak.events/shop/UwCaGkGB7O/event/${value.eventID}">${wrappedText}</a>`;
 };
 
 onMounted(async () => {
