@@ -185,6 +185,15 @@ export type ApiHTMLContent_text = ApiHTMLContent & {
     }
 }
 
+export type ApiHTMLContent_link = ApiHTMLContent & {
+    type: 'link'
+    content: {
+        text: string
+        link: string
+    }
+}
+
+
 export type ApiHTMLContent_textWithTitle = ApiHTMLContent & {
     type: 'textWithTitle';
     content: {
@@ -262,6 +271,7 @@ export type ApiHTMLContent_imageGallery = ApiHTMLContent & {
 
 export type ApiHTMLContent_Blocks =
     ApiHTMLContent_text
+    | ApiHTMLContent_link
     | ApiHTMLContent_textWithTitle
     | ApiHTMLContent_image
     | ApiHTMLContent_imageGallery
