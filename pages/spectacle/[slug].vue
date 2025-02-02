@@ -22,7 +22,7 @@
 
           <h1 class="v-spectacle-slug__coll__text-content__title app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
           <div class="v-spectacle-slug__coll__text-content__is-cover app-font-align-center app-font-small"
-               v-if="pageData?.pageContent.content.iscover"
+               v-if="pageData?.pageContent.content.iscover === 'true'"
           >
             Reprise
           </div>
