@@ -9,7 +9,7 @@ export type ApiCmsPageSpectacle = {
             externalticketservicename: string,
             datestart: string
             dateend: string
-            iscover: string,
+            iscover: "true" | "false",
             showinhome: "true" | "false",
             cover: string,
             places: string,
