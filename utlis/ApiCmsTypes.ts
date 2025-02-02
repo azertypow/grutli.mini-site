@@ -46,27 +46,27 @@ export type ApiCmsCompany = {
 
 
 export interface SiteInfo {
-    "page-simple": PageSimple[];
+    "page-simple": SiteInfoPageSimple[];
     spectacles: Spectacle[];
 }
 
-export interface PageSimple {
+export interface SiteInfoPageSimple {
     cover: ApiCmsImage[];
     pageContent: PageContent;
 }
 
 export interface PageContent {
     content: PageContentDetails;
-    translations: any[]; // Si les traductions ont une structure spécifique, remplace `any` par le type exact.
+    translations: any[];
     children: string[];
-    files: any[]; // Idem ici, remplace `any` si les fichiers ont une structure spécifique.
+    files: any[];
     id: string;
     mediaUrl: string;
     mediaRoot: string;
     num: number;
     parent: string | null;
     slug: string;
-    template: Record<string, any>; // Si le template est un objet spécifique, précise ses propriétés.
+    template: Record<string, any>;
     uid: string;
     uri: string;
     url: string;
@@ -76,8 +76,7 @@ export interface PageContentDetails {
     title: string;
     showinnavigation: 'true' | 'false'; // Probablement un boolean représenté en string ("true" / "false").
     showinhome: 'true' | 'false';
-    htmlcontent: string;
-    htmlcontent_falk: string;
+    content: string
     uuid: string;
 }
 
@@ -154,8 +153,7 @@ export type ApiSimplePage_PageContent = {
         title: string;
         showinnavigation: string;
         showinhome: string;
-        htmlcontent: ApiHTMLContent_Blocks[];
-        htmlcontent_falk: ApiHTMLContent_Blocks[];
+        content: (SectionBlockContent | SectionBlockLinkToEvent) []
         uuid: string;
     };
     translations: any[]; // Modifiez à un type précis si nécessaire
@@ -172,6 +170,51 @@ export type ApiSimplePage_PageContent = {
     uri: string;
     url: string;
 };
+
+export type ApiSimplePage_ChildDetails_PageContent = {
+    content: {
+        title: string;
+        showinnavigation: 'true' | 'false';
+        showinhome: 'true' | 'false';
+        content: string
+        uuid: string;
+    };
+    translations: any[];
+    children: string[];
+    files: any[];
+    id: string;
+    mediaUrl: string;
+    mediaRoot: string;
+    num: number;
+    parent: string | null;
+    slug: string;
+    template: Record<string, any>;
+    uid: string;
+    uri: string;
+    url: string;
+}
+
+export type SectionBlockContent = {
+    content: {
+        titre: "Contact",
+        htmlcontent: ApiHTMLContent_Blocks[],
+        htmlcontent_falk: ApiHTMLContent_Blocks[],
+    },
+    id: string,
+    isHidden: boolean,
+    type: "section-block-content"
+}
+
+
+export type SectionBlockLinkToEvent = {
+    content: {
+        titre: string,
+        linked_spectacle: string // slug: "gnocchi-a-meyrin"
+    },
+    id: string,
+    isHidden: false,
+    type: "section-block-link-to-event"
+}
 
 type ApiHTMLContent = {
     id: string;
@@ -278,14 +321,14 @@ export type ApiHTMLContent_Blocks =
     | ApiHTMLContent_video
     | ApiHTMLContent_quote
 
-export type ApiSimplePage_ChildDetails = {
-    cover: any[]; // Modifiez à un type précis si nécessaire
-    pageContent: ApiSimplePage_PageContent;
-};
-
 export type ApiSimplePage = {
     pageContent: ApiSimplePage_PageContent;
     childrenDetails: ApiSimplePage_ChildDetails[];
+};
+
+export type ApiSimplePage_ChildDetails = {
+    cover: any[];
+    pageContent: ApiSimplePage_ChildDetails_PageContent;
 };
 
 export type ApiPlaces = {
