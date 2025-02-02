@@ -45,7 +45,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: var(--app-gutter);
-  align-items: flex-start;
+  align-items: center;
   user-select: none;
   color: black;
   background-image: url('/s.jpg');

@@ -3,17 +3,16 @@
   >
     <template v-if="useSiteInfo().value">
       <template v-for="page of useSiteInfo().value?.['page-simple']">
-        <div class="app-font-small"
-             v-if="page.pageContent.content.showinnavigation === 'true'"
-             style="white-space: nowrap"
+        <template v-if="page.pageContent.content.showinnavigation === 'true'"
         >
-          <nuxt-link :href="'/' + page.pageContent.slug">
+          <nuxt-link class="app-font-small app-button-grey"
+                  :href="'/' + page.pageContent.slug">
             {{ page.pageContent.content.title.toLocaleLowerCase() }}
           </nuxt-link>
-        </div>
+        </template>
       </template>
     </template>
-    <nuxt-link class="app-font-small"
+    <nuxt-link class="app-font-small app-button-grey"
                href="/programmation"
     >
       programmation
@@ -51,17 +50,6 @@ import {useSiteInfo} from "~/composables/cmsData";
 
   .nuxt-watch-falk-is-active & {
     color: black;
-  }
-
-  a {
-    text-decoration: none;
-
-    display: block;
-    color: black;
-    background: var(--app-color-grey);
-    padding: .25rem .5rem;
-    border-radius: 1rem;
-    font-size: .65rem;
   }
 
   > * {

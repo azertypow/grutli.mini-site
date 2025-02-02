@@ -24,6 +24,17 @@ a {
   text-decoration: none;
 }
 
+.app-button-grey {
+  text-decoration: none;
+  white-space: nowrap;
+  display: block;
+  color: black;
+  background: var(--app-color-grey);
+  padding: .20rem .5rem .30rem;
+  border-radius: 1rem;
+  font-size: .65rem;
+}
+
 
 blockquote {
   text-align: right;
