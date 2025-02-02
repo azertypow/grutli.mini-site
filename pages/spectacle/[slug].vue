@@ -444,6 +444,10 @@ onMounted(async () => {
   background-color: v-bind(color);
   flex-direction: column-reverse;
   flex-wrap: wrap;
+  box-sizing: border-box;
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
+  gap: 1rem;
 
   @media (min-width: 1200px) {
     flex-direction: row;
@@ -456,7 +460,12 @@ onMounted(async () => {
   width: 100%;
 
   @media (min-width: 1200px) {
-    width: 50%;
+    width: calc(50% - (1rem / 2));
+  }
+
+  > img {
+    overflow: hidden;
+    border-radius: 1rem;
   }
 }
 
@@ -583,6 +592,8 @@ onMounted(async () => {
   background-color: white;
   position: sticky;
   top: calc(var(--app-header-height) - var(--top-position) );
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .v-spectacle-slug__coll__header__content {

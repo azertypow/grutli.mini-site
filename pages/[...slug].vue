@@ -113,6 +113,9 @@ onMounted(async () => {
   padding-bottom: var(--v-audio-player-header-height);
   gap: 1rem;
   align-items: flex-start;
+  box-sizing: border-box;
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
 
   @media (min-width: 1200px) {
     flex-direction: row;
@@ -123,8 +126,6 @@ onMounted(async () => {
   width: 100%;
   display: flex;
   box-sizing: border-box;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
   padding-bottom: var(--app-gutter);
   gap: var(--app-gutter);
 }
