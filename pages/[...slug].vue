@@ -379,4 +379,35 @@ const flakIsActive: Ref<boolean> = useFalkIsActive()
   position: sticky;
   top: 0;
 }
+
+.v-spectacle-slug__coll__content__text__quote {
+  > div:first-child {
+    color: var(--app-color-orange);
+  }
+
+  > div:nth-child(2) {
+    text-align: right;
+  }
+
+}
+:global(.v-spectacle-slug__coll__content__text__quote > div:nth-child(2) em) {
+  color: var(--app-color-orange);
+}
+
+.v-spectacle-slug__coll__content__text__link {
+  .app-button {
+    margin-bottom: var(--app-gutter-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      display: block;
+      height: 1rem;
+      width: auto;
+      flex-shrink: 0;
+      fill: var(--app-color-orange);
+    }
+  }
+}
 </style>
