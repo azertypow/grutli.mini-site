@@ -35,14 +35,14 @@
 
 <script setup lang="ts">
 import {_routes} from "~/utlis/spectacle/_routes";
-import type {PageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {SiteInfoPageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 
 const pages = _routes
 
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 
-const pageToShowInHome: ComputedRef<PageSimple[]> = computed(() => {
+const pageToShowInHome: ComputedRef<SiteInfoPageSimple[]> = computed(() => {
 
     console.log(siteInfo.value?.['page-simple'])
 
