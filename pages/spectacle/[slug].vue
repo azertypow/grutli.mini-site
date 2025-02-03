@@ -112,7 +112,7 @@
 
               <h4 class="app-font-align-center"
                   style="color: var(--app-color-orange)"
-              >(La version FALK n'est pas encore mise en ligne)</h4>
+              >(La version FALC n'est pas encore mise en ligne)</h4>
 
               <!--            block system -->
               <template v-for="content of pageData?.pageContent.content.htmlcontent">
