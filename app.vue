@@ -12,7 +12,7 @@
     <AudioPlayer/>
 
     <div class="app-app__news"
-         v-if="newsList"
+         v-if="newsList && useRouter().currentRoute.value.path === '/'"
     >
       <div v-for="news of newsListToShow"
            @click="toggleItemState(news.id)"
