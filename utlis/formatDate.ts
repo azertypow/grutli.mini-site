@@ -1,6 +1,6 @@
 export function formatDate(stringDate: string): string {
 
-    const startDate = new Date(stringDate)
+    const startDate = new Date(stringDate.replace(" ", "T"))
 
     const options: Intl.DateTimeFormatOptions = {
         month: 'long',

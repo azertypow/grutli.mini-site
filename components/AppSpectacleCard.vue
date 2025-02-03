@@ -43,7 +43,7 @@ const dateFromTicketService = computed(() => {
 
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
-    const dateEnd = new Date(props.dates.end)
+    const dateEnd = new Date(props.dates.end.replace(" ", "T"))
     dateEnd.setHours(0,0,0,0)
 
     console.log(props.eventTitle)

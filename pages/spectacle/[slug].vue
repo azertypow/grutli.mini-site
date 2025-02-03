@@ -371,7 +371,7 @@ const firstAndLAstDate = computed(() => {
     if( !pageData.value ) return null
 
     const currentDate = new Date()
-    const dateEnd = new Date(pageData.value.pageContent.content.dateend)
+    const dateEnd = new Date(pageData.value.pageContent.content.dateend.replace(" ", "T"))
 
     if (currentDate > dateEnd) return 'passé'
 
@@ -382,7 +382,7 @@ const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: numb
     if (ticketInfo.value === null) return null
 
     return ticketInfo.value.reduce((acc: {[month: string]: {text: string, eventID: number}[]}, eventItem) => {
-        const date = new Date(eventItem.date);
+        const date = new Date(eventItem.date.replace(" ", "T"));
         const monthKey = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
 
         if (!acc[monthKey]) {
@@ -390,7 +390,7 @@ const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: numb
         }
 
         acc[monthKey].push({
-            text: new Date(eventItem.date).toLocaleDateString('fr-FR',{
+            text: new Date(eventItem.date.replace(" ", "T")).toLocaleDateString('fr-FR',{
                 weekday: 'long',
                 day: 'numeric',
                 hour: 'numeric',

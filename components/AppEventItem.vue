@@ -30,7 +30,7 @@ const dateFromTicketService: Ref<string | null> = ref(null)
 const dateString: ComputedRef<string> = computed(() => {
 
     const currentDate = new Date()
-    const dateEnd = new Date(props.event.pageContent.content.dateend)
+    const dateEnd = new Date(props.event.pageContent.content.dateend.replace(" ", "T"))
 
     if (currentDate > dateEnd) return 'passé'
 
@@ -50,14 +50,14 @@ async function setDateToShow() {
 
     if( eventsFromTicketService.length < 1 ) return 'événement passé'
 
-    const firstDate = new Date(eventsFromTicketService[0].date).toLocaleDateString('fr-FR', {
+    const firstDate = new Date(eventsFromTicketService[0].date.replace(" ", "T")).toLocaleDateString('fr-FR', {
         day: 'numeric',
         month: 'long',
     })
 
     const lastDateString = eventsFromTicketService.at(-1)?.date
 
-    const lastDate = lastDateString ? new Date(lastDateString).toLocaleDateString('fr-FR', {
+    const lastDate = lastDateString ? new Date(lastDateString.replace(" ", "T")).toLocaleDateString('fr-FR', {
             day: 'numeric',
             month: 'long',
         })
