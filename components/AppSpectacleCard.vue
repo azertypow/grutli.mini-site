@@ -42,7 +42,13 @@ const dateFromTicketService = computed(() => {
     if( !props.dates ) return null
 
     const currentDate = new Date()
+    currentDate.setHours(0,0,0,0)
     const dateEnd = new Date(props.dates.end)
+    dateEnd.setHours(0,0,0,0)
+
+    console.log(props.eventTitle)
+    console.log(currentDate.toISOString())
+    console.log(dateEnd.toISOString())
 
     if (currentDate > dateEnd) return 'passé'
 
