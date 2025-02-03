@@ -45,6 +45,15 @@
             </template>
 
           </div>
+
+          <div class="v-slug__item"
+               v-else>
+            <AppSpectacleCardLoader
+                    :slug="content.content.linked_spectacle"
+            />
+          </div>
+
+
         </template>
       </template>
 
@@ -56,6 +65,12 @@
             <AppBlockContent
                     v-for="htmlContentBlock of content.content.htmlcontent"
                     :html_content_block="htmlContentBlock"
+            />
+          </div>
+          <div class="v-slug__item"
+               v-else>
+            <AppSpectacleCardLoader
+                    :slug="content.content.linked_spectacle"
             />
           </div>
         </template>
@@ -75,6 +90,8 @@ import type {ApiSimplePage, ApiSimplePage_ChildDetails} from "~/utlis/ApiCmsType
 import {useFalkIsActive} from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import AppBlockContent from "~/components/AppBlockContent.vue";
+import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
+import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
 
 const { slug } = useRoute().params;
 
