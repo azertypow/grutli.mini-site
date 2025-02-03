@@ -12,6 +12,7 @@ export async function apiTicketInfomaniak_fetchEvents(params?: {[key: string]: s
 
     try {
         const response = await fetch(url, {
+            cache: "no-store",
             method: "GET",
             headers: {
                 key: API_TOKEN,
