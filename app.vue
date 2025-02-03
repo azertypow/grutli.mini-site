@@ -82,7 +82,6 @@ import {
     usePlacesInfo,
     useSiteInfo
 } from "~/composables/cmsData";
-import items from "@redocly/ajv/lib/vocabularies/applicator/items";
 
 onMounted(async () => {
 
