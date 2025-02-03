@@ -371,7 +371,9 @@ const firstAndLAstDate = computed(() => {
     if( !pageData.value ) return null
 
     const currentDate = new Date()
+    currentDate.setHours(0,0,0,0)
     const dateEnd = new Date(pageData.value.pageContent.content.dateend.replace(" ", "T"))
+    dateEnd.setHours(0,0,0,0)
 
     if (currentDate > dateEnd) return 'passé'
 

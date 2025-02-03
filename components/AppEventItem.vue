@@ -30,7 +30,9 @@ const dateFromTicketService: Ref<string | null> = ref(null)
 const dateString: ComputedRef<string> = computed(() => {
 
     const currentDate = new Date()
+    currentDate.setHours(0,0,0,0)
     const dateEnd = new Date(props.event.pageContent.content.dateend.replace(" ", "T"))
+    dateEnd.setHours(0,0,0,0)
 
     if (currentDate > dateEnd) return 'passé'
 
