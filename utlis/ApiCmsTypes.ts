@@ -291,6 +291,7 @@ export type ApiHTMLContent_image = ApiHTMLContent & {
 export type ApiHTMLContent_imageGallery = ApiHTMLContent & {
     type: 'imageGallery';
     content: {
+        title: string
         image: string[];
     };
     images: {
