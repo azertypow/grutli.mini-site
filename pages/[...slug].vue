@@ -5,19 +5,19 @@
       <template v-if="currentPageForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
                    :href=" '/' + currentPageForNavLinks.slug"
-        >{{currentPageForNavLinks.title}} -></nuxt-link>
+        >{{currentPageForNavLinks.title.toLocaleLowerCase()}} -></nuxt-link>
       </template>
       <template v-if="childrenDetailsForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
                    v-for="childLink of childrenDetailsForNavLinks"
                    :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
-        >{{childLink.pageContent.content.title}}</nuxt-link>
+        >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
       <template v-if="parentSubPageForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
                    v-for="subPage of parentSubPageForNavLinks"
                    :href="subPage.pageContent.slug"
-        >{{subPage.pageContent.content.title}}</nuxt-link>
+        >{{subPage.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
     </div>
 
