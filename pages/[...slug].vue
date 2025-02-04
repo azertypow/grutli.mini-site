@@ -1,20 +1,28 @@
 <template>
   <section class="v-slug"
   >
-
-    <div class="v-slug__children-link" v-if="pageData && pageData.childrenDetails && pageData.childrenDetails.length > 0">
-      <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
-                 v-for="childLink of pageData.childrenDetails"
-                 :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
-      >{{childLink.pageContent.content.title}}</nuxt-link>
+    <div class="v-slug__children-link">
+      <template v-if="currentPageForNavLinks">
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+                   :href=" '/' + currentPageForNavLinks.slug"
+        >{{currentPageForNavLinks.title}} -></nuxt-link>
+      </template>
+      <template v-if="childrenDetailsForNavLinks">
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+                   v-for="childLink of childrenDetailsForNavLinks"
+                   :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
+        >{{childLink.pageContent.content.title}}</nuxt-link>
+      </template>
+      <template v-if="parentSubPageForNavLinks">
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+                   v-for="subPage of parentSubPageForNavLinks"
+                   :href="subPage.pageContent.slug"
+        >{{subPage.pageContent.content.title}}</nuxt-link>
+      </template>
     </div>
 
-    <div class="v-slug__children-link" v-if="parentSubPage">
-      <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
-                 v-for="subPage of parentSubPage"
-                 :href="subPage.pageContent.slug"
-      >{{subPage.pageContent.content.title}}</nuxt-link>
-    </div>
+
+
 
     <div class="v-slug__item v-slug__item--image">
       <img alt="image texte"
@@ -88,29 +96,80 @@
 import {fetchPage} from "~/utlis/apiCmsFetch";
 import type {ApiSimplePage, ApiSimplePage_ChildDetails} from "~/utlis/ApiCmsTypes";
 import {useFalkIsActive} from "~/composables/cmsData";
-import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import AppBlockContent from "~/components/AppBlockContent.vue";
-import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
 
 const { slug } = useRoute().params;
 
 const pageData: Ref<ApiSimplePage | null> = ref(null)
-const parentSubPage: Ref<ApiSimplePage_ChildDetails[] | null> = ref(null)
+
+const currentPageForNavLinks:     Ref<{slug: string, title: string} | null> = ref(null)
+const parentSubPageForNavLinks:   Ref<ApiSimplePage_ChildDetails[]  | null> = ref(null)
+const childrenDetailsForNavLinks: Ref<ApiSimplePage_ChildDetails[]  | null> = ref(null)
 
 onMounted(async () => {
-    fetchPage(slug).then(async (value) => {
+    fetchPage(slug).then(async (value: ApiSimplePage | null) => {
         pageData.value = value
 
-        if( value === null ) return
+        get_childrenDetailsForNavLinks(value)
+            .then(childPagesDetails => childrenDetailsForNavLinks.value = childPagesDetails)
 
-        if( !value.pageContent.parent ) return
-
-        if( value.pageContent.parent.length === 0 ) return
-
-        parentSubPage.value = (await fetchPage(value.pageContent.parent))?.childrenDetails || null
+        get_parentSubPageForNavLinks(value)
+            .then(async parentPage => {
+                parentSubPageForNavLinks.value = parentPage?.childrenDetails || null
+                currentPageForNavLinks.value = await get_currentORParentPageForNavLinks({
+                    parentDetails: parentPage,
+                    currentPageDetails: value,
+                })
+            })
     })
 })
+
+interface get_currentORParentPageForNavLinksProps {
+    parentDetails: ApiSimplePage | null;
+    currentPageDetails: ApiSimplePage | null;
+}
+
+async function get_currentORParentPageForNavLinks(
+    {
+        parentDetails,
+        currentPageDetails
+    }: get_currentORParentPageForNavLinksProps
+): Promise<{slug: string, title: string} | null> {
+
+    if(parentDetails) {
+        return {
+            slug: parentDetails.pageContent.slug,
+            title: parentDetails.pageContent.content.title
+        }
+    }
+
+    else if(currentPageDetails) {
+        return {
+            slug: currentPageDetails.pageContent.slug,
+            title: currentPageDetails.pageContent.content.title,
+        }
+    }
+
+    return null
+}
+
+async function get_parentSubPageForNavLinks(value: ApiSimplePage | null): Promise<ApiSimplePage | null> {
+    if( !value ) return null
+    if( !value.pageContent.parent ) return null
+    if( value.pageContent.parent.length < 1 ) return null
+
+    return (await fetchPage(value.pageContent.parent)) || null
+}
+
+async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Promise<ApiSimplePage_ChildDetails[] | null> {
+    if ( !value ) return null
+
+    if( !value.childrenDetails ) return null
+    if( value.childrenDetails.length < 1 ) return null
+
+    return value.childrenDetails
+}
 </script>
 
 
@@ -125,7 +184,6 @@ onMounted(async () => {
   left: 0;
   display: flex;
   width: 100%;
-  flex-direction: column-reverse;
   flex-wrap: wrap;
   padding-bottom: var(--v-audio-player-header-height);
   gap: 1rem;
@@ -133,15 +191,13 @@ onMounted(async () => {
   box-sizing: border-box;
   padding-left: var(--app-gutter);
   padding-right: var(--app-gutter);
-
-  @media (min-width: 1200px) {
-    flex-direction: row;
-  }
+  flex-direction: row;
 }
 
 .v-slug__children-link {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   box-sizing: border-box;
   padding-bottom: var(--app-gutter);
   gap: var(--app-gutter);
