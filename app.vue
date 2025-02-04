@@ -14,10 +14,16 @@
     <div class="app-app__news"
          v-if="newsList && useRouter().currentRoute.value.path === '/'"
     >
-      <div v-for="news of newsListToShow"
+      <div class="app-app__news__wrap__container"
+              v-for="news of newsListToShow"
            @click="toggleItemState(news.id)"
       >
-        {{news.text}}
+        <div class="app-app__news__wrap__container__wrap">
+          <div>{{news.text}}</div>
+          <div>{{news.text}}</div>
+          <div>{{news.text}}</div>
+          <div>{{news.text}}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,26 +57,54 @@
   line-height: 1rem;
   font-size: .65rem;
   user-select: none;
+}
 
-  > div {
-    box-sizing: border-box;
-    padding-left: var(--app-gutter-xl);
-    padding-right: var(--app-gutter-xl);
-    white-space: nowrap;
-  }
+.app-app__news__wrap__container {
+  box-sizing: border-box;
+  padding-left: var(--app-gutter-xl);
+  padding-right: var(--app-gutter-xl);
+  white-space: nowrap;
+  position: relative;
+  height: 1rem;
 
-  > div:nth-child(1n) {
+  &:nth-child(1n) {
     background: var(--app-color-purple);
   }
 
-  > div:nth-child(2n) {
+  &:nth-child(2n) {
     background: var(--app-color-grey);
   }
 
-  > div:nth-child(3n) {
+  &:nth-child(3n) {
     background: var(--app-color-orange);
   }
 }
+
+.app-app__news__wrap__container__wrap {
+  display: flex;
+  animation: app-app__news__wrap--animation linear 20s infinite;
+  overflow: hidden;
+  width: auto;
+  flex-wrap: nowrap;
+  position: absolute;
+
+
+  > * {
+    width: auto;
+    white-space: nowrap;
+    padding-right: 1rem;
+  }
+}
+
+@keyframes app-app__news__wrap--animation {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(-25%, 0%);
+  }
+}
+
 </style>
 
 <script setup lang="ts">
