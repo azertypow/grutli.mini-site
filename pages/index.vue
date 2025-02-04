@@ -82,33 +82,5 @@ const pageToShowInHome: ComputedRef<SiteInfoPageSimple[]> = computed(() => {
   @media (max-width: 1100px) {
     width: 100%;
   }
-
-
-
-  &:nth-child(-n+3) {
-    max-width: 30rem;
-
-    @media (max-width: 1100px) {
-      width: 100%;
-    }
-  }
-
-  &:nth-child(1n) {
-    a {
-      background-position: 24rem 0;
-    }
-  }
-
-  &:nth-child(2n) {
-    a {
-      background-position: 35rem 23rem;
-    }
-  }
-
-  &:nth-child(3n) {
-    a {
-      background-position: -7rem 60rem;
-    }
-  }
 }
 </style>
