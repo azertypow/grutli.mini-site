@@ -5,14 +5,14 @@
       <template v-for="page of useSiteInfo().value?.['page-simple']">
         <template v-if="page.pageContent.content.showinnavigation === 'true'"
         >
-          <nuxt-link class="app-font-small app-button-grey"
+          <nuxt-link class="app-font-extra-small app-button-grey"
                   :href="'/' + page.pageContent.slug">
             {{ page.pageContent.content.title.toLocaleLowerCase() }}
           </nuxt-link>
         </template>
       </template>
     </template>
-    <nuxt-link class="app-font-small app-button-grey"
+    <nuxt-link class="app-font-extra-small app-button-grey"
                href="/programmation"
     >
       programmation
