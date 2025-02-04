@@ -93,7 +93,6 @@ const dateFromTicketService = computed(() => {
 
   @media (max-width: 1100px) {
     height: auto;
-    padding: 0.5rem 0.5rem 2rem;
   }
 }
 
