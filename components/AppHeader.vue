@@ -50,8 +50,6 @@
   align-items: center;
   user-select: none;
   color: black;
-  background-image: url('/s.jpg');
-  background-size: cover;
 
   .nuxt-watch-falk-is-active & {
     background-image: none;

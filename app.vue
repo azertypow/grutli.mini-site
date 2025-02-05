@@ -26,6 +26,15 @@
         </div>
       </div>
     </div>
+
+    <video class="app-app__video-bg"
+           src="/videos/250128_Grutli_video-bg_op1_4-12.mp4"
+           muted
+           loop
+           autoplay
+           playsinline
+           poster="/videos/250128_Grutli_video-bg_op1_4-12.jpg"
+    />
   </div>
 </template>
 
@@ -103,6 +112,19 @@
   100% {
     transform: translate(-25%, 0%);
   }
+}
+
+.app-app__video-bg {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
 }
 
 </style>
