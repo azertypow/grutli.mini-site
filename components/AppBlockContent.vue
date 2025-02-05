@@ -1,5 +1,6 @@
 <template>
-    <section class="v-app-block-content"
+    <section class="v-app-block-content app-remove-first-last-child-margin"
+             :class="data.html_content_block.type"
     >
       <!--            block system -->
         <div v-if="html_content_block.type === 'textWithTitle'"
@@ -46,14 +47,18 @@
              :src="image.resize.large"
              :alt="image.alt || 'pas de texte alt'"
         >
-
-        <div v-else-if="html_content_block.type === 'imageGallery'"
-             class="v-app-block-content__coll__content__text__gallery"
-        >
-          <img v-for="image of html_content_block.images"
-               :src="image.resize.large"
-               :alt="image.alt || 'pas de texte alt'"
-          >
+        <div class="v-app-block-content__coll__content__text__gallery app-remove-first-last-child-margin"
+             v-else-if="html_content_block.type === 'imageGallery'">
+            <h5 class="v-app-block-content__coll__content__text__gallery__title"
+                v-if="html_content_block.content.title"
+            >{{html_content_block.content.title}}</h5>
+            <div class="v-app-block-content__coll__content__text__gallery__images"
+            >
+                <img v-for="image of html_content_block.images"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+            </div>
         </div>
     </section>
 </template>
@@ -67,7 +72,7 @@ import { defineProps } from 'vue'
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import type {ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 
-defineProps<{
+const data = defineProps<{
     html_content_block: ApiHTMLContent_Blocks
 }>()
 </script>
@@ -77,11 +82,23 @@ defineProps<{
 
 
 <style lang="scss" scoped >
-@use "@/assets/style/typo";
+.v-app-block-content {
+  &.textWithTitle {
+    margin-bottom: .5rem;
+  }
+  &.link {
+    margin-bottom: .5rem;
+  }
+
+  &.imageGallery {
+    margin-bottom: .5rem;
+  }
+}
 
 .v-app-block-content__coll__content__text__link {
+  margin-bottom: var(--app-gutter-xl);
+
   .app-button {
-    margin-bottom: var(--app-gutter-xl);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -120,13 +137,25 @@ defineProps<{
 }
 
 .v-app-block-content__coll__content__text__gallery {
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+}
+
+.v-app-block-content__coll__content__text__gallery__title {
+  margin-bottom: 0rem;
+}
+
+.v-app-block-content__coll__content__text__gallery__images {
   display: flex;
   flex-direction: row;
   gap: var(--app-gutter-xl);
   overflow-x: scroll;
   height: 50vh;
-  margin-top: var(--app-gutter-xl);
-  margin-bottom: var(--app-gutter-xl);
+  border-radius: 1rem;
+
+  .v-app-block-content__coll__content__text__gallery__title + & {
+    border-top-left-radius: 0;
+  }
 
   /***
   scroll
@@ -162,20 +191,19 @@ defineProps<{
     flex-shrink: 0;
   }
 }
+</style>
 
-:global(.v-app-block-content__coll__content__text__text h2) {
-  @extend .app-font-h3;
-}
+<style lang="scss">
+@use "@/assets/style/typo";
 
+.v-app-block-content__coll__content__text__text {
+  > *:first-child {margin-top: 0}
+  > *:last-child {margin-bottom: 0}
 
-.v-app-block-content {
-  > *:first-child {
-    margin-top: 0;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
+  h2 {
+    @extend .app-font-h3;
   }
 }
+
 
 </style>
