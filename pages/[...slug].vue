@@ -308,11 +308,11 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   width: 100%;
   flex-wrap: wrap;
   padding-bottom: var(--v-audio-player-header-height);
-  gap: 1rem;
+  gap: var(--app-gutter-xl);
   align-items: flex-start;
   box-sizing: border-box;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
+  padding-left: var(--app-gutter-xl);
+  padding-right: var(--app-gutter-xl);
   flex-direction: row;
 }
 
@@ -351,7 +351,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   padding: var(--app-gutter-xl);
 
   @media (min-width: 1200px) {
-    width: calc(50% - (1rem / 2));
+    width: calc(50% - (var(--app-gutter-xl) / 2));
   }
 }
 

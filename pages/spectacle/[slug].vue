@@ -449,13 +449,12 @@ onMounted(async () => {
   left: 0;
   display: flex;
   width: 100%;
-  background-color: v-bind(color);
   flex-direction: column-reverse;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
-  gap: 1rem;
+  padding-left: var(--app-gutter-xl);
+  padding-right: var(--app-gutter-xl);
+  gap: var(--app-gutter-xl);
 
   @media (min-width: 1200px) {
     flex-direction: row;
@@ -468,7 +467,7 @@ onMounted(async () => {
   width: 100%;
 
   @media (min-width: 1200px) {
-    width: calc(50% - (1rem / 2));
+    width: calc(50% - (var(--app-gutter-xl) / 2));
   }
 
   > img {
