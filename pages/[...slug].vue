@@ -89,9 +89,8 @@
         </div>
         <template v-if="pageData">
           <template v-if="useFalkIsActive().value">
-            <template v-for="(content, index) of pageData.pageContent.content.content">
-              <template v-if="content.type === 'section-block-content' && index % 0 !== 0">
-                {{index % 0 !== 0}}
+            <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
+              <template v-if="content.type === 'section-block-content'">
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.content.htmlcontent_falk.length"
                 >
@@ -115,7 +114,7 @@
           </template>
 
           <template v-else>
-            <template v-for="content of pageData.pageContent.content.content">
+            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.type === 'section-block-content'">
                 <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
@@ -168,7 +167,7 @@
           </template>
 
           <template v-else>
-            <template v-for="content of pageData.pageContent.content.content">
+            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.type === 'section-block-content'">
                 <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
