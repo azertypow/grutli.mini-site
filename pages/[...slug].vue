@@ -33,26 +33,17 @@
     <template v-if="pageData">
       <template v-if="useFalkIsActive().value">
         <template v-for="content of pageData.pageContent.content.content">
-          <div class="v-slug__item app-remove-first-last-child-margin"
-               v-if="content.type === 'section-block-content'">
-            <h2>{{content.content.titre}}</h2>
-            <template v-if="content.content.htmlcontent_falk.length">
+          <template v-if="content.type === 'section-block-content'">
+            <div class="v-slug__item app-remove-first-last-child-margin"
+                 v-if="content.content.htmlcontent_falk.length"
+            >
+              <h2>{{ content.content.titre }}</h2>
               <AppBlockContent
                       v-for="htmlContentBlock of content.content.htmlcontent_falk"
                       :html_content_block="htmlContentBlock"
               />
-            </template>
-            <template v-else>
-              <h4 class="app-font-align-center"
-                  style="color: var(--app-color-orange)"
-              >(La version FALC n'est pas encore mise en ligne)</h4>
-              <AppBlockContent
-                      v-for="htmlContentBlock of content.content.htmlcontent"
-                      :html_content_block="htmlContentBlock"
-              />
-            </template>
-
-          </div>
+            </div>
+          </template>
 
           <div class="v-slug__item"
                v-else>
