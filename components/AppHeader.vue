@@ -74,7 +74,7 @@
 .v-app-header__center__top {
   margin: 0;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 }
@@ -144,4 +144,6 @@
 
 <script setup lang="ts">
 import {useFalkIsActive} from "~/composables/cmsData";
+
+
 </script>
