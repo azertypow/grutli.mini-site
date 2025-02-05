@@ -742,6 +742,8 @@ onMounted(async () => {
   background-color: v-bind(color);
   color: v-bind(textColor);
   margin: 0;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 
   a {
     display: block;
