@@ -278,7 +278,7 @@
               </div>
             </div>
             <div class="v-spectacle-slug__time-info">
-              <div v-if="ticketInfo[0]?.duration_in_minutes">
+              <div v-if="Array.isArray(ticketInfo) && ticketInfo[0]?.duration_in_minutes">
                 Durée {{convertMinutesToHoursAndMinutes(ticketInfo[0].duration_in_minutes)}}
               </div>
             </div>
@@ -316,6 +316,11 @@
             </template>
           </a>
 
+          <div v-else-if="ticketInfo && ticketInfo === 'loaded'"
+          ><span class=""
+                 style="opacity: .5"
+          >chargement…</span></div>
+
           <a v-else-if="ticketInfo && ticketInfo.length > 0"
              target="_blank"
              :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
@@ -345,7 +350,7 @@ import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
 import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
-const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null> = ref(null)
+const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref('loaded')
 
 const showDetails = ref(false)
 
@@ -382,6 +387,7 @@ const firstAndLAstDate = computed(() => {
 
 const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: number}[]} | null> = computed(() => {
     if (ticketInfo.value === null) return null
+    if ( !Array.isArray(ticketInfo.value) ) return null
 
     return ticketInfo.value.reduce((acc: {[month: string]: {text: string, eventID: number}[]}, eventItem) => {
         const date = new Date(eventItem.date.replace(" ", "T"));
