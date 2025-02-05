@@ -3,9 +3,9 @@
   >
     <div class="v-slug__children-link">
       <template v-if="currentPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey app-button-grey--inverse"
                    :href=" '/' + currentPageForNavLinks.slug"
-        >{{currentPageForNavLinks.title.toLocaleLowerCase()}} -></nuxt-link>
+        >{{currentPageForNavLinks.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
       <template v-if="childrenDetailsForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
