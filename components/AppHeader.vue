@@ -1,5 +1,9 @@
 <template>
-    <section class="v-app-header">
+    <section class="v-app-header"
+             :class="{
+              'window-is-scrolled': windowIsScrolled,
+              }"
+    >
       <nuxt-link class="v-app-header__left app-font-small"
          to="/"
       >
@@ -50,6 +54,11 @@
   align-items: center;
   user-select: none;
   color: black;
+  //transition: background-color .25s ease-out;
+
+  &.window-is-scrolled {
+    background: white;
+  }
 
   .nuxt-watch-falk-is-active & {
     background-image: none;
@@ -145,5 +154,16 @@
 <script setup lang="ts">
 import {useFalkIsActive} from "~/composables/cmsData";
 
+
+const windowIsScrolled = ref(false)
+
+onMounted(() => {
+    setWindowScrollStatus()
+    window.addEventListener('scroll', setWindowScrollStatus)
+})
+
+function setWindowScrollStatus() {
+    windowIsScrolled.value = window.scrollY > 50
+}
 
 </script>
