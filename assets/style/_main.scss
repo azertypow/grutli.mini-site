@@ -32,6 +32,11 @@ a {
   background: var(--app-color-grey);
   padding: .2em .5rem .3em;
   border-radius: 1rem;
+
+  &.app-button-grey--inverse {
+    color: var(--app-color-grey);
+    background: black;
+  }
 }
 
 
