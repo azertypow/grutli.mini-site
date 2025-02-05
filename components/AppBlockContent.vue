@@ -113,6 +113,19 @@ const data = defineProps<{
   }
 }
 
+.v-app-block-content__coll__content__text__youtube {
+  display: block;
+  border: none;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+  border-radius: 1rem;
+}
+
+
 .v-app-block-content__coll__content__text__quote {
   > div:first-child {
     color: var(--app-color-orange);
