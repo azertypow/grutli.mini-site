@@ -21,60 +21,177 @@
       </template>
     </div>
 
+    <!--//////////
+    /// masonry
+    //////////-->
+    <!--    masonry FALSE // windows width < breakpoint-->
+    <template v-if="windowsWidthIsSmallerThan1200pxCSSBreakpoint">
+      <div class="v-slug__item v-slug__item--image">
+        <img alt="image texte"
+             class="v-slug__img"
+             src="/images/241122_Grutli_Flyers_23.jpg"
+        />
+      </div>
+      <template v-if="pageData">
+        <template v-if="useFalkIsActive().value">
+          <template v-for="content of pageData.pageContent.content.content">
+            <template v-if="content.type === 'section-block-content'">
+              <div class="v-slug__item app-remove-first-last-child-margin"
+                   v-if="content.content.htmlcontent_falk.length"
+              >
+                <h2>{{ content.content.titre }}</h2>
+                <AppBlockContent
+                        v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                        :html_content_block="htmlContentBlock"
+                />
+              </div>
+            </template>
+
+            <div class="v-slug__item"
+                 v-else>
+              <AppSpectacleCardLoader
+                      :slug="content.content.linked_spectacle"
+              />
+            </div>
 
 
+          </template>
+        </template>
 
-    <div class="v-slug__item v-slug__item--image">
-      <img alt="image texte"
-           class="v-slug__img"
-           src="/images/241122_Grutli_Flyers_23.jpg"
-      />
-    </div>
-    <template v-if="pageData">
-      <template v-if="useFalkIsActive().value">
-        <template v-for="content of pageData.pageContent.content.content">
-          <template v-if="content.type === 'section-block-content'">
+        <template v-else>
+          <template v-for="content of pageData.pageContent.content.content">
             <div class="v-slug__item app-remove-first-last-child-margin"
-                 v-if="content.content.htmlcontent_falk.length"
-            >
-              <h2>{{ content.content.titre }}</h2>
+                 v-if="content.type === 'section-block-content'">
+              <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
               <AppBlockContent
-                      v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                      v-for="htmlContentBlock of content.content.htmlcontent"
                       :html_content_block="htmlContentBlock"
               />
             </div>
+            <div class="v-slug__item"
+                 v-else>
+              <AppSpectacleCardLoader
+                      :slug="content.content.linked_spectacle"
+              />
+            </div>
           </template>
-
-          <div class="v-slug__item"
-               v-else>
-            <AppSpectacleCardLoader
-                    :slug="content.content.linked_spectacle"
-            />
-          </div>
-
-
-        </template>
-      </template>
-
-      <template v-else>
-        <template v-for="content of pageData.pageContent.content.content">
-          <div class="v-slug__item app-remove-first-last-child-margin"
-               v-if="content.type === 'section-block-content'">
-            <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
-            <AppBlockContent
-                    v-for="htmlContentBlock of content.content.htmlcontent"
-                    :html_content_block="htmlContentBlock"
-            />
-          </div>
-          <div class="v-slug__item"
-               v-else>
-            <AppSpectacleCardLoader
-                    :slug="content.content.linked_spectacle"
-            />
-          </div>
         </template>
       </template>
     </template>
+    <!--    masonry TRUE // windows width > breakpoint -->
+    <template v-else>
+      <div class="v-slug__masonry-coll">
+        <div class="v-slug__item v-slug__item--image">
+          <img alt="image texte"
+               class="v-slug__img"
+               src="/images/241122_Grutli_Flyers_23.jpg"
+          />
+        </div>
+        <template v-if="pageData">
+          <template v-if="useFalkIsActive().value">
+            <template v-for="(content, index) of pageData.pageContent.content.content">
+              <template v-if="content.type === 'section-block-content' && index % 0 !== 0">
+                {{index % 0 !== 0}}
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.content.htmlcontent_falk.length"
+                >
+                  <h2>{{ content.content.titre }}</h2>
+                  <AppBlockContent
+                          v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                          :html_content_block="htmlContentBlock"
+                  />
+                </div>
+              </template>
+
+              <div class="v-slug__item"
+                   v-else>
+                <AppSpectacleCardLoader
+                        :slug="content.content.linked_spectacle"
+                />
+              </div>
+
+
+            </template>
+          </template>
+
+          <template v-else>
+            <template v-for="content of pageData.pageContent.content.content">
+              <div class="v-slug__item app-remove-first-last-child-margin"
+                   v-if="content.type === 'section-block-content'">
+                <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
+                <AppBlockContent
+                        v-for="htmlContentBlock of content.content.htmlcontent"
+                        :html_content_block="htmlContentBlock"
+                />
+              </div>
+              <div class="v-slug__item"
+                   v-else>
+                <AppSpectacleCardLoader
+                        :slug="content.content.linked_spectacle"
+                />
+              </div>
+            </template>
+          </template>
+        </template>
+      </div>
+      <div class="v-slug__masonry-coll">
+<!--        <div class="v-slug__item v-slug__item&#45;&#45;image">-->
+<!--          <img alt="image texte"-->
+<!--               class="v-slug__img"-->
+<!--               src="/images/241122_Grutli_Flyers_23.jpg"-->
+<!--          />-->
+<!--        </div>-->
+        <template v-if="pageData">
+          <template v-if="useFalkIsActive().value">
+            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
+              <template v-if="content.type === 'section-block-content'">
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.content.htmlcontent_falk.length"
+                >
+                  <h2>{{ content.content.titre }}</h2>
+                  <AppBlockContent
+                          v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                          :html_content_block="htmlContentBlock"
+                  />
+                </div>
+              </template>
+
+              <div class="v-slug__item"
+                   v-else>
+                <AppSpectacleCardLoader
+                        :slug="content.content.linked_spectacle"
+                />
+              </div>
+
+
+            </template>
+          </template>
+
+          <template v-else>
+            <template v-for="content of pageData.pageContent.content.content">
+              <div class="v-slug__item app-remove-first-last-child-margin"
+                   v-if="content.type === 'section-block-content'">
+                <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
+                <AppBlockContent
+                        v-for="htmlContentBlock of content.content.htmlcontent"
+                        :html_content_block="htmlContentBlock"
+                />
+              </div>
+              <div class="v-slug__item"
+                   v-else>
+                <AppSpectacleCardLoader
+                        :slug="content.content.linked_spectacle"
+                />
+              </div>
+            </template>
+          </template>
+        </template>
+      </div>
+    </template>
+    <!--//////////
+    /// masonry END
+    //////////-->
+
   </section>
 </template>
 
@@ -114,7 +231,21 @@ onMounted(async () => {
                 })
             })
     })
+
+    setWindowsWidth()
+    window.addEventListener('resize', setWindowsWidth)
 })
+
+onUnmounted(() => {
+    window.removeEventListener('resize', setWindowsWidth)
+})
+
+const windowsWidthIsSmallerThan1200pxCSSBreakpoint = ref(true) //breakpoint @media (min-width: 1200px) {
+const breakpointCSSMinWidthBreakpoint = 1200
+
+function setWindowsWidth() {
+    windowsWidthIsSmallerThan1200pxCSSBreakpoint.value = window.innerWidth < breakpointCSSMinWidthBreakpoint
+}
 
 interface get_currentORParentPageForNavLinksProps {
     parentDetails: ApiSimplePage | null;
@@ -183,6 +314,18 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   padding-left: var(--app-gutter);
   padding-right: var(--app-gutter);
   flex-direction: row;
+}
+
+.v-slug__masonry-coll {
+  box-sizing: border-box;
+  width: calc(50% - 1rem / 2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  > .v-slug__item {
+    width: 100%;
+  }
 }
 
 .v-slug__children-link {

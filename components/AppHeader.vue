@@ -29,7 +29,9 @@
         </div>
       </div>
 
-      <div class="v-app-header__footer">
+      <div class="v-app-header__footer"
+           ref="app-footer"
+      >
         <AppFixedNav/>
       </div>
     </section>
