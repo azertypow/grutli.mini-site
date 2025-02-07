@@ -80,6 +80,8 @@ const dateFromTicketService = computed(() => {
   text-decoration: none;
   overflow: hidden;
   min-height: 8rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 
   > * {
     width: 100%;
