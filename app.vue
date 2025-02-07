@@ -15,15 +15,19 @@
          v-if="newsList && useRouter().currentRoute.value.path === '/'"
     >
       <div class="app-app__news__wrap__container"
-              v-for="news of newsListToShow"
+           v-for="news of newsListToShow"
            @click="toggleItemState(news.id)"
       >
         <div class="app-app__news__wrap__container__wrap">
-          <div>{{news.text}}</div>
-          <div>{{news.text}}</div>
-          <div>{{news.text}}</div>
-          <div>{{news.text}}</div>
+          <div>{{ news.text }}</div>
+          <div>{{ news.text }}</div>
+          <div>{{ news.text }}</div>
+          <div>{{ news.text }}</div>
         </div>
+        <svg class="app-app__news__wrap__container__close-ui"
+             xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+        </svg>
       </div>
     </div>
 
@@ -75,17 +79,30 @@
   white-space: nowrap;
   position: relative;
   height: 1rem;
+  overflow: hidden;
 
   &:nth-child(1n) {
     background: var(--app-color-purple);
+    .app-app__news__wrap__container__close-ui {
+      background: var(--app-color-purple);
+      box-shadow: 0 0 10px 10px var(--app-color-purple);
+    }
   }
 
   &:nth-child(2n) {
     background: var(--app-color-grey);
+    .app-app__news__wrap__container__close-ui {
+      background: var(--app-color-grey);
+      box-shadow: 0 0 10px 10px var(--app-color-grey);
+    }
   }
 
   &:nth-child(3n) {
     background: var(--app-color-orange);
+    .app-app__news__wrap__container__close-ui {
+      background: var(--app-color-orange);
+      box-shadow: 0 0 10px 10px var(--app-color-orange);
+    }
   }
 }
 
@@ -104,6 +121,18 @@
     padding-right: 1rem;
   }
 }
+
+.app-app__news__wrap__container__close-ui {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  z-index: 10;
+  background: white;
+}
+
 
 @keyframes app-app__news__wrap--animation {
   0% {
