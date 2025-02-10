@@ -216,6 +216,10 @@ const data = defineProps<{
   h2 {
     @extend .app-font-h3;
   }
+
+  h3 {
+    @extend .app-font-h4;
+  }
 }
 
 
