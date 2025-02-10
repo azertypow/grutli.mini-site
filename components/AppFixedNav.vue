@@ -1,6 +1,11 @@
 <template>
   <section class="v-app-fixed-nav"
   >
+    <nuxt-link class="app-font-extra-small app-button-grey"
+               href="/programmation"
+    >
+      programmation
+    </nuxt-link>
     <template v-if="useSiteInfo().value">
       <template v-for="page of useSiteInfo().value?.['page-simple']">
         <template v-if="page.pageContent.content.showinnavigation === 'true'"
@@ -12,11 +17,6 @@
         </template>
       </template>
     </template>
-    <nuxt-link class="app-font-extra-small app-button-grey"
-               href="/programmation"
-    >
-      programmation
-    </nuxt-link>
   </section>
 </template>
 
