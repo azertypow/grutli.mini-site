@@ -336,10 +336,6 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   gap: var(--app-gutter);
 }
 
-.v-slug__children-link__item {
-  margin: 0;
-}
-
 .v-slug__item {
   flex-shrink: 0;
   width: 100%;

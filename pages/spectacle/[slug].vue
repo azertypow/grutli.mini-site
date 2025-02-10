@@ -12,14 +12,51 @@
       >
 
         <div class="v-spectacle-slug__coll__header">
-          <div class="v-spectacle-slug__coll__header__content"
-               v-if="firstAndLAstDate">
-            <div>{{firstAndLAstDate}}</div>
-            <div>{{placeName}}</div>
+          <div class="v-spectacle-slug__coll__header__saison-name">
+
+          </div>
+          <div class="v-spectacle-slug__coll__header__ticket">
+
+            <a class="app-button-grey app-font-small"
+               v-if="pageData?.pageContent.content.externalticketservicelink"
+               :href="pageData.pageContent.content.externalticketservicelink"
+               target="_blank"
+            >
+              <template v-if="pageData.pageContent.content.externalticketservicename">
+                {{pageData.pageContent.content.externalticketservicename}}
+              </template>
+              <template v-else="pageData.pageContent.content.externalticketservicename">
+                prendre un billet
+              </template>
+            </a>
+
+            <div class="app-button-grey app-font-small"
+                 v-else-if="ticketInfo && ticketInfo === 'loaded'"
+            ><span class=""
+                   style="opacity: .5"
+            >chargement…</span></div>
+
+            <a class="app-button-grey app-font-small"
+               v-else-if="ticketInfo && ticketInfo.length > 0"
+               target="_blank"
+               :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
+            >prendre un billet</a>
+
+            <div class="app-button-grey app-font-small"
+                 v-else-if="ticketInfo && ticketInfo.length === 0"
+            >plus de dates</div>
+
+            <div class="app-button-grey app-font-small"
+                 v-else
+            >billetterie à venir</div>
           </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
 
+          <div class="v-spectacle-slug__coll__text-content__date_and_place">
+            <div v-if="firstAndLAstDate">{{firstAndLAstDate}}</div>
+            <div>{{placeName}}</div>
+          </div>
           <h1 class="v-spectacle-slug__coll__text-content__title app-font-align-center app-font-h3">{{ pageData?.pageContent.content.title }}</h1>
           <div class="v-spectacle-slug__coll__text-content__is-cover app-font-align-center app-font-small"
                v-if="pageData?.pageContent.content.iscover === 'true'"
@@ -300,38 +337,6 @@
 
 
         </div>
-
-
-        <div class="v-spectacle-slug__ticket app-font-h3">
-
-          <a v-if="pageData?.pageContent.content.externalticketservicelink"
-             :href="pageData.pageContent.content.externalticketservicelink"
-             target="_blank"
-          >
-            <template v-if="pageData.pageContent.content.externalticketservicename">
-              {{pageData.pageContent.content.externalticketservicename}}
-            </template>
-            <template v-else="pageData.pageContent.content.externalticketservicename">
-              prendre un billet
-            </template>
-          </a>
-
-          <div v-else-if="ticketInfo && ticketInfo === 'loaded'"
-          ><span class=""
-                 style="opacity: .5"
-          >chargement…</span></div>
-
-          <a v-else-if="ticketInfo && ticketInfo.length > 0"
-             target="_blank"
-             :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
-          >prendre un billet</a>
-
-          <div v-else-if="ticketInfo && ticketInfo.length === 0"
-          >plus de dates</div>
-
-          <div v-else
-          >billetterie à venir</div>
-        </div>
       </div>
     </section>
 </template>
@@ -354,7 +359,6 @@ const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref('load
 
 const showDetails = ref(false)
 
-const color = '#ff6c2f'
 const textColor = 'white'
 
 const placeName: ComputedRef<string | null> = computed(() => {
@@ -465,14 +469,11 @@ onMounted(async () => {
 .v-spectacle-slug__coll {
   flex-shrink: 0;
   width: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
 
   @media (min-width: 1200px) {
     width: calc(50% - (var(--app-gutter-xl) / 2));
-  }
-
-  > img {
-    overflow: hidden;
-    border-radius: 1rem;
   }
 }
 
@@ -485,6 +486,7 @@ onMounted(async () => {
 
 .v-spectacle-slug__coll__text-content__title {
   margin-bottom: .5rem;
+  margin-top: 0;
 }
 
 .v-spectacle-slug__coll__text-content__is-cover {
@@ -594,25 +596,24 @@ onMounted(async () => {
   color: var(--app-color-orange);
 }
 
-
 .v-spectacle-slug__coll__header {
-  --top-position: 1.5rem;
-  box-sizing: border-box;
-  padding-top: var(--top-position);
-  background-color: white;
-  position: sticky;
-  top: calc(var(--app-header-height) - var(--top-position) );
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  display: flex;
+  background: white;
+  justify-content: space-between;
+  padding: var(--app-gutter-xl) var(--app-gutter-xl) 2rem;
 }
 
-.v-spectacle-slug__coll__header__content {
+.v-spectacle-slug__coll__header__ticket {
+  a {
+    display: block;
+    text-decoration: none;
+  }
+}
+
+.v-spectacle-slug__coll__text-content__date_and_place {
   box-sizing: border-box;
-  background-color: v-bind(color);
-  color: v-bind(textColor);
-  padding: 0 var(--app-gutter-xl);
-  display: flex;
-  justify-content: space-between;
+  padding: 0 0 1rem;
+  text-align: center;
 }
 
 :global( .v-spectacle-slug__coll__text-content__peoples > *) {
@@ -709,7 +710,7 @@ onMounted(async () => {
 }
 
 :global(.v-spectacle-slug__dates__item__days__day span) {
-  color: v-bind(color);
+  color: var(--app-color-orange);
   //font-variation-settings: "slnt" 0, "wght" 800;
 }
 
@@ -733,23 +734,5 @@ onMounted(async () => {
 
 :global(.v-spectacle-slug__detailsHtml > div:last-child > *:last-child) {
   margin-bottom: 0;
-}
-
-.v-spectacle-slug__ticket {
-  position: sticky;
-  bottom: var(--v-audio-player-header-height);
-  top: var(--app-header-height);
-  left: 0;
-  text-align: center;
-  background-color: v-bind(color);
-  color: v-bind(textColor);
-  margin: 0;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-
-  a {
-    display: block;
-    text-decoration: none;
-  }
 }
 </style>
