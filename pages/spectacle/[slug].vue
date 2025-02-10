@@ -27,7 +27,7 @@
             Reprise
           </div>
 
-          <div class="v-spectacle-slug__coll__text-content__company">
+          <div class="v-spectacle-slug__coll__text-content__company app-font-mono">
             <div v-for="companyPeople of pageData?.pageContent.content.company">
               <template v-if="companyPeople.authors_link">
                 <a target="_blank" :href="companyPeople.authors_link">
@@ -579,6 +579,8 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__content__text__quote {
+  font-style: italic;
+
   > div:first-child {
     color: var(--app-color-orange);
   }

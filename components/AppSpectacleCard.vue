@@ -2,13 +2,13 @@
   <nuxt-link class="v-app-spectacle-card"
              :to="to"
   >
-    <div class="v-app-spectacle-card__item__date app-font-small"
+    <div class="v-app-spectacle-card__item__date app-font-small app-font-mono"
          v-if="dateFromTicketService"
     >
         {{dateFromTicketService}}
     </div>
-    <h2 class="v-app-spectacle-card__item__title app-font-h4 app-font-align-center">{{ title }}</h2>
-    <div class="v-app-spectacle-card__item__peoples app-font-align-center"
+    <h2 class="v-app-spectacle-card__item__title app-font-h5 app-font-align-center">{{ title }}</h2>
+    <div class="v-app-spectacle-card__item__peoples app-font-base app-font-small app-font-align-center"
          v-if="peoples"
     >
       <div v-for="people of peoples">
@@ -111,7 +111,6 @@ const dateFromTicketService = computed(() => {
 }
 
 .v-app-spectacle-card__item__title {
-  text-transform: none;
   margin: 0;
 }
 

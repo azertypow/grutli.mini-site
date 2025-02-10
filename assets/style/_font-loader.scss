@@ -3,6 +3,13 @@
 
 @font-face {
   font-family: 'ABCOracleWebSite';
+  src: url('/fonts/ABCOracleVariable.woff') format('woff');
+  font-weight: normal; /* ou "bold" si c'est une version bold */
+  font-style: normal; /* ou "italic" si c'est une version italique */
+}
+
+@font-face {
+  font-family: 'ABCOracleWebSite triple';
   src: url('/fonts/ABCOracleTripleVariable.woff') format('woff');
   font-weight: normal; /* ou "bold" si c'est une version bold */
   font-style: normal; /* ou "italic" si c'est une version italique */

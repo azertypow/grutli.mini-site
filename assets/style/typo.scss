@@ -1,4 +1,9 @@
+.app-font-mono {
+  font-family: 'ABCOracleWebSite triple', monospace;
+}
+
 h2, .app-font-h2 {
+  font-family: 'ABCOracleWebSite triple', monospace;
   line-height: 2rem;
   font-size: 1.8rem;
   font-weight: normal;
@@ -15,6 +20,7 @@ h2, .app-font-h2 {
 }
 
 h3, .app-font-h3 {
+  font-family: 'ABCOracleWebSite triple', monospace;
   line-height: 1.5rem;
   font-size: 1.25rem;
   font-weight: normal;
@@ -25,11 +31,23 @@ h3, .app-font-h3 {
 }
 
 h4, .app-font-h4 {
+  font-family: 'ABCOracleWebSite triple', monospace;
   font-size: var(--app-font-size);
   line-height: var(--app-line-height);
   font-weight: normal;
   font-variation-settings: "slnt" 0, "wght" 600;
   text-transform: uppercase;
+  margin-top: calc(var(--app-line-height) * 2);
+  margin-bottom: var(--app-line-height);
+  max-width: none;
+}
+
+h5, .app-font-h5 {
+  font-family: 'ABCOracleWebSite triple', monospace;
+  font-size: var(--app-font-size);
+  line-height: var(--app-line-height);
+  font-weight: normal;
+  font-variation-settings: "slnt" 0, "wght" 800;
   margin-top: calc(var(--app-line-height) * 2);
   margin-bottom: var(--app-line-height);
   max-width: none;
