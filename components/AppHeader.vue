@@ -4,7 +4,7 @@
               'window-is-scrolled': windowIsScrolled,
               }"
     >
-      <nuxt-link class="v-app-header__left app-font-small app-font-mono"
+      <nuxt-link class="v-app-header__left app-font-small app-font-mono app-font-mono--force"
          to="/"
       >
         Scènes

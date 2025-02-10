@@ -1,5 +1,13 @@
 .app-font-mono {
   font-family: 'ABCOracleWebSite triple', monospace;
+
+  &.app-font-mono--force {
+    font-family: 'ABCOracleWebSite triple', monospace !important;
+  }
+}
+
+.nuxt-watch-falk-is-active * {
+  font-family: 'ABCOracleWebSite', sans-serif !important;
 }
 
 h2, .app-font-h2 {
