@@ -1,7 +1,7 @@
 <template>
     <section class="v-app-header"
              :class="{
-              'window-is-scrolled': windowIsScrolled,
+              'window-is-scroll-to-bottom': windowIsScrollToBottom,
               }"
     >
       <div class="v-app-header__left">
@@ -49,10 +49,13 @@
   align-items: flex-start;
   user-select: none;
   color: black;
-  //transition: background-color .25s ease-out;
+  transition: opacity .25s ease-out;
+  opacity: 1;
+  pointer-events: initial;
 
-  &.window-is-scrolled {
-    background: white;
+  &.window-is-scroll-to-bottom {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .nuxt-watch-falk-is-active & {
@@ -135,7 +138,8 @@
 import {useFalkIsActive} from "~/composables/cmsData";
 
 
-const windowIsScrolled = ref(false)
+const windowIsScrollToBottom = ref(false)
+const beforeScrollPosition = ref(window.scrollY)
 
 onMounted(() => {
     setWindowScrollStatus()
@@ -143,7 +147,8 @@ onMounted(() => {
 })
 
 function setWindowScrollStatus() {
-    windowIsScrolled.value = window.scrollY > 50
+    windowIsScrollToBottom.value = window.scrollY > beforeScrollPosition.value
+    beforeScrollPosition.value = window.scrollY
 }
 
 </script>
