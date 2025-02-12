@@ -14,11 +14,6 @@
         </nuxt-link>
       </div>
 
-      <nuxt-link class="v-app-header__center"
-                 to="/"
-      >
-      </nuxt-link>
-
       <div class="v-app-header__right app-font-small">
 
         <div class="v-app-header__falk-ui app-button-grey" @click="useFalkIsActive().value = !useFalkIsActive().value">
@@ -72,14 +67,6 @@
   }
 }
 
-.v-app-header__center {
-  text-align: center;
-
-  @media (max-width: 800px) {
-    display: none;
-  }
-}
-
 .v-app-header__center__top {
   margin: 0;
 
@@ -102,12 +89,8 @@
 
 .v-app-header__left {
   display: flex;
-  width: calc(100%/3);
+  width: 50%;
   margin-bottom: 0;
-
-  @media (max-width: 800px) {
-    width: auto;
-  }
 }
 
 .v-app-header__right {
@@ -115,13 +98,9 @@
   align-items: flex-end;
   flex-wrap: nowrap;
   gap: var(--app-gutter-xl);
-  width: calc(100%/3);
+  width: 50%;
   flex-direction: column;
   margin-bottom: 0;
-
-  @media (max-width: 800px) {
-    width: auto;
-  }
 }
 
 .v-app-header__falk-ui {
