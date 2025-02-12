@@ -1,7 +1,7 @@
 <template>
   <section class="v-app-fixed-nav"
   >
-    <nuxt-link class="app-button-grey"
+    <nuxt-link class="app-button-grey app-font-small"
                href="/programmation"
     >
       programmation
@@ -10,7 +10,7 @@
       <template v-for="page of useSiteInfo().value?.['page-simple']">
         <template v-if="page.pageContent.content.showinnavigation === 'true'"
         >
-          <nuxt-link class="app-button-grey"
+          <nuxt-link class="app-button-grey app-font-small"
                   :href="'/' + page.pageContent.slug">
             {{ page.pageContent.content.title.toLocaleLowerCase() }}
           </nuxt-link>
@@ -22,18 +22,18 @@
 
     <div class="v-slug__children-link">
       <template v-if="currentPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey app-button-grey--inverse"
+        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--inverse"
                    :href=" '/' + currentPageForNavLinks.slug"
         >{{currentPageForNavLinks.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
       <template v-if="childrenDetailsForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
                    v-for="childLink of childrenDetailsForNavLinks"
                    :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
         >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
       <template v-if="parentSubPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
                    v-for="subPage of parentSubPageForNavLinks"
                    :href="subPage.pageContent.slug"
         >{{subPage.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
