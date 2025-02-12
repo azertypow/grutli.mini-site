@@ -46,7 +46,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: var(--app-gutter);
-  align-items: center;
+  align-items: flex-start;
   user-select: none;
   color: black;
   //transition: background-color .25s ease-out;

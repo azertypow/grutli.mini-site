@@ -44,7 +44,6 @@ import {useSiteInfo} from "~/composables/cmsData";
   width: 100%;
   box-sizing: border-box;
   color: inherit;
-  padding-top: var(--app-gutter);
   gap: var(--app-gutter);
 
 
