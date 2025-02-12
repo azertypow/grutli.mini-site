@@ -4,12 +4,15 @@
               'window-is-scrolled': windowIsScrolled,
               }"
     >
-      <nuxt-link class="v-app-header__left app-font-small app-font-mono app-font-mono--force"
-         to="/"
-      >
-        Scènes
-        <br>du Grütli
-      </nuxt-link>
+      <div class="v-app-header__left">
+        <nuxt-link class="app-font-small app-font-mono app-font-mono--force app-button-grey"
+                   to="/"
+                   style="padding-left: .75rem; padding-right: .75rem"
+        >
+          Scènes
+          <br>du Grütli
+        </nuxt-link>
+      </div>
 
       <nuxt-link class="v-app-header__center"
                  to="/"
@@ -101,6 +104,7 @@
 }
 
 .v-app-header__left {
+  display: flex;
   width: calc(100%/3);
   margin-bottom: 0;
 
