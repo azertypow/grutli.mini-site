@@ -17,9 +17,6 @@
       <nuxt-link class="v-app-header__center"
                  to="/"
       >
-        <div class="v-app-header__center__top app-font-small    app-font-mono app-font-mono--force">saison 2025</div>
-        <div class="v-app-header__center__center app-font-h3    app-font-mono app-font-mono--force">L’Arbre-Monde</div>
-        <div class="v-app-header__center__bottom app-font-small app-font-mono app-font-mono--force">janvier - juin</div>
       </nuxt-link>
 
       <div class="v-app-header__right app-font-small">
