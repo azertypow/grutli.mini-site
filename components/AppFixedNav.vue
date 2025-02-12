@@ -1,7 +1,7 @@
 <template>
   <section class="v-app-fixed-nav"
   >
-    <nuxt-link class="app-font-extra-small app-button-grey"
+    <nuxt-link class="app-button-grey"
                href="/programmation"
     >
       programmation
@@ -10,7 +10,7 @@
       <template v-for="page of useSiteInfo().value?.['page-simple']">
         <template v-if="page.pageContent.content.showinnavigation === 'true'"
         >
-          <nuxt-link class="app-font-extra-small app-button-grey"
+          <nuxt-link class="app-button-grey"
                   :href="'/' + page.pageContent.slug">
             {{ page.pageContent.content.title.toLocaleLowerCase() }}
           </nuxt-link>
