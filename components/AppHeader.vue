@@ -1,9 +1,5 @@
 <template>
-    <section class="v-app-header"
-             :class="{
-              'window-is-scroll-to-bottom': windowIsScrollToBottom,
-              }"
-    >
+    <section class="v-app-header">
       <div class="v-app-header__left">
         <nuxt-link class="app-font-small app-font-mono app-font-mono--force app-button-grey"
                    to="/"
@@ -49,14 +45,6 @@
   align-items: flex-start;
   user-select: none;
   color: black;
-  transition: opacity .25s ease-out;
-  opacity: 1;
-  pointer-events: initial;
-
-  &.window-is-scroll-to-bottom {
-    opacity: 0;
-    pointer-events: none;
-  }
 
   .nuxt-watch-falk-is-active & {
     background-image: none;
@@ -135,10 +123,10 @@
 </style>
 
 <script setup lang="ts">
-import {useFalkIsActive} from "~/composables/cmsData";
+import {useFalkIsActive, useWindowIsScrollToBottom} from "~/composables/cmsData";
 
 
-const windowIsScrollToBottom = ref(false)
+const windowIsScrollToBottom = useWindowIsScrollToBottom()
 const beforeScrollPosition = ref(window.scrollY)
 
 onMounted(() => {

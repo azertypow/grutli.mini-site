@@ -2,7 +2,11 @@
   <div class="app-app"
        :class="useRouter().currentRoute.value.name"
   >
-    <div class="app-app__header">
+    <div class="app-app__header"
+         :class="{
+              'window-is-scroll-to-bottom': windowIsScrollToBottom,
+          }"
+    >
       <AppHeader/>
     </div>
     <div class="app-app__content">
@@ -55,6 +59,14 @@
   left: 0;
   width: 100%;
   position: fixed;
+  transition: opacity .25s ease-out;
+  opacity: 1;
+  pointer-events: initial;
+
+  &.window-is-scroll-to-bottom {
+    opacity: 0;
+    pointer-events: none !important;
+  }
 }
 
 .app-app__content {
@@ -165,7 +177,7 @@ import {
     useFalkIsActive,
     useNews,
     usePlacesInfo,
-    useSiteInfo
+    useSiteInfo, useWindowIsScrollToBottom
 } from "~/composables/cmsData";
 
 onMounted(async () => {
@@ -198,6 +210,8 @@ watch(useFalkIsActive, (value) => {
 const newsList = useNews()
 const numberOfOpenNews = computed(() => newsList.value?.filter(item => item.isOpen).length)
 const newsListToShow = computed(() => newsList.value?.filter(item => item.isOpen))
+
+const windowIsScrollToBottom = useWindowIsScrollToBottom()
 
 const toggleItemState = (id: string) => {
     const item = newsList.value?.find((item) => item.id === id)

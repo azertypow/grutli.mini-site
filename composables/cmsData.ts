@@ -32,7 +32,8 @@ export const useChildrenDetailsForNavLinks: () => Ref<ApiSimplePage_ChildDetails
     return useState('useChildrenDetailsForNavLinks', () => null )
 }
 
-
-
+export const useWindowIsScrollToBottom: () => Ref<boolean> = () => {
+    return useState('useWindowIsScrollToBottom', () => false )
+}
 
 
