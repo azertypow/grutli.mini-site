@@ -96,7 +96,6 @@ const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding-bottom: var(--app-gutter);
   gap: var(--app-gutter);
 }
 </style>
