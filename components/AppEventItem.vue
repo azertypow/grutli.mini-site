@@ -78,7 +78,6 @@ async function setDateToShow() {
 
 .v-app-event-item {
   text-decoration: none;
-  color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
