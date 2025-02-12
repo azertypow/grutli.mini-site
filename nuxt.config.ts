@@ -21,4 +21,12 @@ export default defineNuxtConfig({
       clientDB: true
     }
   },
+
+  // nitro: {
+  //   prerender: {
+  //     routes: ["/", "/contact"],
+  //     crawlLinks: true,
+  //   },
+  // },
+
 })
