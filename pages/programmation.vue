@@ -25,6 +25,15 @@
 <script setup lang="ts">
 
 import type {SiteInfo} from "~/utlis/ApiCmsTypes";
+import {
+    useChildrenDetailsForNavLinks,
+    useCurrentPageForNavLinks,
+    useParentSubPageForNavLinks
+} from "~/composables/cmsData";
+
+useCurrentPageForNavLinks().value = null
+useParentSubPageForNavLinks().value = null
+useChildrenDetailsForNavLinks().value = null
 
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 

@@ -1,26 +1,6 @@
 <template>
   <section class="v-slug"
   >
-    <div class="v-slug__children-link">
-      <template v-if="currentPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey app-button-grey--inverse"
-                   :href=" '/' + currentPageForNavLinks.slug"
-        >{{currentPageForNavLinks.title.toLocaleLowerCase()}}</nuxt-link>
-      </template>
-      <template v-if="childrenDetailsForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
-                   v-for="childLink of childrenDetailsForNavLinks"
-                   :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
-        >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
-      </template>
-      <template v-if="parentSubPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
-                   v-for="subPage of parentSubPageForNavLinks"
-                   :href="subPage.pageContent.slug"
-        >{{subPage.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
-      </template>
-    </div>
-
     <!--//////////
     /// masonry
     //////////-->
@@ -202,7 +182,12 @@
 
 import {fetchPage} from "~/utlis/apiCmsFetch";
 import type {ApiSimplePage, ApiSimplePage_ChildDetails} from "~/utlis/ApiCmsTypes";
-import {useFalkIsActive} from "~/composables/cmsData";
+import {
+    useChildrenDetailsForNavLinks,
+    useCurrentPageForNavLinks,
+    useFalkIsActive,
+    useParentSubPageForNavLinks
+} from "~/composables/cmsData";
 import AppBlockContent from "~/components/AppBlockContent.vue";
 import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
 
@@ -210,21 +195,17 @@ const { slug } = useRoute().params;
 
 const pageData: Ref<ApiSimplePage | null> = ref(null)
 
-const currentPageForNavLinks:     Ref<{slug: string, title: string} | null> = ref(null)
-const parentSubPageForNavLinks:   Ref<ApiSimplePage_ChildDetails[]  | null> = ref(null)
-const childrenDetailsForNavLinks: Ref<ApiSimplePage_ChildDetails[]  | null> = ref(null)
-
 onMounted(async () => {
     fetchPage(slug).then(async (value: ApiSimplePage | null) => {
         pageData.value = value
 
         get_childrenDetailsForNavLinks(value)
-            .then(childPagesDetails => childrenDetailsForNavLinks.value = childPagesDetails)
+            .then(childPagesDetails => useChildrenDetailsForNavLinks().value = childPagesDetails)
 
         get_parentSubPageForNavLinks(value)
             .then(async parentPage => {
-                parentSubPageForNavLinks.value = parentPage?.childrenDetails || null
-                currentPageForNavLinks.value = await get_currentORParentPageForNavLinks({
+                useParentSubPageForNavLinks().value = parentPage?.childrenDetails || null
+                useCurrentPageForNavLinks().value = await get_currentORParentPageForNavLinks({
                     parentDetails: parentPage,
                     currentPageDetails: value,
                 })
@@ -325,15 +306,6 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   > .v-slug__item {
     width: 100%;
   }
-}
-
-.v-slug__children-link {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  padding-bottom: var(--app-gutter);
-  gap: var(--app-gutter);
 }
 
 .v-slug__item {

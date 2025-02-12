@@ -37,6 +37,15 @@
 import {_routes} from "~/utlis/spectacle/_routes";
 import type {SiteInfoPageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
+import {
+    useChildrenDetailsForNavLinks,
+    useCurrentPageForNavLinks,
+    useParentSubPageForNavLinks
+} from "~/composables/cmsData";
+
+useCurrentPageForNavLinks().value = null
+useParentSubPageForNavLinks().value = null
+useChildrenDetailsForNavLinks().value = null
 
 const pages = _routes
 

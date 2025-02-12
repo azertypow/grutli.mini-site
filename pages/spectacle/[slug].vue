@@ -349,10 +349,20 @@
 import {fetchPageSpectacle} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle} from "~/utlis/ApiCmsTypes";
 import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
-import {useFalkIsActive, usePlacesInfo} from "~/composables/cmsData";
+import {
+    useChildrenDetailsForNavLinks,
+    useCurrentPageForNavLinks,
+    useFalkIsActive,
+    useParentSubPageForNavLinks,
+    usePlacesInfo
+} from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
 import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
+
+useCurrentPageForNavLinks().value = null
+useParentSubPageForNavLinks().value = null
+useChildrenDetailsForNavLinks().value = null
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref('loaded')

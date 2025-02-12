@@ -17,6 +17,30 @@
         </template>
       </template>
     </template>
+
+
+
+    <div class="v-slug__children-link">
+      <template v-if="currentPageForNavLinks">
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey app-button-grey--inverse"
+                   :href=" '/' + currentPageForNavLinks.slug"
+        >{{currentPageForNavLinks.title.toLocaleLowerCase()}}</nuxt-link>
+      </template>
+      <template v-if="childrenDetailsForNavLinks">
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+                   v-for="childLink of childrenDetailsForNavLinks"
+                   :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
+        >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
+      </template>
+      <template v-if="parentSubPageForNavLinks">
+        <nuxt-link class="v-slug__children-link__item app-font-extra-small app-button-grey"
+                   v-for="subPage of parentSubPageForNavLinks"
+                   :href="subPage.pageContent.slug"
+        >{{subPage.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
+      </template>
+    </div>
+
+
   </section>
 </template>
 
@@ -25,7 +49,18 @@
 
 
 <script setup lang="ts">
-import {useSiteInfo} from "~/composables/cmsData";
+import {
+    useChildrenDetailsForNavLinks,
+    useCurrentPageForNavLinks,
+    useParentSubPageForNavLinks,
+    useSiteInfo
+} from "~/composables/cmsData";
+
+const { slug } = useRoute().params;
+
+const currentPageForNavLinks      = useCurrentPageForNavLinks()
+const parentSubPageForNavLinks    = useParentSubPageForNavLinks()
+const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
 
 </script>
 
@@ -54,5 +89,14 @@ import {useSiteInfo} from "~/composables/cmsData";
   > * {
     margin: 0;
   }
+}
+
+.v-slug__children-link {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding-bottom: var(--app-gutter);
+  gap: var(--app-gutter);
 }
 </style>

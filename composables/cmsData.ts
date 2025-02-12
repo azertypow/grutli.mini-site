@@ -1,4 +1,4 @@
-import type {ApiNews, ApiNewsItem, ApiPlaces, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {ApiNews, ApiNewsItem, ApiPlaces, ApiSimplePage_ChildDetails, SiteInfo} from "~/utlis/ApiCmsTypes";
 
 export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
     return useState('useSiteInfo', () => null )
@@ -19,3 +19,20 @@ export type AppNewsItem = ApiNewsItem & {
 export const useFalkIsActive: () => Ref<boolean> = () => {
     return useState('useFalkIsActive', () => false )
 }
+
+export const useCurrentPageForNavLinks: () => Ref<{slug: string, title: string} | null> = () => {
+    return useState('useCurrentPageForNavLinks', () => null )
+}
+
+export const useParentSubPageForNavLinks: () => Ref<ApiSimplePage_ChildDetails[]  | null> = () => {
+    return useState('useParentSubPageForNavLinks', () => null )
+}
+
+export const useChildrenDetailsForNavLinks: () => Ref<ApiSimplePage_ChildDetails[]  | null> = () => {
+    return useState('useChildrenDetailsForNavLinks', () => null )
+}
+
+
+
+
+
