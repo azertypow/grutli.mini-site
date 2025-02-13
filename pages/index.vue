@@ -87,6 +87,11 @@ const pageToShowInHome: ComputedRef<SiteInfoPageSimple[]> = computed(() => {
   box-sizing: border-box;
   width: calc( (100% / 3) - var(--app-gutter-xl) );
   flex-grow: 1;
+  transition: transform .25s ease-in-out;
+
+  &:hover {
+    transform: scale(1.015);
+  }
 
   @media (max-width: 1100px) {
     width: 100%;
