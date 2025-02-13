@@ -576,16 +576,12 @@ onMounted(async () => {
 
   > div:first-child {
     font-style: italic;
-    color: var(--app-color-orange);
   }
 
   > div:nth-child(2) {
     text-align: right;
   }
 
-}
-:global(.v-spectacle-slug__coll__content__text__quote > div:nth-child(2) em) {
-  color: var(--app-color-orange);
 }
 
 .v-spectacle-slug__coll__header {
