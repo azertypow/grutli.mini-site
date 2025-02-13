@@ -54,5 +54,9 @@ const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 
 .v-programmation__item {
   width: 100%;
+
+}
+:global(.v-programmation__item:last-child a) {
+  border-bottom: solid 1px;
 }
 </style>
