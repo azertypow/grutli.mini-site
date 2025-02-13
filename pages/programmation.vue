@@ -48,7 +48,7 @@ const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 5rem var(--app-gutter) 25vh;
+  padding: 0 var(--app-gutter) 25vh;
   justify-content: center;
 }
 
