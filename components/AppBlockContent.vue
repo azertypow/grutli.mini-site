@@ -23,7 +23,7 @@
              class="v-app-block-content__coll__content__text__quote"
         >
           <div v-html="html_content_block.content.text"></div>
-          <div v-html="html_content_block.content.citation"></div>
+          <div v-html="formatTitle(html_content_block.content.citation)"></div>
         </div>
 
         <div v-else-if="html_content_block.type === 'text'"
@@ -71,6 +71,7 @@
 import { defineProps } from 'vue'
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import type {ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
+import {formatTitle} from "~/utlis/formatStringCiattion";
 
 const data = defineProps<{
     html_content_block: ApiHTMLContent_Blocks
