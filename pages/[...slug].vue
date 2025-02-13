@@ -36,7 +36,9 @@
           <template v-for="content of pageData.pageContent.content.content">
             <div class="v-slug__item app-remove-first-last-child-margin"
                  v-if="content.type === 'section-block-content'">
-              <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
+              <h2 class="v-slug__item__title"
+                  v-if="content.content.titre && content.content.titre.length > 0"
+              >{{content.content.titre}}</h2>
               <AppBlockContent
                       v-for="htmlContentBlock of content.content.htmlcontent"
                       :html_content_block="htmlContentBlock"
@@ -85,7 +87,8 @@
             <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.type === 'section-block-content'">
-                <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
+                <h2 class="v-slug__item__title"
+                    v-if="content.content.titre && content.content.titre.length > 0">{{content.content.titre}}</h2>
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent"
                         :html_content_block="htmlContentBlock"
@@ -138,7 +141,8 @@
             <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.type === 'section-block-content'">
-                <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
+                <h2 class="v-slug__item__title"
+                    v-if="content.content.titre && content.content.titre.length > 0">{{content.content.titre}}</h2>
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent"
                         :html_content_block="htmlContentBlock"
