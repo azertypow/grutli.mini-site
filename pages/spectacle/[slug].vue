@@ -41,6 +41,9 @@
                target="_blank"
                :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
             >prendre un billet</a>
+            <a class="app-button-grey app-font-small"
+               href="#dates-details"
+            >date & horaires</a>
           </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
@@ -287,6 +290,7 @@
             </div>
           </div>
 
+          <div id="dates-details"></div>
           <template v-if="ticketInfo">
             <div class="v-spectacle-slug__dates">
               <div class="v-spectacle-slug__dates__item"
@@ -605,6 +609,10 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__header__ticket {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-gutter-xl);
+
   a {
     display: block;
     text-decoration: none;
