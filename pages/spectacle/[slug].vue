@@ -470,7 +470,7 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__text-content {
-  background: white;
+  background: var(--app-color-grey);
   box-sizing: border-box;
   padding: var(--app-gutter-xl) var(--app-gutter-xl) 1.5rem;
   overflow: hidden;
@@ -590,7 +590,7 @@ onMounted(async () => {
 
 .v-spectacle-slug__coll__header {
   display: flex;
-  background: white;
+  background: var(--app-color-grey);
   justify-content: space-between;
   padding: var(--app-gutter-xl) var(--app-gutter-xl) 2rem;
 }
