@@ -41,14 +41,6 @@
                target="_blank"
                :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
             >prendre un billet</a>
-
-            <div class="app-button-grey app-font-small"
-                 v-else-if="ticketInfo && ticketInfo.length === 0"
-            >plus de dates</div>
-
-            <div class="app-button-grey app-font-small"
-                 v-else
-            >billetterie à venir</div>
           </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
@@ -365,11 +357,9 @@ useParentSubPageForNavLinks().value = null
 useChildrenDetailsForNavLinks().value = null
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
-const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref('loaded')
+const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref(null)
 
 const showDetails = ref(false)
-
-const textColor = 'white'
 
 const placeName: ComputedRef<string | null> = computed(() => {
 
@@ -437,6 +427,7 @@ onMounted(async () => {
     pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
 
     if( !pageData.value) return
+    if(  !pageData.value.pageContent.content.eventtitle[0] ) return
 
     apiTicketInfomaniak_fetchEvents({
         search: pageData.value.pageContent.content.eventtitle[0]
