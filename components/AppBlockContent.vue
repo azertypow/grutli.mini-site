@@ -84,7 +84,7 @@ const data = defineProps<{
 <style lang="scss" scoped >
 .v-app-block-content {
   &.textWithTitle {
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-bottom: .5rem;
   }
   &.link {
