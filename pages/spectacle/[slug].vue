@@ -599,6 +599,7 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   gap: var(--app-gutter-xl);
+  align-items: flex-end;
 
   a {
     display: block;
