@@ -627,6 +627,8 @@ onMounted(async () => {
   pointer-events: none;
   position: sticky;
   top: 0;
+  height: 100%;
+  object-fit: cover;
 }
 
 .v-spectacle-slug__dates {
