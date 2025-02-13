@@ -29,7 +29,7 @@
       <template v-if="childrenDetailsForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
                    v-for="childLink of childrenDetailsForNavLinks"
-                   :href="slug ? slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
+                   :href="currentPageForNavLinks?.slug ? currentPageForNavLinks.slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
         >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
       <template v-if="parentSubPageForNavLinks">
