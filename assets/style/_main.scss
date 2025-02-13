@@ -33,10 +33,17 @@ a {
   padding: .2em .5rem .3em;
   border-radius: 1rem;
   margin: 0 !important;
+  transition: transform .25s ease-in-out;
 
   &.app-button-grey--inverse, &.router-link-active {
     color: var(--app-color-grey);
     background: black;
+  }
+
+  &:hover {
+    color: white !important;
+    background: black !important;
+    transform: scale(1.05);
   }
 }
 
