@@ -35,7 +35,7 @@
 <style lang="scss" scoped >
 .v-app-header {
   width: 100%;
-  height: var(--app-header-height);
+  height: auto;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -45,6 +45,7 @@
   align-items: flex-start;
   user-select: none;
   color: black;
+  row-gap: var(--app-gutter-xl);
 
   .nuxt-watch-falk-is-active & {
     background-image: none;
