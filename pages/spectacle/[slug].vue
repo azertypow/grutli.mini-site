@@ -25,7 +25,7 @@
               <template v-if="pageData.pageContent.content.externalticketservicename">
                 {{pageData.pageContent.content.externalticketservicename}}
               </template>
-              <template v-else="pageData.pageContent.content.externalticketservicename">
+              <template v-else>
                 prendre un billet
               </template>
             </a>
