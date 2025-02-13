@@ -34,7 +34,7 @@ a {
   border-radius: 1rem;
   margin: 0 !important;
 
-  &.app-button-grey--inverse {
+  &.app-button-grey--inverse, &.router-link-active {
     color: var(--app-color-grey);
     background: black;
   }

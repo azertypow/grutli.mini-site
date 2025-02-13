@@ -218,6 +218,8 @@ onMounted(async () => {
     fetchPage(slug).then(async (value: ApiSimplePage | null) => {
         pageData.value = value
 
+        redirectToFirstPageChildrenIfContentIsEmpty(value)
+
         get_childrenDetailsForNavLinks(value)
             .then(childPagesDetails => useChildrenDetailsForNavLinks().value = childPagesDetails)
 
@@ -241,6 +243,19 @@ onUnmounted(() => {
 
 const windowsWidthIsSmallerThan1200pxCSSBreakpoint = ref(true) //breakpoint @media (min-width: 1200px) {
 const breakpointCSSMinWidthBreakpoint = 1200
+
+function redirectToFirstPageChildrenIfContentIsEmpty(value: ApiSimplePage | null) {
+
+    if( !value ) return
+    if( !value.childrenDetails ) return
+
+    const contentIsEmpty = value.pageContent.content.content.length === 0
+    const hasChildrenPage = value.childrenDetails.length > 0
+
+    if( contentIsEmpty && hasChildrenPage ) {
+        useRouter().push( value.childrenDetails[0].pageContent.uri )
+    }
+}
 
 function setWindowsWidth() {
     windowsWidthIsSmallerThan1200pxCSSBreakpoint.value = window.innerWidth < breakpointCSSMinWidthBreakpoint

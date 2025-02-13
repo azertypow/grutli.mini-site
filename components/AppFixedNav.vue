@@ -29,13 +29,13 @@
       <template v-if="childrenDetailsForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
                    v-for="childLink of childrenDetailsForNavLinks"
-                   :href="currentPageForNavLinks?.slug ? currentPageForNavLinks.slug + '/' + childLink.pageContent.slug : childLink.pageContent.slug"
+                   :href=" '/' + childLink.pageContent.uri"
         >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
       <template v-if="parentSubPageForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey"
                    v-for="subPage of parentSubPageForNavLinks"
-                   :href="subPage.pageContent.slug"
+                   :href=" '/' + subPage.pageContent.uri"
         >{{subPage.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
       </template>
     </div>

@@ -324,7 +324,7 @@ export type ApiHTMLContent_Blocks =
 
 export type ApiSimplePage = {
     pageContent: ApiSimplePage_PageContent;
-    childrenDetails: ApiSimplePage_ChildDetails[];
+    childrenDetails?: ApiSimplePage_ChildDetails[];
 };
 
 export type ApiSimplePage_ChildDetails = {
