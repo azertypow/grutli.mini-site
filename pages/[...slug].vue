@@ -6,12 +6,6 @@
     //////////-->
     <!--    masonry FALSE // windows width < breakpoint-->
     <template v-if="windowsWidthIsSmallerThan1200pxCSSBreakpoint">
-      <div class="v-slug__item v-slug__item--image">
-        <img alt="image texte"
-             class="v-slug__img"
-             src="/images/241122_Grutli_Flyers_23.jpg"
-        />
-      </div>
       <template v-if="pageData">
         <template v-if="useFalkIsActive().value">
           <template v-for="content of pageData.pageContent.content.content">
@@ -61,15 +55,9 @@
     <!--    masonry TRUE // windows width > breakpoint -->
     <template v-else>
       <div class="v-slug__masonry-coll">
-        <div class="v-slug__item v-slug__item--image">
-          <img alt="image texte"
-               class="v-slug__img"
-               src="/images/241122_Grutli_Flyers_23.jpg"
-          />
-        </div>
         <template v-if="pageData">
           <template v-if="useFalkIsActive().value">
-            <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
+            <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
               <template v-if="content.type === 'section-block-content'">
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.content.htmlcontent_falk.length"
@@ -94,7 +82,7 @@
           </template>
 
           <template v-else>
-            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
+            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.type === 'section-block-content'">
                 <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
@@ -122,7 +110,7 @@
 <!--        </div>-->
         <template v-if="pageData">
           <template v-if="useFalkIsActive().value">
-            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
+            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
               <template v-if="content.type === 'section-block-content'">
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.content.htmlcontent_falk.length"
@@ -147,7 +135,7 @@
           </template>
 
           <template v-else>
-            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
+            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.type === 'section-block-content'">
                 <h2 class="v-slug__item__title">{{content.content.titre}}</h2>
