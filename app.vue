@@ -219,4 +219,9 @@ const toggleItemState = (id: string) => {
         item.isOpen = false
     }
 }
+
+// pause 0
+// frame 108
+// fin
+// on attend entre 3 et 5 sec
 </script>
