@@ -573,9 +573,9 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__content__text__quote {
-  font-style: italic;
 
   > div:first-child {
+    font-style: italic;
     color: var(--app-color-orange);
   }
 
