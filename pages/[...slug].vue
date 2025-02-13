@@ -12,6 +12,9 @@
             <template v-if="content.type === 'section-block-content'">
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.content.htmlcontent_falk.length"
+                   :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                   }"
               >
                 <h2 class="v-slug__item__title"
                     v-if="content.content.titre && content.content.titre.length > 0"
@@ -37,7 +40,11 @@
         <template v-else>
           <template v-for="content of pageData.pageContent.content.content">
             <div class="v-slug__item app-remove-first-last-child-margin"
-                 v-if="content.type === 'section-block-content'">
+                 v-if="content.type === 'section-block-content'"
+                 :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
+            >
               <h2 class="v-slug__item__title"
                   v-if="content.content.titre && content.content.titre.length > 0"
               >{{content.content.titre}}</h2>
@@ -63,8 +70,11 @@
           <template v-if="useFalkIsActive().value">
             <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
               <template v-if="content.type === 'section-block-content'">
-                <div class="v-slug__item app-remove-first-last-child-margin"
-                     v-if="content.content.htmlcontent_falk.length"
+                <div  class="v-slug__item app-remove-first-last-child-margin"
+                      v-if="content.content.htmlcontent_falk.length"
+                      :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                      }"
                 >
                   <h2 class="v-slug__item__title"
                       v-if="content.content.titre && content.content.titre.length > 0"
@@ -90,7 +100,11 @@
           <template v-else>
             <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
-                   v-if="content.type === 'section-block-content'">
+                   v-if="content.type === 'section-block-content'"
+                   :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
+              >
                 <h2 class="v-slug__item__title"
                     v-if="content.content.titre && content.content.titre.length > 0">{{content.content.titre}}</h2>
                 <AppBlockContent
@@ -121,6 +135,9 @@
               <template v-if="content.type === 'section-block-content'">
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.content.htmlcontent_falk.length"
+                     :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                   }"
                 >
                   <h2 class="v-slug__item__title"
                       v-if="content.content.titre && content.content.titre.length > 0"
@@ -146,7 +163,11 @@
           <template v-else>
             <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
               <div class="v-slug__item app-remove-first-last-child-margin"
-                   v-if="content.type === 'section-block-content'">
+                   v-if="content.type === 'section-block-content'"
+                   :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
+              >
                 <h2 class="v-slug__item__title"
                     v-if="content.content.titre && content.content.titre.length > 0">{{content.content.titre}}</h2>
                 <AppBlockContent
@@ -317,6 +338,10 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
 
   @media (min-width: 1200px) {
     width: calc(50% - (var(--app-gutter-xl) / 2));
+  }
+
+  &.has-only-image {
+    padding: 0;
   }
 }
 
