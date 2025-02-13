@@ -13,7 +13,9 @@
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.content.htmlcontent_falk.length"
               >
-                <h2>{{ content.content.titre }}</h2>
+                <h2 class="v-slug__item__title"
+                    v-if="content.content.titre && content.content.titre.length > 0"
+                >{{ content.content.titre }}</h2>
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent_falk"
                         :html_content_block="htmlContentBlock"
@@ -64,7 +66,9 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.content.htmlcontent_falk.length"
                 >
-                  <h2>{{ content.content.titre }}</h2>
+                  <h2 class="v-slug__item__title"
+                      v-if="content.content.titre && content.content.titre.length > 0"
+                  >{{ content.content.titre }}</h2>
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent_falk"
                           :html_content_block="htmlContentBlock"
@@ -118,7 +122,9 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.content.htmlcontent_falk.length"
                 >
-                  <h2>{{ content.content.titre }}</h2>
+                  <h2 class="v-slug__item__title"
+                      v-if="content.content.titre && content.content.titre.length > 0"
+                  >{{ content.content.titre }}</h2>
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent_falk"
                           :html_content_block="htmlContentBlock"
