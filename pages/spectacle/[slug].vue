@@ -267,34 +267,11 @@
             <!--            /block system -->
           </template>
 
-          <div class="v-spectacle-slug__coll__text-content__peoples"
-               v-if="showDetails"
-               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
-          />
-
-          <div class="v-spectacle-slug__coll__text-content__details"
-               v-if="showDetails"
-               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
-          />
-
-          <div class="v-spectacle-slug__toggle-details"
-          >
-            <div class="v-spectacle-slug__toggle-details__button"
-                 @click="showDetails = !showDetails"
-            >
-              <template v-if="showDetails">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
-              </template>
-              <template v-else><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/></svg></template>
-              <div>détails</div>
-            </div>
-          </div>
-
           <div id="dates-details"></div>
           <template v-if="ticketInfo">
             <div class="v-spectacle-slug__dates">
               <div class="v-spectacle-slug__dates__item"
-                     v-for="(mounthItem, mounthName) of groupedByMonth"
+                   v-for="(mounthItem, mounthName) of groupedByMonth"
               >
                 <div class="v-spectacle-slug__dates__item__mouth">
                   {{ mounthName }}
@@ -332,6 +309,17 @@
           </template>
 
 
+          <div class="v-spectacle-slug__coll__text-content__details">
+
+            <div class="v-spectacle-slug__coll__text-content__details__peoples"
+                 v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
+            />
+            <div class="v-spectacle-slug__coll__text-content__details__details"
+                 v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
+            />
+
+          </div>
+
         </div>
       </div>
     </section>
@@ -363,8 +351,6 @@ useChildrenDetailsForNavLinks().value = null
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref(null)
-
-const showDetails = ref(false)
 
 const placeName: ComputedRef<string | null> = computed(() => {
 
@@ -626,11 +612,11 @@ onMounted(async () => {
   text-align: center;
 }
 
-:global( .v-spectacle-slug__coll__text-content__peoples > *) {
+:global( .v-spectacle-slug__coll__text-content__details__peoples > *) {
   @extend .app-font-small;
 }
 
-:global( .v-spectacle-slug__coll__text-content__details > *) {
+:global( .v-spectacle-slug__coll__text-content__details__details > *) {
   @extend .app-font-small;
 }
 
@@ -641,25 +627,6 @@ onMounted(async () => {
   pointer-events: none;
   position: sticky;
   top: 0;
-}
-
-.v-spectacle-slug__toggle-details {
-  display: flex;
-  justify-content: center;
-}
-
-.v-spectacle-slug__toggle-details__button {
-  background: white;
-  color: black;
-  border: solid 2px;
-  padding: .5rem 1.5rem;
-  border-radius: .5rem;
-  text-align: center;
-  user-select: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: var(--app-gutter);
 }
 
 .v-spectacle-slug__dates {
@@ -724,11 +691,16 @@ onMounted(async () => {
   //font-variation-settings: "slnt" 0, "wght" 800;
 }
 
+.v-spectacle-slug__coll__text-content__details {
+  margin-top: 1rem;
+  border-top: solid 2px;
+  padding-top: 1rem;
+}
+
 .v-spectacle-slug__time-info {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  border-top: solid 2px;
   text-align: right;
   padding-top: var(--app-gutter);
   padding-bottom: var(--app-gutter);
