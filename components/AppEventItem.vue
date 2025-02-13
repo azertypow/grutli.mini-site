@@ -16,16 +16,12 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type {Spectacle} from "~/utlis/ApiCmsTypes";
-import {apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
 import {formatDateStartAndDateEndToString} from "../utlis/formatDate";
 
 const props = defineProps<{
     event: Spectacle
 }>()
 
-
-
-const dateFromTicketService: Ref<string | null> = ref(null)
 
 const dateString: ComputedRef<string> = computed(() => {
 
@@ -38,36 +34,6 @@ const dateString: ComputedRef<string> = computed(() => {
 
     return formatDateStartAndDateEndToString(props.event.pageContent.content.datestart, props.event.pageContent.content.dateend)
 })
-
-onMounted(() => {
-    setDateToShow().then(value => {
-        dateFromTicketService.value = value
-    })
-})
-
-async function setDateToShow() {
-    const eventsFromTicketService = await apiTicketInfomaniak_fetchEvents({
-        search: props.event.pageContent.content.eventtitle[0]
-    })
-
-    if( eventsFromTicketService.length < 1 ) return 'événement passé'
-
-    const firstDate = new Date(eventsFromTicketService[0].date.replace(" ", "T")).toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-    })
-
-    const lastDateString = eventsFromTicketService.at(-1)?.date
-
-    const lastDate = lastDateString ? new Date(lastDateString.replace(" ", "T")).toLocaleDateString('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-        })
-        : ''
-
-    return `${firstDate} - ${lastDate}`
-
-}
 </script>
 
 
