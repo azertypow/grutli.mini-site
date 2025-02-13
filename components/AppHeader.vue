@@ -136,7 +136,7 @@ onMounted(() => {
 })
 
 function setWindowScrollStatus() {
-    windowIsScrollToBottom.value = window.scrollY > beforeScrollPosition.value
+    windowIsScrollToBottom.value = window.scrollY > beforeScrollPosition.value && window.scrollY > 50
     beforeScrollPosition.value = window.scrollY
 }
 
