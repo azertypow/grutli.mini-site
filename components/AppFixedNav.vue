@@ -9,7 +9,7 @@
       </nuxt-link>
       <template v-for="page of listOfPageToShowInNavigation">
         <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
-                   :href="page.uri">
+                   :href="'/' + page.uri">
           {{ page.title }}
         </nuxt-link>
       </template>
