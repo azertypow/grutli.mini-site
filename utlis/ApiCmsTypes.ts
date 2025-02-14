@@ -53,6 +53,7 @@ export interface SiteInfo {
 export interface SiteInfoPageSimple {
     cover: ApiCmsImage[];
     pageContent: PageContent;
+    children: PageChildren[]
 }
 
 export interface PageContent {
@@ -70,6 +71,25 @@ export interface PageContent {
     uid: string;
     uri: string;
     url: string;
+}
+
+export interface PageChildren {
+    title: string,
+    showinnavigation: "true" | "false",
+    showinhome: "true" | "false",
+    parent: {
+        title: string,
+        showinnavigation: "true" | "false",
+        showinhome: "true" | "false",
+        slug: string
+        uid:  string
+        uri:  string
+        url:  string
+    },
+    slug:   string
+    uid:    string
+    uri:    string
+    url:    string
 }
 
 export interface PageContentDetails {
