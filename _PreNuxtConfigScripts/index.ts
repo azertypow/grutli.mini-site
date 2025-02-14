@@ -9,12 +9,12 @@ async function main() {
     if( pageData === null ) return
 
     const arrayOfRoutes: string[] = [
-        ...pageData.spectacles.map(spectacle => spectacle.pageContent.uri),
+        ...pageData.spectacles.map(spectacle => '/' + spectacle.pageContent.uri),
         ...pageData["page-simple"].flatMap(page => {
 
             return [
-                page.pageContent.uri,
-                ...page.children.map(value => value.uri),
+                '/' + page.pageContent.uri,
+                ...page.children.map(value => '/' + value.uri),
             ]
         }),
     ]

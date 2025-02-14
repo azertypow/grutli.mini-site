@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import {generatedRoutes} from "./_PreNuxtConfigScripts/generatedRoutes";
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
 
@@ -14,6 +16,12 @@ export default defineNuxtConfig({
 
   app: {
     baseURL: '/',
+    head: {
+      htmlAttrs: {
+        lang: 'fr'
+      },
+      meta: []
+    }
   },
 
   content: {
@@ -22,11 +30,10 @@ export default defineNuxtConfig({
     }
   },
 
-  // nitro: {
-  //   prerender: {
-  //     routes: ["/", "/contact"],
-  //     crawlLinks: true,
-  //   },
-  // },
+  nitro: {
+    prerender: {
+      routes: generatedRoutes,
+    },
+  },
 
 })
