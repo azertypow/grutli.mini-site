@@ -34,7 +34,6 @@
 
 
 <script setup lang="ts">
-import {_routes} from "~/utlis/spectacle/_routes";
 import type {SiteInfoPageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import {
@@ -46,8 +45,6 @@ import {
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
 useChildrenDetailsForNavLinks().value = null
-
-const pages = _routes
 
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 
