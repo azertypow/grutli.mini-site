@@ -1,22 +1,24 @@
 <template>
   <section class="v-app-fixed-nav"
   >
-    <nuxt-link class="app-button-grey app-font-small"
-               href="/programmation"
-    >
-      Programmation
-    </nuxt-link>
-    <template v-if="useSiteInfo().value">
-      <template v-for="page of useSiteInfo().value?.['page-simple']">
-        <template v-if="page.pageContent.content.showinnavigation === 'true'"
-        >
-          <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
-                  :href="'/' + page.pageContent.slug">
-            {{ page.pageContent.content.title }}
-          </nuxt-link>
+    <div class="v-slug__listed-pages">
+      <nuxt-link class="app-button-grey app-font-small"
+                 href="/programmation"
+      >
+        Programmation
+      </nuxt-link>
+      <template v-if="useSiteInfo().value">
+        <template v-for="page of useSiteInfo().value?.['page-simple']">
+          <template v-if="page.pageContent.content.showinnavigation === 'true'"
+          >
+            <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+                    :href="'/' + page.pageContent.slug">
+              {{ page.pageContent.content.title }}
+            </nuxt-link>
+          </template>
         </template>
       </template>
-    </template>
+    </div>
 
 
 
@@ -89,6 +91,20 @@ const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
   > * {
     margin: 0;
   }
+}
+
+.v-slug__listed-pages {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: var(--app-gutter);
+
+  //> .router-link-exact-active {
+  //  opacity: 0;
+  //  pointer-events: none;
+  //  user-select: none;
+  //}
 }
 
 .v-slug__children-link {
