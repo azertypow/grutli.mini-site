@@ -120,7 +120,7 @@
 
 .app-app__news__wrap__container__wrap {
   display: flex;
-  animation: app-app__news__wrap--animation linear 20s infinite;
+  animation: app-app__news__wrap--animation linear 40s infinite;
   overflow: hidden;
   width: auto;
   flex-wrap: nowrap;
