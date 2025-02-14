@@ -7,16 +7,11 @@
       >
         Programmation
       </nuxt-link>
-      <template v-if="useSiteInfo().value">
-        <template v-for="page of useSiteInfo().value?.['page-simple']">
-          <template v-if="page.pageContent.content.showinnavigation === 'true'"
-          >
-            <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
-                    :href="'/' + page.pageContent.slug">
-              {{ page.pageContent.content.title }}
-            </nuxt-link>
-          </template>
-        </template>
+      <template v-for="page of listOfPageToShowInNavigation">
+        <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+                   :href="page.uri">
+          {{ page.title }}
+        </nuxt-link>
       </template>
     </div>
 
@@ -57,12 +52,44 @@ import {
     useParentSubPageForNavLinks,
     useSiteInfo
 } from "~/composables/cmsData";
-
-const { slug } = useRoute().params;
+import type {PageChildren, PageContent, SiteInfoPageSimple} from "~/utlis/ApiCmsTypes";
 
 const currentPageForNavLinks      = useCurrentPageForNavLinks()
 const parentSubPageForNavLinks    = useParentSubPageForNavLinks()
 const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
+
+const listOfPageToShowInNavigation: ComputedRef<{title: string, uri: string, showInNavigation:  "true" | "false"}[]> = computed(() => {
+
+    const siteInfo = useSiteInfo().value
+
+    if( !siteInfo ) return []
+
+    const pages: (PageContent | PageChildren)[] = [
+        ...siteInfo['page-simple'].map(simplePage => simplePage.pageContent),
+        ...siteInfo['page-simple'].flatMap(simplePage => {
+            return simplePage.children
+        })
+    ]
+
+
+
+
+    return pages.map((value: PageContent | PageChildren) => {
+
+        if('children' in value) return {
+            title: value.content.title,
+            uri: value.uri,
+            showInNavigation: value.content.showinnavigation,
+        }
+
+
+        return {
+            title: value.title,
+            uri: value.uri,
+            showInNavigation: value.showinnavigation,
+        }
+    }).filter(value => value.showInNavigation === 'true')
+})
 
 </script>
 
