@@ -4,7 +4,7 @@
     <nuxt-link class="app-button-grey app-font-small"
                href="/programmation"
     >
-      programmation
+      Programmation
     </nuxt-link>
     <template v-if="useSiteInfo().value">
       <template v-for="page of useSiteInfo().value?.['page-simple']">
@@ -12,7 +12,7 @@
         >
           <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
                   :href="'/' + page.pageContent.slug">
-            {{ page.pageContent.content.title.toLocaleLowerCase() }}
+            {{ page.pageContent.content.title }}
           </nuxt-link>
         </template>
       </template>
@@ -24,19 +24,19 @@
       <template v-if="currentPageForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--inverse app-button-grey--with-shadow"
                    :href=" '/' + currentPageForNavLinks.slug"
-        >{{currentPageForNavLinks.title.toLocaleLowerCase()}}</nuxt-link>
+        >{{currentPageForNavLinks.title}}</nuxt-link>
       </template>
       <template v-if="childrenDetailsForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-shadow"
                    v-for="childLink of childrenDetailsForNavLinks"
                    :href=" '/' + childLink.pageContent.uri"
-        >{{childLink.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
+        >{{childLink.pageContent.content.title}}</nuxt-link>
       </template>
       <template v-if="parentSubPageForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-shadow"
                    v-for="subPage of parentSubPageForNavLinks"
                    :href=" '/' + subPage.pageContent.uri"
-        >{{subPage.pageContent.content.title.toLocaleLowerCase()}}</nuxt-link>
+        >{{subPage.pageContent.content.title}}</nuxt-link>
       </template>
     </div>
 
