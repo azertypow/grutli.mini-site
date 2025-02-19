@@ -19,7 +19,7 @@
           <template v-for="value of pageToShowInHome">
             <div class="v-index__item">
               <AppSpectacleCard
-                      :to="'/' + value.pageContent_slug"
+                      :to="'/' + value.pageContent_uri"
                       :title="value.pageContent_title"
               />
             </div>
@@ -52,7 +52,7 @@ type PageToShowInHome = {
     title: string,
     uri: string,
     showInHome: "true" | "false"
-    pageContent_slug: string,
+    pageContent_uri: string,
     pageContent_title: string,
 }[]
 
@@ -73,7 +73,7 @@ const pageToShowInHome: ComputedRef<PageToShowInHome> = computed(() => {
             title: value.content.title,
             uri: value.uri,
             showInHome: value.content.showinhome,
-            pageContent_slug: value.slug,
+            pageContent_uri: value.uri,
             pageContent_title: value.content.title,
         }
 
@@ -83,7 +83,7 @@ const pageToShowInHome: ComputedRef<PageToShowInHome> = computed(() => {
             uri: value.uri,
             showInHome: value.showinhome,
             pageContent_title: value.title,
-            pageContent_slug: value.slug,
+            pageContent_uri: value.uri,
         }
     }).filter(value => value.showInHome === 'true')
 
