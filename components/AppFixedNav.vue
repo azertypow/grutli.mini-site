@@ -2,7 +2,7 @@
   <section class="v-app-fixed-nav"
   >
     <div class="v-slug__listed-pages">
-      <nuxt-link class="app-button-grey app-font-small"
+      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
                  href="/programmation"
       >
         Programmation
