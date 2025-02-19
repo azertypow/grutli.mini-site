@@ -17,6 +17,16 @@
       >
         <AppHeader/>
       </div>
+
+      <div class="app-app__cache">
+
+          <video class="app-app__cache__video"
+                 src="/mask.mp4" autoplay loop muted playsinline
+          />
+          <div class="app-app__cache__content"></div>
+      </div>
+
+
       <div class="app-app__content">
         <NuxtPage/>
       </div>
@@ -98,6 +108,45 @@
     pointer-events: none !important;
   }
 }
+
+
+.app-app__cache {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+  mix-blend-mode: darken;
+}
+
+.app-app__cache__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  filter: hue-rotate(150deg);
+  //display: none;
+}
+
+.app-app__cache__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--app-color-orange);
+  display: none;
+  //-webkit-mask-image: url(/mask.mp4);
+  //mask-image: url(/mask.mp4);
+  //-webkit-mask-composite: destination-in;
+  //mask-composite: intersect;
+}
+
 
 .app-app__content {
   max-width: 75rem;
