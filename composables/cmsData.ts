@@ -36,4 +36,7 @@ export const useWindowIsScrollToBottom: () => Ref<boolean> = () => {
     return useState('useWindowIsScrollToBottom', () => false )
 }
 
+export const useAppContentIsLoaded: () => Ref<boolean> = () => {
+    return useState('useAppContentIsLoaded', () => false )
+}
 

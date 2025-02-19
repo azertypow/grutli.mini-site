@@ -2,48 +2,58 @@
   <div class="app-app"
        :class="useRouter().currentRoute.value.name"
   >
-    <div class="app-app__header"
-         :class="{
-              'window-is-scroll-to-bottom': windowIsScrollToBottom,
-          }"
-    >
-      <AppHeader/>
-    </div>
-    <div class="app-app__content">
-      <NuxtPage/>
-    </div>
-
-    <AudioPlayer/>
-
-    <div class="app-app__news"
-         v-if="newsList && useRouter().currentRoute.value.path === '/'"
-    >
-      <div class="app-app__news__wrap__container"
-           v-for="news of newsListToShow"
-           @click="toggleItemState(news.id)"
-      >
-        <div class="app-app__news__wrap__container__wrap">
-          <div>{{ news.text }}</div>
-          <div>{{ news.text }}</div>
-          <div>{{ news.text }}</div>
-          <div>{{ news.text }}</div>
+    <transition name="v-fade">
+        <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value ">
+          <img class="app-app__loader-container__img"
+               src="/loader.gif"/>
         </div>
-        <svg class="app-app__news__wrap__container__close-ui"
-             xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
-          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-        </svg>
-      </div>
-    </div>
+    </transition>
 
-    <video class="app-app__video-bg"
-           src="/videos/250128_Grutli_video-bg_op1_4-12.mp4"
-           muted
-           loop
-           autoplay
-           playsinline
-           poster="/videos/250128_Grutli_video-bg_op1_4-12.jpg"
-    />
+    <template v-if=" useAppContentIsLoaded().value ">
+      <div class="app-app__header"
+           :class="{
+                'window-is-scroll-to-bottom': windowIsScrollToBottom,
+            }"
+      >
+        <AppHeader/>
+      </div>
+      <div class="app-app__content">
+        <NuxtPage/>
+      </div>
+
+      <AudioPlayer/>
+
+      <div class="app-app__news"
+           v-if="newsList && useRouter().currentRoute.value.path === '/'"
+      >
+        <div class="app-app__news__wrap__container"
+             v-for="news of newsListToShow"
+             @click="toggleItemState(news.id)"
+        >
+          <div class="app-app__news__wrap__container__wrap">
+            <div>{{ news.text }}</div>
+            <div>{{ news.text }}</div>
+            <div>{{ news.text }}</div>
+            <div>{{ news.text }}</div>
+          </div>
+          <svg class="app-app__news__wrap__container__close-ui"
+               xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+          </svg>
+        </div>
+      </div>
+
+      <video class="app-app__video-bg"
+             src="/videos/250128_Grutli_video-bg_op1_4-12.mp4"
+             muted
+             loop
+             autoplay
+             playsinline
+             poster="/videos/250128_Grutli_video-bg_op1_4-12.jpg"
+      />
+    </template>
   </div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -51,6 +61,26 @@
   padding-top: var(--app-header-height);
   width: 100%;
   padding-bottom: calc( v-bind(numberOfOpenNews) * 1rem);
+}
+
+.app-app__loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.app-app__loader-container__img {
+  display: block;
+  width: 15vw;
+  height: auto;
+  animation: app-app__intro-animation linear 10s forwards;
 }
 
 .app-app__header {
@@ -155,6 +185,15 @@
   }
 }
 
+//@keyframes app-app__intro-animation {
+//  0% {
+//    transform: scale(1);
+//  }
+//  100% {
+//    transform: scale(1.5);
+//  }
+//}
+
 .app-app__video-bg {
   display: block;
   position: fixed;
@@ -168,37 +207,63 @@
   user-select: none;
 }
 
+// vue transition
+
+//.v-fade-enter-active {
+//  transition: background-color 5s ease;
+//}
+//.v-fade-enter-from {
+//  background-color: rgba(255, 255, 255, 0);
+//}
+//.v-fade-enter-to {
+//  background-color: rgba(255, 255, 255, 1);
+//}
+
+.v-fade-leave-active {
+  transition: background-color .75s ease-in-out;
+}
+.v-fade-leave-from {
+  background-color: rgba(199, 199, 199, 1);
+}
+.v-fade-leave-to {
+  background-color: rgba(199, 199, 199, 0);
+}
+
 </style>
 
 <script setup lang="ts">
 import {fetchNews, fetchPlacesInfo, fetchSiteInfo} from "~/utlis/apiCmsFetch";
 import {
-    type AppNewsItem,
+    type AppNewsItem, useAppContentIsLoaded,
     useFalkIsActive,
     useNews,
     usePlacesInfo,
     useSiteInfo, useWindowIsScrollToBottom
 } from "~/composables/cmsData";
+import {windows} from "../../Library/Caches/deno/npm/registry.npmjs.org/rimraf/5.0.10";
 
 onMounted(async () => {
 
-    fetchSiteInfo().then(value => useSiteInfo().value = value)
+    Promise.all([
+      fetchSiteInfo().then(value => useSiteInfo().value = value),
 
-    fetchPlacesInfo().then(value => usePlacesInfo().value = value)
+      fetchPlacesInfo().then(value => usePlacesInfo().value = value),
 
-    fetchNews().then(value => {
+      fetchNews().then(value => {
 
-        if( !value ) return
+          if( !value ) return
 
-        useNews().value = value.value.map(items => {
-            return {
-                link: items.link,
-                text: items.text,
-                id: items.id,
-                isOpen: true,
-            }
-        })
-    })
+          useNews().value = value.value.map(items => {
+              return {
+                  link: items.link,
+                  text: items.text,
+                  id: items.id,
+                  isOpen: true,
+              }
+          })
+      }),
+    ]).then(() => window.setTimeout(() => useAppContentIsLoaded().value = true, 3_000))
+
 })
 
 watch(useFalkIsActive, (value) => {
