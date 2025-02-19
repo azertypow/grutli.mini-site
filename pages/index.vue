@@ -19,8 +19,8 @@
           <template v-for="value of pageToShowInHome">
             <div class="v-index__item">
               <AppSpectacleCard
-                      :to="'/' + value.pageContent.slug"
-                      :title="value.pageContent.content.title"
+                      :to="'/' + value.pageContent_slug"
+                      :title="value.pageContent_title"
               />
             </div>
           </template>
@@ -34,12 +34,12 @@
 
 
 <script setup lang="ts">
-import type {SiteInfoPageSimple, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {SiteInfoPageSimple, SiteInfo, PageContent, PageChildren} from "~/utlis/ApiCmsTypes";
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import {
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
-    useParentSubPageForNavLinks
+    useParentSubPageForNavLinks, useSiteInfo
 } from "~/composables/cmsData";
 
 useCurrentPageForNavLinks().value = null
@@ -48,11 +48,45 @@ useChildrenDetailsForNavLinks().value = null
 
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 
-const pageToShowInHome: ComputedRef<SiteInfoPageSimple[]> = computed(() => {
+type PageToShowInHome = {
+    title: string,
+    uri: string,
+    showInHome: "true" | "false"
+    pageContent_slug: string,
+    pageContent_title: string,
+}[]
 
-    console.log(siteInfo.value?.['page-simple'])
+const pageToShowInHome: ComputedRef<PageToShowInHome> = computed(() => {
 
-    return siteInfo.value?.['page-simple'].filter(page => page.pageContent.content.showinhome === 'true') || []
+    if( !siteInfo.value ) return []
+
+    const pages: (PageContent | PageChildren)[] = [
+        ...siteInfo.value['page-simple'].map(simplePage => simplePage.pageContent),
+        ...siteInfo.value['page-simple'].flatMap(simplePage => {
+            return simplePage.children
+        })
+    ]
+
+    return pages.map((value: PageContent | PageChildren) => {
+
+        if('children' in value) return {
+            title: value.content.title,
+            uri: value.uri,
+            showInHome: value.content.showinhome,
+            pageContent_slug: value.slug,
+            pageContent_title: value.content.title,
+        }
+
+
+        return {
+            title: value.title,
+            uri: value.uri,
+            showInHome: value.showinhome,
+            pageContent_title: value.title,
+            pageContent_slug: value.slug,
+        }
+    }).filter(value => value.showInHome === 'true')
+
 })
 
 
