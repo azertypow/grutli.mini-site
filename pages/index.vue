@@ -8,6 +8,7 @@
           <template v-for="value of siteInfo?.spectacles.filter(value => value.pageContent.content.showinhome === 'true')">
             <div class="v-index__item">
               <AppSpectacleCard
+                      :event_info="value.pageContent.content.eventinfo"
                       :to="'/spectacle/' + value.pageContent.slug"
                       :title="value.pageContent.content.title"
                       :peoples="value.pageContent.content.company"
