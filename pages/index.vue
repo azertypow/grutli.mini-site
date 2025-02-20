@@ -99,8 +99,39 @@ const pageToShowInHome: ComputedRef<PageToShowInHome> = computed(() => {
 
 <style lang="scss" scoped >
 .v-index__list-wrap {
-  padding: var(--app-gutter-xl) var(--app-gutter) calc( var(--v-audio-player-header-height) + var(--app-gutter));
+  padding: var(--app-gutter-xl) 0 calc( var(--v-audio-player-header-height) + var(--app-gutter));
   //background: red;
+
+  @media (max-width: 1600px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+
+  @media (max-width: 1500px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  @media (max-width: 1200px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @media (max-width: 700px) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  @media (max-width: 550px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (max-width: 400px) {
+    padding-left:   1rem;
+    padding-right:  1rem;
+  }
 }
 
 .v-index__list {
