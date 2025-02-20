@@ -48,8 +48,15 @@ const dateString: ComputedRef<string> = computed(() => {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-top: solid 1px currentColor;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.3);
+  transition: transform .25s ease-in-out;
+
+  &:hover {
+    background: var(--app-color-grey);
+    transform: scale(1.005);
+  }
 
   @media (max-width: 1100px) {
     flex-direction: column;
