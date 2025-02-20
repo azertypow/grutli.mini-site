@@ -10,6 +10,12 @@
     </transition>
 
     <template v-if=" useAppContentIsLoaded().value ">
+
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000">
+        <AppMaskComponent/>
+      </div>
+
+
       <div class="app-app__header"
            :class="{
                 'window-is-scroll-to-bottom': windowIsScrollToBottom,
