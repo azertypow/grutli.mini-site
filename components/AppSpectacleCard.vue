@@ -11,7 +11,7 @@
         {{dateFromTicketService}}
     </div>
     <h2 class="v-app-spectacle-card__item__title app-font-h5 app-font-align-center">{{ title }}</h2>
-    <div class="v-app-spectacle-card__item__info app-font-small app-font-mono"
+    <div class="v-app-spectacle-card__item__info app-font-small"
          v-if="event_info"
     >{{event_info}}</div>
     <div class="v-app-spectacle-card__item__peoples app-font-base app-font-small app-font-align-center"

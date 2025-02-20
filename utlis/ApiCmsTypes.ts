@@ -5,7 +5,7 @@ export type ApiCmsPageSpectacle = {
         content: {
             title: string,
             eventtitle: string[],
-            eventInfo: string,
+            eventinfo: string,
             externalticketservicelink: string,
             externalticketservicename: string,
             datestart: string
@@ -95,6 +95,9 @@ export interface PageChildren {
 
 export interface PageContentDetails {
     title: string;
+    showincalendar?: "true" | "false",
+    datestart?: string,
+    dateend?: string,
     showinnavigation: 'true' | 'false'; // Probablement un boolean représenté en string ("true" / "false").
     showinhome: 'true' | 'false';
     content: string
@@ -173,6 +176,9 @@ export interface SpectacleContentDetails {
 export type ApiSimplePage_PageContent = {
     content: {
         title: string;
+        showincalendar?: "true" | "false",
+        datestart?: string,
+        dateend?: string,
         showinnavigation: string;
         showinhome: string;
         content: (SectionBlockContent | SectionBlockLinkToEvent) []

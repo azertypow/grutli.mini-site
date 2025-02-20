@@ -8,6 +8,7 @@
             :peoples="data.pageContent.content.company"
             :event-title="data.pageContent.content.eventtitle"
             :dates="{start: data.pageContent.content.datestart, end: data.pageContent.content.dateend}"
+            :event_info="data.pageContent.content.eventinfo"
     />
   </section>
 </template>
