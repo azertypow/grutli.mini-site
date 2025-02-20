@@ -76,7 +76,7 @@ const dateFromTicketService = computed(() => {
   justify-content: center;
   align-content: center;
   position: relative;
-  height: calc( (100vh - var(--app-header-height) - var(--v-audio-player-header-height)) / 2 - var(--app-gutter-xl) * 2);
+  height: 100%;
   text-decoration: none;
   overflow: hidden;
   min-height: 8rem;
