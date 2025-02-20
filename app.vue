@@ -74,6 +74,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  user-select: none;
 }
 
 .app-app__loader-container__img {
