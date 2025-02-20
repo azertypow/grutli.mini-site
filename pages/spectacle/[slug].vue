@@ -473,6 +473,8 @@ onMounted(async () => {
   box-sizing: border-box;
   padding: var(--app-gutter-xl) var(--app-gutter-xl) 1.5rem;
   overflow: hidden;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .v-spectacle-slug__coll__text-content__title {
