@@ -69,7 +69,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: var(--app-color-grey);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,7 +100,7 @@
 }
 
 .app-app__content {
-  max-width: 75rem;
+  max-width: 44rem;
   margin: auto;
 }
 
@@ -221,6 +221,10 @@
 
 .v-fade-leave-active {
   transition: background-color .75s ease-in-out;
+
+  .app-app__loader-container__img {
+    display: none;
+  }
 }
 .v-fade-leave-from {
   background-color: rgba(199, 199, 199, 1);
