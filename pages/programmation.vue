@@ -5,14 +5,29 @@
         <template v-if="siteInfo === null">
           chargement…
         </template>
-        <template v-else
-                  v-for="event of siteInfo.spectacles"
-        >
-          <div class="v-programmation__item">
-            <AppEventItem
-                    :event="event"
-            />
-          </div>
+        <template v-else>
+          <template
+                  v-for="event of spectaclesNotEnded"
+          >
+            <div class="v-programmation__item">
+              <AppEventItem
+                      :event="event"
+              />
+            </div>
+          </template>
+
+          <h2>événements passés</h2>
+
+          <template
+                  v-for="event of spectaclesPast"
+          >
+            <div class="v-programmation__item">
+              <AppEventItem
+                      :event="event"
+              />
+            </div>
+          </template>
+
         </template>
       </div>
     </section>
@@ -36,6 +51,26 @@ useParentSubPageForNavLinks().value = null
 useChildrenDetailsForNavLinks().value = null
 
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
+
+const spectaclesPast = computed(() =>
+    siteInfo.value?.spectacles.filter(event => {
+      const eventDateEnd = new Date(event.pageContent.content.dateend)
+      const currentDate = new Date()
+
+        return eventDateEnd < currentDate
+    }
+    )
+)
+
+const spectaclesNotEnded = computed(() =>
+    siteInfo.value?.spectacles.filter(event => {
+            const eventDateEnd = new Date(event.pageContent.content.dateend)
+            const currentDate = new Date()
+
+            return eventDateEnd > currentDate
+        }
+    )
+)
 
 </script>
 
