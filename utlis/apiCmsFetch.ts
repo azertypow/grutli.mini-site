@@ -29,7 +29,7 @@ export async function fetchPage(slugParams: string | string[]): Promise<ApiSimpl
         slugParams.join('/')
         : slugParams
 
-    const url = apiBaseUrl + '/' + slug + '.json'
+    const url = apiBaseUrl + '/' + slug.replace(/\/$/, "") + '.json'
 
     try {
         const response = await fetch(url);
