@@ -26,21 +26,43 @@
       <div class="app-app__news"
            v-if="newsList && useRouter().currentRoute.value.path === '/'"
       >
-        <div class="app-app__news__wrap__container"
-             v-for="news of newsListToShow"
-             @click="toggleItemState(news.id)"
+        <template
+                v-for="news of newsListToShow"
         >
-          <div class="app-app__news__wrap__container__wrap">
-            <div>{{ news.text }}</div>
-            <div>{{ news.text }}</div>
-            <div>{{ news.text }}</div>
-            <div>{{ news.text }}</div>
-          </div>
-          <svg class="app-app__news__wrap__container__close-ui"
-               xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
-            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-          </svg>
-        </div>
+          <template v-if="news.link && news.link.length > 0" >
+            <a class="app-app__news__wrap__container"
+               :href="news.link"
+            >
+              <div class="app-app__news__wrap__container__wrap">
+                <div>{{ news.text }}</div>
+                <div>{{ news.text }}</div>
+                <div>{{ news.text }}</div>
+                <div>{{ news.text }}</div>
+              </div>
+              <svg class="app-app__news__wrap__container__close-ui"
+                   @click="toggleItemState(news.id)"
+                   xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+              </svg>
+            </a>
+          </template>
+          <template v-else>
+            <div class="app-app__news__wrap__container"
+            >
+              <div class="app-app__news__wrap__container__wrap">
+                <div>{{ news.text }}</div>
+                <div>{{ news.text }}</div>
+                <div>{{ news.text }}</div>
+                <div>{{ news.text }}</div>
+              </div>
+              <svg class="app-app__news__wrap__container__close-ui"
+                   @click="toggleItemState(news.id)"
+                   xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+              </svg>
+            </div>
+          </template>
+        </template>
       </div>
 
       <video class="app-app__video-bg"
@@ -123,6 +145,7 @@
   position: relative;
   height: 1rem;
   overflow: hidden;
+  display: block;
 
   &:nth-child(1n) {
     background: var(--app-color-purple);
