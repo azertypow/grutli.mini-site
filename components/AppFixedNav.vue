@@ -17,7 +17,7 @@
       <a href="https://infomaniak.events/shop/UwCaGkGB7O/"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-shadow"
-      >billeterie</a>
+      >billetterie</a>
     </div>
 
 
