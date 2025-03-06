@@ -18,6 +18,7 @@ export const generatedRoutes: string[] = [
   "/spectacles/dans-le-decor-de-choc",
   "/spectacles/la-grosse-deprime",
   "/spectacles/quasimodo-aux-miroirs",
+  "/spectacles/lecture-de-milch-lait-latte-mleko",
   "/spectacles/time-to-relax-une-introduction-a-la-performance-relax",
   "/spectacles/gnocchi-a-bellevue",
   "/spectacles/au-bout-de-la-laisse",
@@ -30,5 +31,5 @@ export const generatedRoutes: string[] = [
   "/pour-les-artistes/bureau-des-compagnies",
   "/accessibilite",
   "/ateliers-theatre",
-  "/demain"
+  "/c-est-deja-demain"
 ];
