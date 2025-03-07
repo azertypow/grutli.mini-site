@@ -23,6 +23,14 @@
 
       <AudioPlayer/>
 
+      <div class="app-app__cookie" @click="showCookies = false" v-if="showCookies">
+        <div>
+          <div>
+            texte pout les cookie concent + compte google
+          </div>
+        </div>
+      </div>
+
       <div class="app-app__news"
            v-if="newsList && useRouter().currentRoute.value.path === '/'"
       >
@@ -257,6 +265,32 @@
   background-color: rgba(199, 199, 199, 0);
 }
 
+.app-app__cookie {
+  position: fixed;
+  z-index: 100000;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: .25rem;
+  box-sizing: border-box;
+
+  > div {
+    border-radius: 1rem;
+    background: var(--app-color-orange);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 </style>
 
 <script setup lang="ts">
@@ -270,6 +304,8 @@ import {
 } from "~/composables/cmsData";
 import {windows} from "../../Library/Caches/deno/npm/registry.npmjs.org/rimraf/5.0.10";
 import items from "@redocly/ajv/lib/vocabularies/applicator/items";
+
+const showCookies = ref(true)
 
 onMounted(async () => {
 
