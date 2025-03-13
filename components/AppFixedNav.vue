@@ -19,7 +19,7 @@
         </nuxt-link>
       </template>
 
-      <a href="https://infomaniak.events/shop/UwCaGkGB7O/"
+      <a href="https://infomaniak.events/fr-ch/shop/scenes-du-grutli-l-arbre-monde-CFFW7GX6FS"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-shadow"
       >Billetterie</a>
