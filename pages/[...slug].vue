@@ -18,7 +18,8 @@
               >
                 <h2 class="v-slug__item__title"
                     v-if="content.content.titre && content.content.titre.length > 0"
-                >{{ content.content.titre }}</h2>
+                    v-html="content.content.titre"
+                ></h2>
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent_falk"
                         :html_content_block="htmlContentBlock"
@@ -47,7 +48,8 @@
             >
               <h2 class="v-slug__item__title"
                   v-if="content.content.titre && content.content.titre.length > 0"
-              >{{content.content.titre}}</h2>
+                  v-html="content.content.titre"
+              ></h2>
               <AppBlockContent
                       v-for="htmlContentBlock of content.content.htmlcontent"
                       :html_content_block="htmlContentBlock"
@@ -78,7 +80,8 @@
                 >
                   <h2 class="v-slug__item__title"
                       v-if="content.content.titre && content.content.titre.length > 0"
-                  >{{ content.content.titre }}</h2>
+                      v-html="content.content.titre"
+                  ></h2>
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent_falk"
                           :html_content_block="htmlContentBlock"
@@ -106,7 +109,9 @@
                    }"
               >
                 <h2 class="v-slug__item__title"
-                    v-if="content.content.titre && content.content.titre.length > 0">{{content.content.titre}}</h2>
+                    v-if="content.content.titre && content.content.titre.length > 0"
+                    v-html="content.content.titre"
+                ></h2>
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent"
                         :html_content_block="htmlContentBlock"
@@ -141,7 +146,8 @@
                 >
                   <h2 class="v-slug__item__title"
                       v-if="content.content.titre && content.content.titre.length > 0"
-                  >{{ content.content.titre }}</h2>
+                      v-html="content.content.titre"
+                  ></h2>
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent_falk"
                           :html_content_block="htmlContentBlock"
@@ -169,7 +175,9 @@
                    }"
               >
                 <h2 class="v-slug__item__title"
-                    v-if="content.content.titre && content.content.titre.length > 0">{{content.content.titre}}</h2>
+                    v-if="content.content.titre && content.content.titre.length > 0"
+                    v-html="content.content.titre"
+                ></h2>
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent"
                         :html_content_block="htmlContentBlock"
@@ -332,10 +340,10 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
 
 .v-slug__masonry-coll {
   box-sizing: border-box;
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - var(--app-gutter-xl) / 2);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--app-gutter-xl);
 
   > .v-slug__item {
     width: 100%;
@@ -350,6 +358,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   border-radius: 1rem;
   box-sizing: border-box;
   padding: var(--app-gutter-xl);
+  padding-top: 1.25rem;
 
   @media (min-width: 1200px) {
     width: calc(50% - (var(--app-gutter-xl) / 2));
@@ -368,6 +377,12 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'ABCOracleWebSite triple', monospace;
+  font-weight: normal;
+  font-variation-settings: "slnt" 0, "wght" 600;
+  line-height: 1.15em;
+  font-size: 1rem;
+  max-width: 15em;
 }
 
 .v-slug__img {

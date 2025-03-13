@@ -16,7 +16,7 @@
             </div>
           </template>
 
-          <h2>événements passés</h2>
+          <h2>Évènements passés</h2>
 
           <template
                   v-for="event of spectaclesPast"

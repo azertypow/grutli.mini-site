@@ -217,15 +217,15 @@ const data = defineProps<{
 @use "@/assets/style/typo";
 
 .v-app-block-content__coll__content__text__text {
-  > *:first-child {margin-top: 0}
+  //> *:first-child {margin-top: 0}
   > *:last-child {margin-bottom: 0}
 
   h2 {
-    @extend .app-font-h3;
+    @extend .app-font-h2;
   }
 
   h3 {
-    @extend .app-font-h4;
+    @extend .app-font-h3;
   }
 }
 

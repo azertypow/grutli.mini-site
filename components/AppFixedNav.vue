@@ -9,7 +9,12 @@
       </nuxt-link>
       <template v-for="page of listOfPageToShowInNavigation">
         <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
-                   :href="'/' + page.uri">
+                   :href="'/' + page.uri"
+                   v-if="getFirstPath(useRoute().path) !== page.uri"
+                   :class="{
+                      'dont-show': getFirstPath(useRoute().path) === page.uri,
+                   }"
+        >
           {{ page.title }}
         </nuxt-link>
       </template>
@@ -17,7 +22,7 @@
       <a href="https://infomaniak.events/shop/UwCaGkGB7O/"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-shadow"
-      >billetterie</a>
+      >Billetterie</a>
     </div>
 
 
@@ -58,6 +63,8 @@ import {
     useSiteInfo
 } from "~/composables/cmsData";
 import type {PageChildren, PageContent, SiteInfoPageSimple} from "~/utlis/ApiCmsTypes";
+import {getFirstPath} from "../utlis/getFirstPathUrl";
+import {useRoute} from "nuxt/app";
 
 const currentPageForNavLinks      = useCurrentPageForNavLinks()
 const parentSubPageForNavLinks    = useParentSubPageForNavLinks()
@@ -145,5 +152,11 @@ const listOfPageToShowInNavigation: ComputedRef<{title: string, uri: string, sho
   flex-wrap: wrap;
   box-sizing: border-box;
   gap: var(--app-gutter);
+}
+
+.dont-show {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
 }
 </style>

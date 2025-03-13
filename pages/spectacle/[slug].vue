@@ -26,7 +26,7 @@
                 {{pageData.pageContent.content.externalticketservicename}}
               </template>
               <template v-else>
-                prendre un billet
+                Prendre un billet
               </template>
             </a>
 
@@ -40,10 +40,10 @@
                v-else-if="ticketInfo && ticketInfo.length > 0"
                target="_blank"
                :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
-            >prendre un billet</a>
+            >Prendre un billet</a>
             <a class="app-button-grey app-font-small"
                href="#dates-details"
-            >date & horaires</a>
+            >Date·s & horaire·s</a>
           </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
@@ -627,8 +627,9 @@ onMounted(async () => {
   pointer-events: none;
   position: sticky;
   top: 0;
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 1rem;
 }
 
 .v-spectacle-slug__dates {
