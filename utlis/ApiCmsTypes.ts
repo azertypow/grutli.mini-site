@@ -182,7 +182,7 @@ export type ApiSimplePage_PageContent = {
         showincalendar?: "true" | "false",
         datestart?: string,
         dateend?: string,
-        templatewith_3_coll: "true" | "false",
+        templatewith_3_coll?: "true" | "false",
         showinnavigation: string;
         showinhome: string;
         content: (SectionBlockContent | SectionBlockLinkToEvent) []
