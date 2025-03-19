@@ -1,8 +1,8 @@
 <template>
   <nuxt-link class="v-app-event-item"
-             :to="'/spectacle/' + event.pageContent.slug"
+             :to="'/spectacle/' + app_event_data.slug"
   >
-    <h4 class="v-app-event-item__item__title">{{ event.pageContent.content.title }}</h4>
+    <h4 class="v-app-event-item__item__title">{{ app_event_data.title }}</h4>
     <div class="v-app-event-item__item__date">
         {{dateString}}
     </div>
@@ -15,11 +15,17 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import type {Spectacle} from "~/utlis/ApiCmsTypes";
 import {formatDateStartAndDateEndToString} from "../utlis/formatDate";
 
+export interface IAppEventPropsData {
+    dateend: string,
+    datestart: string,
+    slug: string,
+    title: string,
+}
+
 const props = defineProps<{
-    event: Spectacle
+    app_event_data: IAppEventPropsData
 }>()
 
 
@@ -27,12 +33,12 @@ const dateString: ComputedRef<string> = computed(() => {
 
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
-    const dateEnd = new Date(props.event.pageContent.content.dateend.replace(" ", "T"))
+    const dateEnd = new Date(props.app_event_data.dateend.replace(" ", "T"))
     dateEnd.setHours(0,0,0,0)
 
     if (currentDate > dateEnd) return 'passé'
 
-    return formatDateStartAndDateEndToString(props.event.pageContent.content.datestart, props.event.pageContent.content.dateend)
+    return formatDateStartAndDateEndToString(props.app_event_data.datestart, props.app_event_data.dateend)
 })
 </script>
 

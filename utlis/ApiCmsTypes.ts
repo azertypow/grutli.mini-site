@@ -59,6 +59,9 @@ export interface SiteInfoPageSimple {
 
 export interface PageContent {
     content: PageContentDetails;
+    dateend: string
+    datestart: string
+    showincalendar: string
     translations: any[];
     children: string[];
     files: any[];
