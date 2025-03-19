@@ -163,6 +163,12 @@
   font-size: .5rem;
   line-height: 1em;
 
+  &:hover {
+    svg {
+      fill: white;
+    }
+  }
+
   svg {
     display: block;
     fill: black;
@@ -171,6 +177,7 @@
       fill: black;
     }
   }
+
 
   @media (max-width: 900px) {
     justify-content: center;
