@@ -12,6 +12,10 @@ export const useNews: () => Ref<null | AppNewsItem[]> = () => {
     return useState('useNews', () => null )
 }
 
+export const useMenuIsOpen: () => Ref<boolean> = () => {
+    return useState('useMenuIsOpen', () => true )
+}
+
 export type AppNewsItem = ApiNewsItem & {
     isOpen: boolean
 }

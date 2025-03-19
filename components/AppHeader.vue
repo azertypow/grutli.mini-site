@@ -10,7 +10,7 @@
         </nuxt-link>
       </div>
 
-      <div class="v-app-header__right app-font-small">
+      <div class="v-app-header__right">
 
         <div class="v-app-header__falk-ui app-button-grey app-button-grey--with-shadow" @click="useFalkIsActive().value = !useFalkIsActive().value">
           <div>FALC</div>
@@ -22,10 +22,19 @@
             <path d="M280-240q-100 0-170-70T40-480q0-100 70-170t170-70h400q100 0 170 70t70 170q0 100-70 170t-170 70H280Zm0-80h400q66 0 113-47t47-113q0-66-47-113t-113-47H280q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-40q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm200-120Z"/>
           </svg>
         </div>
+
+        <div class="v-app-header__toggle-menu app-button-grey app-button-grey--with-shadow"
+             @click="useMenuIsOpen().value = !useMenuIsOpen().value"
+        >
+          <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+        </div>
+
       </div>
 
       <div class="v-app-header__footer"
            ref="app-footer"
+           v-if="useMenuIsOpen().value"
       >
         <AppFixedNav/>
       </div>
@@ -89,7 +98,7 @@
   display: flex;
   align-items: flex-end;
   flex-wrap: nowrap;
-  gap: var(--app-gutter-xl);
+  gap: var(--app-gutter);
   width: 50%;
   flex-direction: column;
   margin-bottom: 0;
@@ -102,6 +111,8 @@
   gap: .5rem;
   user-select: none;
   cursor: pointer;
+  font-size: .5rem;
+  line-height: 1em;
 
   svg {
     display: block;
@@ -117,6 +128,27 @@
   }
 }
 
+.v-app-header__toggle-menu {
+  font-size: .5rem;
+  line-height: 1em;
+  padding: .15rem;
+  user-select: none;
+  cursor: pointer;
+
+  @media (min-width: 800px) {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    fill: black;
+
+    &:hover {
+      fill: white;
+    }
+  }
+}
+
 .v-app-header__footer {
   width: 100%;
 }
@@ -124,7 +156,7 @@
 </style>
 
 <script setup lang="ts">
-import {useFalkIsActive, useWindowIsScrollToBottom} from "~/composables/cmsData";
+import {useFalkIsActive, useMenuIsOpen, useWindowIsScrollToBottom} from "~/composables/cmsData";
 
 
 const windowIsScrollToBottom = useWindowIsScrollToBottom()
@@ -133,6 +165,7 @@ const beforeScrollPosition = ref(window.scrollY)
 onMounted(() => {
     setWindowScrollStatus()
     window.addEventListener('scroll', setWindowScrollStatus)
+    window.addEventListener('resize', () => useMenuIsOpen().value = true)
 })
 
 function setWindowScrollStatus() {
