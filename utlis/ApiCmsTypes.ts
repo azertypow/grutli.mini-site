@@ -375,5 +375,6 @@ export type ApiPlaces = {
     export type ApiNewsItem = {
         text: string,
         link: string,
-        id: string
+        id: string,
+        show: 'true' | 'false',
     }

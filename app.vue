@@ -269,6 +269,7 @@ import {
     useSiteInfo, useWindowIsScrollToBottom
 } from "~/composables/cmsData";
 import {windows} from "../../Library/Caches/deno/npm/registry.npmjs.org/rimraf/5.0.10";
+import items from "@redocly/ajv/lib/vocabularies/applicator/items";
 
 onMounted(async () => {
 
@@ -281,14 +282,19 @@ onMounted(async () => {
 
           if( !value ) return
 
-          useNews().value = value.value.map(items => {
-              return {
-                  link: items.link,
-                  text: items.text,
-                  id: items.id,
-                  isOpen: true,
-              }
-          })
+          useNews().value = value.value
+              .filter(item => {
+                  return item.show === 'true'
+              })
+              .map(item => {
+                  return {
+                      link: item.link,
+                      text: item.text,
+                      id: item.id,
+                      isOpen: true,
+                      show: item.show,
+                  }
+              })
       }),
     ]).then(() => window.setTimeout(() => useAppContentIsLoaded().value = true, 3_000))
 
