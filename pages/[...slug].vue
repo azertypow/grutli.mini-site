@@ -67,132 +67,334 @@
     </template>
     <!--    masonry TRUE // windows width > breakpoint -->
     <template v-else>
-      <div class="v-slug__masonry-coll">
-        <template v-if="pageData">
-          <template v-if="useFalkIsActive().value">
-            <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
-              <template v-if="content.type === 'section-block-content'">
-                <div  class="v-slug__item app-remove-first-last-child-margin"
-                      v-if="content.content.htmlcontent_falk.length"
-                      :class="{
+
+
+
+      <!--    masonry TRUE // windows width > breakpoint // template coll 3-->
+      <template v-if="pageData?.pageContent.content.templatewith_3_coll === 'true'">
+        <div class="v-slug__masonry-coll">
+          <template v-if="pageData">
+            <template v-if="useFalkIsActive().value">
+              <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 3 === 0)">
+                <template v-if="content.type === 'section-block-content'">
+                  <div  class="v-slug__item app-remove-first-last-child-margin"
+                        v-if="content.content.htmlcontent_falk.length"
+                        :class="{
                        'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
                       }"
+                  >
+                    <h2 class="v-slug__item__title"
+                        v-if="content.content.titre && content.content.titre.length > 0"
+                        v-html="content.content.titre"
+                    ></h2>
+                    <AppBlockContent
+                            v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                            :html_content_block="htmlContentBlock"
+                    />
+                  </div>
+                </template>
+
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+
+
+              </template>
+            </template>
+
+            <template v-else>
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 3 === 0)">
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.type === 'section-block-content'"
+                     :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
                 >
                   <h2 class="v-slug__item__title"
                       v-if="content.content.titre && content.content.titre.length > 0"
                       v-html="content.content.titre"
                   ></h2>
                   <AppBlockContent
-                          v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                          v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
                   />
                 </div>
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
               </template>
-
-              <div class="v-slug__item"
-                   v-else>
-                <AppSpectacleCardLoader
-                        :slug="content.content.linked_spectacle"
-                />
-              </div>
-
-
             </template>
           </template>
-
-          <template v-else>
-            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
-              <div class="v-slug__item app-remove-first-last-child-margin"
-                   v-if="content.type === 'section-block-content'"
-                   :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
-                   }"
-              >
-                <h2 class="v-slug__item__title"
-                    v-if="content.content.titre && content.content.titre.length > 0"
-                    v-html="content.content.titre"
-                ></h2>
-                <AppBlockContent
-                        v-for="htmlContentBlock of content.content.htmlcontent"
-                        :html_content_block="htmlContentBlock"
-                />
-              </div>
-              <div class="v-slug__item"
-                   v-else>
-                <AppSpectacleCardLoader
-                        :slug="content.content.linked_spectacle"
-                />
-              </div>
-            </template>
-          </template>
-        </template>
-      </div>
-      <div class="v-slug__masonry-coll">
-<!--        <div class="v-slug__item v-slug__item&#45;&#45;image">-->
-<!--          <img alt="image texte"-->
-<!--               class="v-slug__img"-->
-<!--               src="/images/241122_Grutli_Flyers_23.jpg"-->
-<!--          />-->
-<!--        </div>-->
-        <template v-if="pageData">
-          <template v-if="useFalkIsActive().value">
-            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
-              <template v-if="content.type === 'section-block-content'">
-                <div class="v-slug__item app-remove-first-last-child-margin"
-                     v-if="content.content.htmlcontent_falk.length"
-                     :class="{
+        </div>
+        <div class="v-slug__masonry-coll">
+          <!--        <div class="v-slug__item v-slug__item&#45;&#45;image">-->
+          <!--          <img alt="image texte"-->
+          <!--               class="v-slug__img"-->
+          <!--               src="/images/241122_Grutli_Flyers_23.jpg"-->
+          <!--          />-->
+          <!--        </div>-->
+          <template v-if="pageData">
+            <template v-if="useFalkIsActive().value">
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 3 === 1)">
+                <template v-if="content.type === 'section-block-content'">
+                  <div class="v-slug__item app-remove-first-last-child-margin"
+                       v-if="content.content.htmlcontent_falk.length"
+                       :class="{
                        'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
                    }"
+                  >
+                    <h2 class="v-slug__item__title"
+                        v-if="content.content.titre && content.content.titre.length > 0"
+                        v-html="content.content.titre"
+                    ></h2>
+                    <AppBlockContent
+                            v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                            :html_content_block="htmlContentBlock"
+                    />
+                  </div>
+                </template>
+
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+
+
+              </template>
+            </template>
+
+            <template v-else>
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 3 === 1)">
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.type === 'section-block-content'"
+                     :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
                 >
                   <h2 class="v-slug__item__title"
                       v-if="content.content.titre && content.content.titre.length > 0"
                       v-html="content.content.titre"
                   ></h2>
                   <AppBlockContent
-                          v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                          v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
                   />
                 </div>
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
               </template>
-
-              <div class="v-slug__item"
-                   v-else>
-                <AppSpectacleCardLoader
-                        :slug="content.content.linked_spectacle"
-                />
-              </div>
-
-
             </template>
           </template>
+        </div>
+        <div class="v-slug__masonry-coll">
+          <!--        <div class="v-slug__item v-slug__item&#45;&#45;image">-->
+          <!--          <img alt="image texte"-->
+          <!--               class="v-slug__img"-->
+          <!--               src="/images/241122_Grutli_Flyers_23.jpg"-->
+          <!--          />-->
+          <!--        </div>-->
+          <template v-if="pageData">
+            <template v-if="useFalkIsActive().value">
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 3 === 2)">
+                <template v-if="content.type === 'section-block-content'">
+                  <div class="v-slug__item app-remove-first-last-child-margin"
+                       v-if="content.content.htmlcontent_falk.length"
+                       :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                   }"
+                  >
+                    <h2 class="v-slug__item__title"
+                        v-if="content.content.titre && content.content.titre.length > 0"
+                        v-html="content.content.titre"
+                    ></h2>
+                    <AppBlockContent
+                            v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                            :html_content_block="htmlContentBlock"
+                    />
+                  </div>
+                </template>
 
-          <template v-else>
-            <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
-              <div class="v-slug__item app-remove-first-last-child-margin"
-                   v-if="content.type === 'section-block-content'"
-                   :class="{
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+
+
+              </template>
+            </template>
+
+            <template v-else>
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 3 === 2)">
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.type === 'section-block-content'"
+                     :class="{
                        'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
                    }"
-              >
-                <h2 class="v-slug__item__title"
-                    v-if="content.content.titre && content.content.titre.length > 0"
-                    v-html="content.content.titre"
-                ></h2>
-                <AppBlockContent
-                        v-for="htmlContentBlock of content.content.htmlcontent"
-                        :html_content_block="htmlContentBlock"
-                />
-              </div>
-              <div class="v-slug__item"
-                   v-else>
-                <AppSpectacleCardLoader
-                        :slug="content.content.linked_spectacle"
-                />
-              </div>
+                >
+                  <h2 class="v-slug__item__title"
+                      v-if="content.content.titre && content.content.titre.length > 0"
+                      v-html="content.content.titre"
+                  ></h2>
+                  <AppBlockContent
+                          v-for="htmlContentBlock of content.content.htmlcontent"
+                          :html_content_block="htmlContentBlock"
+                  />
+                </div>
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+              </template>
             </template>
           </template>
-        </template>
-      </div>
+        </div>
+      </template>
+
+      <!--    masonry TRUE // windows width > breakpoint // template coll 2-->
+      <template v-else>
+        <div class="v-slug__masonry-coll">
+          <template v-if="pageData">
+            <template v-if="useFalkIsActive().value">
+              <template v-for="(content, index) of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
+                <template v-if="content.type === 'section-block-content'">
+                  <div  class="v-slug__item app-remove-first-last-child-margin"
+                        v-if="content.content.htmlcontent_falk.length"
+                        :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                      }"
+                  >
+                    <h2 class="v-slug__item__title"
+                        v-if="content.content.titre && content.content.titre.length > 0"
+                        v-html="content.content.titre"
+                    ></h2>
+                    <AppBlockContent
+                            v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                            :html_content_block="htmlContentBlock"
+                    />
+                  </div>
+                </template>
+
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+
+
+              </template>
+            </template>
+
+            <template v-else>
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 === 0)">
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.type === 'section-block-content'"
+                     :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
+                >
+                  <h2 class="v-slug__item__title"
+                      v-if="content.content.titre && content.content.titre.length > 0"
+                      v-html="content.content.titre"
+                  ></h2>
+                  <AppBlockContent
+                          v-for="htmlContentBlock of content.content.htmlcontent"
+                          :html_content_block="htmlContentBlock"
+                  />
+                </div>
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+              </template>
+            </template>
+          </template>
+        </div>
+        <div class="v-slug__masonry-coll">
+          <!--        <div class="v-slug__item v-slug__item&#45;&#45;image">-->
+          <!--          <img alt="image texte"-->
+          <!--               class="v-slug__img"-->
+          <!--               src="/images/241122_Grutli_Flyers_23.jpg"-->
+          <!--          />-->
+          <!--        </div>-->
+          <template v-if="pageData">
+            <template v-if="useFalkIsActive().value">
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
+                <template v-if="content.type === 'section-block-content'">
+                  <div class="v-slug__item app-remove-first-last-child-margin"
+                       v-if="content.content.htmlcontent_falk.length"
+                       :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                   }"
+                  >
+                    <h2 class="v-slug__item__title"
+                        v-if="content.content.titre && content.content.titre.length > 0"
+                        v-html="content.content.titre"
+                    ></h2>
+                    <AppBlockContent
+                            v-for="htmlContentBlock of content.content.htmlcontent_falk"
+                            :html_content_block="htmlContentBlock"
+                    />
+                  </div>
+                </template>
+
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+
+
+              </template>
+            </template>
+
+            <template v-else>
+              <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 2 !== 0)">
+                <div class="v-slug__item app-remove-first-last-child-margin"
+                     v-if="content.type === 'section-block-content'"
+                     :class="{
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                   }"
+                >
+                  <h2 class="v-slug__item__title"
+                      v-if="content.content.titre && content.content.titre.length > 0"
+                      v-html="content.content.titre"
+                  ></h2>
+                  <AppBlockContent
+                          v-for="htmlContentBlock of content.content.htmlcontent"
+                          :html_content_block="htmlContentBlock"
+                  />
+                </div>
+                <div class="v-slug__item"
+                     v-else>
+                  <AppSpectacleCardLoader
+                          :slug="content.content.linked_spectacle"
+                  />
+                </div>
+              </template>
+            </template>
+          </template>
+        </div>
+      </template>
     </template>
     <!--//////////
     /// masonry END
