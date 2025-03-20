@@ -90,6 +90,7 @@
                      class="v-spectacle-slug__coll__content__text__link"
                 >
                   <a class="app-button"
+                     target="_blank"
                      :href="content.content.link"
                   >
                     <span>{{content.content.text}}</span>
@@ -157,6 +158,7 @@
                      class="v-spectacle-slug__coll__content__text__link"
                 >
                   <a class="app-button"
+                     target="_blank"
                      :href="content.content.link"
                   >
                     <span>{{content.content.text}}</span>
@@ -219,6 +221,7 @@
                    class="v-spectacle-slug__coll__content__text__link"
               >
                 <a class="app-button"
+                   target="_blank"
                    :href="content.content.link"
                 >
                   <span>{{content.content.text}}</span>
