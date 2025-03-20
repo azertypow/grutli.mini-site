@@ -16,6 +16,10 @@ export const useMenuIsOpen: () => Ref<boolean> = () => {
     return useState('useMenuIsOpen', () => true )
 }
 
+export const useShowCookieBanner: () => Ref<boolean> = () => {
+    return useState('useShowCookieBanner', () => true )
+}
+
 export type AppNewsItem = ApiNewsItem & {
     isOpen: boolean
 }

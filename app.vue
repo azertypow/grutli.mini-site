@@ -23,14 +23,14 @@
 
       <AudioPlayer/>
 
-      <div class="app-app__cookie" v-if="showCookies">
+      <div class="app-app__cookie" v-if="useShowCookieBanner().value">
         <div>
           <div>
             En poursuivant la navigation sur ce site, vous acceptez l’utilisation des cookies tiers liés à la plateforme tel que YouTube, SoundCloud, etc.
           </div>
           <div>
-            <div class="app-button-grey" @click="showCookies = false" >refuser</div>
-            <div class="app-button-grey" @click="showCookies = false" >accepter</div>
+            <div class="app-button-grey" @click="handleCookieBannerClick()" >refuser</div>
+            <div class="app-button-grey" @click="handleCookieBannerClick()" >accepter</div>
           </div>
         </div>
       </div>
@@ -114,6 +114,7 @@
 .app-app__loader-container__img {
   display: block;
   width: 15vw;
+  min-width: 5rem;
   height: auto;
   animation: app-app__intro-animation linear 10s forwards;
 }
@@ -318,13 +319,20 @@ import {
     type AppNewsItem, useAppContentIsLoaded,
     useFalkIsActive,
     useNews,
-    usePlacesInfo,
+    usePlacesInfo, useShowCookieBanner,
     useSiteInfo, useWindowIsScrollToBottom
 } from "~/composables/cmsData";
 import {windows} from "../../Library/Caches/deno/npm/registry.npmjs.org/rimraf/5.0.10";
 import items from "@redocly/ajv/lib/vocabularies/applicator/items";
 
-const showCookies = ref(true)
+function handleCookieBannerClick() {
+    useShowCookieBanner().value = false
+
+    if (process.client) {
+        localStorage.setItem('useShowCookieBanner', JSON.stringify(false))
+    }
+}
+
 
 onMounted(async () => {
 
@@ -352,6 +360,10 @@ onMounted(async () => {
               })
       }),
     ]).then(() => window.setTimeout(() => useAppContentIsLoaded().value = true, 3_000))
+
+    const storedValue = process.client ? localStorage.getItem('useShowCookieBanner') : null;
+
+    useShowCookieBanner().value = storedValue !== 'false'
 
 })
 
