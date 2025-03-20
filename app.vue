@@ -23,10 +23,14 @@
 
       <AudioPlayer/>
 
-      <div class="app-app__cookie" @click="showCookies = false" v-if="showCookies">
+      <div class="app-app__cookie" v-if="showCookies">
         <div>
           <div>
-            texte pout les cookie concent + compte google
+            En poursuivant la navigation sur ce site, vous acceptez l’utilisation des cookies tiers liés à la plateforme tel que YouTube, SoundCloud, etc.
+          </div>
+          <div>
+            <div class="app-button-grey" @click="showCookies = false" >refuser</div>
+            <div class="app-button-grey" @click="showCookies = false" >accepter</div>
           </div>
         </div>
       </div>
@@ -271,23 +275,38 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 5rem;
+  //height: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: .25rem;
+  padding: .25rem .25rem 1rem;
   box-sizing: border-box;
 
   > div {
+    max-width: 40rem;
+    box-sizing: border-box;
+    padding: .5rem 1rem;
     border-radius: 1rem;
     background: var(--app-color-orange);
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: var(--app-gutter-xl);
+    user-select: none;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+
+    > div {
+      cursor: pointer;
+      display: flex;
+      gap: var(--app-gutter-xl);
+    }
   }
 }
 
