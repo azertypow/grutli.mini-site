@@ -43,7 +43,7 @@
             >Prendre un billet</a>
             <a class="app-button-grey app-font-small"
                href="#dates-details"
-            >Date·s & horaire·s</a>
+            >Dates & horaires</a>
           </div>
         </div>
         <div class="v-spectacle-slug__coll__text-content app-remove-first-last-child-margin">
