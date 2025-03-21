@@ -530,7 +530,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   left: 0;
   display: flex;
   width: 100%;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   padding-bottom: var(--v-audio-player-header-height);
   gap: var(--app-gutter-xl);
   align-items: flex-start;
@@ -538,6 +538,10 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   padding-left: var(--app-gutter-xl);
   padding-right: var(--app-gutter-xl);
   flex-direction: row;
+
+  @media (min-width: 1200px) {
+    flex-wrap: nowrap;
+  }
 }
 
 .v-slug__masonry-coll {
