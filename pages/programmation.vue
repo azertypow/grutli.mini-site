@@ -66,7 +66,10 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
         const eventDateEnd = new Date(value.pageContent.content.dateend)
         const currentDate = new Date()
 
-        return eventDateEnd < currentDate
+        eventDateEnd.setHours(0, 0, 0, 0)
+        currentDate.setHours(0, 0, 0, 0)
+
+        return currentDate > eventDateEnd
 
     }).map(pageSimple => {
         return {
@@ -80,12 +83,14 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
 
 
     const spectaclesPast = siteInfo.value?.spectacles.filter(event => {
-            const eventDateEnd = new Date(event.pageContent.content.dateend)
-            const currentDate = new Date()
+        const eventDateEnd = new Date(event.pageContent.content.dateend)
+        const currentDate = new Date()
 
-            return eventDateEnd < currentDate
-        }
-    ).map(item => {
+        eventDateEnd.setHours(0, 0, 0, 0)
+        currentDate.setHours(0, 0, 0, 0)
+
+        return currentDate > eventDateEnd
+    }).map(item => {
         return {
             slug: item.pageContent.slug,
             title: item.pageContent.content.title,
@@ -117,6 +122,9 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
         const eventDateEnd = new Date(value.pageContent.content.dateend)
         const currentDate = new Date()
 
+        eventDateEnd.setHours(0, 0, 0, 0)
+        currentDate.setHours(0, 0, 0, 0)
+
         return eventDateEnd > currentDate
 
     }).map(pageSimple => {
@@ -130,12 +138,14 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
 
 
     const spectaclesNotEnded: IAppEventPropsData[] = siteInfo.value?.spectacles.filter(event => {
-            const eventDateEnd = new Date(event.pageContent.content.dateend)
-            const currentDate = new Date()
+        const eventDateEnd = new Date(event.pageContent.content.dateend)
+        const currentDate = new Date()
 
-            return eventDateEnd > currentDate
-        }
-    ).map(item => {
+        eventDateEnd.setHours(0, 0, 0, 0)
+        currentDate.setHours(0, 0, 0, 0)
+
+        return eventDateEnd > currentDate
+    }).map(item => {
         return {
             slug: item.pageContent.slug,
             title: item.pageContent.content.title,
