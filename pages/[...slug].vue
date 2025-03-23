@@ -1,5 +1,8 @@
 <template>
   <section class="v-slug"
+           :class="{
+              'with-3-coll': pageData?.pageContent.content.templatewith_3_coll === 'true'
+           }"
   >
     <!--//////////
     /// masonry
@@ -538,21 +541,21 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   padding-left: var(--app-gutter-xl);
   padding-right: var(--app-gutter-xl);
   flex-direction: row;
-
-  @media (min-width: 1200px) {
-    flex-wrap: nowrap;
-  }
 }
 
 .v-slug__masonry-coll {
   box-sizing: border-box;
-  width: 100%;
+  width: calc( ( (100% + var(--app-gutter-xl)) / 2) - var(--app-gutter-xl));
   display: flex;
   flex-direction: column;
   gap: var(--app-gutter-xl);
 
   > .v-slug__item {
     width: 100%;
+  }
+
+  .with-3-coll & {
+    width: calc( ( (100% + var(--app-gutter-xl)) / 3) - var(--app-gutter-xl));
   }
 }
 
