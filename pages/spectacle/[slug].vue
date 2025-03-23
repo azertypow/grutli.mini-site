@@ -271,31 +271,6 @@
           </template>
 
           <div id="dates-details"></div>
-          <template v-if="ticketInfo">
-            <div class="v-spectacle-slug__dates">
-              <div class="v-spectacle-slug__dates__item"
-                   v-for="(mounthItem, mounthName) of groupedByMonth"
-              >
-                <div class="v-spectacle-slug__dates__item__mouth">
-                  {{ mounthName }}
-                </div>
-                <div class="v-spectacle-slug__dates__item__days">
-                  <div class="v-spectacle-slug__dates__item__days__day"
-                       v-for="dayDate of mounthItem.map(wrapNumbersInSpan)"
-                  >
-                    <div v-html="dayDate"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="v-spectacle-slug__time-info">
-              <div v-if="Array.isArray(ticketInfo) && ticketInfo[0]?.duration_in_minutes">
-                Durée {{convertMinutesToHoursAndMinutes(ticketInfo[0].duration_in_minutes)}}
-              </div>
-            </div>
-          </template>
-
           <template v-for="content of pageData?.pageContent.content.htmldetails">
             <div class="app-remove-first-last-child-margin v-spectacle-slug__detailsHtml">
               <div v-if="content.type === 'text'"
@@ -633,65 +608,6 @@ onMounted(async () => {
   height: auto;
   object-fit: cover;
   border-radius: 1rem;
-}
-
-.v-spectacle-slug__dates {
-  display: flex;
-  flex-direction: column;
-  gap: var(--app-gutter-xl);
-  margin-top: 1rem;
-  margin-bottom: .5rem;
-}
-
-.v-spectacle-slug__dates__item {
-  display: flex;
-  gap: var(--app-gutter-xl);
-  flex-direction: row;
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-    gap: var(--app-gutter);
-  }
-}
-
-.v-spectacle-slug__dates__item__mouth {
-  width: 5rem;
-  flex-shrink: 0;
-}
-
-.v-spectacle-slug__dates__item__days {
-  display: flex;
-  flex-direction: column;
-  gap: var(--app-gutter) 1rem;
-  flex-wrap: wrap;
-
-  @media (max-width: 700px) {
-    padding-left: var(--app-gutter-xl);
-  }
-}
-
-.v-spectacle-slug__dates__item__days__day {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--app-gutter);
-
-  svg {
-    height: 1rem;
-    display: block;
-    transform: rotate(0);
-    transition: transform ease-out .15s;
-    fill: rgba(0, 0, 0, .1);
-  }
-
-  &:hover {
-    color: var(--app-color-orange);
-  }
-}
-
-:global(.v-spectacle-slug__dates__item__days__day span) {
-  color: var(--app-color-orange);
-  //font-variation-settings: "slnt" 0, "wght" 800;
 }
 
 .v-spectacle-slug__coll__text-content__details {
