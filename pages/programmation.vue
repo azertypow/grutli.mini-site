@@ -125,7 +125,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
         eventDateEnd.setHours(0, 0, 0, 0)
         currentDate.setHours(0, 0, 0, 0)
 
-        return eventDateEnd > currentDate
+        return eventDateEnd >= currentDate
 
     }).map(pageSimple => {
         return {
@@ -144,7 +144,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
         eventDateEnd.setHours(0, 0, 0, 0)
         currentDate.setHours(0, 0, 0, 0)
 
-        return eventDateEnd > currentDate
+        return eventDateEnd >= currentDate
     }).map(item => {
         return {
             slug: item.pageContent.slug,
