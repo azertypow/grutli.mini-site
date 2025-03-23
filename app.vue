@@ -42,21 +42,22 @@
                 v-for="news of newsListToShow"
         >
           <template v-if="news.link && news.link.length > 0" >
-            <a class="app-app__news__wrap__container"
-               :href="news.link"
-            >
-              <div class="app-app__news__wrap__container__wrap">
-                <div>{{ news.text }}</div>
-                <div>{{ news.text }}</div>
-                <div>{{ news.text }}</div>
-                <div>{{ news.text }}</div>
-              </div>
+            <div class="app-app__news__wrap__container">
+              <a class="app-app__news__wrap__container__link"
+                 :href="news.link" >
+                <div class="app-app__news__wrap__container__wrap">
+                  <div>{{ news.text }}</div>
+                  <div>{{ news.text }}</div>
+                  <div>{{ news.text }}</div>
+                  <div>{{ news.text }}</div>
+                </div>
+              </a>
               <svg class="app-app__news__wrap__container__close-ui"
                    @click="toggleItemState(news.id)"
                    xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
                 <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
               </svg>
-            </a>
+            </div>
           </template>
           <template v-else>
             <div class="app-app__news__wrap__container"
@@ -185,6 +186,10 @@
   }
 }
 
+.app-app__news__wrap__container__link {
+  display: block;
+}
+
 .app-app__news__wrap__container__wrap {
   display: flex;
   animation: app-app__news__wrap--animation linear 40s infinite;
@@ -210,6 +215,7 @@
   width: auto;
   z-index: 10;
   background: white;
+  cursor: pointer;
 }
 
 
