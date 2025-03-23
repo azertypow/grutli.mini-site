@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/',
     head: {
-      title: 'Maison des Arts du Grütli',
+      title: 'Scènes du Grutli',
       htmlAttrs: {
         lang: 'fr'
       },
