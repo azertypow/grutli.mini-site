@@ -21,6 +21,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'fr'
       },
+      script: [
+        {
+          async: true,
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-9GBY66SS82'
+        }
+      ],
       meta: []
     }
   },
