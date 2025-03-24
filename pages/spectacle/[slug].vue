@@ -120,12 +120,18 @@
                         allowfullscreen
                 ></iframe>
 
-                <img v-else-if="content.type === 'image'"
-                     class="v-spectacle-slug__coll__content__text__image"
-                     v-for="image of content.images"
-                     :src="image.resize.large"
-                     :alt="image.alt || 'pas de texte alt'"
-                >
+                <template v-else-if="content.type === 'image'">
+                  <div class="v-spectacle-slug__coll__content__text__image"
+                       v-for="image of content.images"
+                  >
+                    <img class="v-spectacle-slug__coll__content__text__image__img"
+                         :src="image.resize.large"
+                         :alt="image.alt || 'pas de texte alt'"
+                    >
+                    <div class="v-spectacle-slug__coll__content__text__image__legendary"
+                    >{{image.photographer}}</div>
+                  </div>
+                </template>
 
                 <div v-else-if="content.type === 'imageGallery'"
                      class="v-spectacle-slug__coll__content__text__gallery"
@@ -194,12 +200,20 @@
                         allowfullscreen
                 ></iframe>
 
-                <img v-else-if="content.type === 'image'"
-                     class="v-spectacle-slug__coll__content__text__image"
-                     v-for="image of content.images"
-                     :src="image.resize.large"
-                     :alt="image.alt || 'pas de texte alt'"
-                >
+
+                <template v-else-if="content.type === 'image'">
+                  <div class="v-spectacle-slug__coll__content__text__image"
+                       v-for="image of content.images"
+                  >
+                    <img class="v-spectacle-slug__coll__content__text__image__img"
+                         :src="image.resize.large"
+                         :alt="image.alt || 'pas de texte alt'"
+                    >
+                    <div class="v-spectacle-slug__coll__content__text__image__legendary"
+                    >{{image.photographer}}</div>
+                  </div>
+                </template>
+
 
                 <div v-else-if="content.type === 'imageGallery'"
                      class="v-spectacle-slug__coll__content__text__gallery"
@@ -263,12 +277,20 @@
                       allowfullscreen
               ></iframe>
 
-              <img v-else-if="content.type === 'image'"
-                   class="v-spectacle-slug__coll__content__text__image"
-                   v-for="image of content.images"
-                   :src="image.resize.large"
-                   :alt="image.alt || 'pas de texte alt'"
-              >
+
+              <template v-else-if="content.type === 'image'">
+                <div class="v-spectacle-slug__coll__content__text__image"
+                     v-for="image of content.images"
+                >
+                  <img class="v-spectacle-slug__coll__content__text__image__img"
+                       :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                  <div class="v-spectacle-slug__coll__content__text__image__legendary"
+                  >{{image.photographer}}</div>
+                </div>
+              </template>
+
 
               <div v-else-if="content.type === 'imageGallery'"
                    class="v-spectacle-slug__coll__content__text__gallery"
@@ -489,11 +511,24 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__content__text__image {
+  position: relative;
+  width: 100%;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__coll__content__text__image__img {
   display: block;
   width: 100%;
   height: auto;
-  margin-top: var(--app-gutter-xl);
-  margin-bottom: var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__coll__content__text__image__legendary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
 }
 
 .v-spectacle-slug__coll__content__text__gallery {
