@@ -18,7 +18,7 @@ export const generatedRoutes: string[] = [
   "/spectacles/dans-le-decor-de-choc",
   "/spectacles/la-grosse-deprime",
   "/spectacles/quasimodo-aux-miroirs",
-  "/spectacles/lecture-de-milch-lait-latte-mleko",
+  "/spectacles/milch-lait-latte-mleko",
   "/spectacles/time-to-relax-une-introduction-a-la-performance-relax",
   "/spectacles/gnocchi-a-bellevue",
   "/spectacles/au-bout-de-la-laisse",
@@ -29,7 +29,11 @@ export const generatedRoutes: string[] = [
   "/pour-les-artistes",
   "/pour-les-artistes/technique",
   "/pour-les-artistes/bureau-des-compagnies",
+  "/pour-les-artistes/on-parle-de-nous-dans-la-presse",
+  "/pour-les-artistes/soumettre-un-projet",
   "/accessibilite",
   "/ateliers-theatre",
-  "/c-est-deja-demain"
+  "/durabilite",
+  "/c-est-deja-demain",
+  "/protection-des-donnees-personelles"
 ];
