@@ -116,7 +116,7 @@ export interface ApiCmsImage {
     caption: string;
     alt: string;
     link: string | null;
-    photoCredit: string | null;
+    photographer: string | null;
     url: string;
     mediaUrl: string;
     width: number;
@@ -305,7 +305,7 @@ export type ApiHTMLContent_image = ApiHTMLContent & {
         caption: string | null;
         alt: string | null;
         link: string | null;
-        photoCredit: string | null;
+        photographer: string | null;
         url: string;
         mediaUrl: string;
         width: number;
@@ -330,7 +330,7 @@ export type ApiHTMLContent_imageGallery = ApiHTMLContent & {
         caption: string | null;
         alt: string | null;
         link: string | null;
-        photoCredit: string | null;
+        photographer: string | null;
         url: string;
         mediaUrl: string;
         width: number;
