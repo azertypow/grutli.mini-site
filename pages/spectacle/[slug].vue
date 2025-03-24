@@ -131,10 +131,14 @@
                      class="v-spectacle-slug__coll__content__text__gallery"
                 >
                   <template v-for="image of content.images">
-                    <img :src="image.resize.large"
-                         :alt="image.alt || 'pas de texte alt'"
-                    >
-                    <div>{{image.photoCredit}}</div>
+                    <div class="v-spectacle-slug__coll__content__text__gallery__item">
+                      <img class="v-spectacle-slug__coll__content__text__gallery__item__img"
+                           :src="image.resize.large"
+                           :alt="image.alt || 'pas de texte alt'"
+                      >
+                      <div class="v-spectacle-slug__coll__content__text__gallery__item__legendary"
+                      >{{image.photographer}}</div>
+                    </div>
                   </template>
                 </div>
               </template>
@@ -201,10 +205,14 @@
                      class="v-spectacle-slug__coll__content__text__gallery"
                 >
                   <template v-for="image of content.images">
-                    <img :src="image.resize.large"
-                         :alt="image.alt || 'pas de texte alt'"
-                    >
-                    <div>{{image.photoCredit}}</div>
+                    <div class="v-spectacle-slug__coll__content__text__gallery__item">
+                      <img class="v-spectacle-slug__coll__content__text__gallery__item__img"
+                           :src="image.resize.large"
+                           :alt="image.alt || 'pas de texte alt'"
+                      >
+                      <div class="v-spectacle-slug__coll__content__text__gallery__item__legendary"
+                      >{{image.photographer}}</div>
+                    </div>
                   </template>
                 </div>
               </template>
@@ -266,10 +274,14 @@
                    class="v-spectacle-slug__coll__content__text__gallery"
               >
                 <template v-for="image of content.images">
-                  <img :src="image.resize.large"
-                       :alt="image.alt || 'pas de texte alt'"
-                  >
-                  <div style="position: absolute; left: 0; bottom: 0; transform: translate(0, 100%); font-size: .5rem">legend {{image.photoCredit}}</div>
+                  <div class="v-spectacle-slug__coll__content__text__gallery__item">
+                    <img class="v-spectacle-slug__coll__content__text__gallery__item__img"
+                         :src="image.resize.large"
+                         :alt="image.alt || 'pas de texte alt'"
+                    >
+                    <div class="v-spectacle-slug__coll__content__text__gallery__item__legendary"
+                    >{{image.photographer}}</div>
+                  </div>
                 </template>
               </div>
             </template>
@@ -528,6 +540,22 @@ onMounted(async () => {
     flex-shrink: 0;
   }
 }
+
+.v-spectacle-slug__coll__content__text__gallery__item {
+  position: relative;
+
+  .v-spectacle-slug__coll__content__text__gallery__item__legendary {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    padding-left: var(--app-gutter);
+    padding-right: var(--app-gutter);
+    box-sizing: border-box;
+  }
+}
+
 
 .v-spectacle-slug__coll__content__text__link {
   .app-button {
