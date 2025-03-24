@@ -130,10 +130,12 @@
                 <div v-else-if="content.type === 'imageGallery'"
                      class="v-spectacle-slug__coll__content__text__gallery"
                 >
-                  <img v-for="image of content.images"
-                       :src="image.resize.large"
-                       :alt="image.alt || 'pas de texte alt'"
-                  >
+                  <template v-for="image of content.images">
+                    <img :src="image.resize.large"
+                         :alt="image.alt || 'pas de texte alt'"
+                    >
+                    <div>{{image.photoCredit}}</div>
+                  </template>
                 </div>
               </template>
               <!--            /block system -->
@@ -198,10 +200,12 @@
                 <div v-else-if="content.type === 'imageGallery'"
                      class="v-spectacle-slug__coll__content__text__gallery"
                 >
-                  <img v-for="image of content.images"
-                       :src="image.resize.large"
-                       :alt="image.alt || 'pas de texte alt'"
-                  >
+                  <template v-for="image of content.images">
+                    <img :src="image.resize.large"
+                         :alt="image.alt || 'pas de texte alt'"
+                    >
+                    <div>{{image.photoCredit}}</div>
+                  </template>
                 </div>
               </template>
               <!--            /block system -->
@@ -261,10 +265,12 @@
               <div v-else-if="content.type === 'imageGallery'"
                    class="v-spectacle-slug__coll__content__text__gallery"
               >
-                <img v-for="image of content.images"
-                     :src="image.resize.large"
-                     :alt="image.alt || 'pas de texte alt'"
-                >
+                <template v-for="image of content.images">
+                  <img :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                  <div style="position: absolute; left: 0; bottom: 0; transform: translate(0, 100%); font-size: .5rem">legend {{image.photoCredit}}</div>
+                </template>
               </div>
             </template>
             <!--            /block system -->
@@ -479,6 +485,7 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__content__text__gallery {
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: var(--app-gutter-xl);
