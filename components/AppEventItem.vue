@@ -1,6 +1,6 @@
 <template>
   <nuxt-link class="v-app-event-item"
-             :to="'/spectacle/' + app_event_data.slug"
+             :to="app_event_data.slug"
   >
     <h4 class="v-app-event-item__item__title">{{ app_event_data.title }}</h4>
     <div class="v-app-event-item__item__date">

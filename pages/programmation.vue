@@ -93,7 +93,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
         return currentDate > eventDateEnd
     }).map(item => {
         return {
-            slug: item.pageContent.slug,
+            slug: '/spectacle/' + item.pageContent.slug,
             title: item.pageContent.content.title,
             datestart: item.pageContent.content.datestart,
             dateend: item.pageContent.content.dateend,
@@ -149,7 +149,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
         return eventDateEnd >= currentDate
     }).map(item => {
         return {
-            slug: item.pageContent.slug,
+            slug: '/spectacle/' + item.pageContent.slug,
             title: item.pageContent.content.title,
             datestart: item.pageContent.content.datestart,
             dateend: item.pageContent.content.dateend,
