@@ -61,7 +61,7 @@ export interface PageContent {
     content: PageContentDetails;
     dateend: string
     datestart: string
-    showincalendar: string
+    showincalendar: "true" | "false"
     translations: any[];
     children: string[];
     files: any[];

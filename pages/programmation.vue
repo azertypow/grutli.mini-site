@@ -60,6 +60,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
     const pageSimpleToShowInCalendarAndPast: IAppEventPropsData[] = siteInfo.value?.["page-simple"].filter(value => {
 
         if (!value.pageContent.content.showincalendar) return false
+        if (value.pageContent.content.showincalendar !== 'true') return false
         if (!value.pageContent.content.datestart) return false
         if (!value.pageContent.content.dateend) return false
 
@@ -116,6 +117,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
     const pageSimpleToShowInCalendarNotPast: IAppEventPropsData[] = siteInfo.value?.["page-simple"].filter(value => {
 
         if (!value.pageContent.content.showincalendar) return false
+        if (value.pageContent.content.showincalendar !== 'true') return false
         if (!value.pageContent.content.datestart) return false
         if (!value.pageContent.content.dateend) return false
 
