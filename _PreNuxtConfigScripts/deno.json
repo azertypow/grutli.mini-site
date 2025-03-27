@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "run": " deno run --allow-write --allow-net index.ts"
+  },
+  "imports": {
+  }
+}
