@@ -434,6 +434,10 @@ onMounted(async () => {
 
     pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
 
+    useHead({
+        title: 'Spectacle | ' + pageData.value?.pageContent.content.title
+    })
+
     if( !pageData.value) return
     if(  !pageData.value.pageContent.content.eventtitle[0] ) return
 

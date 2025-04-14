@@ -51,6 +51,10 @@ useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
 useChildrenDetailsForNavLinks().value = null
 
+useHead({
+    title: 'Programmation'
+})
+
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 
 

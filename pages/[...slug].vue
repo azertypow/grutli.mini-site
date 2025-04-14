@@ -431,6 +431,10 @@ onMounted(async () => {
     fetchPage(slug).then(async (value: ApiSimplePage | null) => {
         pageData.value = value
 
+        useHead({
+            title: pageData.value?.pageContent.content.title
+        })
+
         redirectToFirstPageChildrenIfContentIsEmpty(value)
 
         get_childrenDetailsForNavLinks(value)

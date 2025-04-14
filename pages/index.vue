@@ -49,6 +49,10 @@ useChildrenDetailsForNavLinks().value = null
 
 const siteInfo: Ref<SiteInfo | null> = useSiteInfo()
 
+useHead({
+    title: 'Scènes du Grutli'
+})
+
 type PageToShowInHome = {
     title: string,
     uri: string,
