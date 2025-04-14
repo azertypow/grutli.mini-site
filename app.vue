@@ -322,14 +322,13 @@
 <script setup lang="ts">
 import {fetchNews, fetchPlacesInfo, fetchSiteInfo} from "~/utlis/apiCmsFetch";
 import {
-    type AppNewsItem, useAppContentIsLoaded,
+    useAppContentIsLoaded,
     useFalkIsActive,
     useNews,
     usePlacesInfo, useShowCookieBanner,
     useSiteInfo, useWindowIsScrollToBottom
 } from "~/composables/cmsData";
-import {windows} from "../../Library/Caches/deno/npm/registry.npmjs.org/rimraf/5.0.10";
-import items from "@redocly/ajv/lib/vocabularies/applicator/items";
+import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
 
 function handleCookieBannerClick() {
     useShowCookieBanner().value = false
@@ -341,6 +340,8 @@ function handleCookieBannerClick() {
 
 
 onMounted(async () => {
+
+    initGoogleAnalytics()
 
     Promise.all([
       fetchSiteInfo().then(value => useSiteInfo().value = value),
