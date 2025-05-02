@@ -1,7 +1,14 @@
-import type {ApiCmsPageSpectacle, ApiNews, ApiPlaces, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {
+    ApiCmsPageSpectacle,
+    ApiNews,
+    ApiPlaces,
+    ApiSimplePage,
+    ApiSpectaclesBySeasons,
+    SiteInfo
+} from "~/utlis/ApiCmsTypes";
 
-const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
-// const apiBaseUrl = 'http://localhost:8000'
+// const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
+const apiBaseUrl = 'http://localhost:8000'
 
 export async function fetchSiteInfo(): Promise<SiteInfo | null> {
     const url = apiBaseUrl + '/site-info.json'
@@ -73,4 +80,34 @@ export async function fetchNews(): Promise<ApiNews | null> {
     }
 
     return await response.json() as ApiNews
+}
+
+export async function fetchSeasons() {
+    const url = apiBaseUrl + '/saisons.json'
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json() as ApiSpectaclesBySeasons
+}
+
+export async function fetchSpectaclesBySeason(season: string) {
+    const url = apiBaseUrl + '/spectacles.json'
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json()
+
+    const spectacles = data.childrenDetails
+
+    const filteredSpectacles = spectacles.filter(item => item.pageContent.content.season === season)
+
+    return filteredSpectacles
 }

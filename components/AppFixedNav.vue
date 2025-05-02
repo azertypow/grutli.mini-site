@@ -23,6 +23,18 @@
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-shadow"
       >Billetterie</a>
+
+      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+                 href="/diffusion"
+      >
+        Diffusion
+      </nuxt-link>
+
+      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+                 href="/archive"
+      >
+        Archive
+      </nuxt-link>
     </div>
 
 

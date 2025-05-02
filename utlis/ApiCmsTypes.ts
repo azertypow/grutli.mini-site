@@ -210,6 +210,7 @@ export type ApiSimplePage_ChildDetails_PageContent = {
         showinhome: 'true' | 'false';
         content: string
         uuid: string;
+        season: string
     };
     translations: any[];
     children: string[];
@@ -372,13 +373,28 @@ export type ApiPlaces = {
 }
 
 
-    export type ApiNews = {
-        value: ApiNewsItem[]
-    }
+export type ApiNews = {
+    value: ApiNewsItem[]
+}
 
-    export type ApiNewsItem = {
-        text: string,
-        link: string,
-        id: string,
-        show: 'true' | 'false',
-    }
+export type ApiNewsItem = {
+    text: string,
+    link: string,
+    id: string,
+    show: 'true' | 'false',
+}
+
+export type ApiSeasons = {
+
+}
+
+export type ApiSpectaclesBySeasons = {
+    value: {
+        content: {
+            dateinformation: string
+            statut: "a-venir" | "en-cours" | "passe"
+            title: string
+            uuid: string
+        }
+    }[]
+}

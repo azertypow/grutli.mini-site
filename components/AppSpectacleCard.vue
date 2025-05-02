@@ -53,9 +53,9 @@ const dateFromTicketService = computed(() => {
     const dateEnd = new Date(props.dates.end.replace(" ", "T"))
     dateEnd.setHours(0,0,0,0)
 
-    console.log(props.eventTitle)
-    console.log(currentDate.toISOString())
-    console.log(dateEnd.toISOString())
+    // console.log(props.eventTitle)
+    // console.log(currentDate.toISOString())
+    // console.log(dateEnd.toISOString())
 
     if (currentDate > dateEnd) return 'passé'
 
