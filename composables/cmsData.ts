@@ -48,3 +48,6 @@ export const useAppContentIsLoaded: () => Ref<boolean> = () => {
     return useState('useAppContentIsLoaded', () => false )
 }
 
+export const useAppNewsletterIsOpen:() => Ref<boolean> = () => {
+    return useState('useAppNewsletterIsOpen', () => false )
+}
