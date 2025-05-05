@@ -79,7 +79,7 @@
                           :value="group"
                           v-model="form.groups"
                   />
-                  <label :for="group">{{ group }}</label>
+                  <label :for="group">{{ group.replace('Site - ', '') }}</label>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@
               <input class="v-app-newsletter__wrap__form__submit app-button-grey"
                      v-else
                      type="submit"
-                     value="Je m'inscrire"
+                     value="je m'inscris"
               />
             </template>
           </div>
