@@ -150,7 +150,7 @@ const form = ref<SubscriberDataToSend>({
 });
 
 const handleSubmit = async () => {
-    subscriberApiMessage.value = 'Envoie en cours...'
+    subscriberApiMessage.value = 'Envoi en cours...'
     subscriberApiStatus.value = 'sending'
 
     const subscriptionResponse = await requestSubscription()
