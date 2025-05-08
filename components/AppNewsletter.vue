@@ -10,8 +10,7 @@
       />
       <div class="v-app-newsletter__wrap v-transition-opacity__translate">
         <div class="v-app-newsletter__wrap__header">
-          <h1 style="margin-top: 0">Newsletter</h1>
-          <h2>Recevez nos activités par mail (~1x/mois)&nbsp;!</h2>
+          <h1 class="v-app-newsletter__wrap__header__title">Inscription à nos actualités</h1>
         </div>
 
         <form class="v-app-newsletter__wrap__form"
@@ -34,7 +33,7 @@
                       font-weight: 600;
                       font-size: .8rem;
                      "
-              >Adresse email</label>
+              >Votre adresse courriel</label>
               <input
                       id="email"
                       type="email"
@@ -64,22 +63,23 @@
                       font-weight: 600;
                       font-size: .8rem;
                      "
-              >Type de newsletter</label>
+              >Pour recevoir les informations&nbsp;:</label>
 
               <div style="max-width: 15rem; width: 100%; display: flex; flex-direction: column; gap: .5rem;">
-                <div v-for="group in listOfNewsletterGroups" :key="group"
+                <div v-for="group in listOfNewsletterGroups" :key="group.name"
                      style="
                       display: flex;
                       flex-direction: row;
                       gap: .25rem;
+                      align-items: center;
                     "
                 >
                   <input
                           type="checkbox"
-                          :value="group"
+                          :value="group.name"
                           v-model="form.groups"
                   />
-                  <label :for="group">{{ group.replace('Site - ', '') }}</label>
+                  <label>{{ group.text }}</label>
                 </div>
               </div>
             </div>
@@ -120,13 +120,22 @@ type SubscriptionResponse = {
     status: 'ok' | 'error'
 }
 
-type NewsLetterGroupes = (
+
+/**
+ * This type defines the distinct names value of newsletters
+ * that can be used within the newsletter service.
+ */
+type NewsLetterValues =
     "Site - Tout public"
     | "Site - Relax"
     | "Site - BdC"
     | "Site - École"
     | "Site - Programmatrices"
-    )[]
+
+type NewsLetterGroupes = {
+    name: NewsLetterValues,
+    text: string,
+}[]
 
 type SubscriberDataToSend = {
     email: string,
@@ -134,11 +143,26 @@ type SubscriberDataToSend = {
 }
 
 const listOfNewsletterGroups = [
-    "Site - Tout public",
-    "Site - Relax",
-    "Site - BdC",
-    "Site - École",
-    "Site - Programmatrices",
+    {
+        name: "Site - Tout public",
+        text: "sur la saison",
+    },
+    {
+        name: "Site - Relax",
+        text: "sur les mesures d’accessibilité",
+    },
+    {
+        name: "Site - BdC",
+        text: "sur le Bureau des Compagnies (professionnelles et professionnel)",
+    },
+    {
+        name: "Site - École",
+        text: "sur l’offre pour les écoles",
+    },
+    {
+        name: "Site - Programmatrices",
+        text: "sur la diffusion des spectacles (professionnelles et professionnel)"
+    },
 ] satisfies NewsLetterGroupes
 
 const subscriberApiMessage = ref('')
@@ -235,6 +259,11 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
   text-align: center;
 }
 
+.v-app-newsletter__wrap__header__title {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
 div.v-app-newsletter__wrap__form__submit{
   display: inline-block;
   cursor: auto;
@@ -268,6 +297,7 @@ input[type="checkbox"] {
   cursor: pointer;
   margin: 0;
   background: white;
+  flex-shrink: 0;
 
   &:hover {
     background: var(--app-color-grey);
