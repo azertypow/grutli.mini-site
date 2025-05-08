@@ -2,6 +2,11 @@
   <div class="app-app"
        :class="useRouter().currentRoute.value.name"
   >
+
+    <transition name="v-transition-opacity">
+        <AppNewsletter  v-if="useAppNewsletterIsOpen().value === true" />
+    </transition>
+
     <transition name="v-fade">
         <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value ">
           <img class="app-app__loader-container__img"
@@ -379,6 +384,16 @@ watch(useFalkIsActive, (value) => {
         document.documentElement.classList.add('nuxt-watch-falk-is-active')
         : document.documentElement.classList.remove('nuxt-watch-falk-is-active')
 })
+
+const newsletterIsOpen = useAppNewsletterIsOpen();
+
+watch(newsletterIsOpen, (newValue) => {
+    if (newValue) {
+        document.body.classList.add('newsletter-is-open');
+    } else {
+        document.body.classList.remove('newsletter-is-open');
+    }
+});
 
 const newsList = useNews()
 const numberOfOpenNews = computed(() => newsList.value?.filter(item => item.isOpen).length)

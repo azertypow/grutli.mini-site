@@ -31,6 +31,7 @@ body {
   justify-content: center;
   font-variation-settings: "slnt" 0, "wght" 400;
 
-  .nuxt-watch-falk-is-active & {
+  &.newsletter-is-open {
+    overflow: hidden;
   }
 }

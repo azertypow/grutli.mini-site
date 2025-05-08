@@ -19,6 +19,10 @@
         </nuxt-link>
       </template>
 
+      <button class="app-button-grey app-font-small app-button-grey--with-shadow"
+              @click="useAppNewsletterIsOpen().value = true"
+      >Newsletter</button>
+
       <a href="https://infomaniak.events/fr-ch/shop/scenes-du-grutli-l-arbre-monde-CFFW7GX6FS"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-shadow"
