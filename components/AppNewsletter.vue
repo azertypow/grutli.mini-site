@@ -153,7 +153,7 @@ const listOfNewsletterGroups = [
     },
     {
         name: "Site - BdC",
-        text: "sur le Bureau des Compagnies (professionnelles et professionnel)",
+        text: "sur le Bureau des Compagnies (destiné aux artistes)",
     },
     {
         name: "Site - École",
@@ -161,7 +161,7 @@ const listOfNewsletterGroups = [
     },
     {
         name: "Site - Programmatrices",
-        text: "sur la diffusion des spectacles (professionnelles et professionnel)"
+        text: "sur la diffusion des spectacles (destiné à la profession)"
     },
 ] satisfies NewsLetterGroupes
 
