@@ -7,41 +7,22 @@
       <a class="v-archive-directions-passes__wrap__item"
          href="https://2024.grutli.ch/"
       >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Titre ou date ?</h2>
-        <h5 class="v-archive-directions-passes__wrap__item__peoples">direction de …</h5>
-        <p  class="v-archive-directions-passes__wrap__item__info">info</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Barbara Giongo & Nathalie Sugnaux Hernandez</h2>
+        <p  class="v-archive-directions-passes__wrap__item__info">2018-2024</p>
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
          href="https://2024.grutli.ch/"
       >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Titre ou date ?</h2>
-        <h5 class="v-archive-directions-passes__wrap__item__peoples">direction de …</h5>
-        <p  class="v-archive-directions-passes__wrap__item__info">info</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Frédéric Polier</h2>
+        <p  class="v-archive-directions-passes__wrap__item__info">2012-2018</p>
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
          href="https://2024.grutli.ch/"
       >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Titre ou date ?</h2>
-        <h5 class="v-archive-directions-passes__wrap__item__peoples">direction de …</h5>
-        <p  class="v-archive-directions-passes__wrap__item__info">info</p>
-      </a>
-
-      <a class="v-archive-directions-passes__wrap__item"
-         href="https://2024.grutli.ch/"
-      >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Titre ou date ?</h2>
-        <h5 class="v-archive-directions-passes__wrap__item__peoples">direction de …</h5>
-        <p  class="v-archive-directions-passes__wrap__item__info">info</p>
-      </a>
-
-      <a class="v-archive-directions-passes__wrap__item"
-         href="https://2024.grutli.ch/"
-      >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Titre ou date ?</h2>
-        <h5 class="v-archive-directions-passes__wrap__item__peoples">direction de …</h5>
-        <p  class="v-archive-directions-passes__wrap__item__info">info</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Michèle Pralong et Maya Bösch</h2>
+        <p  class="v-archive-directions-passes__wrap__item__info">2009-2012</p>
       </a>
 
     </div>
@@ -116,12 +97,9 @@ useHead({
   margin: 0;
 }
 
-.v-archive-directions-passes__wrap__item__peoples {
-  margin: 0;
-}
-
 .v-archive-directions-passes__wrap__item__info {
-  margin: 0;
+  margin-bottom: 0;
+  margin-top: 1em;
 }
 
 
