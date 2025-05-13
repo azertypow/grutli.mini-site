@@ -367,6 +367,7 @@ useParentSubPageForNavLinks().value = null
 useChildrenDetailsForNavLinks().value = null
 
 const pageData: Ref<ApiCmsPageSpectacle | null> = ref(null)
+// todo: clean
 const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref(null)
 
 const placeName: ComputedRef<string | null> = computed(() => {
