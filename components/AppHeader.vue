@@ -14,6 +14,11 @@
 
         <div class="v-app-header__right__top">
 
+          <button class="app-button-grey app-font-small app-button-grey--with-shadow"
+                  style="font-size: 0.5rem; text-transform: uppercase;"
+                  @click="useAppNewsletterIsOpen().value = true"
+          >Actualités</button>
+
           <a class="v-app-header__social app-button-grey app-button-grey--with-shadow"
              href="https://www.facebook.com/legrutli/friends_likes/?locale=fr_FR"
              target="_blank"
