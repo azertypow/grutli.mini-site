@@ -13,7 +13,7 @@
 
         <div class="v-spectacle-slug__coll__header">
           <div class="v-spectacle-slug__coll__header__saison-name">
-
+            {{pageData?.pageContent.content.season}}
           </div>
           <div class="v-spectacle-slug__coll__header__ticket">
 
@@ -73,6 +73,15 @@
               </template>
             </div>
           </div>
+
+
+
+
+
+          <!--
+            * [START]
+            * FALC/ORIGINAL LOGIC
+          -->
 
           <template v-if="useFalkIsActive().value">
 
@@ -309,6 +318,16 @@
             </template>
             <!--            /block system -->
           </template>
+
+
+          <!--
+            * [END]
+            * FALC/ORIGINAL LOGIC
+          -->
+
+
+
+
 
           <div id="dates-details"></div>
           <template v-for="content of pageData?.pageContent.content.htmldetails">

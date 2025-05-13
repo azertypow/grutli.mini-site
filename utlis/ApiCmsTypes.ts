@@ -22,6 +22,7 @@ export type ApiCmsPageSpectacle = {
             details: string,
             htmldetails: ApiHTMLContent_Blocks[],
             uuid: string
+            season: string
         },
         translations: [],
         children: [],
@@ -385,16 +386,29 @@ export type ApiNewsItem = {
 }
 
 export type ApiSeasons = {
-
+    value: ApiSeasons_value[]
 }
 
-export type ApiSpectaclesBySeasons = {
-    value: {
-        content: {
-            dateinformation: string
-            statut: "a-venir" | "en-cours" | "passe"
-            title: string
-            uuid: string
-        }
-    }[]
+export type ApiSeasons_value = {
+    content: ApiSeasons_value_content
+    translations: any[ ],
+    children: any[ ],
+    files: any[ ],
+    id: string
+    mediaUrl: string
+    mediaRoot: string
+    num: number,
+    parent: string
+    slug: string
+    template: { }
+    uid: string
+    uri: string
+    url: string
+}
+
+export type ApiSeasons_value_content = {
+    dateinformation: string
+    statut: "a-venir" | "en-cours" | "passe"
+    title: string
+    uuid: string
 }

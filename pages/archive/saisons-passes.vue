@@ -2,7 +2,7 @@
     <section
         class="v-saisons-passes"
     >
-      <template v-for="value of saisonFiltred">
+      <template v-for="value of saisonFiltered">
         <div class="v-index__list-wrap"
         >
           <h2>{{value.season.content.title}}</h2>
@@ -35,39 +35,44 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
-import {getSpectaclesBySeasons, loadSeasons} from "~/utlis/apiCmsKQLFetch";
 import {fetchSeasons, fetchSpectaclesBySeason} from "~/utlis/apiCmsFetch";
-
-const props = defineProps<{
-    message?: string
-}>()
-
-const saisonFiltred = ref([])
+import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
+import {useAppSeasons} from "~/composables/cmsData";
 
 useHead({
   title: 'Saisons passées des Scènes du Grutli',
 })
 
-onMounted(async () => {
-    const seasons = await fetchSeasons()
+const props = defineProps<{
+    message?: string
+}>()
 
-    const arrayToReturn = []
+const saisons = useAppSeasons()
+const pastSeason: ComputedRef<ApiSeasons_value[]> = computed(() =>
+    saisons.value
+        ?
+        saisons.value.value.filter(value => value.content.statut === 'passe')
+        : []
+)
 
-    const pastSeason = seasons.value.filter(value => value.content.statut === 'passe')
+const saisonFiltered: Ref<any[]> = computed(() => {
+    const arrayOfSpectaclesBySaisons: {
+        season: ApiSeasons_value,
+        spectacles: any[]
+    }[] = []
 
-    for (const saison of pastSeason) {
+    for (const saison of pastSeason.value) {
+
         const seasonSlug = saison.slug
-        // console.log('seasonSlug', seasonSlug)
+
         const spectacles = await fetchSpectaclesBySeason(seasonSlug)
-        arrayToReturn.push({
+        arrayOfSpectaclesBySaisons.push({
             season: saison,
             spectacles: spectacles,
         })
     }
 
-    console.log('arrayToReturn', arrayToReturn)
-    saisonFiltred.value = arrayToReturn
-
+    return arrayOfSpectaclesBySaisons
 })
 
 </script>
