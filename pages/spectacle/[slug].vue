@@ -163,11 +163,13 @@
           <div v-if="dateByMounth"
                style="margin-bottom: 1rem"
           >
-            <div v-for="dateGroup of dateByMounth">
-              <div>{{dateGroup.mouth}}</div>
-              <div>
+            <div v-for="dateGroup of dateByMounth"
+                 class="v-spectacle-slug__coll__text-content__details__dates"
+            >
+              <div class="v-spectacle-slug__coll__text-content__details__dates__mouth">{{dateGroup.mouth}}</div>
+              <div class="v-spectacle-slug__coll__text-content__details__dates__days">
                 <span v-for="(date, index) of dateGroup.dates">
-                  <template v-if="index > 0">, </template>{{date}}
+                  {{date}}<template v-if="index < dateGroup.dates.length - 1">, </template>
                 </span>
               </div>
             </div>
@@ -409,6 +411,17 @@ onMounted(async () => {
   &.v-spectacle-slug__coll__item--no-padding {
     padding: 0;
   }
+}
+
+.v-spectacle-slug__coll__text-content__details__dates {
+  display: flex;
+  gap: 1rem;
+}
+
+.v-spectacle-slug__coll__text-content__details__dates__days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
 }
 
 .v-spectacle-slug__coll__text-content {
