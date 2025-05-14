@@ -325,9 +325,9 @@
 </style>
 
 <script setup lang="ts">
-import {fetchNews, fetchPlacesInfo, fetchSiteInfo} from "~/utlis/apiCmsFetch";
+import {fetchNews, fetchPlacesInfo, fetchSeasons, fetchSiteInfo} from "~/utlis/apiCmsFetch";
 import {
-    useAppContentIsLoaded,
+    useAppContentIsLoaded, useAppSeasons,
     useFalkIsActive,
     useNews,
     usePlacesInfo, useShowCookieBanner,
@@ -353,6 +353,8 @@ onMounted(async () => {
 
       fetchPlacesInfo().then(value => usePlacesInfo().value = value),
 
+      fetchSeasons().then(value => useAppSeasons().value = value),
+
       fetchNews().then(value => {
 
           if( !value ) return
@@ -371,7 +373,7 @@ onMounted(async () => {
                   }
               })
       }),
-    ]).then(() => window.setTimeout(() => useAppContentIsLoaded().value = true, 3_000))
+    ]).then(() => window.setTimeout(() => useAppContentIsLoaded().value = true, 1_000))
 
     const storedValue = process.client ? localStorage.getItem('useShowCookieBanner') : null;
 

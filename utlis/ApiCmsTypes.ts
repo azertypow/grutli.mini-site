@@ -297,6 +297,11 @@ export type ApiHTMLContent_quote = ApiHTMLContent & {
     type: "quote"
 }
 
+export type ApiHTMLContent_break = ApiHTMLContent & {
+    type: "break"
+}
+
+
 
 export type ApiHTMLContent_image = ApiHTMLContent & {
     type: 'image';
@@ -355,6 +360,7 @@ export type ApiHTMLContent_Blocks =
     | ApiHTMLContent_imageGallery
     | ApiHTMLContent_video
     | ApiHTMLContent_quote
+    | ApiHTMLContent_break
 
 export type ApiSimplePage = {
     pageContent: ApiSimplePage_PageContent;
