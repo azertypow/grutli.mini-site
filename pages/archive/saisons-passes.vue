@@ -2,7 +2,7 @@
     <section
         class="v-saisons-passes"
     >
-      <template v-for="value of saisonFiltred">
+      <template v-for="value of saisonFiltered">
         <div class="v-index__list-wrap"
         >
           <h2>{{value.season.content.title}}</h2>
@@ -36,12 +36,16 @@
 import { defineProps } from 'vue'
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import {fetchSeasons, fetchSpectaclesBySeason} from "~/utlis/apiCmsFetch";
+import type {ApiCmsPageSpectacle, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 
 const props = defineProps<{
     message?: string
 }>()
 
-const saisonFiltred = ref([])
+const saisonFiltered: Ref<{
+    season: ApiSeasons_value,
+    spectacles: ApiCmsPageSpectacle[],
+}[]> = ref([])
 
 useHead({
   title: 'Saisons passées des Scènes du Grutli',
@@ -64,8 +68,7 @@ onMounted(async () => {
         })
     }
 
-    console.log('arrayToReturn', arrayToReturn)
-    saisonFiltred.value = arrayToReturn
+    saisonFiltered.value = arrayToReturn
 
 })
 
