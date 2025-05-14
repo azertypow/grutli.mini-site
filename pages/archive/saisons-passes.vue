@@ -35,7 +35,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
-import {getSpectaclesBySeasons, loadSeasons} from "~/utlis/apiCmsKQLFetch";
 import {fetchSeasons, fetchSpectaclesBySeason} from "~/utlis/apiCmsFetch";
 
 const props = defineProps<{
