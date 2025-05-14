@@ -233,8 +233,9 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  //background: rgba(0, 0, 0, 0.85);
   z-index: 0;
+  backdrop-filter: blur(2rem);
 }
 
 .v-app-newsletter__wrap {
