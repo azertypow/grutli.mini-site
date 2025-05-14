@@ -11,6 +11,20 @@ export function formatDate(stringDate: string): string {
     return formatter.format(startDate)
 }
 
+export function formatDate_byDay(stringDate: string): string {
+
+    const startDate = new Date(stringDate.replace(" ", "T"))
+
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        day: 'numeric'
+    }
+    const formatter = new Intl.DateTimeFormat('fr-FR', options)
+
+    return formatter.format(startDate)
+}
+
+
 export function formatDateStartAndDateEndToString(startDate: string, endDate: string): string {
     const startDateString = formatDate(startDate)
     const endDateString = formatDate(endDate)

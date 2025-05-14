@@ -23,6 +23,7 @@ export type ApiCmsPageSpectacle = {
             htmldetails: ApiHTMLContent_Blocks[],
             uuid: string
             season: string
+            list_of_dates: ApiCmsPageSpectacle_listOfDates[]
         },
         translations: [],
         children: [],
@@ -38,7 +39,16 @@ export type ApiCmsPageSpectacle = {
         uri: string,
         url: string
     };
-};
+}
+
+export interface ApiCmsPageSpectacle_listOfDates {
+    list_of_dates_date: string
+    list_of_dates_hour: string
+    list_of_dates_ticket_link: string
+    list_of_dates_is_relax: "false" | "true"
+    id: string
+}
+
 
 export type ApiCmsCompany = {
     authors_name: string,

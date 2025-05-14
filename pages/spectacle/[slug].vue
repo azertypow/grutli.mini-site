@@ -11,7 +11,7 @@
           />
         </div>
 
-        <div class="v-spectacle-slug__coll__item">
+        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
           <div class="v-spectacle-slug__coll__header">
             <div class="v-spectacle-slug__coll__header__season-name">
               {{useAppSeasons().value?.value.find(item => item.slug === pageData?.pageContent.content.season)?.content.title}}
@@ -77,7 +77,7 @@
         </div>
 
         <template v-for="htmlContent of splitHtmlContentByBreakBlock">
-          <div class="v-spectacle-slug__coll__item">
+          <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
             <template v-for="blockContent of htmlContent">
 
               <div v-if="blockContent.type === 'textWithTitle'"
@@ -108,7 +108,7 @@
               </div>
 
               <div v-else-if="blockContent.type === 'text'"
-                   class="v-spectacle-slug__coll__content__text__text"
+                   class="v-spectacle-slug__coll__content__text__text app-remove-first-last-child-margin"
                    v-html="blockContent.content.text"
               ></div>
 
@@ -158,10 +158,21 @@
         </template>
 
 
-        <div class="v-spectacle-slug__coll__item">
+        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
           <div id="dates-details"></div>
+          <div v-if="dateByMounth"
+               style="margin-bottom: 1rem"
+          >
+            <div v-for="dateGroup of dateByMounth">
+              <div>{{dateGroup.mouth}}</div>
+              <div>
+                <span v-for="(date, index) of dateGroup.dates">
+                  <template v-if="index > 0">, </template>{{date}}
+                </span>
+              </div>
+            </div>
+          </div>
           <template v-for="content of pageData?.pageContent.content.htmldetails">
-            <div>{liste des dates}</div>
             <div class="app-remove-first-last-child-margin v-spectacle-slug__detailsHtml">
               <div v-if="content.type === 'text'"
                    v-html="content.content.text"
@@ -176,11 +187,11 @@
           </template>
         </div>
 
-        <div class="v-spectacle-slug__coll__item">
-          <div class="v-spectacle-slug__coll__text-content__details__peoples"
+        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+          <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin"
                v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
           />
-          <div class="v-spectacle-slug__coll__text-content__details__details"
+          <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
                v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
           />
         </div>
@@ -206,7 +217,7 @@ import {
 } from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
-import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
+import {formatDate, formatDate_byDay, formatDateStartAndDateEndToString} from "~/utlis/formatDate";
 import {formatTitle} from "~/utlis/formatStringCiattion";
 import items from "@redocly/ajv/lib/vocabularies/applicator/items";
 
@@ -232,6 +243,34 @@ const splitHtmlContentByBreakBlock: ComputedRef<ApiHTMLContent_Blocks[][] | null
 
     return arrayToReturn.filter(value => value.length > 0)
 
+})
+
+const dateByMounth: ComputedRef<null | { mouth: string; dates: string[] }[]> = computed(() => {
+    if (!pageData.value) return null
+
+    const groupedDateByMouth: {
+        mouth: string
+        dates: string[]
+    }[] = []
+
+    pageData.value.pageContent.content.list_of_dates.forEach(dateItem => {
+
+        const date = new Date(dateItem.list_of_dates_date)
+        const mouthOfDate = date.toLocaleDateString('fr-FR', { month: 'long' })
+
+        const indexOfMouthGroup = groupedDateByMouth.findIndex(value => value.mouth === mouthOfDate)
+
+        if (indexOfMouthGroup === -1) {
+            groupedDateByMouth.push({
+                mouth: mouthOfDate,
+                dates: [formatDate_byDay( dateItem.list_of_dates_date )]
+            })
+        } else {
+            groupedDateByMouth[indexOfMouthGroup].dates.push(formatDate_byDay( dateItem.list_of_dates_date ))
+        }
+    })
+
+    return groupedDateByMouth
 })
 
 

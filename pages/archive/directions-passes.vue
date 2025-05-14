@@ -1,28 +1,28 @@
 <template>
   <section class="v-archive-directions-passes"
   >
-    <h1 class="v-archive-directions-passes__title">Archive</h1>
+    <h1 class="v-archive-directions-passes__title" style="margin-bottom: 2rem">Directions passées</h1>
     <div class="v-archive-directions-passes__wrap">
 
       <a class="v-archive-directions-passes__wrap__item"
          href="https://2024.grutli.ch/"
       >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Barbara Giongo & Nathalie Sugnaux Hernandez</h2>
         <p  class="v-archive-directions-passes__wrap__item__info">2018-2024</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Barbara Giongo & Nathalie Sugnaux Hernandez</h2>
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
          href="https://2024.grutli.ch/"
       >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Frédéric Polier</h2>
         <p  class="v-archive-directions-passes__wrap__item__info">2012-2018</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Frédéric Polier</h2>
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
          href="https://2024.grutli.ch/"
       >
-        <h2 class="v-archive-directions-passes__wrap__item__title">Michèle Pralong et Maya Bösch</h2>
         <p  class="v-archive-directions-passes__wrap__item__info">2009-2012</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Michèle Pralong<br>et Maya Bösch</h2>
       </a>
 
     </div>
@@ -100,6 +100,8 @@ useHead({
 .v-archive-directions-passes__wrap__item__info {
   margin-bottom: 0;
   margin-top: 1em;
+  position: absolute;
+  top: 0;
 }
 
 
