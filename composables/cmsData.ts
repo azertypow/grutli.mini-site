@@ -1,4 +1,11 @@
-import type {ApiNews, ApiNewsItem, ApiPlaces, ApiSimplePage_ChildDetails, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {
+    ApiNews,
+    ApiNewsItem,
+    ApiPlaces,
+    ApiSeasons,
+    ApiSimplePage_ChildDetails,
+    SiteInfo
+} from "~/utlis/ApiCmsTypes";
 
 export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
     return useState('useSiteInfo', () => null )
@@ -51,3 +58,5 @@ export const useAppContentIsLoaded: () => Ref<boolean> = () => {
 export const useAppNewsletterIsOpen:() => Ref<boolean> = () => {
     return useState('useAppNewsletterIsOpen', () => false )
 }
+
+export const useAppSeasons: () => Ref<ApiSeasons | null> = () => useState('useAppSeasons', () => null)
