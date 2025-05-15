@@ -15,7 +15,7 @@
                         :event_info="spectacle.pageContent.content.eventinfo"
                         :to="'/spectacle/' + spectacle.pageContent.slug"
                         :title='spectacle.pageContent.content.title'
-                        :peoples="[{authors_link: 'authors_link', authors_name: 'compagnie', id: 'id'}]"
+                        :peoples="[{authors_link: 'authors_link', authors_name: formatDate(spectacle.pageContent.content.datestart), id: 'id'}]"
                 />
               </div>
             </template>
@@ -37,6 +37,7 @@ import { defineProps } from 'vue'
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import {fetchSeasons, fetchSpectaclesBySeason} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
+import {formatDate} from "~/utlis/formatDate";
 
 const props = defineProps<{
     message?: string
