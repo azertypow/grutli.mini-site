@@ -223,25 +223,6 @@
   cursor: pointer;
 }
 
-
-@keyframes app-app__news__wrap--animation {
-  0% {
-    transform: translate(0%, 0%);
-  }
-  100% {
-    transform: translate(-25%, 0%);
-  }
-}
-
-//@keyframes app-app__intro-animation {
-//  0% {
-//    transform: scale(1);
-//  }
-//  100% {
-//    transform: scale(1.5);
-//  }
-//}
-
 .app-app__video-bg {
   display: block;
   position: fixed;
