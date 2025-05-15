@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 
-import type {SiteInfo, SiteInfoPageSimple, Spectacle} from "~/utlis/ApiCmsTypes";
+import type {ApiSeasons_value, SiteInfo, SiteInfoPageSimple, Spectacle} from "~/utlis/ApiCmsTypes";
 import {
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
@@ -87,7 +87,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
 
 
 
-    const spectaclesPast = siteInfo.value?.spectacles.filter(event => {
+    const spectaclesPast = curentSeasonSpectacle.value.filter(event => {
         const eventDateEnd = new Date(event.pageContent.content.dateend)
         const currentDate = new Date()
 
@@ -143,7 +143,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
     }) || []
 
 
-    const spectaclesNotEnded: IAppEventPropsData[] = siteInfo.value?.spectacles.filter(event => {
+    const spectaclesNotEnded: IAppEventPropsData[] = curentSeasonSpectacle.value.filter(event => {
         const eventDateEnd = new Date(event.pageContent.content.dateend)
         const currentDate = new Date()
 
@@ -165,6 +165,24 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
         const dateStart_b = new Date(b.datestart)
 
         return dateStart_a.getTime() - dateStart_b.getTime()
+    })
+})
+
+const activeSeason: Ref<ApiSeasons_value[] | null> = useAppSeasons_active()
+
+const curentSeasonSpectacle: ComputedRef<Spectacle[]> = computed(() => {
+    const siteInfo_value      = siteInfo.value
+    const activeSeason_value  = activeSeason.value
+
+    if (!siteInfo_value)      return []
+    if (!activeSeason_value)  return []
+
+    const activeSaisonsSlug = activeSeason_value.map(season => season.slug)
+
+    console.log( activeSaisonsSlug )
+
+    return siteInfo_value.spectacles.filter( (spectacle: Spectacle) => {
+        return activeSaisonsSlug.includes( spectacle.pageContent.content.season )
     })
 })
 
