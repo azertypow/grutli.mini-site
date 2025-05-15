@@ -262,6 +262,7 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
 .v-app-newsletter__wrap__header__title {
   margin-top: 0;
   margin-bottom: 1em;
+  line-height: 1.15em;
 }
 
 div.v-app-newsletter__wrap__form__submit{
