@@ -13,7 +13,14 @@
     <h2 class="v-app-spectacle-card__item__title app-font-h5 app-font-align-center">{{ title }}</h2>
     <div class="v-app-spectacle-card__item__info app-font-small"
          v-if="event_info"
-    >{{event_info}}</div>
+    >
+      <div class="v-app-spectacle-card__item__info__wrap">
+        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
+        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
+        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
+        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
+      </div>
+    </div>
     <div class="v-app-spectacle-card__item__peoples app-font-base app-font-small app-font-align-center"
          v-if="peoples"
     >
@@ -131,6 +138,30 @@ const dateFromTicketService = computed(() => {
   text-align: center;
   font-style: italic;
   margin-bottom: 0;
+  background: var(--app-color-purple);
+  overflow: hidden;
+  position: relative;
+  height: 1rem;
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
+  transform: translate3d(0, 50%, 1rem);
+}
+
+.v-app-spectacle-card__item__info__wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  animation: app-app__news__wrap--animation--variante ease-in-out 15s infinite alternate-reverse;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.v-app-spectacle-card__item__info__wrap__text {
+  white-space: nowrap;
+  padding-right: 2rem;
+  line-height: 1rem;
 }
 
 </style>
