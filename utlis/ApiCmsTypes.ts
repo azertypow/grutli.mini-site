@@ -180,6 +180,7 @@ export interface SpectacleContentDetails {
     details: string;
     htmldetails: string;
     uuid: string;
+    season: string;
 }
 
 

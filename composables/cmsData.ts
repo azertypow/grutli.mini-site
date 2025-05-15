@@ -2,7 +2,7 @@ import type {
     ApiNews,
     ApiNewsItem,
     ApiPlaces,
-    ApiSeasons,
+    ApiSeasons, ApiSeasons_value,
     ApiSimplePage_ChildDetails,
     SiteInfo
 } from "~/utlis/ApiCmsTypes";
@@ -60,3 +60,5 @@ export const useAppNewsletterIsOpen:() => Ref<boolean> = () => {
 }
 
 export const useAppSeasons: () => Ref<ApiSeasons | null> = () => useState('useAppSeasons', () => null)
+
+export const useAppSeasons_active: () => Ref<ApiSeasons_value[] | null> = () => useState('useAppSeasons_active', () => null)

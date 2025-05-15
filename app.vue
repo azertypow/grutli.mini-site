@@ -308,13 +308,14 @@
 <script setup lang="ts">
 import {fetchNews, fetchPlacesInfo, fetchSeasons, fetchSiteInfo} from "~/utlis/apiCmsFetch";
 import {
-    useAppContentIsLoaded, useAppSeasons,
+    useAppContentIsLoaded, useAppSeasons, useAppSeasons_active,
     useFalkIsActive,
     useNews,
     usePlacesInfo, useShowCookieBanner,
     useSiteInfo, useWindowIsScrollToBottom
 } from "~/composables/cmsData";
 import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
+import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 
 function handleCookieBannerClick() {
     useShowCookieBanner().value = false
@@ -334,7 +335,11 @@ onMounted(async () => {
 
       fetchPlacesInfo().then(value => usePlacesInfo().value = value),
 
-      fetchSeasons().then(value => useAppSeasons().value = value),
+      fetchSeasons().then(value => {
+          useAppSeasons().value = value
+
+          useAppSeasons_active().value = value.value.filter((season: ApiSeasons_value) => season.content.statut === 'en-cours')
+      }),
 
       fetchNews().then(value => {
 
