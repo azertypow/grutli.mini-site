@@ -391,6 +391,52 @@ export type ApiPlaces = {
 }
 
 
+export type ApiPage_template_diffusion = {
+    childrenDetails:         {
+        "cover": [],
+        "pageContent": {
+            "content": {
+                "title": string,
+                "uuid": string
+            },
+            translations: any[];
+            children: string[];
+            files: any[];
+            id: string;
+            mediaUrl: string;
+            mediaRoot: string;
+            num: number;
+            parent: string | null;
+            slug: string;
+            template: Record<string, any>;
+            uid: string;
+            uri: string;
+            url: string;
+        }
+    }[]
+    pageContent: {
+        "content": {
+            "title": string,
+            "htmlcontent": ApiHTMLContent_Blocks[],
+            "uuid": string
+        },
+        translations: any[];
+        children: string[];
+        files: any[];
+        id: string;
+        mediaUrl: string;
+        mediaRoot: string;
+        num: number;
+        parent: string | null;
+        slug: string;
+        template: Record<string, any>;
+        uid: string;
+        uri: string;
+        url: string;
+    }
+}
+
+
 export type ApiNews = {
     value: ApiNewsItem[]
 }

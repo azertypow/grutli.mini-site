@@ -1,4 +1,12 @@
-import type {ApiCmsPageSpectacle, ApiNews, ApiPlaces, ApiSeasons, ApiSimplePage, SiteInfo} from "~/utlis/ApiCmsTypes";
+import type {
+    ApiCmsPageSpectacle,
+    ApiNews,
+    ApiPage_template_diffusion,
+    ApiPlaces,
+    ApiSeasons,
+    ApiSimplePage,
+    SiteInfo
+} from "~/utlis/ApiCmsTypes";
 
 const apiBaseUrl = 'https://grutli-dev-admin.sdrvl.ch'
 // const apiBaseUrl = 'http://localhost:8000'
@@ -46,6 +54,31 @@ export async function fetchPage(slugParams: string | string[]): Promise<ApiSimpl
         return null;
     }
 }
+
+export async function fetchPage_template_diffusions(slugParams: string | string[]): Promise<ApiPage_template_diffusion | null> {
+
+    const slug: string = Array.isArray(slugParams) ?
+        slugParams.join('/')
+        : slugParams
+
+    const url = apiBaseUrl + '/' + slug.replace(/\/$/, "") + '.json'
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        return data as ApiPage_template_diffusion;
+    } catch (error) {
+        console.error("Failed to fetch site info:", error);
+        return null;
+    }
+}
+
 
 export async function fetchPageSpectacle(slug: string): Promise<ApiCmsPageSpectacle | null> {
     return await fetchPage(['spectacles', slug]) as unknown as ApiCmsPageSpectacle | null
