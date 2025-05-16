@@ -1,7 +1,7 @@
 <template>
     <section class="v-archive-index"
     >
-      <h1 class="v-archive-index__title">Archive</h1>
+<!--      <h1 class="v-archive-index__title">Archive</h1>-->
       <div class="v-archive-index__wrap">
 
         <nuxt-link  class="v-archive-index__wrap__item"
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import {useCurrentPageForNavLinks} from "~/composables/cmsData";
 
 const props = defineProps<{
     message?: string
@@ -33,6 +34,10 @@ const props = defineProps<{
 
 useHead({
   title: 'Archive des Scènes du Grutli',
+})
+
+onMounted(() => {
+    useCurrentPageForNavLinks().value = null
 })
 
 </script>

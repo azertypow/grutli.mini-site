@@ -38,6 +38,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import {useCurrentPageForNavLinks} from "~/composables/cmsData";
 
 const props = defineProps<{
   message?: string
@@ -45,6 +46,10 @@ const props = defineProps<{
 
 useHead({
   title: 'Directions passées des Scènes du Grutli',
+})
+
+onMounted(() => {
+    useCurrentPageForNavLinks().value = null
 })
 
 </script>

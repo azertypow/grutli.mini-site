@@ -12,10 +12,13 @@
             <template v-for="spectacle of  value.spectacles">
               <div class="v-index__item">
                 <AppSpectacleCard
-                        :event_info="spectacle.pageContent.content.eventinfo"
                         :to="'/spectacle/' + spectacle.pageContent.slug"
                         :title='spectacle.pageContent.content.title'
-                        :peoples="[{authors_link: 'authors_link', authors_name: formatDate(spectacle.pageContent.content.datestart), id: 'id'}]"
+                        :peoples="[{
+                            authors_link: 'authors_link',
+                            authors_name: `${formatDate(spectacle.pageContent.content.datestart)} - ${formatDate(spectacle.pageContent.content.dateend)}`,
+                            id: 'id'
+                        }]"
                 />
               </div>
             </template>
@@ -38,6 +41,7 @@ import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import {fetchSeasons, fetchSpectaclesBySeason} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 import {formatDate} from "~/utlis/formatDate";
+import {useCurrentPageForNavLinks} from "~/composables/cmsData";
 
 const props = defineProps<{
     message?: string
@@ -53,6 +57,8 @@ useHead({
 })
 
 onMounted(async () => {
+    useCurrentPageForNavLinks().value = null
+
     const seasons = await fetchSeasons()
 
     const arrayToReturn = []
