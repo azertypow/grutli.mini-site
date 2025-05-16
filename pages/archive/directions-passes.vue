@@ -5,6 +5,7 @@
     <div class="v-archive-directions-passes__wrap">
 
       <a class="v-archive-directions-passes__wrap__item"
+         target="_blank"
          href="https://2024.grutli.ch/"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2018-2024</p>
@@ -12,14 +13,16 @@
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
-         href="https://2024.grutli.ch/"
+         href="data:text/html,%3Chtml%3E%3Cbody%20style%3D%22font-family%3A%20sans-serif%3B%20margin%3A%202rem%3B%22%3E%3Ch1%3EArchivage%20en%20cours%3C%2Fh1%3E%3C%2Fbody%3E%3C%2Fhtml%3E"
+         target="_blank"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2012-2018</p>
         <h2 class="v-archive-directions-passes__wrap__item__title">Frédéric Polier</h2>
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
-         href="https://2024.grutli.ch/"
+         href="data:text/html,%3Chtml%3E%3Cbody%20style%3D%22font-family%3A%20sans-serif%3B%20margin%3A%202rem%3B%22%3E%3Ch1%3EArchivage%20en%20cours%3C%2Fh1%3E%3C%2Fbody%3E%3C%2Fhtml%3E"
+         target="_blank"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2009-2012</p>
         <h2 class="v-archive-directions-passes__wrap__item__title">Michèle Pralong<br>et Maya Bösch</h2>
