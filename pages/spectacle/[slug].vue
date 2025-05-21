@@ -1,208 +1,153 @@
 <template>
-    <section class="v-spectacle-slug"
-    >
-      <div class="v-spectacle-slug__coll">
+  <section class="v-spectacle-slug"
+  >
+    <div class="v-spectacle-slug__coll">
 
-        <div class="v-spectacle-slug__coll__item v-spectacle-slug__coll__item--no-padding">
-          <img alt="image texte"
-               v-if="pageData"
-               class="v-spectacle-slug__img"
-               :src="pageData?.cover[0].resize.xxl"
-          />
-        </div>
+      <!-- [START] 2 first blocks -->
+      <div class="v-spectacle-slug__coll__item v-spectacle-slug__coll__item--no-padding">
+        <img alt="image texte"
+             v-if="pageData"
+             class="v-spectacle-slug__img"
+             :src="pageData?.cover[0].resize.xxl"
+        />
+      </div>
 
+      <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+        <app-spectacle-slug-info
+                :page_data="pageData"
+                :first_and_last_date="firstAndLAstDate"
+                :place_name="placeName"
+        />
+      </div>
+      <!-- [END] 2 first blocks -->
+
+
+      <!-- [START] spectacles blocks -->
+      <template v-for="htmlContent of splitHtmlContentByBreakBlock">
         <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-          <div class="v-spectacle-slug__coll__header">
-            <div class="v-spectacle-slug__coll__header__season-name">
-              {{useAppSeasons().value?.value.find(item => item.slug === pageData?.pageContent.content.season)?.content.title}}
-            </div>
-            <div class="v-spectacle-slug__coll__header__ticket">
+          <template v-for="blockContent of htmlContent">
 
-              <a class="app-button-grey app-font-small"
-                 v-if="pageData?.pageContent.content.externalticketservicelink"
-                 :href="pageData.pageContent.content.externalticketservicelink"
+            <div v-if="blockContent.type === 'textWithTitle'"
+                 class="v-spectacle-slug__coll__content__text__text"
+                 v-html="blockContent.content.text"
+            ></div>
+
+            <div v-if="blockContent.type === 'link'"
+                 class="v-spectacle-slug__coll__content__text__link"
+            >
+              <a class="app-button"
                  target="_blank"
+                 :href="blockContent.content.link"
               >
-                <template v-if="pageData.pageContent.content.externalticketservicename">
-                  {{pageData.pageContent.content.externalticketservicename}}
-                </template>
-                <template v-else>
-                  Prendre un billet
-                </template>
+                <span>{{ blockContent.content.text }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                     fill="undefined">
+                  <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
+                </svg>
               </a>
-
-              <div class="app-button-grey app-font-small"
-                   v-else-if="ticketInfo && ticketInfo === 'loaded'"
-              ><span class=""
-                     style="opacity: .5"
-              >chargement…</span></div>
-
-              <a class="app-button-grey app-font-small"
-                 v-else-if="ticketInfo && ticketInfo.length > 0"
-                 target="_blank"
-                 :href="`https://infomaniak.events/shop/UwCaGkGB7O/events/${ticketInfo[0].event_id}`"
-              >Prendre un billet</a>
-              <a class="app-button-grey app-font-small"
-                 href="#dates-details"
-              >Dates & horaires</a>
             </div>
-          </div>
 
-          <div class="v-spectacle-slug__coll__text-content__date_and_place">
-            <div v-if="firstAndLAstDate">{{ firstAndLAstDate }}</div>
-            <div>{{ placeName }}</div>
-          </div>
-          <h1 class="v-spectacle-slug__coll__text-content__title app-font-align-center app-font-h3">
-            {{ pageData?.pageContent.content.title }}</h1>
-          <div class="v-spectacle-slug__coll__text-content__is-cover app-font-align-center app-font-small"
-               v-if="pageData?.pageContent.content.iscover === 'true'"
-          >
-            Reprise
-          </div>
+            <div v-if="blockContent.type === 'quote'"
+                 class="v-spectacle-slug__coll__content__text__quote"
+            >
+              <div v-html="blockContent.content.text"></div>
+              <div v-html="formatTitle(blockContent.content.citation)"></div>
+            </div>
 
-          <div class="v-spectacle-slug__coll__text-content__company app-font-mono">
-            <div v-for="companyPeople of pageData?.pageContent.content.company">
-              <template v-if="companyPeople.authors_link">
-                <a target="_blank" :href="companyPeople.authors_link">
-                  {{ companyPeople.authors_name }}
-                </a>
-              </template>
-              <template v-else>
-                <div>
-                  {{ companyPeople.authors_name }}
+            <div v-else-if="blockContent.type === 'text'"
+                 class="v-spectacle-slug__coll__content__text__text app-remove-first-last-child-margin"
+                 v-html="blockContent.content.text"
+            ></div>
+
+            <iframe v-if="blockContent.type === 'video'"
+                    class="v-spectacle-slug__coll__content__text__youtube"
+                    :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(blockContent.content.url)}`"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+            ></iframe>
+
+
+            <template v-else-if="blockContent.type === 'image'">
+              <div class="v-spectacle-slug__coll__content__text__image"
+                   v-for="image of blockContent.images"
+              >
+                <img class="v-spectacle-slug__coll__content__text__image__img"
+                     :src="image.resize.large"
+                     :alt="image.alt || 'pas de texte alt'"
+                >
+                <div class="v-spectacle-slug__coll__content__text__image__legendary"
+                >{{ image.photographer }}
                 </div>
-              </template>
-            </div>
-          </div>
-        </div>
-
-        <template v-for="htmlContent of splitHtmlContentByBreakBlock">
-          <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-            <template v-for="blockContent of htmlContent">
-
-              <div v-if="blockContent.type === 'textWithTitle'"
-                   class="v-spectacle-slug__coll__content__text__text"
-                   v-html="blockContent.content.text"
-              ></div>
-
-              <div v-if="blockContent.type === 'link'"
-                   class="v-spectacle-slug__coll__content__text__link"
-              >
-                <a class="app-button"
-                   target="_blank"
-                   :href="blockContent.content.link"
-                >
-                  <span>{{ blockContent.content.text }}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                       fill="undefined">
-                    <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
-                  </svg>
-                </a>
               </div>
-
-              <div v-if="blockContent.type === 'quote'"
-                   class="v-spectacle-slug__coll__content__text__quote"
-              >
-                <div v-html="blockContent.content.text"></div>
-                <div v-html="formatTitle(blockContent.content.citation)"></div>
-              </div>
-
-              <div v-else-if="blockContent.type === 'text'"
-                   class="v-spectacle-slug__coll__content__text__text app-remove-first-last-child-margin"
-                   v-html="blockContent.content.text"
-              ></div>
-
-              <iframe v-if="blockContent.type === 'video'"
-                      class="v-spectacle-slug__coll__content__text__youtube"
-                      :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(blockContent.content.url)}`"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
-                      allowfullscreen
-              ></iframe>
+            </template>
 
 
-              <template v-else-if="blockContent.type === 'image'">
-                <div class="v-spectacle-slug__coll__content__text__image"
-                     v-for="image of blockContent.images"
-                >
-                  <img class="v-spectacle-slug__coll__content__text__image__img"
+            <div v-else-if="blockContent.type === 'imageGallery'"
+                 class="v-spectacle-slug__coll__content__text__gallery"
+            >
+              <template v-for="image of blockContent.images">
+                <div class="v-spectacle-slug__coll__content__text__gallery__item">
+                  <img class="v-spectacle-slug__coll__content__text__gallery__item__img"
                        :src="image.resize.large"
                        :alt="image.alt || 'pas de texte alt'"
                   >
-                  <div class="v-spectacle-slug__coll__content__text__image__legendary"
+                  <div class="v-spectacle-slug__coll__content__text__gallery__item__legendary"
                   >{{ image.photographer }}
                   </div>
                 </div>
               </template>
-
-
-              <div v-else-if="blockContent.type === 'imageGallery'"
-                   class="v-spectacle-slug__coll__content__text__gallery"
-              >
-                <template v-for="image of blockContent.images">
-                  <div class="v-spectacle-slug__coll__content__text__gallery__item">
-                    <img class="v-spectacle-slug__coll__content__text__gallery__item__img"
-                         :src="image.resize.large"
-                         :alt="image.alt || 'pas de texte alt'"
-                    >
-                    <div class="v-spectacle-slug__coll__content__text__gallery__item__legendary"
-                    >{{ image.photographer }}
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </template>
-          </div>
-        </template>
-
-
-        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-          <div id="dates-details"></div>
-          <div v-if="dateByMounth"
-               style="margin-bottom: 1rem"
-          >
-            <div v-for="dateGroup of dateByMounth"
-                 class="v-spectacle-slug__coll__text-content__details__dates"
-            >
-              <div class="v-spectacle-slug__coll__text-content__details__dates__mouth">{{dateGroup.mouth}}</div>
-              <div class="v-spectacle-slug__coll__text-content__details__dates__days">
-                <span v-for="(date, index) of dateGroup.dates">
-                  {{date}}<template v-if="index < dateGroup.dates.length - 1">, </template>
-                </span>
-              </div>
-            </div>
-          </div>
-          <template v-for="content of pageData?.pageContent.content.htmldetails">
-            <div class="app-remove-first-last-child-margin v-spectacle-slug__detailsHtml">
-              <div v-if="content.type === 'text'"
-                   v-html="content.content.text"
-              ></div>
-
-              <img v-if="content.type === 'image'"
-                   v-for="image of content.images"
-                   :src="image.resize.large"
-                   :alt="image.alt || 'pas de texte alt'"
-              >
             </div>
           </template>
         </div>
+      </template>
+      <!-- [END] spectacles blocks -->
 
-        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-          <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin"
-               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
-          />
-          <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
-               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
-          />
+
+      <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+        <div id="dates-details"></div>
+        <div v-if="dateByMounth"
+             style="margin-bottom: 1rem"
+        >
+          <div v-for="dateGroup of dateByMounth"
+               class="v-spectacle-slug__coll__text-content__details__dates"
+          >
+            <div class="v-spectacle-slug__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
+            <div class="v-spectacle-slug__coll__text-content__details__dates__days">
+                <span v-for="(date, index) of dateGroup.dates">
+                  {{ date }}<template v-if="index < dateGroup.dates.length - 1">, </template>
+                </span>
+            </div>
+          </div>
         </div>
+        <template v-for="content of pageData?.pageContent.content.htmldetails">
+          <div class="app-remove-first-last-child-margin v-spectacle-slug__detailsHtml">
+            <div v-if="content.type === 'text'"
+                 v-html="content.content.text"
+            ></div>
+
+            <img v-if="content.type === 'image'"
+                 v-for="image of content.images"
+                 :src="image.resize.large"
+                 :alt="image.alt || 'pas de texte alt'"
+            >
+          </div>
+        </template>
       </div>
-    </section>
+
+      <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin"
+             v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
+        />
+        <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
+             v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
+        />
+      </div>
+    </div>
+  </section>
 </template>
-
-
-
 
 
 <script setup lang="ts">
@@ -210,18 +155,14 @@ import {fetchPageSpectacle} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle, ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
 import {
-    useAppSeasons,
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
-    useFalkIsActive,
     useParentSubPageForNavLinks,
     usePlacesInfo
 } from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
-import {convertMinutesToHoursAndMinutes} from "~/utlis/minuteToHHhMMString";
-import {formatDate, formatDate_byDay, formatDateStartAndDateEndToString} from "~/utlis/formatDate";
+import {formatDate_byDay, formatDateStartAndDateEndToString} from "~/utlis/formatDate";
 import {formatTitle} from "~/utlis/formatStringCiattion";
-import items from "@redocly/ajv/lib/vocabularies/applicator/items";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
@@ -258,17 +199,17 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: string[] }[]> = c
     pageData.value.pageContent.content.list_of_dates.forEach(dateItem => {
 
         const date = new Date(dateItem.list_of_dates_date)
-        const mouthOfDate = date.toLocaleDateString('fr-FR', { month: 'long' })
+        const mouthOfDate = date.toLocaleDateString('fr-FR', {month: 'long'})
 
         const indexOfMouthGroup = groupedDateByMouth.findIndex(value => value.mouth === mouthOfDate)
 
         if (indexOfMouthGroup === -1) {
             groupedDateByMouth.push({
                 mouth: mouthOfDate,
-                dates: [formatDate_byDay( dateItem.list_of_dates_date )]
+                dates: [formatDate_byDay(dateItem.list_of_dates_date)]
             })
         } else {
-            groupedDateByMouth[indexOfMouthGroup].dates.push(formatDate_byDay( dateItem.list_of_dates_date ))
+            groupedDateByMouth[indexOfMouthGroup].dates.push(formatDate_byDay(dateItem.list_of_dates_date))
         }
     })
 
@@ -281,46 +222,46 @@ const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref(null)
 
 const placeName: ComputedRef<string | null> = computed(() => {
 
-    if( !pageData.value ) return null
+    if (!pageData.value) return null
 
     const placesInfo = usePlacesInfo().value
-    if( ! placesInfo ) return pageData.value.pageContent.content.places
+    if (!placesInfo) return pageData.value.pageContent.content.places
 
     const translatedPlaceBySlug =
         placesInfo.value.find(placeItem => placeItem.slug === pageData.value?.pageContent.content.places)
 
-    if(translatedPlaceBySlug) return translatedPlaceBySlug.title
+    if (translatedPlaceBySlug) return translatedPlaceBySlug.title
     return null
 })
 
-const firstAndLAstDate = computed(() => {
+const firstAndLAstDate: ComputedRef<null | string> = computed(() => {
 
-    if( !pageData.value ) return null
+    if (!pageData.value) return null
 
     const currentDate = new Date()
-    currentDate.setHours(0,0,0,0)
+    currentDate.setHours(0, 0, 0, 0)
     const dateEnd = new Date(pageData.value.pageContent.content.dateend.replace(" ", "T"))
-    dateEnd.setHours(0,0,0,0)
+    dateEnd.setHours(0, 0, 0, 0)
 
     if (currentDate > dateEnd) return 'passé'
 
     return formatDateStartAndDateEndToString(pageData.value.pageContent.content.datestart, pageData.value.pageContent.content.dateend)
 })
 
-const groupedByMonth: ComputedRef<{[month: string]: {text: string, eventID: number}[]} | null> = computed(() => {
+const groupedByMonth: ComputedRef<{ [month: string]: { text: string, eventID: number }[] } | null> = computed(() => {
     if (ticketInfo.value === null) return null
-    if ( !Array.isArray(ticketInfo.value) ) return null
+    if (!Array.isArray(ticketInfo.value)) return null
 
-    return ticketInfo.value.reduce((acc: {[month: string]: {text: string, eventID: number}[]}, eventItem) => {
+    return ticketInfo.value.reduce((acc: { [month: string]: { text: string, eventID: number }[] }, eventItem) => {
         const date = new Date(eventItem.date.replace(" ", "T"));
-        const monthKey = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+        const monthKey = date.toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'});
 
         if (!acc[monthKey]) {
             acc[monthKey] = [];
         }
 
         acc[monthKey].push({
-            text: new Date(eventItem.date.replace(" ", "T")).toLocaleDateString('fr-FR',{
+            text: new Date(eventItem.date.replace(" ", "T")).toLocaleDateString('fr-FR', {
                 weekday: 'long',
                 day: 'numeric',
                 hour: 'numeric',
@@ -348,8 +289,8 @@ onMounted(async () => {
         title: 'Spectacle | ' + pageData.value?.pageContent.content.title
     })
 
-    if( !pageData.value) return
-    if(  !pageData.value.pageContent.content.eventtitle[0] ) return
+    if (!pageData.value) return
+    if (!pageData.value.pageContent.content.eventtitle[0]) return
 
     apiTicketInfomaniak_fetchEvents({
         search: pageData.value.pageContent.content.eventtitle[0]
@@ -365,10 +306,7 @@ onMounted(async () => {
 </script>
 
 
-
-
-
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 @use '@/assets/style/typo';
 
 .v-spectacle-slug {
@@ -431,21 +369,6 @@ onMounted(async () => {
   overflow: hidden;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-}
-
-.v-spectacle-slug__coll__text-content__title {
-  margin-bottom: .5rem;
-  margin-top: 0;
-}
-
-.v-spectacle-slug__coll__text-content__is-cover {
-  margin-bottom: .5rem;
-  color: var(--app-color-orange);
-}
-
-.v-spectacle-slug__coll__text-content__company {
-  text-align: center;
-  margin-bottom: 1rem;
 }
 
 .v-spectacle-slug__coll__content__text__image {
@@ -569,32 +492,6 @@ onMounted(async () => {
     text-align: right;
   }
 
-}
-
-.v-spectacle-slug__coll__header {
-  display: flex;
-  background: var(--app-color-grey);
-  justify-content: space-between;
-}
-
-.v-spectacle-slug__coll__header__ticket {
-  display: flex;
-  flex-direction: column;
-  gap: var(--app-gutter-xl);
-  align-items: flex-end;
-
-  a {
-    display: block;
-    text-decoration: none;
-    background: white;
-  }
-
-}
-
-.v-spectacle-slug__coll__text-content__date_and_place {
-  box-sizing: border-box;
-  padding: 0 0 1rem;
-  text-align: center;
 }
 
 :global( .v-spectacle-slug__coll__text-content__details__peoples > *) {
