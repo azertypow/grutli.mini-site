@@ -1,13 +1,13 @@
 <template>
     <section class="v-app-spectacle-slug-info"
     >
-      <div class="v-spectacle-slug__coll__header">
-        <div class="v-spectacle-slug__coll__header__season-name">
+      <div class="v-app-spectacle-slug-info__coll__header">
+        <div class="v-app-spectacle-slug-info__coll__header__season-name">
           {{
             useAppSeasons().value?.value.find(item => item.slug === page_data?.pageContent.content.season)?.content.title
           }}
         </div>
-        <div class="v-spectacle-slug__coll__header__ticket">
+        <div class="v-app-spectacle-slug-info__coll__header__ticket">
 
           <a class="app-button-grey app-font-small"
              v-if="page_data?.pageContent.content.externalticketservicelink"
@@ -27,19 +27,19 @@
         </div>
       </div>
 
-      <div class="v-spectacle-slug__coll__text-content__date_and_place">
+      <div class="v-app-spectacle-slug-info__coll__text-content__date_and_place">
         <div v-if="first_and_last_date">{{ first_and_last_date }}</div>
         <div>{{ place_name }}</div>
       </div>
-      <h1 class="v-spectacle-slug__coll__text-content__title app-font-align-center app-font-h3">
+      <h1 class="v-app-spectacle-slug-info__coll__text-content__title app-font-align-center app-font-h3">
         {{ page_data?.pageContent.content.title }}</h1>
-      <div class="v-spectacle-slug__coll__text-content__is-cover app-font-align-center app-font-small"
+      <div class="v-app-spectacle-slug-info__coll__text-content__is-cover app-font-align-center app-font-small"
            v-if="page_data?.pageContent.content.iscover === 'true'"
       >
         Reprise
       </div>
 
-      <div class="v-spectacle-slug__coll__text-content__company app-font-mono">
+      <div class="v-app-spectacle-slug-info__coll__text-content__company app-font-mono">
         <div v-for="companyPeople of page_data?.pageContent.content.company">
           <template v-if="companyPeople.authors_link">
             <a target="_blank" :href="companyPeople.authors_link">
@@ -81,13 +81,13 @@ const props = defineProps<{
   width: 100%;
 }
 
-.v-spectacle-slug__coll__header {
+.v-app-spectacle-slug-info__coll__header {
   display: flex;
   background: var(--app-color-grey);
   justify-content: space-between;
 }
 
-.v-spectacle-slug__coll__header__ticket {
+.v-app-spectacle-slug-info__coll__header__ticket {
   display: flex;
   flex-direction: column;
   gap: var(--app-gutter-xl);
@@ -101,23 +101,23 @@ const props = defineProps<{
 
 }
 
-.v-spectacle-slug__coll__text-content__title {
+.v-app-spectacle-slug-info__coll__text-content__title {
   margin-bottom: .5rem;
   margin-top: 0;
 }
 
-.v-spectacle-slug__coll__text-content__date_and_place {
+.v-app-spectacle-slug-info__coll__text-content__date_and_place {
   box-sizing: border-box;
   padding: 0 0 1rem;
   text-align: center;
 }
 
-.v-spectacle-slug__coll__text-content__is-cover {
+.v-app-spectacle-slug-info__coll__text-content__is-cover {
   margin-bottom: .5rem;
   color: var(--app-color-orange);
 }
 
-.v-spectacle-slug__coll__text-content__company {
+.v-app-spectacle-slug-info__coll__text-content__company {
   text-align: center;
   margin-bottom: 1rem;
 }
