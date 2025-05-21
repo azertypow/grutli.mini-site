@@ -4,12 +4,12 @@
         <template v-for="blockContent of html_content">
 
           <div v-if="blockContent.type === 'textWithTitle'"
-               class="v-spectacle-slug__coll__content__text__text"
+               class="v-app-spectacle-slug-block__coll__content__text__text"
                v-html="blockContent.content.text"
           ></div>
 
           <div v-if="blockContent.type === 'link'"
-               class="v-spectacle-slug__coll__content__text__link"
+               class="v-app-spectacle-slug-block__coll__content__text__link"
           >
             <a class="app-button"
                target="_blank"
@@ -24,19 +24,19 @@
           </div>
 
           <div v-if="blockContent.type === 'quote'"
-               class="v-spectacle-slug__coll__content__text__quote"
+               class="v-app-spectacle-slug-block__coll__content__text__quote"
           >
             <div v-html="blockContent.content.text"></div>
             <div v-html="formatTitle(blockContent.content.citation)"></div>
           </div>
 
           <div v-else-if="blockContent.type === 'text'"
-               class="v-spectacle-slug__coll__content__text__text app-remove-first-last-child-margin"
+               class="v-app-spectacle-slug-block__coll__content__text__text app-remove-first-last-child-margin"
                v-html="blockContent.content.text"
           ></div>
 
           <iframe v-if="blockContent.type === 'video'"
-                  class="v-spectacle-slug__coll__content__text__youtube"
+                  class="v-app-spectacle-slug-block__coll__content__text__youtube"
                   :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(blockContent.content.url)}`"
                   title="YouTube video player"
                   frameborder="0"
@@ -47,14 +47,14 @@
 
 
           <template v-else-if="blockContent.type === 'image'">
-            <div class="v-spectacle-slug__coll__content__text__image"
+            <div class="v-app-spectacle-slug-block__coll__content__text__image"
                  v-for="image of blockContent.images"
             >
-              <img class="v-spectacle-slug__coll__content__text__image__img"
+              <img class="v-app-spectacle-slug-block__coll__content__text__image__img"
                    :src="image.resize.large"
                    :alt="image.alt || 'pas de texte alt'"
               >
-              <div class="v-spectacle-slug__coll__content__text__image__legendary"
+              <div class="v-app-spectacle-slug-block__coll__content__text__image__legendary"
               >{{ image.photographer }}
               </div>
             </div>
@@ -62,15 +62,15 @@
 
 
           <div v-else-if="blockContent.type === 'imageGallery'"
-               class="v-spectacle-slug__coll__content__text__gallery"
+               class="v-app-spectacle-slug-block__coll__content__text__gallery"
           >
             <template v-for="image of blockContent.images">
-              <div class="v-spectacle-slug__coll__content__text__gallery__item">
-                <img class="v-spectacle-slug__coll__content__text__gallery__item__img"
+              <div class="v-app-spectacle-slug-block__coll__content__text__gallery__item">
+                <img class="v-app-spectacle-slug-block__coll__content__text__gallery__item__img"
                      :src="image.resize.large"
                      :alt="image.alt || 'pas de texte alt'"
                 >
-                <div class="v-spectacle-slug__coll__content__text__gallery__item__legendary"
+                <div class="v-app-spectacle-slug-block__coll__content__text__gallery__item__legendary"
                 >{{ image.photographer }}
                 </div>
               </div>
@@ -105,7 +105,7 @@ const props = defineProps<{
   width: 100%;
 }
 
-.v-spectacle-slug__coll__item {
+.v-app-spectacle-slug-block__coll__item {
   background: var(--app-color-grey);
   padding: var(--app-gutter-xl);
   border-radius: 1rem;
@@ -113,12 +113,12 @@ const props = defineProps<{
   box-sizing: border-box;
   width: calc(50% - (var(--app-gutter-xl) / 2));
 
-  &.v-spectacle-slug__coll__item--no-padding {
+  &.v-app-spectacle-slug-block__coll__item--no-padding {
     padding: 0;
   }
 }
 
-.v-spectacle-slug__coll__content__text__link {
+.v-app-spectacle-slug-block__coll__content__text__link {
   .app-button {
     margin-bottom: var(--app-gutter-xl);
     display: flex;
@@ -135,7 +135,7 @@ const props = defineProps<{
   }
 }
 
-.v-spectacle-slug__coll__content__text__quote {
+.v-app-spectacle-slug-block__coll__content__text__quote {
 
   > div:first-child {
     font-style: italic;
@@ -147,7 +147,7 @@ const props = defineProps<{
 
 }
 
-.v-spectacle-slug__coll__content__text__gallery {
+.v-app-spectacle-slug-block__coll__content__text__gallery {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -192,10 +192,10 @@ const props = defineProps<{
   }
 }
 
-.v-spectacle-slug__coll__content__text__gallery__item {
+.v-app-spectacle-slug-block__coll__content__text__gallery__item {
   position: relative;
 
-  .v-spectacle-slug__coll__content__text__gallery__item__legendary {
+  .v-app-spectacle-slug-block__coll__content__text__gallery__item__legendary {
     position: absolute;
     bottom: 0;
     left: 0;
