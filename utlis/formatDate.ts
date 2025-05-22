@@ -11,6 +11,19 @@ export function formatDate(stringDate: string): string {
     return formatter.format(startDate)
 }
 
+export function formatTime(time: string): string {
+    const [hours, minutes] = time.split(':').map(Number);
+
+    const formattedHours = hours.toString();
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+
+    if (formattedMinutes === '00') {
+        return `${formattedHours}h`;
+    } else {
+        return `${formattedHours}h${formattedMinutes}`;
+    }
+}
+
 export function formatDate_byDay(stringDate: string): string {
 
     const startDate = new Date(stringDate.replace(" ", "T"))
