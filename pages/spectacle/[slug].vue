@@ -1,54 +1,78 @@
 <template>
   <section class="v-spectacle-slug"
   >
-    <div class="v-spectacle-slug__coll">
 
-      <!-- [START] 2 first blocks -->
-      <div class="v-spectacle-slug__coll__item v-spectacle-slug__coll__item--no-padding">
-        <img alt="image texte"
-             v-if="pageData"
-             class="v-spectacle-slug__img"
-             :src="pageData?.cover[0].resize.xxl"
-        />
-      </div>
+    <AppMasonryColl>
 
-      <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-        <app-spectacle-slug-info
-                :page_data="pageData"
-                :first_and_last_date="firstAndLAstDate"
-                :place_name="placeName"
-        />
-      </div>
-      <!-- [END] 2 first blocks -->
-
-
-      <!-- [START] spectacles blocks -->
-      <template v-for="htmlContent of splitHtmlContentByBreakBlock">
-        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-          <AppSpectacleSlugBlock
-                  :html_content="htmlContent"
+      <template #left>
+        <!-- [START] 2 first blocks -->
+        <div class="v-spectacle-slug__coll__item v-spectacle-slug__coll__item--no-padding">
+          <img alt="image texte"
+               v-if="pageData"
+               class="v-spectacle-slug__img"
+               :src="pageData?.cover[0].resize.xxl"
           />
         </div>
+
+        <!-- [START] spectacles blocks array -->
+        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+          <template v-if="index % 2 !== 0">
+            <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+              <AppSpectacleSlugBlock
+                      :html_content="htmlContent"
+              />
+            </div>
+          </template>
+        </template>
+        <!-- [END] spectacles blocks array -->
+
+        <!-- [START] compagnie info -->
+        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+          <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin"
+               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
+          />
+          <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
+               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
+          />
+        </div>
+        <!-- [END] compagnie info -->
       </template>
-      <!-- [END] spectacles blocks -->
 
 
-      <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-        <AppSpectacleSlugDateDetails
-                :date_by_mounth="dateByMounth"
-                :content_html_details="pageData?.pageContent.content.htmldetails"
-        />
-      </div>
+      <template #right>
+        <!-- [START] 2 first blocks -->
+        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+          <app-spectacle-slug-info
+                  :page_data="pageData"
+                  :first_and_last_date="firstAndLAstDate"
+                  :place_name="placeName"
+          />
+        </div>
+        <!-- [END] 2 first blocks -->
 
-      <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-        <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin"
-             v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
-        />
-        <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
-             v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
-        />
-      </div>
-    </div>
+        <!-- [START] spectacles blocks array -->
+        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+          <template v-if="index % 2 === 0">
+            <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+              <AppSpectacleSlugBlock
+                      :html_content="htmlContent"
+              />
+            </div>
+          </template>
+        </template>
+        <!-- [END] spectacles blocks array -->
+
+        <!-- [START] date details -->
+        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+          <AppSpectacleSlugDateDetails
+                  :date_by_mounth="dateByMounth"
+                  :content_html_details="pageData?.pageContent.content.htmldetails"
+          />
+        </div>
+        <!-- [END] date details -->
+      </template>
+
+    </AppMasonryColl>
   </section>
 </template>
 
@@ -215,30 +239,10 @@ onMounted(async () => {
 .v-spectacle-slug {
   bottom: 0;
   left: 0;
-  display: flex;
   width: 100%;
-  flex-direction: column-reverse;
-  flex-wrap: wrap;
   box-sizing: border-box;
   padding-left: var(--app-gutter-xl);
   padding-right: var(--app-gutter-xl);
-  gap: var(--app-gutter-xl);
-
-  @media (min-width: 1200px) {
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-}
-
-.v-spectacle-slug__coll {
-  flex-shrink: 0;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: var(--app-gutter-xl);
 }
 
 .v-spectacle-slug__coll__item {
@@ -247,7 +251,7 @@ onMounted(async () => {
   border-radius: 1rem;
   overflow: hidden;
   box-sizing: border-box;
-  width: calc(50% - (var(--app-gutter-xl) / 2));
+  width: 100%;
 
   &.v-spectacle-slug__coll__item--no-padding {
     padding: 0;
