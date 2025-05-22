@@ -134,6 +134,9 @@ const props = defineProps<{
     }
   }
 }
+.v-app-spectacle-slug-block__coll__content__text__link:last-child > *:last-child{
+  margin-bottom: 0;
+}
 
 .v-app-spectacle-slug-block__coll__content__text__quote {
 
