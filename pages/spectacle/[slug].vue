@@ -338,8 +338,4 @@ onMounted(async () => {
 .v-spectacle-slug__toggle-details + .v-spectacle-slug__detailsHtml {
   margin-top: .5rem;
 }
-
-:global(.v-spectacle-slug__detailsHtml > div:last-child > *:last-child) {
-  margin-bottom: 0;
-}
 </style>
