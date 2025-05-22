@@ -4,17 +4,30 @@
     <div class="v-diffusion-slug__list-wrap"
     >
       <div class="v-diffusion-slug__list"
-           v-if="pageDate"
+           v-if="pageData"
       >
-        <template v-for="value of pageDate.childrenDetails">
+        <template v-for="pageChildren of pageData.childrenDetails">
           <div class="v-diffusion-slug__item">
-            <AppSpectacleCard
-                    :to="''"
-                    :title="value.pageContent.content.company.replace('- \n  authors_name: ', '').replace('authors_link:', '')"
-                    :peoples="[{id: '', authors_name: value.pageContent.content.title, authors_link:''}]"
-                    :event-title="undefined"
-                    :dates="undefined"
-            />
+            <AppTileDefault
+                    :event_info="pageChildren.eventInfo"
+            >
+
+              <template #header>
+                <div style="font-size: 1rem; line-height: 1.2" class="app-font-h5 app-font-align-center">
+                  <template v-for="(people, index) of pageChildren.company">
+                    <template v-if="index > 0">, </template>{{people.authors_name}}
+                  </template>
+                </div>
+              </template>
+
+              <template #content>
+                <div v-html="pageChildren.event_intro" class="app-remove-first-last-child-margin"/>
+              </template>
+
+              <template #footer>
+                {{pageChildren.title}}
+              </template>
+            </AppTileDefault>
           </div>
         </template>
       </div>
@@ -31,7 +44,7 @@ import type {
     PageContent,
     PageChildren,
     ApiSeasons,
-    ApiSeasons_value, Spectacle, ApiPage_template_diffusion
+    ApiSeasons_value, Spectacle, ApiPage_template_diffusion, ApiPage_template_diffusion_subPage
 } from "~/utlis/ApiCmsTypes";
 import AppSpectacleCard from "~/components/AppSpectacleCard.vue";
 import {
@@ -50,7 +63,7 @@ useHead({
     title: 'Scènes du Grutli'
 })
 
-const pageDate: Ref<ApiPage_template_diffusion | null> = ref(null)
+const pageData: Ref<ApiPage_template_diffusion_subPage | null> = ref(null)
 
 const { slug } = useRoute().params;
 
@@ -58,7 +71,7 @@ onMounted(async () => {
 
     console.log( slug )
 
-    pageDate.value = await fetchPage_template_diffusions__subpage(['diffusion', ...slug])
+    pageData.value = await fetchPage_template_diffusions__subpage(['diffusion', ...slug])
 
 })
 
@@ -121,11 +134,6 @@ onMounted(async () => {
   box-sizing: border-box;
   width: calc( (100% / 3) - var(--app-gutter-xl) );
   flex-grow: 1;
-  transition: transform .25s ease-in-out;
-
-  &:hover {
-    transform: scale(1.015);
-  }
 
   @media (max-width: 1100px) {
     width: 100%;

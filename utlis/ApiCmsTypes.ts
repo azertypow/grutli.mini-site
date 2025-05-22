@@ -390,7 +390,6 @@ export type ApiPlaces = {
     }[]
 }
 
-
 export type ApiPage_template_diffusion = {
     childrenDetails:         {
         "cover": [],
@@ -436,6 +435,15 @@ export type ApiPage_template_diffusion = {
     }
 }
 
+
+export type ApiPage_template_diffusion_subPage = {
+    childrenDetails: {
+        title: string,
+        eventInfo: string,
+        event_intro: string, // html content
+        company: ApiCmsCompany[]
+    }[]
+}
 
 export type ApiNews = {
     value: ApiNewsItem[]

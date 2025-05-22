@@ -1,7 +1,7 @@
 import type {
     ApiCmsPageSpectacle,
     ApiNews,
-    ApiPage_template_diffusion,
+    ApiPage_template_diffusion, ApiPage_template_diffusion_subPage,
     ApiPlaces,
     ApiSeasons,
     ApiSimplePage,
@@ -79,7 +79,7 @@ export async function fetchPage_template_diffusions(slugParams: string | string[
     }
 }
 
-export async function fetchPage_template_diffusions__subpage(slugParams: string | string[]): Promise<ApiPage_template_diffusion | null> {
+export async function fetchPage_template_diffusions__subpage(slugParams: string | string[]): Promise<ApiPage_template_diffusion_subPage | null> {
 
     const slug: string = Array.isArray(slugParams) ?
         slugParams.join('/')
@@ -96,7 +96,7 @@ export async function fetchPage_template_diffusions__subpage(slugParams: string 
 
         const data = await response.json();
 
-        return data as ApiPage_template_diffusion;
+        return data as ApiPage_template_diffusion_subPage;
     } catch (error) {
         console.error("Failed to fetch site info:", error);
         return null;
