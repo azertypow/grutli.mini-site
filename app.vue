@@ -49,7 +49,12 @@
           <template v-if="news.link && news.link.length > 0" >
             <div class="app-app__news__wrap__container">
               <a class="app-app__news__wrap__container__link"
-                 :href="news.link" >
+                 :href="news.link"
+                 :target="stringStartWith(
+                     news.link,
+                     ['https://grutli.ch', 'http://grutli.ch', 'https://www.grutli.ch', 'http://www.grutli.ch'],
+                     ) ? '_self': '_blank'"
+              >
                 <div class="app-app__news__wrap__container__wrap">
                   <div>{{ news.text }}</div>
                   <div>{{ news.text }}</div>
@@ -316,6 +321,7 @@ import {
 } from "~/composables/cmsData";
 import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
 import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
+import {startsWithWidth, stringStartWith} from "~/utlis/stringStartWith";
 
 function handleCookieBannerClick() {
     useShowCookieBanner().value = false
