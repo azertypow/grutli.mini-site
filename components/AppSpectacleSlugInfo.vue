@@ -119,6 +119,5 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__text-content__company {
   text-align: center;
-  margin-bottom: 1rem;
 }
 </style>
