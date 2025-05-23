@@ -23,11 +23,13 @@
               </template>
 
               <template #content>
-                <div v-html="pageChildren.event_intro" class="app-remove-first-last-child-margin"/>
+                <div v-html="pageChildren.event_intro" class="app-remove-first-last-child-margin app-font-align-center"/>
               </template>
 
               <template #footer>
-                {{pageChildren.title}}
+                <div class="app-font-mono" style="font-style: italic; font-weight: 600">
+                  {{pageChildren.title}}
+                </div>
               </template>
             </AppTileDefault>
           </nuxt-link>
