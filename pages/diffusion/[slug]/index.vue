@@ -7,7 +7,9 @@
            v-if="pageData"
       >
         <template v-for="pageChildren of pageData.childrenDetails">
-          <div class="v-diffusion-slug__item">
+          <nuxt-link class="v-diffusion-slug__item"
+                     :href="`/diffusion/${slug}/${pageChildren.slug}`"
+          >
             <AppTileDefault
                     :event_info="pageChildren.eventInfo"
             >
@@ -28,7 +30,7 @@
                 {{pageChildren.title}}
               </template>
             </AppTileDefault>
-          </div>
+          </nuxt-link>
         </template>
       </div>
     </div>
@@ -65,13 +67,13 @@ useHead({
 
 const pageData: Ref<ApiPage_template_diffusion_subPage | null> = ref(null)
 
-const { slug } = useRoute().params;
+const { slug } = useRoute().params as { slug: string }
 
 onMounted(async () => {
 
     console.log( slug )
 
-    pageData.value = await fetchPage_template_diffusions__subpage(['diffusion', ...slug])
+    pageData.value = await fetchPage_template_diffusions__subpage(['diffusion', slug])
 
 })
 

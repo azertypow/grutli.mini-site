@@ -435,7 +435,6 @@ export type ApiPage_template_diffusion = {
     }
 }
 
-
 export type ApiPage_template_diffusion_subPage = {
     childrenDetails: {
         title: string,
@@ -445,6 +444,32 @@ export type ApiPage_template_diffusion_subPage = {
     }[]
 }
 
+export type ApiPage_template_diffusionSinglePage = {
+    pageContent: {
+        content: {
+            title: string,
+            eventinfo: string,
+            event_intro: string,
+            company: ApiCmsCompany[],
+            htmlcontent: ApiHTMLContent_Blocks[],
+            htmlcontent_falk: ApiHTMLContent_Blocks[],
+            uuid: string
+        },
+        translations: [],
+        children: [],
+        files: [],
+        id: string,
+        mediaUrl: string,
+        mediaRoot: string,
+        num: number,
+        parent: string,
+        slug: string,
+        template: {},
+        uid: string,
+        uri: string,
+        url: string
+    }
+}
 export type ApiNews = {
     value: ApiNewsItem[]
 }

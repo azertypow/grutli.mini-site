@@ -73,6 +73,18 @@ blockquote {
   }
 }
 
+.app-remove-first-child-margin {
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+}
+
+.app-remove-last-child-margin {
+  > *:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
 
 // vue transitions
 

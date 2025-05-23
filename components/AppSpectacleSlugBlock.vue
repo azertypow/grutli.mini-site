@@ -6,7 +6,7 @@
           <div v-if="blockContent.type === 'textWithTitle'"
                class="v-app-spectacle-slug-block__coll__content__text__text"
                v-html="blockContent.content.text"
-          ></div>
+          />
 
           <div v-if="blockContent.type === 'link'"
                class="v-app-spectacle-slug-block__coll__content__text__link"
@@ -103,6 +103,10 @@ const props = defineProps<{
 .v-app-spectacle-slug-block {
   display: block;
   width: 100%;
+}
+
+:global(.v-app-spectacle-slug-block > *:first-child > *:first-child) {
+  //margin-top: 0;
 }
 
 .v-app-spectacle-slug-block__coll__item {
@@ -208,5 +212,26 @@ const props = defineProps<{
     padding-right: var(--app-gutter);
     box-sizing: border-box;
   }
+}
+
+.v-app-spectacle-slug-block__coll__content__text__image {
+  position: relative;
+  width: 100%;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+}
+
+.v-app-spectacle-slug-block__coll__content__text__image__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.v-app-spectacle-slug-block__coll__content__text__image__legendary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
 }
 </style>
