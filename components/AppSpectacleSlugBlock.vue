@@ -49,6 +49,9 @@
           <template v-else-if="blockContent.type === 'image'">
             <div class="v-app-spectacle-slug-block__coll__content__text__image"
                  v-for="image of blockContent.images"
+                 :class="{
+                       'only-one':  html_content?.length === 1,
+                   }"
             >
               <img class="v-app-spectacle-slug-block__coll__content__text__image__img"
                    :src="image.resize.large"
@@ -219,12 +222,23 @@ const props = defineProps<{
   width: 100%;
   margin-top: var(--app-gutter-xl);
   margin-bottom: var(--app-gutter-xl);
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .v-app-spectacle-slug-block__coll__content__text__image__img {
   display: block;
   width: 100%;
   height: auto;
+
+  .only-one & {
+    width: calc(100% +  2 * var(--app-gutter-xl));
+    margin-bottom: calc( -2 * var(--app-gutter-xl) );
+    margin-left: calc( -1 * var(--app-gutter-xl) );
+    margin-top: calc( -1 * var(--app-gutter-xl) );
+  }
 }
 
 .v-app-spectacle-slug-block__coll__content__text__image__legendary {
