@@ -12,11 +12,11 @@
               <p style="margin:0; font-size: 1rem; line-height: 1.2; font-weight: 600" v-for="item of pageData?.pageContent.content.company">{{item.authors_name}}</p>
             </div>
 
-<!--            <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"-->
-<!--            >-->
-<!--              <div v-html="pageData?.pageContent.content.event_intro" class="app-remove-first-child-margin"/>-->
-<!--              <p>{{pageData?.pageContent.content.eventinfo}}</p>-->
-<!--            </div>-->
+            <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
+            >
+              <div v-html="pageData?.pageContent.content.event_intro" class="app-remove-first-child-margin"/>
+              <p>{{pageData?.pageContent.content.eventinfo}}</p>
+            </div>
           </div>
         <!-- [END] compagnie info -->
 
@@ -156,6 +156,10 @@ onMounted(async () => {
 .v-spectacle-slug__coll__text-content__details__peoples {
   text-align: center;
   margin-bottom: .5rem;
+}
+
+.v-spectacle-slug__coll__text-content__details__details {
+  text-align: center;
 }
 
 .v-spectacle-slug__img {
