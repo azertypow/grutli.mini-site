@@ -14,10 +14,15 @@
 
         <div class="v-app-header__right__top">
 
-          <button class="app-button-grey app-font-small app-button-grey--with-shadow"
+          <button class="app-button-grey app-font-small app-button-grey--with-shadow v-app-header__social"
                   style="font-size: 0.5rem; text-transform: uppercase;"
                   @click="useAppNewsletterIsOpen().value = true"
-          >Suivre nos actualités</button>
+          ><svg xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px" fill="#000"
+                style="height: .75rem;"
+          ><path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm80-80h480v-80H240v80Zm0-160h160v-240H240v240Zm240 0h240v-80H480v80Zm0-160h240v-80H480v80ZM160-200v-560 560Z"/></svg></button>
 
           <a class="v-app-header__social app-button-grey app-button-grey--with-shadow"
              href="https://www.facebook.com/legrutli/friends_likes/?locale=fr_FR"
