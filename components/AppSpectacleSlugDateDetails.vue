@@ -10,7 +10,7 @@
           <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
           <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days">
                 <span v-for="(date, index) of dateGroup.dates">
-                  {{ date }}<template v-if="index < dateGroup.dates.length - 1">, </template>
+                  {{ date }}
                 </span>
           </div>
         </div>
@@ -62,9 +62,19 @@ const props = defineProps<{
   gap: 1rem;
 }
 
+.v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth {
+  width: 5.5em;
+  flex-shrink: 0;
+}
+
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days {
   display: flex;
   flex-wrap: wrap;
   gap: 0 1rem;
+
+  > span {
+    flex-shrink: 0;
+    width: 10em;
+  }
 }
 </style>
