@@ -225,6 +225,11 @@ const props = defineProps<{
 
   &:first-child {
     margin-top: 0;
+
+    img {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
   }
 }
 
