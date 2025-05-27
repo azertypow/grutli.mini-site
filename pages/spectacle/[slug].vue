@@ -2,22 +2,91 @@
   <section class="v-spectacle-slug"
   >
 
-    <AppMasonryColl>
+    <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
 
-      <template #left>
+      <div class="v-spectacle-slug__mobil-coll">
         <!-- [START] 2 first blocks -->
-        <div class="v-spectacle-slug__coll__item v-spectacle-slug__coll__item--no-padding">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+          <app-spectacle-slug-info
+                  :page_data="pageData"
+                  :first_and_last_date="firstAndLAstDate"
+                  :place_name="placeName"
+          />
+        </div>
+        <!-- [END] 2 first blocks -->
+
+
+        <!-- [START] spectacles blocks array -->
+        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+          <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+            <AppSpectacleSlugBlock
+                    :html_content="htmlContent"
+            />
+          </div>
+        </template>
+        <!-- [END] spectacles blocks array -->
+
+
+
+        <!-- [START] date details -->
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+          <AppSpectacleSlugDateDetails
+                  :date_by_mounth="dateByMounth"
+                  :content_html_details="pageData?.pageContent.content.htmldetails"
+          />
+        </div>
+        <!-- [END] date details -->
+
+
+
+        <!-- [START] compagnie info -->
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+          <div class="v-spectacle-slug__text-content__details__peoples app-remove-first-last-child-margin"
+               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
+          />
+          <div class="v-spectacle-slug__text-content__details__details app-remove-first-last-child-margin"
+               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
+          />
+        </div>
+        <!-- [END] compagnie info -->
+
+
+
+
+        <!-- [START] 2 first blocks -->
+        <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
           <img alt="image texte"
                v-if="pageData"
                class="v-spectacle-slug__img"
                :src="pageData?.cover[0].resize.xxl"
           />
         </div>
+        <!-- [END] 2 first blocks -->
+
+
+
+
+      </div>
+
+    </template>
+
+    <AppMasonryColl v-else>
+
+      <template #left>
+        <!-- [START] 2 first blocks -->
+        <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
+          <img alt="image texte"
+               v-if="pageData"
+               class="v-spectacle-slug__img"
+               :src="pageData?.cover[0].resize.xxl"
+          />
+        </div>
+        <!-- [END] 2 first blocks -->
 
         <!-- [START] spectacles blocks array -->
         <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
           <template v-if="index % 2 !== 0">
-            <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+            <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
               <AppSpectacleSlugBlock
                       :html_content="htmlContent"
               />
@@ -27,11 +96,11 @@
         <!-- [END] spectacles blocks array -->
 
         <!-- [START] compagnie info -->
-        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-          <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin"
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+          <div class="v-spectacle-slug__text-content__details__peoples app-remove-first-last-child-margin"
                v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
           />
-          <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
+          <div class="v-spectacle-slug__text-content__details__details app-remove-first-last-child-margin"
                v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
           />
         </div>
@@ -41,7 +110,7 @@
 
       <template #right>
         <!-- [START] 2 first blocks -->
-        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
           <app-spectacle-slug-info
                   :page_data="pageData"
                   :first_and_last_date="firstAndLAstDate"
@@ -53,7 +122,7 @@
         <!-- [START] spectacles blocks array -->
         <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
           <template v-if="index % 2 === 0">
-            <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+            <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
               <AppSpectacleSlugBlock
                       :html_content="htmlContent"
               />
@@ -63,7 +132,7 @@
         <!-- [END] spectacles blocks array -->
 
         <!-- [START] date details -->
-        <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
           <AppSpectacleSlugDateDetails
                   :date_by_mounth="dateByMounth"
                   :content_html_details="pageData?.pageContent.content.htmldetails"
@@ -204,20 +273,23 @@ onMounted(async () => {
   padding-right: var(--app-gutter-xl);
 }
 
-.v-spectacle-slug__coll__item {
+.v-spectacle-slug__item {
   background: var(--app-color-grey);
   padding: var(--app-gutter-xl);
   border-radius: 1rem;
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
+  max-width: 25rem;
+  margin-left: auto;
+  margin-right: auto;
 
-  &.v-spectacle-slug__coll__item--no-padding {
+  &.v-spectacle-slug__item--no-padding {
     padding: 0;
   }
 }
 
-.v-spectacle-slug__coll__text-content {
+.v-spectacle-slug__text-content {
   background: var(--app-color-grey);
   box-sizing: border-box;
   padding: var(--app-gutter-xl) var(--app-gutter-xl) 1.5rem;
@@ -226,20 +298,20 @@ onMounted(async () => {
   border-bottom-right-radius: 1rem;
 }
 
-.v-spectacle-slug__coll__content__text__image {
+.v-spectacle-slug__content__text__image {
   position: relative;
   width: 100%;
   margin-top: var(--app-gutter-xl);
   margin-bottom: var(--app-gutter-xl);
 }
 
-.v-spectacle-slug__coll__content__text__image__img {
+.v-spectacle-slug__content__text__image__img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.v-spectacle-slug__coll__content__text__image__legendary {
+.v-spectacle-slug__content__text__image__legendary {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -247,7 +319,7 @@ onMounted(async () => {
   background: white;
 }
 
-.v-spectacle-slug__coll__content__text__youtube {
+.v-spectacle-slug__content__text__youtube {
   display: block;
   border: none;
   overflow: hidden;
@@ -259,11 +331,11 @@ onMounted(async () => {
   border-radius: 1rem
 }
 
-:global( .v-spectacle-slug__coll__text-content__details__peoples > *) {
+:global( .v-spectacle-slug__text-content__details__peoples > *) {
   @extend .app-font-small;
 }
 
-:global( .v-spectacle-slug__coll__text-content__details__details > *) {
+:global( .v-spectacle-slug__text-content__details__details > *) {
   @extend .app-font-small;
 }
 
@@ -279,7 +351,7 @@ onMounted(async () => {
   border-radius: 1rem;
 }
 
-.v-spectacle-slug__coll__text-content__details {
+.v-spectacle-slug__text-content__details {
   margin-top: 1rem;
   border-top: solid 2px;
   padding-top: 1rem;
@@ -300,5 +372,23 @@ onMounted(async () => {
 
 .v-spectacle-slug__toggle-details + .v-spectacle-slug__detailsHtml {
   margin-top: .5rem;
+}
+
+.v-spectacle-slug__mobil-coll {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  gap: var(--app-gutter-xl);
+  flex-direction: column;
+}
+
+
+.v-spectacle-slug__mobil-coll__item {
+  //width: 100%;
+  //display: flex;
+  //flex-wrap: nowrap;
+  //gap: var(--app-gutter-xl);
+  //flex-direction: column;
+  //flex-shrink: 1;
 }
 </style>

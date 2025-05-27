@@ -62,3 +62,5 @@ export const useAppNewsletterIsOpen:() => Ref<boolean> = () => {
 export const useAppSeasons: () => Ref<ApiSeasons | null> = () => useState('useAppSeasons', () => null)
 
 export const useAppSeasons_active: () => Ref<ApiSeasons_value[] | null> = () => useState('useAppSeasons_active', () => null)
+
+export const useWindowsWidthIsSmallerThan1200pxCSSBreakpoint: () => Ref<boolean> = () => useState('useWindowsWidthIsSmallerThan1200pxCSSBreakpoint', () => true)

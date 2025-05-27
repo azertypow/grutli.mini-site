@@ -8,7 +8,7 @@
     /// masonry
     //////////-->
     <!--    masonry FALSE // windows width < breakpoint-->
-    <template v-if="windowsWidthIsSmallerThan1200pxCSSBreakpoint">
+    <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
       <template v-if="pageData">
         <template v-if="useFalkIsActive().value">
           <template v-for="content of pageData.pageContent.content.content">
@@ -449,17 +449,7 @@ onMounted(async () => {
                 })
             })
     })
-
-    setWindowsWidth()
-    window.addEventListener('resize', setWindowsWidth)
 })
-
-onUnmounted(() => {
-    window.removeEventListener('resize', setWindowsWidth)
-})
-
-const windowsWidthIsSmallerThan1200pxCSSBreakpoint = ref(true) //breakpoint @media (min-width: 1200px) {
-const breakpointCSSMinWidthBreakpoint = 1200
 
 function redirectToFirstPageChildrenIfContentIsEmpty(value: ApiSimplePage | null) {
 
@@ -472,10 +462,6 @@ function redirectToFirstPageChildrenIfContentIsEmpty(value: ApiSimplePage | null
     if( contentIsEmpty && hasChildrenPage ) {
         useRouter().push( value.childrenDetails[0].pageContent.uri )
     }
-}
-
-function setWindowsWidth() {
-    windowsWidthIsSmallerThan1200pxCSSBreakpoint.value = window.innerWidth < breakpointCSSMinWidthBreakpoint
 }
 
 interface get_currentORParentPageForNavLinksProps {

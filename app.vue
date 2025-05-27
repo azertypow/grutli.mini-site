@@ -317,11 +317,12 @@ import {
     useFalkIsActive,
     useNews,
     usePlacesInfo, useShowCookieBanner,
-    useSiteInfo, useWindowIsScrollToBottom
+    useSiteInfo, useWindowIsScrollToBottom, useWindowsWidthIsSmallerThan1200pxCSSBreakpoint
 } from "~/composables/cmsData";
 import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
 import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
-import {startsWithWidth, stringStartWith} from "~/utlis/stringStartWith";
+import {stringStartWith} from "~/utlis/stringStartWith";
+import {setWindowsWidth} from "~/utlis/setWindowsWidth";
 
 function handleCookieBannerClick() {
     useShowCookieBanner().value = false
@@ -333,6 +334,8 @@ function handleCookieBannerClick() {
 
 
 onMounted(async () => {
+
+    setWindowsWidth( useWindowsWidthIsSmallerThan1200pxCSSBreakpoint )
 
     initGoogleAnalytics()
 
@@ -372,6 +375,8 @@ onMounted(async () => {
     useShowCookieBanner().value = storedValue !== 'false'
 
 })
+
+window.addEventListener('resize', () => setWindowsWidth( useWindowsWidthIsSmallerThan1200pxCSSBreakpoint ))
 
 watch(useFalkIsActive, (value) => {
     value.value ?
