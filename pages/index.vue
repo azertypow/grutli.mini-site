@@ -153,13 +153,13 @@ const curentSeasonSpectacle: ComputedRef<Spectacle[]> = computed(() => {
   }
 
   @media (max-width: 550px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   @media (max-width: 400px) {
-    padding-left:   1rem;
-    padding-right:  1rem;
+    padding-left:   .5rem;
+    padding-right:  .5rem;
   }
 }
 
