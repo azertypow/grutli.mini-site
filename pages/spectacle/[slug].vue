@@ -191,7 +191,7 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
         dates: {day: string, time: string}[]
     }[] = []
 
-    pageData.value.pageContent.content.list_of_dates.forEach(dateItem => {
+    pageData.value.pageContent.content.list_of_dates?.forEach(dateItem => {
 
         const date = new Date(dateItem.list_of_dates_date)
         const mouthOfDate = date.toLocaleDateString('fr-FR', {month: 'long'})
