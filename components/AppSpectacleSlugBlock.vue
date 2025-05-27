@@ -225,11 +225,10 @@ const props = defineProps<{
 
   &:first-child {
     margin-top: 0;
+  }
 
-    img {
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -237,6 +236,7 @@ const props = defineProps<{
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 1rem;
 
   .only-one & {
     width: calc(100% +  2 * var(--app-gutter-xl));
@@ -252,5 +252,9 @@ const props = defineProps<{
   left: 0;
   width: 100%;
   background: white;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 </style>
