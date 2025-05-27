@@ -90,7 +90,7 @@ const props = defineProps<{
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  animation: app-app__news__wrap--animation--variante ease-in-out 15s infinite alternate-reverse;
+  animation: app-app__news__wrap--animation--variante linear 20s infinite;
   width: auto;
   position: absolute;
   top: 0;
