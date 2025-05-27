@@ -4,7 +4,7 @@
         <template v-for="blockContent of html_content">
 
           <div v-if="blockContent.type === 'textWithTitle'"
-               class="v-app-spectacle-slug-block__coll__content__text__text"
+               class="v-app-spectacle-slug-block__coll__content__text__text app-remove-last-child-margin"
                v-html="blockContent.content.text"
           />
 
