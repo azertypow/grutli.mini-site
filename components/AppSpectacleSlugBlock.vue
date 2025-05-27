@@ -43,6 +43,9 @@
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen
+                  :class="{
+                       'only-one':  html_content?.length === 1,
+                   }"
           ></iframe>
 
 
@@ -126,6 +129,8 @@ const props = defineProps<{
 }
 
 .v-app-spectacle-slug-block__coll__content__text__link {
+  margin-top: .5rem;
+
   .app-button {
     margin-bottom: var(--app-gutter-xl);
     display: flex;
@@ -229,6 +234,32 @@ const props = defineProps<{
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.v-app-spectacle-slug-block__coll__content__text__youtube {
+  display: block;
+  border: none;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+  border-radius: 1rem;
+  background: var(--app-color-grey);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.only-one {
+    margin: calc( -1 * var(--app-gutter-xl) );
+    width: calc(100% +   2 * var(--app-gutter-xl));
   }
 }
 
