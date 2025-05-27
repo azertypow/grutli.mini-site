@@ -80,7 +80,6 @@
 <script setup lang="ts">
 import {fetchPageSpectacle} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle, ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
-import {type ApiTicketInfomaniak_event, apiTicketInfomaniak_fetchEvents} from "~/utlis/apiTicketInfomaniak";
 import {
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
@@ -149,9 +148,6 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
 })
 
 
-// todo: clean
-const ticketInfo: Ref<ApiTicketInfomaniak_event[] | null | 'loaded'> = ref(null)
-
 const placeName: ComputedRef<string | null> = computed(() => {
 
     if (!pageData.value) return null
@@ -180,40 +176,7 @@ const firstAndLAstDate: ComputedRef<null | string> = computed(() => {
     return formatDateStartAndDateEndToString(pageData.value.pageContent.content.datestart, pageData.value.pageContent.content.dateend)
 })
 
-const groupedByMonth: ComputedRef<{ [month: string]: { text: string, eventID: number }[] } | null> = computed(() => {
-    if (ticketInfo.value === null) return null
-    if (!Array.isArray(ticketInfo.value)) return null
-
-    return ticketInfo.value.reduce((acc: { [month: string]: { text: string, eventID: number }[] }, eventItem) => {
-        const date = new Date(eventItem.date.replace(" ", "T"));
-        const monthKey = date.toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'});
-
-        if (!acc[monthKey]) {
-            acc[monthKey] = [];
-        }
-
-        acc[monthKey].push({
-            text: new Date(eventItem.date.replace(" ", "T")).toLocaleDateString('fr-FR', {
-                weekday: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-            }).replace(':', 'h').replace(/\b(\d{1,2}h\d{2})\b/g, 'à $1'),
-            eventID: eventItem.event_id
-        });
-
-        return acc;
-    }, {})
-});
-
-const wrapNumbersInSpan = (value: { text: string, eventID: number }): string => {
-
-    const wrappedText = value.text.replace(/\b(\d+)\b/g, "<span>$1</span>");
-    return `<a target="_blank" href="https://infomaniak.events/shop/UwCaGkGB7O/event/${value.eventID}">${wrappedText}</a>`;
-};
-
 onMounted(async () => {
-
 
     pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
 
@@ -223,15 +186,6 @@ onMounted(async () => {
 
     if (!pageData.value) return
     if (!pageData.value.pageContent.content.eventtitle[0]) return
-
-    apiTicketInfomaniak_fetchEvents({
-        search: pageData.value.pageContent.content.eventtitle[0]
-    }).then((ticketInfomaniakEvents: ApiTicketInfomaniak_event[]) => {
-        ticketInfo.value = ticketInfomaniakEvents.filter(value => {
-            return pageData.value!.pageContent.content.eventtitle.includes(value.name)
-        })
-    })
-
 
 })
 
