@@ -115,12 +115,12 @@ const splitHtmlContentByBreakBlock: ComputedRef<ApiHTMLContent_Blocks[][] | null
 
 })
 
-const dateByMounth: ComputedRef<null | { mouth: string; dates: string[] }[]> = computed(() => {
+const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, time: string}[] }[]> = computed(() => {
     if (!pageData.value) return null
 
     const groupedDateByMouth: {
         mouth: string
-        dates: string[]
+        dates: {day: string, time: string}[]
     }[] = []
 
     pageData.value.pageContent.content.list_of_dates.forEach(dateItem => {
@@ -130,13 +130,18 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: string[] }[]> = c
 
         const indexOfMouthGroup = groupedDateByMouth.findIndex(value => value.mouth === mouthOfDate)
 
+        const itemToPush = {
+            day: formatDate_byDay(dateItem.list_of_dates_date),
+            time: formatTime(dateItem.list_of_dates_hour),
+        }
+
         if (indexOfMouthGroup === -1) {
             groupedDateByMouth.push({
                 mouth: mouthOfDate,
-                dates: [`${formatDate_byDay(dateItem.list_of_dates_date)} ${formatTime(dateItem.list_of_dates_hour)}`]
+                dates: [itemToPush]
             })
         } else {
-            groupedDateByMouth[indexOfMouthGroup].dates.push(`${formatDate_byDay(dateItem.list_of_dates_date)} ${formatTime(dateItem.list_of_dates_hour)}`)
+            groupedDateByMouth[indexOfMouthGroup].dates.push(itemToPush)
         }
     })
 
