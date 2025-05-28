@@ -42,10 +42,10 @@ export type ApiCmsPageSpectacle = {
 }
 
 export interface ApiCmsPageSpectacle_listOfDates {
-    list_of_dates_date: string
-    list_of_dates_hour: string
-    list_of_dates_ticket_link: string
-    list_of_dates_is_relax: "false" | "true"
+    list_of_dates_date?: string
+    list_of_dates_hour?: string
+    list_of_dates_ticket_link?: string
+    list_of_dates_is_relax?: "false" | "true"
     id: string
 }
 
