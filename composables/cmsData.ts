@@ -20,7 +20,7 @@ export const useNews: () => Ref<null | AppNewsItem[]> = () => {
 }
 
 export const useMenuIsOpen: () => Ref<boolean> = () => {
-    return useState('useMenuIsOpen', () => false )
+    return useState('useMenuIsOpen', () => true )
 }
 
 export const useShowCookieBanner: () => Ref<boolean> = () => {
