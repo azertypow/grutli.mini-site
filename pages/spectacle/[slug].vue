@@ -29,7 +29,9 @@
 
 
         <!-- [START] date details -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData?.pageContent.content.htmldetails"
+        >
           <AppSpectacleSlugDateDetails
                   :date_by_mounth="dateByMounth"
                   :content_html_details="pageData?.pageContent.content.htmldetails"
@@ -40,7 +42,9 @@
 
 
         <!-- [START] compagnie info -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData?.pageContent.content.peoples && pageData?.pageContent.content.peoples.length > 0"
+        >
           <div class="v-spectacle-slug__text-content__details__peoples app-remove-first-last-child-margin"
                v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
           />
@@ -96,7 +100,9 @@
         <!-- [END] spectacles blocks array -->
 
         <!-- [START] compagnie info -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData?.pageContent.content.peoples && pageData?.pageContent.content.peoples.length > 0"
+        >
           <div class="v-spectacle-slug__text-content__details__peoples app-remove-first-last-child-margin"
                v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
           />
@@ -132,7 +138,9 @@
         <!-- [END] spectacles blocks array -->
 
         <!-- [START] date details -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData?.pageContent.content.htmldetails"
+        >
           <AppSpectacleSlugDateDetails
                   :date_by_mounth="dateByMounth"
                   :content_html_details="pageData?.pageContent.content.htmldetails"

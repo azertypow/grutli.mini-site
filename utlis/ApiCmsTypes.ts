@@ -20,7 +20,7 @@ export type ApiCmsPageSpectacle = {
             htmlcontent: ApiHTMLContent_Blocks[],
             htmlcontent_falk: ApiHTMLContent_Blocks[],
             details: string,
-            htmldetails: ApiHTMLContent_Blocks[],
+            htmldetails?: ApiHTMLContent_Blocks[],
             uuid: string
             season: string
             list_of_dates: ApiCmsPageSpectacle_listOfDates[]
@@ -178,7 +178,7 @@ export interface SpectacleContentDetails {
     htmlcontent: string;
     htmlcontent_falk: string;
     details: string;
-    htmldetails: string;
+    htmldetails?: string;
     uuid: string;
     season: string;
 }
