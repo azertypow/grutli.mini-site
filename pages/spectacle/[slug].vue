@@ -30,7 +30,7 @@
 
         <!-- [START] date details -->
         <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
-             v-if="pageData?.pageContent.content.htmldetails"
+             v-if="pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0"
         >
           <AppSpectacleSlugDateDetails
                   :date_by_mounth="dateByMounth"
@@ -139,7 +139,7 @@
 
         <!-- [START] date details -->
         <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
-             v-if="pageData?.pageContent.content.htmldetails"
+             v-if="pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0"
         >
           <AppSpectacleSlugDateDetails
                   :date_by_mounth="dateByMounth"
@@ -200,24 +200,25 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
     }[] = []
 
     pageData.value.pageContent.content.list_of_dates?.forEach(dateItem => {
+        if( dateItem.list_of_dates_date ) {
+          const date = new Date(dateItem.list_of_dates_date)
+          const mouthOfDate = date.toLocaleDateString('fr-FR', {month: 'long'})
 
-        const date = new Date(dateItem.list_of_dates_date)
-        const mouthOfDate = date.toLocaleDateString('fr-FR', {month: 'long'})
+          const indexOfMouthGroup = groupedDateByMouth.findIndex(value => value.mouth === mouthOfDate)
 
-        const indexOfMouthGroup = groupedDateByMouth.findIndex(value => value.mouth === mouthOfDate)
+          const itemToPush = {
+              day: formatDate_byDay(dateItem.list_of_dates_date),
+              time: dateItem.list_of_dates_hour ? formatTime(dateItem.list_of_dates_hour) : '',
+          }
 
-        const itemToPush = {
-            day: formatDate_byDay(dateItem.list_of_dates_date),
-            time: formatTime(dateItem.list_of_dates_hour),
-        }
-
-        if (indexOfMouthGroup === -1) {
-            groupedDateByMouth.push({
-                mouth: mouthOfDate,
-                dates: [itemToPush]
-            })
-        } else {
-            groupedDateByMouth[indexOfMouthGroup].dates.push(itemToPush)
+          if (indexOfMouthGroup === -1) {
+              groupedDateByMouth.push({
+                  mouth: mouthOfDate,
+                  dates: [itemToPush]
+              })
+          } else {
+              groupedDateByMouth[indexOfMouthGroup].dates.push(itemToPush)
+          }
         }
     })
 
