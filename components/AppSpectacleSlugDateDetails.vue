@@ -9,12 +9,15 @@
         >
           <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
           <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days">
-                <span v-for="date of dateGroup.dates"
-                      class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item"
+                <component
+                        :is="date.url ? 'a' : 'div'"
+                        v-for="date of dateGroup.dates"
+                        :href="date.url || undefined"
+                        class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item"
                 >
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day" >{{ date.day }}</span>
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time" >{{ date.time }}</span>
-                </span>
+                </component>
           </div>
         </div>
       </div>
@@ -45,7 +48,7 @@ import { defineProps } from 'vue'
 import type {ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 
 const props = defineProps<{
-    date_by_mounth: null | { mouth: string; dates: {day: string, time: string}[] }[]
+    date_by_mounth: null | { mouth: string; dates: {day: string, time: string, url?: string}[] }[]
     content_html_details?: ApiHTMLContent_Blocks[]
 }>()
 </script>
@@ -81,12 +84,20 @@ const props = defineProps<{
   }
 }
 
+.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item {
+  display: block;
+}
+a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item {
+  border-bottom: 2px solid currentColor;
+}
+
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day {
   display: inline-block;
   width: 6.5em;
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time {
-
+  display: inline-block;
+  width: 3.25em;
 }
 </style>
