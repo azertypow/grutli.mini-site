@@ -8,7 +8,7 @@ import type {
     SiteInfo
 } from "~/utlis/ApiCmsTypes";
 
-const apiBaseUrl = 'https://grutli-dev-admin.sdrvl.ch'
+const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
 // const apiBaseUrl = 'http://localhost:8000'
 
 export async function fetchSiteInfo(): Promise<SiteInfo | null> {
