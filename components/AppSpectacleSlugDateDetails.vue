@@ -17,6 +17,11 @@
                 >
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day" >{{ date.day }}</span>
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time" >{{ date.time }}</span>
+                  <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax"
+                        v-if="date.isRelax === 'true'"
+                  >
+                    relax
+                  </span>
                 </component>
           </div>
         </div>
@@ -48,7 +53,7 @@ import { defineProps } from 'vue'
 import type {ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 
 const props = defineProps<{
-    date_by_mounth: null | { mouth: string; dates: {day: string, time: string, url?: string}[] }[]
+    date_by_mounth: null | { mouth: string; dates: {day: string, time: string, url?: string, isRelax?: 'true' | 'false'}[] }[]
     content_html_details?: ApiHTMLContent_Blocks[]
 }>()
 </script>
@@ -89,6 +94,7 @@ const props = defineProps<{
 }
 a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item {
   border-bottom: 2px solid currentColor;
+  position: relative;
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day {
@@ -99,5 +105,18 @@ a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__i
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time {
   display: inline-block;
   width: 3.25em;
+}
+
+.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax {
+  position: absolute;
+  background: white;
+  padding: 0 .5em;
+  border-radius: 1em;
+  //border: 1px solid currentColor;
+  font-size: .5rem;
+  transform: translate(-10%, -20%) rotate(15deg);
+
+  background: black;
+  color: white;
 }
 </style>

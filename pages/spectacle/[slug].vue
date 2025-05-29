@@ -197,6 +197,7 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
     const groupedDateByMouth: {
         mouth: string
         url?: string
+        isRelax?: 'true' | 'false'
         dates: {day: string, time: string}[]
     }[] = []
 
@@ -210,7 +211,8 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
           const itemToPush = {
               day: formatDate_byDay(dateItem.list_of_dates_date),
               time: dateItem.list_of_dates_hour ? formatTime(dateItem.list_of_dates_hour) : '',
-              url: dateItem.list_of_dates_ticket_link
+              url: dateItem.list_of_dates_ticket_link,
+              isRelax: dateItem.list_of_dates_is_relax,
           }
 
           if (indexOfMouthGroup === -1) {
