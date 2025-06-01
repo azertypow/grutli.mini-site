@@ -119,11 +119,12 @@ a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__i
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax {
   position: absolute;
   background: white;
-  padding: 0 .5em;
+  padding: .15em .5em .25em;
   border-radius: 1em;
   //border: 1px solid currentColor;
   font-size: .5rem;
-  transform: translate(-10%, -20%) rotate(15deg);
+  transform: translate(-15%, 0%) rotate(10deg);
+  line-height: 1em;
 
   background: black;
   color: white;
