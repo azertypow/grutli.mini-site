@@ -75,6 +75,11 @@ const props = defineProps<{
   & + & {
     margin-top: 1rem;
   }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    gap: .5rem;
+  }
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth {
