@@ -4,7 +4,7 @@
       <div v-if="date_by_mounth"
            style="margin-bottom: 1rem"
       >
-        <div v-for="dateGroup of date_by_mounth"
+        <div v-for="dateGroup of date_by_mounth.toReversed()"
              class="v-app-spectacle-slug-date-details__coll__text-content__details__dates"
         >
           <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
@@ -71,6 +71,10 @@ const props = defineProps<{
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates {
   display: flex;
   gap: 1rem;
+
+  & + & {
+    margin-top: 1rem;
+  }
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth {
