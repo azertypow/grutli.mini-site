@@ -87,8 +87,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped >
 .v-diffusion-slug__list-wrap {
-  padding: var(--app-gutter-xl) 0 calc( var(--v-audio-player-header-height) + var(--app-gutter));
-  //background: red;
+  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
 
   @media (max-width: 1600px) {
     padding-left: 2rem;

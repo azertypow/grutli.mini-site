@@ -524,7 +524,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  padding-bottom: var(--v-audio-player-header-height);
+  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
   gap: var(--app-gutter-xl);
   align-items: flex-start;
   box-sizing: border-box;

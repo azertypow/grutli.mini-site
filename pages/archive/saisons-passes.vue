@@ -86,6 +86,10 @@ onMounted(async () => {
 
 
 <style lang="scss" scoped >
+.v-saisons-passes {
+  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
+}
+
 h2 {
   font-size: 1rem;
   margin-bottom: 0;

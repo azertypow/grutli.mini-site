@@ -284,6 +284,7 @@ onMounted(async () => {
   box-sizing: border-box;
   padding-left: var(--app-gutter-xl);
   padding-right: var(--app-gutter-xl);
+  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
 }
 
 .v-spectacle-slug__item {
