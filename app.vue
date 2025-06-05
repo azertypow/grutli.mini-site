@@ -332,6 +332,12 @@ function handleCookieBannerClick() {
     }
 }
 
+useRouter().beforeEach((to, from, next) => {
+
+    useMenuIsOpen().value = !useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value
+
+    next()
+})
 
 onMounted(async () => {
 
