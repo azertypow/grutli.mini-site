@@ -2,12 +2,12 @@
     <section class="v-index"
     >
       <div class="v-index__season app-font-mono"
-           v-if="useAppSeasons().value?.value[0]"
+           v-if="currentSeason"
       >
         <div class="v-index__season-title__title"
-        >{{useAppSeasons().value!.value[0].content.title}}
+        >{{currentSeason.content.title}}
         </div>
-        <div class="v-index__season-title__info">{{useAppSeasons().value!.value[0].content.dateinformation}}</div>
+        <div class="v-index__season-title__info">{{currentSeason.content.dateinformation}}</div>
       </div>
 
       <div class="v-index__list-wrap"
@@ -77,6 +77,10 @@ type PageToShowInHome = {
     pageContent_uri: string,
     pageContent_title: string,
 }[]
+
+const currentSeason: ComputedRef<ApiSeasons_value | undefined> = computed( () =>
+  useAppSeasons().value?.value.find(value => value.content.statut === 'en-cours')
+)
 
 const pageToShowInHome: ComputedRef<PageToShowInHome> = computed(() => {
 
