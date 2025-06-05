@@ -1,6 +1,15 @@
 <template>
     <section class="v-index"
     >
+      <div class="v-index__season app-font-mono"
+           v-if="useAppSeasons().value?.value[0]"
+      >
+        <div class="v-index__season-title__title"
+        >{{useAppSeasons().value!.value[0].content.title}}
+        </div>
+        <div class="v-index__season-title__info">{{useAppSeasons().value!.value[0].content.dateinformation}}</div>
+      </div>
+
       <div class="v-index__list-wrap"
       >
         <div class="v-index__list"
@@ -127,6 +136,32 @@ const curentSeasonSpectacle: ComputedRef<Spectacle[]> = computed(() => {
 
 
 <style lang="scss" scoped >
+
+.v-index__season {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  padding-bottom: 1rem;
+
+
+  @media (min-height: 650px) {
+    position: fixed;
+    top: var(--app-header-height);
+    left: 0;
+  }
+
+  @media (max-width: 1100px) {
+    position: static;
+  }
+}
+
+.v-index__season-title__title {
+  font-size: 1rem;
+}
+
 .v-index__list-wrap {
   padding: var(--app-gutter-xl) 0 calc( var(--v-audio-player-header-height) + var(--app-gutter));
   //background: red;
