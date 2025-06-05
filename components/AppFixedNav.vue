@@ -10,7 +10,6 @@
       <template v-for="page of listOfPageToShowInNavigation">
         <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
                    :href="'/' + page.uri"
-                   v-if="getFirstPath(useRoute().path) !== page.uri"
                    :class="{
                       'dont-show': getFirstPath(useRoute().path) === page.uri,
                    }"
@@ -40,11 +39,6 @@
 
 
     <div class="v-slug__children-link">
-      <template v-if="currentPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--inverse app-button-grey--with-shadow"
-                   :href=" '/' + currentPageForNavLinks.slug"
-        >{{currentPageForNavLinks.title}}</nuxt-link>
-      </template>
       <template v-if="childrenDetailsForNavLinks">
         <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-shadow"
                    v-for="childLink of childrenDetailsForNavLinks"
@@ -167,8 +161,9 @@ const listOfPageToShowInNavigation: ComputedRef<{title: string, uri: string, sho
 }
 
 .dont-show {
-  opacity: 0;
   pointer-events: none;
   user-select: none;
+  background: black;
+  color: var(--app-color-grey);
 }
 </style>
