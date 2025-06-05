@@ -14,7 +14,7 @@
       >
         <div class="v-index__list"
         >
-          <template v-for="value of curentSeasonSpectacle.filter(value => value.pageContent.content.showinhome === 'true')">
+          <template v-for="value of spectacleToShowInHome">
             <div class="v-index__item">
               <AppSpectacleCard
                       :event_info="value.pageContent.content.eventinfo"
@@ -117,20 +117,12 @@ const pageToShowInHome: ComputedRef<PageToShowInHome> = computed(() => {
 
 const activeSeason: Ref<ApiSeasons_value[] | null> = useAppSeasons_active()
 
-const curentSeasonSpectacle: ComputedRef<Spectacle[]> = computed(() => {
+const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
     const siteInfo_value      = siteInfo.value
-    const activeSeason_value  = activeSeason.value
 
     if (!siteInfo_value)      return []
-    if (!activeSeason_value)  return []
 
-    const activeSaisonsSlug = activeSeason_value.map(season => season.slug)
-
-    console.log( activeSaisonsSlug )
-
-    return siteInfo_value.spectacles.filter( (spectacle: Spectacle) => {
-        return activeSaisonsSlug.includes( spectacle.pageContent.content.season )
-    })
+    return siteInfo_value.spectacles.filter(value => value.pageContent.content.showinhome === 'true')
 })
 
 </script>
