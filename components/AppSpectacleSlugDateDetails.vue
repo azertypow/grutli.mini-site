@@ -85,6 +85,7 @@ const props = defineProps<{
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth {
   width: 5.5em;
   flex-shrink: 0;
+  text-transform: capitalize;
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days {
