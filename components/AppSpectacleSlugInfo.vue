@@ -108,7 +108,7 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__text-content__date_and_place {
   box-sizing: border-box;
-  padding: 0 0 1rem;
+  padding: 1rem 0 1rem;
   text-align: center;
 }
 
