@@ -1,5 +1,5 @@
 :root {
-  --app-header-height: 5.5rem;
+  --app-header-height: 4rem;
   --app-gutter: .25rem;
   --app-gutter-xl: .5rem;
 
@@ -14,15 +14,7 @@
   --app-color-orange: #ed6936;
   --app-color-grey: #c7c7c7;
 
-  @media (max-width: 1000px) {
-    --app-header-height: 5rem;
+  @media (max-width: 1200px) {
+    --app-header-height: 2.5rem;
   }
-  @media (max-width: 750px) {
-    --app-header-height: 6rem;
-  }
-  @media (max-width: 400px) {
-    --app-header-height: 7rem;
-  }
-
-
 }

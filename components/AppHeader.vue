@@ -10,6 +10,13 @@
         </nuxt-link>
       </div>
 
+      <div class="v-app-header__navigation"
+           ref="app-footer"
+           v-if="useMenuIsOpen().value"
+      >
+        <AppFixedNav/>
+      </div>
+
       <div class="v-app-header__right">
 
         <div class="v-app-header__right__top">
@@ -65,13 +72,6 @@
         </template>
 
       </div>
-
-      <div class="v-app-header__footer"
-           ref="app-footer"
-           v-if="useMenuIsOpen().value"
-      >
-        <AppFixedNav/>
-      </div>
     </section>
 </template>
 
@@ -82,13 +82,13 @@
   position: relative;
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   padding: var(--app-gutter);
   align-items: flex-start;
   user-select: none;
   color: black;
-  row-gap: var(--app-gutter-xl);
+  gap: var(--app-gutter-xl);
 
   .nuxt-watch-falk-is-active & {
     background-image: none;
@@ -124,8 +124,9 @@
 
 .v-app-header__left {
   display: flex;
-  width: 50%;
+  width: auto;
   margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .v-app-header__right {
@@ -133,9 +134,10 @@
   align-items: flex-end;
   flex-wrap: nowrap;
   gap: var(--app-gutter);
-  width: 50%;
+  width: auto;
   flex-direction: column;
   margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .v-app-header__right__top {
@@ -212,8 +214,19 @@
   }
 }
 
-.v-app-header__footer {
+.v-app-header__navigation {
   width: 100%;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  position: fixed;
+  top: var(--app-header-height);
+  padding-right: 2rem;
+
+  @media (min-width: 1200px) {
+    position: relative;
+    padding-right: 0;
+    top: 0;
+  }
 }
 
 </style>
