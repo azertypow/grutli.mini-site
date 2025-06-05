@@ -11,6 +11,7 @@
                   :page_data="pageData"
                   :first_and_last_date="firstAndLAstDate"
                   :place_name="placeName"
+                  :event_info="pageData?.pageContent.content.eventinfo"
           />
         </div>
         <!-- [END] 2 first blocks -->
@@ -121,6 +122,7 @@
                   :page_data="pageData"
                   :first_and_last_date="firstAndLAstDate"
                   :place_name="placeName"
+                  :event_info="pageData?.pageContent.content.eventinfo"
           />
         </div>
         <!-- [END] 2 first blocks -->

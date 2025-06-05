@@ -27,6 +27,13 @@
         </div>
       </div>
 
+      <div class="v-app-spectacle-slug-info__item__info app-font-small"
+           v-if="event_info"
+      >
+        <div class="v-app-spectacle-slug-info__item__info__text">{{ event_info }}</div>
+      </div>
+
+
       <div class="v-app-spectacle-slug-info__coll__text-content__date_and_place">
         <div v-if="first_and_last_date">{{ first_and_last_date }}</div>
         <div>{{ place_name }}</div>
@@ -69,6 +76,7 @@ const props = defineProps<{
     page_data: ApiCmsPageSpectacle | null
     first_and_last_date: null | string
     place_name: null | string
+    event_info?: string
 }>()
 </script>
 
@@ -85,6 +93,17 @@ const props = defineProps<{
   display: flex;
   background: var(--app-color-grey);
   justify-content: space-between;
+}
+
+.v-app-spectacle-slug-info__item__info {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--app-color-purple);
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: .25rem var(--app-gutter-xl);
+  margin-left: calc( -1 * var(--app-gutter-xl) );
 }
 
 .v-app-spectacle-slug-info__coll__header__ticket {
