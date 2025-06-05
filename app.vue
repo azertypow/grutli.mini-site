@@ -314,7 +314,7 @@
 import {fetchNews, fetchPlacesInfo, fetchSeasons, fetchSiteInfo} from "~/utlis/apiCmsFetch";
 import {
     useAppContentIsLoaded, useAppSeasons, useAppSeasons_active,
-    useFalkIsActive,
+    useFalkIsActive, useMenuIsOpen,
     useNews,
     usePlacesInfo, useShowCookieBanner,
     useSiteInfo, useWindowIsScrollToBottom, useWindowsWidthIsSmallerThan1200pxCSSBreakpoint
@@ -336,6 +336,9 @@ function handleCookieBannerClick() {
 onMounted(async () => {
 
     setWindowsWidth( useWindowsWidthIsSmallerThan1200pxCSSBreakpoint )
+
+    if( useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value ) useMenuIsOpen().value = false
+
 
     initGoogleAnalytics()
 
