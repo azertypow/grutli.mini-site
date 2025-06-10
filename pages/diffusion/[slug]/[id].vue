@@ -190,7 +190,7 @@ onMounted(async () => {
   padding-bottom: var(--app-gutter);
 
   span {
-    color: var(--app-color-orange);
+    color: var(--app-color-secondary);
   }
 }
 

@@ -115,7 +115,7 @@ const data = defineProps<{
       height: 1rem;
       width: auto;
       flex-shrink: 0;
-      fill: var(--app-color-orange);
+      fill: var(--app-color-secondary);
     }
   }
 }
@@ -135,7 +135,7 @@ const data = defineProps<{
 
 .v-app-block-content__coll__content__text__quote {
   > div:first-child {
-    color: var(--app-color-orange);
+    color: var(--app-color-secondary);
   }
 
   > div:nth-child(2) {
@@ -144,7 +144,7 @@ const data = defineProps<{
 
 }
 :global(.v-app-block-content__coll__content__text__quote > div:nth-child(2) em) {
-  color: var(--app-color-orange);
+  color: var(--app-color-secondary);
 }
 
 .v-app-block-content__coll__content__text__image {
@@ -183,7 +183,7 @@ const data = defineProps<{
 
   /* CSS pseudos elements (firefox) */
   scrollbar-width: thin;
-  scrollbar-color: var(--app-color-orange) transparent;
+  scrollbar-color: var(--app-color-secondary) transparent;
   scrollbar-gutter: stable both-edges;
 
   /* WebKit (Chrome, Edge, Safari) */
@@ -192,7 +192,7 @@ const data = defineProps<{
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--app-color-orange);
+    background-color: var(--app-color-secondary);
     border-radius: 1rem;
   }
 

@@ -78,7 +78,7 @@ const props = defineProps<{
   text-align: center;
   font-style: italic;
   margin-bottom: 0;
-  background: var(--app-color-purple);
+  background: var(--app-color-primary);
   overflow: hidden;
   position: relative;
   height: 1rem;

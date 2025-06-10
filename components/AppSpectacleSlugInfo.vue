@@ -99,7 +99,7 @@ const props = defineProps<{
   display: block;
   width: 100%;
   text-align: center;
-  background-color: var(--app-color-purple);
+  background-color: var(--app-color-primary);
   margin-top: 1rem;
   margin-bottom: 0;
   padding: .25rem var(--app-gutter-xl);
@@ -133,7 +133,7 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__text-content__is-cover {
   margin-bottom: .5rem;
-  color: var(--app-color-orange);
+  color: var(--app-color-secondary);
 }
 
 .v-app-spectacle-slug-info__coll__text-content__company {

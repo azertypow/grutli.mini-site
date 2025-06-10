@@ -142,7 +142,7 @@ const props = defineProps<{
       height: 1rem;
       width: auto;
       flex-shrink: 0;
-      fill: var(--app-color-orange);
+      fill: var(--app-color-secondary);
     }
   }
 }
@@ -178,7 +178,7 @@ const props = defineProps<{
 
   /* CSS pseudos elements (firefox) */
   scrollbar-width: thin;
-  scrollbar-color: var(--app-color-orange) transparent;
+  scrollbar-color: var(--app-color-secondary) transparent;
   scrollbar-gutter: stable both-edges;
 
   /* WebKit (Chrome, Edge, Safari) */
@@ -187,7 +187,7 @@ const props = defineProps<{
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--app-color-orange);
+    background-color: var(--app-color-secondary);
     border-radius: 1rem;
   }
 
