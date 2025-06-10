@@ -89,7 +89,7 @@
       </div>
 
       <video class="app-app__video-bg"
-             src="/videos/250128_Grutli_video-bg_op1_4-12.mp4"
+             src="/videos/250604_Grutli_web-home_3840x2160_60fps.mp4"
              muted
              loop
              autoplay
@@ -172,10 +172,10 @@
   display: block;
 
   &:nth-child(1n) {
-    background: var(--app-color-purple);
+    background: var(--app-color-primary);
     .app-app__news__wrap__container__close-ui {
-      background: var(--app-color-purple);
-      box-shadow: 0 0 10px 10px var(--app-color-purple);
+      background: var(--app-color-primary);
+      box-shadow: 0 0 10px 10px var(--app-color-primary);
     }
   }
 
@@ -188,10 +188,10 @@
   }
 
   &:nth-child(3n) {
-    background: var(--app-color-orange);
+    background: var(--app-color-secondary);
     .app-app__news__wrap__container__close-ui {
-      background: var(--app-color-orange);
-      box-shadow: 0 0 10px 10px var(--app-color-orange);
+      background: var(--app-color-secondary);
+      box-shadow: 0 0 10px 10px var(--app-color-secondary);
     }
   }
 }
@@ -286,7 +286,7 @@
     box-sizing: border-box;
     padding: .5rem 1rem;
     border-radius: 1rem;
-    background: var(--app-color-orange);
+    background: var(--app-color-secondary);
     width: 100%;
     height: 100%;
     display: flex;
