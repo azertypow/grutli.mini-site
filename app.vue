@@ -430,6 +430,12 @@ function setVideoFrameCallback() {
     }
 
     videoHTMLElement.addEventListener('timeupdate', () => handleTimeUpdate(videoHTMLElement))
+
+    useRouter().beforeEach(() => {
+      console.log(videoHTMLElement.paused)
+      videoHTMLElement.play()
+      console.log(videoHTMLElement.paused)
+    })
 }
 
 // function removeVideoListener() {
