@@ -95,6 +95,7 @@
              autoplay
              playsinline
              poster="/videos/250128_Grutli_video-bg_op1_4-12.jpg"
+             ref="videoBackground"
       />
     </template>
   </div>
@@ -323,6 +324,9 @@ import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
 import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 import {stringStartWith} from "~/utlis/stringStartWith";
 import {setWindowsWidth} from "~/utlis/setWindowsWidth";
+import {handleTimeUpdate} from "~/utlis/views/app";
+
+const videoBackground = ref<HTMLVideoElement | null>(null)
 
 function handleCookieBannerClick() {
     useShowCookieBanner().value = false
@@ -383,6 +387,7 @@ onMounted(async () => {
 
     useShowCookieBanner().value = storedValue !== 'false'
 
+    setVideoFrameCallback()
 })
 
 window.addEventListener('resize', () => setWindowsWidth( useWindowsWidthIsSmallerThan1200pxCSSBreakpoint ))
@@ -416,8 +421,19 @@ const toggleItemState = (id: string) => {
     }
 }
 
-// pause 0
-// frame 108
-// fin
-// on attend entre 3 et 5 sec
+function setVideoFrameCallback() {
+    const videoHTMLElement = videoBackground.value
+
+    if (!videoHTMLElement) {
+        window.setTimeout(setVideoFrameCallback, 10)
+        return
+    }
+
+    videoHTMLElement.addEventListener('timeupdate', () => handleTimeUpdate(videoHTMLElement))
+}
+
+// function removeVideoListener() {
+//     videoBackground.value?.removeEventListener('timeupdate', handleTimeUpdate)
+// }
+
 </script>
