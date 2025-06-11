@@ -26,7 +26,7 @@
         <NuxtPage/>
       </div>
 
-      <AudioPlayer/>
+<!--      <AudioPlayer/>-->
 
       <div class="app-app__cookie" v-if="useShowCookieBanner().value">
         <div>
