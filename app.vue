@@ -434,6 +434,7 @@ function setVideoFrameCallback() {
     useRouter().beforeEach(() => {
       console.log(videoHTMLElement.paused)
       videoHTMLElement.play()
+      videoHTMLElement.playbackRate = 2
       console.log(videoHTMLElement.paused)
     })
 }
