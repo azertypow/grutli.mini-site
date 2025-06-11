@@ -1,3 +1,5 @@
+export let playTimeOutTimer: number | null = null
+
 const FRAME_RATE = 60
 
 const VIDEO_PAUSE_FRAME = [
@@ -46,7 +48,7 @@ export function handleTimeUpdate(htmlVideoElement: HTMLVideoElement) {
 
         console.log(`Pause de ${pauseDuration} secondes au time ${videoCurrentTime}`)
 
-        setTimeout(() => {
+        playTimeOutTimer = window.setTimeout(() => {
             htmlVideoElement.play()
         }, pauseDuration * 1_000)
 

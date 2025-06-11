@@ -324,7 +324,8 @@ import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
 import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 import {stringStartWith} from "~/utlis/stringStartWith";
 import {setWindowsWidth} from "~/utlis/setWindowsWidth";
-import {handleTimeUpdate} from "~/utlis/views/app";
+import {handleTimeUpdate, playTimeOutTimer} from "~/utlis/views/app";
+import {clearTimeout} from "node:timers";
 
 const videoBackground = ref<HTMLVideoElement | null>(null)
 
@@ -435,6 +436,13 @@ function setVideoFrameCallback() {
       console.log(videoHTMLElement.paused)
       videoHTMLElement.play()
       videoHTMLElement.playbackRate = 2
+
+      if (playTimeOutTimer) {
+          console.info('clearTimeout', playTimeOutTimer)
+          window.clearTimeout(playTimeOutTimer)
+          console.info('clearTimeout', playTimeOutTimer)
+      }
+
       console.log(videoHTMLElement.paused)
     })
 }
