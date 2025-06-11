@@ -2,13 +2,13 @@
   <section class="v-app-fixed-nav"
   >
     <div class="v-slug__listed-pages">
-      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
                  href="/programmation"
       >
         Programmation
       </nuxt-link>
       <template v-for="page of listOfPageToShowInNavigation">
-        <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+        <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
                    :href="'/' + page.uri"
                    :class="{
                       'dont-show': getFirstPath(useRoute().path) === page.uri,
@@ -18,13 +18,13 @@
         </nuxt-link>
       </template>
 
-      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
                  href="/diffusion"
       >
         Diffusion
       </nuxt-link>
 
-      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-shadow"
+      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
                  href="/archive"
       >
         Archive
@@ -32,7 +32,7 @@
 
       <a href="https://infomaniak.events/fr-ch/shop/scenes-du-grutli-l-arbre-monde-CFFW7GX6FS"
          target="_blank"
-         class="app-button-grey app-font-small app-button-grey--with-shadow"
+         class="app-button-grey app-font-small app-button-grey--with-glow-effect"
       >Billetterie</a>
     </div>
 
@@ -40,13 +40,13 @@
 
     <div class="v-slug__children-link">
       <template v-if="childrenDetailsForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-shadow"
+        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-glow-effect"
                    v-for="childLink of childrenDetailsForNavLinks"
                    :href=" '/' + childLink.pageContent.uri"
         >{{childLink.pageContent.content.title}}</nuxt-link>
       </template>
       <template v-if="parentSubPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-shadow"
+        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-glow-effect"
                    v-for="subPage of parentSubPageForNavLinks"
                    :href=" '/' + subPage.pageContent.uri"
         >{{subPage.pageContent.content.title}}</nuxt-link>

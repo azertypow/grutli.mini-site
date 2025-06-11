@@ -1,7 +1,7 @@
 <template>
     <section class="v-app-header">
       <div class="v-app-header__left">
-        <nuxt-link class="app-font-small app-font-mono app-font-mono--force app-button-grey app-button-grey--with-shadow"
+        <nuxt-link class="app-font-small app-font-mono app-font-mono--force app-button-grey app-button-grey--with-glow-effect"
                    to="/"
                    style="padding-left: .75rem; padding-right: .75rem"
         >
@@ -21,7 +21,7 @@
 
         <div class="v-app-header__right__top">
 
-          <button class="app-button-grey app-font-small app-button-grey--with-shadow v-app-header__social"
+          <button class="app-button-grey app-font-small app-button-grey--with-glow-effect v-app-header__social"
                   style="font-size: 0.5rem; text-transform: uppercase;"
                   @click="useAppNewsletterIsOpen().value = true"
           ><svg xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
                 style="height: .75rem;"
           ><path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm80-80h480v-80H240v80Zm0-160h160v-240H240v240Zm240 0h240v-80H480v80Zm0-160h240v-80H480v80ZM160-200v-560 560Z"/></svg></button>
 
-          <a class="v-app-header__social app-button-grey app-button-grey--with-shadow"
+          <a class="v-app-header__social app-button-grey app-button-grey--with-glow-effect"
              href="https://www.facebook.com/legrutli/friends_likes/?locale=fr_FR"
              target="_blank"
           >
@@ -40,7 +40,7 @@
             </svg>
           </a>
 
-          <a class="v-app-header__social app-button-grey app-button-grey--with-shadow"
+          <a class="v-app-header__social app-button-grey app-button-grey--with-glow-effect"
              href="https://www.instagram.com/legrutli_artsvivants/"
              target="_blank"
           >
@@ -50,7 +50,7 @@
             </svg>
           </a>
 
-          <div class="v-app-header__falk-ui app-button-grey app-button-grey--with-shadow" @click="useFalkIsActive().value = !useFalkIsActive().value">
+          <div class="v-app-header__falk-ui app-button-grey app-button-grey--with-glow-effect" @click="useFalkIsActive().value = !useFalkIsActive().value">
             <div>FALC</div>
             <svg v-if="useFalkIsActive().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black">
               <path d="M280-240q-100 0-170-70T40-480q0-100 70-170t170-70h400q100 0 170 70t70 170q0 100-70 170t-170 70H280Zm0-80h400q66 0 113-47t47-113q0-66-47-113t-113-47H280q-66 0-113 47t-47 113q0 66 47 113t113 47Zm400-40q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM480-480Z"/>
@@ -63,7 +63,7 @@
         </div>
 
         <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
-          <div class="v-app-header__toggle-menu app-button-grey app-button-grey--with-shadow"
+          <div class="v-app-header__toggle-menu app-button-grey app-button-grey--with-glow-effect"
                @click="useMenuIsOpen().value = !useMenuIsOpen().value"
           >
             <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>

@@ -15,6 +15,9 @@
   --app-color-tertiary: #448A62;
   --app-color-grey:   #c7c7c7;
 
+  --app-bg-glow-color: rgba(255, 255, 255, 0.4);
+  --app-bg-glow-filter: blur(20px);
+
   @media (max-width: 1200px) {
     --app-header-height: 2.5rem;
   }

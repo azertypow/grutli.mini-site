@@ -80,7 +80,8 @@ const dateFromTicketService = computed(() => {
   display: flex;
   align-items: center;
   aspect-ratio: initial;
-  background: var(--app-color-grey);
+  background: var(--app-bg-glow-color);
+  backdrop-filter: var(--app-bg-glow-filter);
   background-size: 80rem auto;
   box-sizing: border-box;
   padding: var(--app-gutter);

@@ -56,11 +56,11 @@ const dateString: ComputedRef<string> = computed(() => {
   justify-content: space-between;
   padding: 1rem 1rem;
   border-radius: 2rem;
-  box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.3);
+  background: var(--app-bg-glow-color);
+  backdrop-filter: var(--app-bg-glow-filter);
   transition: transform .25s ease-in-out;
 
   &:hover {
-    background: var(--app-color-grey);
     transform: scale(1.005);
   }
 
