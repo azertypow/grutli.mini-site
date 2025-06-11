@@ -11,7 +11,7 @@
           <div v-if="blockContent.type === 'link'"
                class="v-app-spectacle-slug-block__coll__content__text__link"
           >
-            <a class="app-button"
+            <a class="app-button app-button-grey app-button-grey--with-glow-effect"
                target="_blank"
                :href="blockContent.content.link"
             >
@@ -136,13 +136,19 @@ const props = defineProps<{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: white;
+    border-radius: .75rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+
+    transform: none;
 
     svg {
       display: block;
       height: 1rem;
       width: auto;
       flex-shrink: 0;
-      fill: var(--app-color-secondary);
+      fill: var(--app-color-primary);
     }
   }
 }

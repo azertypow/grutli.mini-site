@@ -91,7 +91,7 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__header {
   display: flex;
-  background: var(--app-color-grey);
+  background: transparent;
   justify-content: space-between;
 }
 
