@@ -79,7 +79,7 @@
                           :value="group.name"
                           v-model="form.groups"
                   />
-                  <label>{{ group.text }}</label>
+                  <label v-html="group.text"/>
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ const listOfNewsletterGroups = [
     },
     {
         name: "Site - BdC",
-        text: "sur le Bureau des Compagnies (professionnelles et professionnel)",
+        text: "sur le Bureau des Compagnies<br>(destiné aux artistes)",
     },
     {
         name: "Site - École",
@@ -161,7 +161,7 @@ const listOfNewsletterGroups = [
     },
     {
         name: "Site - Programmatrices",
-        text: "sur la diffusion des spectacles (professionnelles et professionnel)"
+        text: "sur la diffusion des spectacles<br>(destiné à la profession)"
     },
 ] satisfies NewsLetterGroupes
 
@@ -263,6 +263,7 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
 .v-app-newsletter__wrap__header__title {
   margin-top: 0;
   margin-bottom: 1em;
+  line-height: 1.15em;
 }
 
 div.v-app-newsletter__wrap__form__submit{
