@@ -10,7 +10,7 @@
     <transition name="v-fade">
         <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value ">
           <img class="app-app__loader-container__img"
-               src="/loader.gif"/>
+               src="/loader-20250612.gif"/>
         </div>
     </transition>
 
