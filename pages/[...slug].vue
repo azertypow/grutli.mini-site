@@ -559,7 +559,6 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   border-radius: 1rem;
   box-sizing: border-box;
   padding: var(--app-gutter-xl);
-  padding-top: 1.25rem;
 
   @media (min-width: 1200px) {
     width: calc(50% - (var(--app-gutter-xl) / 2));
