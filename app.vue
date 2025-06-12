@@ -89,7 +89,7 @@
       </div>
 
       <video class="app-app__video-bg"
-             src="/videos/250612_Grutli_web-home_3840x2160.mp4"
+             src="/videos/250612_Grutli_web-home_3840x2160_M.mp4"
              muted
              loop
              autoplay
