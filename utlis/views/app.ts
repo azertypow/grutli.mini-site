@@ -1,20 +1,13 @@
 export let playTimeOutTimer: number | null = null
 
-const FRAME_RATE = 60
+const FRAME_RATE = 30
 
 const VIDEO_PAUSE_FRAME = [
-    {time: 1, once: false},
+    {time: 0, once: true},
+    {time: 2, once: false},
     {time: 4, once: false},
-    {time: 7, once: false},
+    {time: 6, once: false},
 ]
-
-// const VIDEO_PAUSE_FRAME = [
-//     {time: 2, once: false},
-//     {time: 3, once: false},
-//     {time: 5, once: false},
-//     {time: 6, once: false},
-//     {time: 8, once: false},
-// ]
 
 const MIN_PAUSE_DURATION          = 1
 const MAX_PAUSE_DURATION         = 5
@@ -30,7 +23,9 @@ export function handleTimeUpdate(htmlVideoElement: HTMLVideoElement) {
         VIDEO_PAUSE_FRAME.forEach(value => value.once = false)
         // console.log('reset', VIDEO_PAUSE_FRAME)
     }
-    const videoCurrentTime = Math.round( htmlVideoElement.currentTime)
+
+    // console.log(htmlVideoElement.currentTime)
+    const videoCurrentTime = Math.floor( htmlVideoElement.currentTime)
 
     const matchedFrame = VIDEO_PAUSE_FRAME.find(value => {
         return value.time === videoCurrentTime
@@ -42,11 +37,11 @@ export function handleTimeUpdate(htmlVideoElement: HTMLVideoElement) {
 
         htmlVideoElement.pause()
         htmlVideoElement.playbackRate = getRandomIntInclusive(5, 10) / 10
-        console.log(`Vitesse de lecture ${htmlVideoElement.playbackRate}`)
+        // console.log(`Vitesse de lecture ${htmlVideoElement.playbackRate}`)
 
         const pauseDuration = getRandomIntInclusive(MIN_PAUSE_DURATION, MAX_PAUSE_DURATION)
 
-        console.log(`Pause de ${pauseDuration} secondes au time ${videoCurrentTime}`)
+        // console.log(`Pause de ${pauseDuration} secondes au time ${videoCurrentTime}`)
 
         playTimeOutTimer = window.setTimeout(() => {
             htmlVideoElement.play()
