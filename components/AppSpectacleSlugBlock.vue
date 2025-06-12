@@ -138,9 +138,8 @@ const props = defineProps<{
     justify-content: space-between;
     background: white;
     border-radius: .75rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-
+    padding-top: .25rem;
+    padding-bottom: .25rem;
     transform: none;
 
     svg {
