@@ -429,6 +429,8 @@ const pageData: Ref<ApiSimplePage | null> = ref(null)
 
 onMounted(async () => {
     fetchPage(slug).then(async (value: ApiSimplePage | null) => {
+        if( !value ) useRouter().push('/erreur')
+
         pageData.value = value
 
         useHead({

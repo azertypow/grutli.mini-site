@@ -431,8 +431,11 @@ const wrapNumbersInSpan = (value: { text: string, eventID: number }): string => 
 
 onMounted(async () => {
 
+    const pageDataFetched = await fetchPageSpectacle(useRoute().params.slug as string)
 
-    pageData.value = await fetchPageSpectacle(useRoute().params.slug as string)
+    if( !pageDataFetched ) useRouter().push('/erreur')
+
+    pageData.value = pageDataFetched
 
     useHead({
         title: 'Spectacle | ' + pageData.value?.pageContent.content.title
