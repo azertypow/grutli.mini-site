@@ -153,7 +153,8 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   flex-shrink: 0;
   width: 100%;
   overflow: hidden;
-  background: var(--app-color-grey);
+  background: var(--app-bg-glow-color);
+  backdrop-filter: var(--app-bg-glow-filter);
   border-radius: 1rem;
   box-sizing: border-box;
   padding: var(--app-gutter-xl);

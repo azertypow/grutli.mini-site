@@ -121,7 +121,8 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__item {
-  background: var(--app-color-grey);
+  background: var(--app-bg-glow-color);
+  backdrop-filter: var(--app-bg-glow-filter);
   padding: var(--app-gutter-xl);
   border-radius: 1rem;
   overflow: hidden;
@@ -134,7 +135,6 @@ onMounted(async () => {
 }
 
 .v-spectacle-slug__coll__text-content {
-  background: var(--app-color-grey);
   box-sizing: border-box;
   padding: var(--app-gutter-xl) var(--app-gutter-xl) 1.5rem;
   overflow: hidden;
