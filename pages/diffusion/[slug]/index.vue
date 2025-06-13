@@ -137,6 +137,7 @@ onMounted(async () => {
   box-sizing: border-box;
   width: calc( (100% / 3) - var(--app-gutter-xl) );
   flex-grow: 1;
+  text-decoration: none;
 
   @media (max-width: 1100px) {
     width: 100%;
