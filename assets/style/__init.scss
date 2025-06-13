@@ -14,7 +14,7 @@ html, body {
 html {
   height: 100%;
   font-size: 30px;
-  background-color: white;
+  background: var(--app-color-primary);
 
   &.nuxt-watch-falk-is-active {
     background-image: none;
