@@ -89,12 +89,12 @@
       </div>
 
       <video class="app-app__video-bg"
-             src="/videos/250612_Grutli_web-home_3840x2160_M.mp4"
+             v-if="currentSeason"
+             :src="currentSeason[0].content.video_url"
              muted
              loop
              autoplay
              playsinline
-             poster="/videos/250128_Grutli_video-bg_op1_4-12.jpg"
              ref="videoBackground"
       />
     </template>
@@ -328,6 +328,14 @@ import {handleTimeUpdate, playTimeOutTimer} from "~/utlis/views/app";
 import {clearTimeout} from "node:timers";
 
 const videoBackground = ref<HTMLVideoElement | null>(null)
+
+const seasons = useAppSeasons()
+
+const currentSeason: ComputedRef<null | ApiSeasons_value[]> = computed(() =>
+    seasons.value ?
+        seasons.value.value.filter(value => value.content.statut === 'en-cours')
+        : null
+)
 
 function handleCookieBannerClick() {
     useShowCookieBanner().value = false

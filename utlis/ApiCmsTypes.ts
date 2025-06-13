@@ -507,4 +507,5 @@ export type ApiSeasons_value_content = {
     statut: "a-venir" | "en-cours" | "passe"
     title: string
     uuid: string
+    video_url: string
 }
