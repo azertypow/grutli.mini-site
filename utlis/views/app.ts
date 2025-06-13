@@ -3,10 +3,9 @@ export let playTimeOutTimer: number | null = null
 const FRAME_RATE = 30
 
 const VIDEO_PAUSE_FRAME = [
-    {time: 0, once: true},
-    {time: 2, once: false},
+    {time: 1, once: false},
     {time: 4, once: false},
-    {time: 6, once: false},
+    {time: 7, once: false},
 ]
 
 const MIN_PAUSE_DURATION          = 1
