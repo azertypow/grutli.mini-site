@@ -60,6 +60,7 @@ export type ApiCmsCompany = {
 export interface SiteInfo {
     "page-simple": SiteInfoPageSimple[];
     spectacles: Spectacle[];
+    ticket_infos: string
 }
 
 export interface SiteInfoPageSimple {

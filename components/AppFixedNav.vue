@@ -30,7 +30,8 @@
         Archive
       </nuxt-link>
 
-      <a href="https://infomaniak.events/fr-ch/shop/scenes-du-grutli-l-arbre-monde-CFFW7GX6FS"
+      <a :href="siteInfo.ticket_infos"
+         v-if="siteInfo"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-glow-effect"
       >Billetterie</a>
@@ -75,6 +76,8 @@ import {useRoute} from "nuxt/app";
 const currentPageForNavLinks      = useCurrentPageForNavLinks()
 const parentSubPageForNavLinks    = useParentSubPageForNavLinks()
 const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
+
+const siteInfo = useSiteInfo()
 
 const listOfPageToShowInNavigation: ComputedRef<{title: string, uri: string, showInNavigation:  "true" | "false"}[]> = computed(() => {
 
