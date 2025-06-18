@@ -30,8 +30,8 @@
         Archive
       </nuxt-link>
 
-      <a :href="siteInfo.ticket_infos"
-         v-if="siteInfo"
+      <a :href="ticketInfos.page_content.shop"
+         v-if="ticketInfos"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-glow-effect"
       >Billetterie</a>
@@ -67,7 +67,7 @@ import {
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
     useParentSubPageForNavLinks,
-    useSiteInfo
+    useSiteInfo, useTicketServiceInfo
 } from "~/composables/cmsData";
 import type {PageChildren, PageContent, SiteInfoPageSimple} from "~/utlis/ApiCmsTypes";
 import {getFirstPath} from "../utlis/getFirstPathUrl";
@@ -77,7 +77,7 @@ const currentPageForNavLinks      = useCurrentPageForNavLinks()
 const parentSubPageForNavLinks    = useParentSubPageForNavLinks()
 const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
 
-const siteInfo = useSiteInfo()
+const ticketInfos = useTicketServiceInfo()
 
 const listOfPageToShowInNavigation: ComputedRef<{title: string, uri: string, showInNavigation:  "true" | "false"}[]> = computed(() => {
 
