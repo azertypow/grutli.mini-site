@@ -312,13 +312,20 @@
 </style>
 
 <script setup lang="ts">
-import {fetchNews, fetchPlacesInfo, fetchSeasons, fetchSiteInfo} from "~/utlis/apiCmsFetch";
+import {
+    fetchNews,
+    fetchPage,
+    fetchPlacesInfo,
+    fetchSeasons,
+    fetchSiteInfo,
+    fetchTicketServiceInfo
+} from "~/utlis/apiCmsFetch";
 import {
     useAppContentIsLoaded, useAppSeasons, useAppSeasons_active,
     useFalkIsActive, useMenuIsOpen,
     useNews,
     usePlacesInfo, useShowCookieBanner,
-    useSiteInfo, useWindowIsScrollToBottom, useWindowsWidthIsSmallerThan1200pxCSSBreakpoint
+    useSiteInfo, useTicketServiceInfo, useWindowIsScrollToBottom, useWindowsWidthIsSmallerThan1200pxCSSBreakpoint
 } from "~/composables/cmsData";
 import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
 import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
@@ -363,6 +370,10 @@ onMounted(async () => {
 
     Promise.all([
       fetchSiteInfo().then(value => useSiteInfo().value = value),
+
+      fetchTicketServiceInfo().then(value => {
+          return useTicketServiceInfo().value = value;
+      }),
 
       fetchPlacesInfo().then(value => usePlacesInfo().value = value),
 

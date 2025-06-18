@@ -1,4 +1,5 @@
 import type {
+    ApiCms_ticketServiceInfos,
     ApiCmsPageSpectacle,
     ApiNews,
     ApiPage_template_diffusion, ApiPage_template_diffusion_subPage, ApiPage_template_diffusionSinglePage,
@@ -25,6 +26,26 @@ export async function fetchSiteInfo(): Promise<SiteInfo | null> {
 
         // Ajoute une validation si nécessaire pour t'assurer que `data` correspond bien au type attendu
         return data as SiteInfo;
+    } catch (error) {
+        console.error("Failed to fetch site info:", error);
+        return null;
+    }
+}
+
+export async function fetchTicketServiceInfo(): Promise<ApiCms_ticketServiceInfos | null> {
+    const url = apiBaseUrl + '/billetterie-infomaniak.json'
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Ajoute une validation si nécessaire pour t'assurer que `data` correspond bien au type attendu
+        return data as ApiCms_ticketServiceInfos;
     } catch (error) {
         console.error("Failed to fetch site info:", error);
         return null;

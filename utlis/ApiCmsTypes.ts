@@ -63,6 +63,16 @@ export interface SiteInfo {
     ticket_infos: string
 }
 
+export interface ApiCms_ticketServiceInfos {
+    page_content: {
+        title:                  string
+        shop:                   string
+        subscription_link:      string
+        subscription_text:      string
+        subscription_toggle:    "false" | "true"
+    }
+}
+
 export interface SiteInfoPageSimple {
     cover: ApiCmsImage[];
     pageContent: PageContent;

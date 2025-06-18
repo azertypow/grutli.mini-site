@@ -4,11 +4,15 @@ import type {
     ApiPlaces,
     ApiSeasons, ApiSeasons_value,
     ApiSimplePage_ChildDetails,
-    SiteInfo
+    SiteInfo, ApiCms_ticketServiceInfos
 } from "~/utlis/ApiCmsTypes";
 
 export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
     return useState('useSiteInfo', () => null )
+}
+
+export const useTicketServiceInfo: () => Ref<null | ApiCms_ticketServiceInfos> = () => {
+    return useState('useTicketServiceInfo', () => null )
 }
 
 export const usePlacesInfo: () => Ref<null | ApiPlaces> = () => {
