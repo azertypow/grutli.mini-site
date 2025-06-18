@@ -8,6 +8,14 @@
         <div class="v-index__season-title__title"
         >{{currentSeason.content.title}}
         </div>
+        <div class="v-index__season-title__subscription">
+          <a  class="app-button-grey app-button-grey--with-glow-effect app-font-small"
+              :href="useTicketServiceInfo().value?.page_content.subscription_link"
+              v-if="useTicketServiceInfo().value?.page_content.subscription_toggle === 'true'"
+          >
+            {{useTicketServiceInfo().value?.page_content.subscription_text}}
+          </a>
+        </div>
       </div>
 
       <div class="v-index__list-wrap"
@@ -57,7 +65,7 @@ import {
     useAppSeasons, useAppSeasons_active,
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
-    useParentSubPageForNavLinks, useSiteInfo
+    useParentSubPageForNavLinks, useSiteInfo, useTicketServiceInfo
 } from "~/composables/cmsData";
 
 useCurrentPageForNavLinks().value = null
@@ -139,7 +147,6 @@ const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-weight: 600;
   padding-bottom: 1rem;
 
   @media (min-height: 1000px) {
@@ -154,6 +161,12 @@ const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
 
 .v-index__season-title__title {
   font-size: 1rem;
+  font-weight: 600;
+  margin-top: .25rem;
+}
+
+.v-index__season-title__subscription {
+  margin-top: .5rem;
 }
 
 .v-index__list-wrap {
