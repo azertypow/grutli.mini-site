@@ -4,10 +4,10 @@
       <div class="v-index__season app-font-mono"
            v-if="currentSeason"
       >
+        <div class="v-index__season-title__info">{{currentSeason.content.dateinformation}}</div>
         <div class="v-index__season-title__title"
         >{{currentSeason.content.title}}
         </div>
-        <div class="v-index__season-title__info">{{currentSeason.content.dateinformation}}</div>
       </div>
 
       <div class="v-index__list-wrap"
@@ -142,11 +142,9 @@ const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
   font-weight: 600;
   padding-bottom: 1rem;
 
-
-  @media (min-height: 650px) {
-    position: fixed;
-    top: var(--app-header-height);
-    left: 0;
+  @media (min-height: 1000px) {
+    margin-bottom: 2rem;
+    margin-top: -5rem;
   }
 
   @media (max-width: 1100px) {
