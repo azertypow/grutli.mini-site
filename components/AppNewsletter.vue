@@ -126,11 +126,11 @@ type SubscriptionResponse = {
  * that can be used within the newsletter service.
  */
 type NewsLetterValues =
-    "Site - Tout public"
-    | "Site - Relax"
-    | "Site - BdC"
-    | "Site - École"
-    | "Site - Programmatrices"
+    "Principale"
+    | "RELAX"
+    | "Bureau des Cies"
+    | "Ecoles"
+    | "Programmatrices"
 
 type NewsLetterGroupes = {
     name: NewsLetterValues,
@@ -144,23 +144,23 @@ type SubscriberDataToSend = {
 
 const listOfNewsletterGroups = [
     {
-        name: "Site - Tout public",
+        name: "Principale",
         text: "sur la saison",
     },
     {
-        name: "Site - Relax",
+        name: "RELAX",
         text: "sur les mesures d’accessibilité",
     },
     {
-        name: "Site - BdC",
+        name: "Bureau des Cies",
         text: "sur le Bureau des Compagnies<br>(destiné aux artistes)",
     },
     {
-        name: "Site - École",
+        name: "Ecoles",
         text: "sur l’offre pour les écoles",
     },
     {
-        name: "Site - Programmatrices",
+        name: "Programmatrices",
         text: "sur la diffusion des spectacles<br>(destiné à la profession)"
     },
 ] satisfies NewsLetterGroupes
