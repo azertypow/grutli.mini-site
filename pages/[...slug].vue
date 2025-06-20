@@ -588,6 +588,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .v-slug__children-link__link {
