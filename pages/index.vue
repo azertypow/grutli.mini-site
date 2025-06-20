@@ -10,6 +10,7 @@
         </div>
         <div class="v-index__season-title__subscription">
           <a  class="app-button-grey app-button-grey--with-glow-effect app-font-small"
+              target="_blank"
               :href="useTicketServiceInfo().value?.page_content.subscription_link"
               v-if="useTicketServiceInfo().value?.page_content.subscription_toggle === 'true'"
           >
