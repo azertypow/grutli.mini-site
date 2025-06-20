@@ -9,6 +9,16 @@
     //////////-->
     <!--    masonry FALSE // windows width < breakpoint-->
     <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
+
+      <div class="v-slug__children-link"
+           v-if="childrenDetailsForNavLinks"
+      >
+        <nuxt-link class="v-slug__children-link__link"
+                   v-for="childLink of childrenDetailsForNavLinks"
+                   :href=" '/' + childLink.pageContent.uri"
+        >{{childLink.pageContent.content.title}}</nuxt-link>
+      </div>
+
       <template v-if="pageData">
         <template v-if="useFalkIsActive().value">
           <template v-for="content of pageData.pageContent.content.content">
@@ -208,6 +218,16 @@
           <!--               src="/images/241122_Grutli_Flyers_23.jpg"-->
           <!--          />-->
           <!--        </div>-->
+
+          <div class="v-slug__children-link"
+               v-if="childrenDetailsForNavLinks"
+          >
+            <nuxt-link class="v-slug__children-link__link"
+                       v-for="childLink of childrenDetailsForNavLinks"
+                       :href=" '/' + childLink.pageContent.uri"
+            >{{childLink.pageContent.content.title}}</nuxt-link>
+          </div>
+
           <template v-if="pageData">
             <template v-if="useFalkIsActive().value">
               <template v-for="content of pageData.pageContent.content.content.filter((_, i) => i % 3 === 2)">
@@ -332,6 +352,16 @@
           </template>
         </div>
         <div class="v-slug__masonry-coll">
+          <div class="v-slug__children-link"
+               v-if="childrenDetailsForNavLinks"
+          >
+            <nuxt-link class="v-slug__children-link__link"
+                       v-for="childLink of childrenDetailsForNavLinks"
+                       :href=" '/' + childLink.pageContent.uri"
+            >{{childLink.pageContent.content.title}}</nuxt-link>
+          </div>
+
+
           <!--        <div class="v-slug__item v-slug__item&#45;&#45;image">-->
           <!--          <img alt="image texte"-->
           <!--               class="v-slug__img"-->
@@ -426,6 +456,9 @@ import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
 const { slug } = useRoute().params;
 
 const pageData: Ref<ApiSimplePage | null> = ref(null)
+
+const parentSubPageForNavLinks    = useParentSubPageForNavLinks()
+const childrenDetailsForNavLinks  = useChildrenDetailsForNavLinks()
 
 onMounted(async () => {
     fetchPage(slug).then(async (value: ApiSimplePage | null) => {
@@ -549,6 +582,24 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   .with-3-coll & {
     width: calc( ( (100% + var(--app-gutter-xl)) / 3) - var(--app-gutter-xl));
   }
+}
+
+.v-slug__children-link {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.v-slug__children-link__link {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: var(--app-bg-glow-color);
+  backdrop-filter: var(--app-bg-glow-filter);
+  border-radius: 1rem;
+  text-align: center;
+  //text-decoration: none;
 }
 
 .v-slug__item {

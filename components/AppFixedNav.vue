@@ -36,25 +36,6 @@
          class="app-button-grey app-font-small app-button-grey--with-glow-effect"
       >Billetterie</a>
     </div>
-
-
-
-    <div class="v-slug__children-link">
-      <template v-if="childrenDetailsForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-glow-effect"
-                   v-for="childLink of childrenDetailsForNavLinks"
-                   :href=" '/' + childLink.pageContent.uri"
-        >{{childLink.pageContent.content.title}}</nuxt-link>
-      </template>
-      <template v-if="parentSubPageForNavLinks">
-        <nuxt-link class="v-slug__children-link__item app-font-small app-button-grey app-button-grey--with-glow-effect"
-                   v-for="subPage of parentSubPageForNavLinks"
-                   :href=" '/' + subPage.pageContent.uri"
-        >{{subPage.pageContent.content.title}}</nuxt-link>
-      </template>
-    </div>
-
-
   </section>
 </template>
 
@@ -153,14 +134,6 @@ const listOfPageToShowInNavigation: ComputedRef<{title: string, uri: string, sho
   //  pointer-events: none;
   //  user-select: none;
   //}
-}
-
-.v-slug__children-link {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  gap: var(--app-gutter);
 }
 
 .dont-show {
