@@ -11,6 +11,7 @@
           <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days">
                 <component
                         :is="date.url ? 'a' : 'div'"
+                        target="_blank"
                         v-for="date of dateGroup.dates"
                         :href="date.url || undefined"
                         class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item"
