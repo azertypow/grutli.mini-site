@@ -35,7 +35,9 @@
 
 
       <div class="v-app-spectacle-slug-info__coll__text-content__date_and_place">
-        <div v-if="first_and_last_date">{{ first_and_last_date }}</div>
+        <div v-if="first_and_last_date"
+             style="text-transform: capitalize;"
+        >{{ first_and_last_date }}</div>
         <div>{{ place_name }}</div>
       </div>
       <h1 class="v-app-spectacle-slug-info__coll__text-content__title app-font-align-center app-font-h3">
