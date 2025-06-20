@@ -24,12 +24,16 @@
           <button class="app-button-grey app-font-small app-button-grey--with-glow-effect v-app-header__social"
                   style="font-size: 0.5rem; text-transform: uppercase;"
                   @click="useAppNewsletterIsOpen().value = true"
-          ><svg xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px" fill="#000"
-                style="height: .75rem;"
-          ><path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm80-80h480v-80H240v80Zm0-160h160v-240H240v240Zm240 0h240v-80H480v80Zm0-160h240v-80H480v80ZM160-200v-560 560Z"/></svg></button>
+          >
+            <svg id="Layer_1"
+                 xmlns="http://www.w3.org/2000/svg"
+                 version="1.1"
+                 viewBox="0 0 20 15"
+                 style="height: .4rem;"
+            >
+              <path class="st0" d="M.53,0h18.94c.51,0,.72.66.31.96l-8.15,5.98c-.97.71-2.29.71-3.25,0L.22.95C-.19.65.02,0,.53,0ZM2.11,15h15.77c1.17,0,2.11-.94,2.11-2.11V3.48c0-.35-.39-.54-.67-.34l-6.81,5c-.75.55-1.63.83-2.51.83s-1.76-.28-2.51-.83L.67,3.13C.39,2.93,0,3.13,0,3.47v9.42C0,14.06.95,15,2.11,15Z"/>
+            </svg>
+          </button>
 
           <a class="v-app-header__social app-button-grey app-button-grey--with-glow-effect"
              href="https://www.facebook.com/legrutli/friends_likes/?locale=fr_FR"
