@@ -23,7 +23,15 @@
           </a>
           <a class="app-button-grey app-font-small"
              href="#dates-details"
-          >Dates & horaires</a>
+             v-if="page_data"
+          >
+            <template v-if="page_data.pageContent.content.list_of_dates.length > 1">
+              Dates & horaires
+            </template>
+            <template v-else>
+              Date & horaire
+            </template>
+            </a>
         </div>
       </div>
 
