@@ -270,6 +270,7 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
   height: 1rem;
   z-index: 10;
   fill: var(--app-color-secondary);
+  cursor: pointer;
 }
 
 .v-app-newsletter__wrap__header {
