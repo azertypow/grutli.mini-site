@@ -141,6 +141,7 @@ const props = defineProps<{
     padding-top: .25rem;
     padding-bottom: .25rem;
     transform: none;
+    white-space: wrap;
 
     svg {
       display: block;
