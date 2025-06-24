@@ -452,6 +452,7 @@ import {
 } from "~/composables/cmsData";
 import AppBlockContent from "~/components/AppBlockContent.vue";
 import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
+import {ga4_page_view} from "~/utlis/ga4";
 
 const { slug } = useRoute().params;
 
@@ -468,6 +469,12 @@ onMounted(async () => {
 
         useHead({
             title: pageData.value?.pageContent.content.title
+        })
+
+        ga4_page_view({
+            page_path: window.location.pathname,
+            page_title: pageData.value?.pageContent.content.title,
+            page_location: window.location.href,
         })
 
         redirectToFirstPageChildrenIfContentIsEmpty(value)
