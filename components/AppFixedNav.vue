@@ -27,7 +27,7 @@
       <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
                  href="/archive"
       >
-        Archive
+        Archives
       </nuxt-link>
 
       <a :href="ticketInfos.page_content.shop"
@@ -41,7 +41,7 @@
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-glow-effect"
          style="background: var(--app-color-secondary)"
-      >Espace Abonné.es</a>
+      >Espace Abonné·es</a>
     </div>
   </section>
 </template>
