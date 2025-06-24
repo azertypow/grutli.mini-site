@@ -9,7 +9,7 @@
          href="https://2024.grutli.ch/"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2018-2024</p>
-        <h2 class="v-archive-directions-passes__wrap__item__title">Barbara Giongo & Nathalie Sugnaux Hernandez</h2>
+        <h2 class="v-archive-directions-passes__wrap__item__title">Barbara Giongo & Nataly Sugnaux Hernandez</h2>
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
