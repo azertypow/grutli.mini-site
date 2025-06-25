@@ -3,7 +3,8 @@
       <div class="v-erreur__item">
           <h3>Erreur</h3>
           <div>
-            <p>La page que vous cherchez n'existe plus.</p>
+            <p v-if="!customMsg.msg" >La page que vous cherchez n'existe plus.</p>
+            <p v-else >{{customMsg.msg}}</p>
             <nuxt-link href="/">Revenir à l'accueil</nuxt-link>
           </div>
       </div>
@@ -23,6 +24,7 @@ import {
     useParentSubPageForNavLinks
 } from "~/composables/cmsData";
 import type {IAppEventPropsData} from "~/components/AppEventItem.vue";
+import {useUrlSearchParams} from "@vueuse/core";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
@@ -32,6 +34,9 @@ useHead({
     title: 'Oups'
 })
 
+const customMsg = useUrlSearchParams()
+
+
 </script>
 
 
@@ -39,6 +44,12 @@ useHead({
 
 
 <style lang="scss" scoped >
+.v-erreur {
+  box-sizing: border-box;
+  padding-left: var(--app-gutter-xl);
+  padding-right: var(--app-gutter-xl);
+}
+
 .v-erreur__list {
   display: flex;
   flex-wrap: nowrap;
@@ -48,7 +59,8 @@ useHead({
 }
 
 .v-erreur__item {
-  background: white;
+  background: var(--app-bg-glow-color);
+  backdrop-filter: var(--app-bg-glow-filter);
   padding: 1rem;
   border-radius: 1rem;
   text-align: center;
