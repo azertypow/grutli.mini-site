@@ -36,12 +36,12 @@
          class="app-button-grey app-font-small app-button-grey--with-glow-effect"
       >Billetterie</a>
 
-      <a :href="ticketInfos.page_content.shop"
-         v-if="ticketInfos"
-         target="_blank"
-         class="app-button-grey app-font-small app-button-grey--with-glow-effect"
-         style="background: var(--app-color-secondary)"
-      >Espace Abonné·es</a>
+<!--      <a :href="ticketInfos.page_content.shop"-->
+<!--         v-if="ticketInfos"-->
+<!--         target="_blank"-->
+<!--         class="app-button-grey app-font-small app-button-grey&#45;&#45;with-glow-effect"-->
+<!--         style="background: var(&#45;&#45;app-color-secondary)"-->
+<!--      >Espace Abonné·es</a>-->
     </div>
   </section>
 </template>
