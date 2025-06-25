@@ -13,7 +13,7 @@
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
-         href="https://2018.grutli.ch/"
+         href="/erreur?msg=archivage+en+cours"
          target="_blank"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2012-2018</p>
@@ -21,7 +21,7 @@
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
-         href="data:text/html,%3Chtml%3E%3Cbody%20style%3D%22font-family%3A%20sans-serif%3B%20margin%3A%202rem%3B%22%3E%3Ch1%3EArchivage%20en%20cours%3C%2Fh1%3E%3C%2Fbody%3E%3C%2Fhtml%3E"
+         href="/erreur?msg=archivage+en+cours"
          target="_blank"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2009-2012</p>
