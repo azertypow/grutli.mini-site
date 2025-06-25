@@ -150,11 +150,6 @@ const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
   text-align: center;
   padding-bottom: 1rem;
 
-  @media (min-height: 1000px) {
-    margin-bottom: 2rem;
-    margin-top: -5rem;
-  }
-
   @media (max-width: 1100px) {
     position: static;
   }
