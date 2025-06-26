@@ -234,7 +234,7 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
         }
     })
 
-    return groupedDateByMouth
+    return groupedDateByMouth.toReversed()
 })
 
 
