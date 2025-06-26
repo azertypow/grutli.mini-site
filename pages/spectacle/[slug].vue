@@ -144,7 +144,10 @@
 
         <!-- [START] date details -->
         <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
-             v-if="pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0"
+             v-if="
+              (pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0)
+              || (dateByMounth && dateByMounth.length > 0)
+             "
         >
           <AppSpectacleSlugDateDetails
                   :date_by_mounth="dateByMounth"
