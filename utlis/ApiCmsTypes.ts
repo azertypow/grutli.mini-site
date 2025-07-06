@@ -15,7 +15,6 @@ export type ApiCmsPageSpectacle = {
             cover: string,
             places: string,
             company: ApiCmsCompany[],
-            linked_spectacle: string,
             peoples: string,
             htmlcontent: ApiHTMLContent_Blocks[],
             htmlcontent_falk: ApiHTMLContent_Blocks[],
@@ -183,7 +182,6 @@ export interface SpectacleContentDetails {
     cover: string;
     places: string;
     company: ApiCmsCompany[];
-    linked_spectacle: string;
     peoples: string;
     htmlcontent: string;
     htmlcontent_falk: string;
@@ -450,6 +448,7 @@ export type ApiPage_template_diffusion_subPage = {
         title: string,
         eventInfo: string,
         event_intro: string, // html content
+        slug: string
         company: ApiCmsCompany[]
     }[]
 }
