@@ -278,9 +278,6 @@ onMounted(async () => {
         title: 'Spectacle | ' + pageData.value?.pageContent.content.title
     })
 
-    if (!pageData.value) return
-    if (!pageData.value.pageContent.content.eventtitle[0]) return
-
 })
 
 </script>
