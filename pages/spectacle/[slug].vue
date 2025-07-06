@@ -6,7 +6,9 @@
 
       <div class="v-spectacle-slug__mobil-coll">
         <!-- [START] 2 first blocks -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData"
+        >
           <app-spectacle-slug-info
                   :page_data="pageData"
                   :first_and_last_date="firstAndLAstDate"
