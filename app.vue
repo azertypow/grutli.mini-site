@@ -41,7 +41,7 @@
       </div>
 
       <div class="app-app__news"
-           v-if="newsList && useRouter().currentRoute.value.path === '/'"
+           v-if="newsList"
       >
         <template
                 v-for="news of newsListToShow"
