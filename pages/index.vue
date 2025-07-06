@@ -166,7 +166,7 @@ const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
 }
 
 .v-index__list-wrap {
-  padding: var(--app-gutter-xl) 0 calc( var(--v-audio-player-header-height) + var(--app-gutter));
+  padding: var(--app-gutter-xl) 0 0;
   //background: red;
 
   @media (max-width: 1600px) {

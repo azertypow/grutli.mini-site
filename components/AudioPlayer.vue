@@ -17,7 +17,7 @@
             >(télécharger la transcription)</a>
           </div>
           <div class="v-audio-player__container__header__ui">
-            <div @click="playerIsOpen = !playerIsOpen">
+            <div @click="togglePlayerIsOpen">
               <svg v-if="playerIsOpen"
                       xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m136-80-56-56 264-264H160v-80h320v320h-80v-184L136-80Zm344-400v-320h80v184l264-264 56 56-264 264h184v80H480Z"/></svg>
               <svg v-else
@@ -73,6 +73,14 @@ const playerIsPaused: Ref<boolean> = ref(true)
 let widget: null | ApiSoundCloud_Widget = null
 
 const playerIsOpen = ref(false)
+
+function togglePlayerIsOpen() {
+    document
+        .documentElement
+        .style
+        .setProperty(`--v-audio-player-header-height`, `2rem`);
+    playerIsOpen.value = !playerIsOpen.value
+}
 
 
 declare const SC: undefined | ApiSoundCloud

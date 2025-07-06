@@ -68,3 +68,7 @@ export const useAppSeasons: () => Ref<ApiSeasons | null> = () => useState('useAp
 export const useAppSeasons_active: () => Ref<ApiSeasons_value[] | null> = () => useState('useAppSeasons_active', () => null)
 
 export const useWindowsWidthIsSmallerThan1200pxCSSBreakpoint: () => Ref<boolean> = () => useState('useWindowsWidthIsSmallerThan1200pxCSSBreakpoint', () => true)
+
+export const usePlayerStatus = () => useState('usePlayerStatus', () => {
+    
+})

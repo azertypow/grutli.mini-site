@@ -60,7 +60,6 @@ onMounted(() => {
 
 <style lang="scss" scoped >
 .v-archive-directions-passes {
-  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
 }
 
 .v-archive-directions-passes__title {

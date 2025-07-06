@@ -3,14 +3,14 @@
         class="v-saisons-passes"
     >
       <template v-for="value of saisonFiltered">
-        <div class="v-index__list-wrap"
+        <div class="v-saisons-passes__list-wrap"
         >
           <h2>{{value.season.content.title}}</h2>
           <h3>{{value.season.content.dateinformation}}</h3>
-          <div class="v-index__list"
+          <div class="v-saisons-passes__list"
           >
             <template v-for="spectacle of  value.spectacles">
-              <div class="v-index__item">
+              <div class="v-saisons-passes__item">
                 <AppSpectacleCard
                         :to="'/spectacle/' + spectacle.pageContent.slug"
                         :title='spectacle.pageContent.content.title'
@@ -86,10 +86,6 @@ onMounted(async () => {
 
 
 <style lang="scss" scoped >
-.v-saisons-passes {
-  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
-}
-
 h2 {
   font-size: 1rem;
   margin-bottom: 0;
@@ -100,8 +96,8 @@ h3 {
   text-align: center;
 }
 
-.v-index__list-wrap {
-  padding: var(--app-gutter-xl) 0 calc( var(--v-audio-player-header-height) + var(--app-gutter));
+.v-saisons-passes__list-wrap {
+  padding: var(--app-gutter-xl) 0 0;
   //background: red;
 
   @media (max-width: 1600px) {
@@ -136,7 +132,7 @@ h3 {
   }
 }
 
-.v-index__list {
+.v-saisons-passes__list {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
@@ -144,7 +140,7 @@ h3 {
   gap: var(--app-gutter-xl);
 }
 
-.v-index__item {
+.v-saisons-passes__item {
   box-sizing: border-box;
   width: calc( (100% / 3) - var(--app-gutter-xl) );
   flex-grow: 1;

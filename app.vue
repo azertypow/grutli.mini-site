@@ -106,7 +106,10 @@
 .app-app {
   padding-top: var(--app-header-height);
   width: 100%;
-  padding-bottom: calc( v-bind(numberOfOpenNews) * 1rem);
+  padding-bottom: calc(
+    v-bind(numberOfOpenNews) * 1rem
+    + var(--app-gutter-xl)
+  );
 }
 
 .app-app__loader-container {

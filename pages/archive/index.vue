@@ -48,7 +48,6 @@ onMounted(() => {
 
 <style lang="scss" scoped >
 .v-archive-index {
-  padding-bottom: calc( var(--v-audio-player-header-height) + var(--app-gutter-xl) );
 }
 
 .v-archive-index__title {
