@@ -473,7 +473,7 @@ onMounted(async () => {
 
         ga4_page_view({
             page_path: window.location.pathname,
-            page_title: pageData.value?.pageContent.content.title,
+            page_title: pageData.value?.pageContent.content.title || 'Scènes du Grutli',
             page_location: window.location.href,
         })
 
