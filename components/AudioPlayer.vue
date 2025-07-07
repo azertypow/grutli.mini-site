@@ -8,13 +8,17 @@
         <div class="v-audio-player__container__header">
           <div class="v-audio-player__container__header__title">
             <div class="v-audio-player__container__header__title__text"
+                 v-if="soundCloudAudioParams?.text"
             >
-              Présentation de l'Arbre-Monde&emsp;
+              {{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}
             </div>
-            <a class="v-audio-player__container__header__title__link"
-               target="_blank"
-               href="https://grutli-admin.sdrvl.ch/00_transcription_podcast_arbre_monde.docx"
-            >(télécharger la transcription)</a>
+            <template v-if="soundCloudAudioParams?.transcription_file">
+              <div>&ensp;|&ensp;</div>
+              <a class="v-audio-player__container__header__title__link"
+                 target="_blank"
+                 :href="soundCloudAudioParams?.transcription_file"
+              >transcription</a>
+            </template>
           </div>
           <div class="v-audio-player__container__header__ui">
             <div @click="togglePlayerIsOpen">
@@ -49,11 +53,10 @@
         <div class="v-audio-player__iframe-container">
           <iframe width="100%"
                   ref="player"
-                  height="166"
                   scrolling="no"
                   frameborder="no"
                   allow="autoplay"
-                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1973426535&color=%239678b4&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=false&show_teaser=false">
+                  :src="`https://w.soundcloud.com/player/?url=${soundCloudAudioUrl_withoutParams}&color=%23ff7f65&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=false&show_teaser=false&visual=true&show_playcount=false&show_artwork=fase`">
           </iframe>
         </div>
       </div>
@@ -67,19 +70,27 @@
 <script setup lang="ts">
 
 import type {ApiSoundCloud, ApiSoundCloud_Widget} from "~/utlis/ApiSoundCloud";
+import {usePlayerAudioParams} from "~/composables/cmsData";
 
 const player: Ref<null | HTMLIFrameElement> = ref(null)
 const playerIsPaused: Ref<boolean> = ref(true)
 let widget: null | ApiSoundCloud_Widget = null
 
 const playerIsOpen = ref(false)
+const soundCloudAudioParams = usePlayerAudioParams()
+const soundCloudAudioUrl_withoutParams: ComputedRef<string | null> = computed(() => {
+    if( !soundCloudAudioParams.value ) return null
+    if( !soundCloudAudioParams.value.soundcloud_url ) return null
+
+    const audioUrl = new URL(soundCloudAudioParams.value.soundcloud_url)
+    return audioUrl.origin + audioUrl.pathname
+})
 
 function togglePlayerIsOpen() {
-    document
-        .documentElement
-        .style
-        .setProperty(`--v-audio-player-header-height`, `2rem`);
     playerIsOpen.value = !playerIsOpen.value
+    playerIsOpen.value ?
+        document.body.classList.add('player-is-open')
+        : document.body.classList.remove('player-is-open')
 }
 
 
@@ -184,18 +195,25 @@ function toggleSoundcloudStatus() {
   padding: 0 var(--app-gutter-xl);
   box-sizing: border-box;
   gap: var(--app-gutter-xl);
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 
 .v-audio-player__container__header__title {
   display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 1rem;
 }
 
 .v-audio-player__container__header__title__text {
-  display: none;
-  @media (min-width: 900px) {
-    display: block;
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  padding-left: 2rem;
 }
 
 .v-audio-player__container__header__ui {
@@ -218,6 +236,6 @@ function toggleSoundcloudStatus() {
 
 iframe {
   display: block;
-  height: 166px !important;
+  height: var(--v-audio-player-iframe-height) !important;
 }
 </style>

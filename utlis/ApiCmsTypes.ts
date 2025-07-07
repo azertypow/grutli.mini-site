@@ -59,6 +59,13 @@ export type ApiCmsCompany = {
 export interface SiteInfo {
     "page-simple": SiteInfoPageSimple[];
     spectacles: Spectacle[];
+    global_soundcloud_player: ApiCms_global_soundcloud_player
+}
+
+export interface ApiCms_global_soundcloud_player {
+    soundcloud_url?: string,
+    text?: string,
+    transcription_file: string | null
 }
 
 export interface ApiCms_ticketServiceInfos {

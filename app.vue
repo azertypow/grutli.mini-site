@@ -26,7 +26,9 @@
         <NuxtPage/>
       </div>
 
-<!--      <AudioPlayer/>-->
+      <AudioPlayer
+              v-if="usePlayerAudioParams().value"
+      />
 
       <div class="app-app__cookie" v-if="useShowCookieBanner().value">
         <div>
@@ -327,7 +329,7 @@ import {
     useAppContentIsLoaded, useAppSeasons, useAppSeasons_active,
     useFalkIsActive, useMenuIsOpen,
     useNews,
-    usePlacesInfo, useShowCookieBanner,
+    usePlacesInfo, usePlayerAudioParams, useShowCookieBanner,
     useSiteInfo, useTicketServiceInfo, useWindowIsScrollToBottom, useWindowsWidthIsSmallerThan1200pxCSSBreakpoint
 } from "~/composables/cmsData";
 import {initGoogleAnalytics} from "~/utlis/googleAnalytics";

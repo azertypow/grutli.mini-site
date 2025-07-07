@@ -8,6 +8,7 @@ import type {
     ApiSimplePage,
     SiteInfo
 } from "~/utlis/ApiCmsTypes";
+import {useSiteInfo} from "~/composables/cmsData";
 
 const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
 // const apiBaseUrl = 'http://localhost:8000'
@@ -16,19 +17,22 @@ export async function fetchSiteInfo(): Promise<SiteInfo | null> {
     const url = apiBaseUrl + '/site-info.json'
 
     try {
-        const response = await fetch(url);
+        const response = await fetch(url)
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`)
         }
 
-        const data = await response.json();
+        const data: SiteInfo = await response.json()
 
-        // Ajoute une validation si nécessaire pour t'assurer que `data` correspond bien au type attendu
-        return data as SiteInfo;
+        if( data?.global_soundcloud_player ) {
+            usePlayerAudioParams().value = data.global_soundcloud_player
+        }
+
+        return data
     } catch (error) {
-        console.error("Failed to fetch site info:", error);
-        return null;
+        console.error("Failed to fetch site info:", error)
+        return null
     }
 }
 

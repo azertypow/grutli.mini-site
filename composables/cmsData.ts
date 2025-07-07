@@ -4,7 +4,7 @@ import type {
     ApiPlaces,
     ApiSeasons, ApiSeasons_value,
     ApiSimplePage_ChildDetails,
-    SiteInfo, ApiCms_ticketServiceInfos
+    SiteInfo, ApiCms_ticketServiceInfos, ApiCms_global_soundcloud_player
 } from "~/utlis/ApiCmsTypes";
 
 export const useSiteInfo: () => Ref<null | SiteInfo> = () => {
@@ -69,6 +69,4 @@ export const useAppSeasons_active: () => Ref<ApiSeasons_value[] | null> = () => 
 
 export const useWindowsWidthIsSmallerThan1200pxCSSBreakpoint: () => Ref<boolean> = () => useState('useWindowsWidthIsSmallerThan1200pxCSSBreakpoint', () => true)
 
-export const usePlayerStatus = () => useState('usePlayerStatus', () => {
-    
-})
+export const usePlayerAudioParams: () => Ref<null | ApiCms_global_soundcloud_player> = () => useState('usePlayerAudioUrl', () => null)
