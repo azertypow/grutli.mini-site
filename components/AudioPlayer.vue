@@ -138,6 +138,11 @@ onMounted(() => {
     nextTick(() => {
       initSoundCloud()
     })
+    document.body.classList.add('has-player')
+})
+
+onUnmounted(() => {
+    document.body.classList.remove('has-player')
 })
 
 

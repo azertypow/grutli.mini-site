@@ -108,10 +108,27 @@
 .app-app {
   padding-top: var(--app-header-height);
   width: 100%;
+
   padding-bottom: calc(
     v-bind(numberOfOpenNews) * 1rem
     + var(--app-gutter-xl)
   );
+
+  .has-player & {
+    padding-bottom: calc(
+            v-bind(numberOfOpenNews) * 1rem
+            + var(--app-gutter-xl)
+            + var(--v-audio-player-header-height)
+    );
+  }
+
+  .player-is-open & {
+    padding-bottom: calc(
+            v-bind(numberOfOpenNews) * 1rem
+            + var(--app-gutter-xl)
+            + var(--v-audio-player-total-height)
+    );
+  }
 }
 
 .app-app__loader-container {
@@ -165,6 +182,12 @@
   line-height: 1rem;
   font-size: .65rem;
   user-select: none;
+  transition: transform .25s ease-in-out;
+
+  .player-is-open & {
+    --y-translation: calc( var(--v-audio-player-iframe-height) * -1 );
+    transform: translate3d(0, var(--y-translation), 0);
+  }
 }
 
 .app-app__news__wrap__container {
