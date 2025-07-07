@@ -27,7 +27,7 @@
       </div>
 
       <AudioPlayer
-              v-if="usePlayerAudioParams().value"
+              v-if="usePlayerAudioParams().value?.soundcloud_url"
       />
 
       <div class="app-app__cookie" v-if="useShowCookieBanner().value">
