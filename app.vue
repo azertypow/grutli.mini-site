@@ -176,13 +176,17 @@
 
 .app-app__news {
   position: fixed;
-  bottom: var(--v-audio-player-header-height);
+  bottom: 0;
   width: 100%;
   left: 0;
   line-height: 1rem;
   font-size: .65rem;
   user-select: none;
   transition: transform .25s ease-in-out;
+
+  .has-player & {
+    bottom: var(--v-audio-player-header-height);
+  }
 
   .player-is-open & {
     --y-translation: calc( var(--v-audio-player-iframe-height) * -1 );
