@@ -10,7 +10,7 @@
             <div class="v-audio-player__container__header__title__text"
                  v-if="soundCloudAudioParams?.text"
             >
-              {{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}{{soundCloudAudioParams.text}}
+              {{soundCloudAudioParams.text}}
             </div>
             <template v-if="soundCloudAudioParams?.transcription_file">
               <div>&ensp;|&ensp;</div>
@@ -211,6 +211,8 @@ function toggleSoundcloudStatus() {
   box-sizing: border-box;
   width: 100%;
   padding-left: 1rem;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 
 .v-audio-player__container__header__title__text {
