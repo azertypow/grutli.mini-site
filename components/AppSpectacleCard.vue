@@ -39,6 +39,7 @@
 import { defineProps } from 'vue'
 import type {ApiCmsCompany} from "~/utlis/ApiCmsTypes";
 import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
+import {normalizeDate} from "@vueuse/shared";
 
 interface Props {
     to: string
@@ -57,7 +58,7 @@ const dateFromTicketService = computed(() => {
 
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
-    const dateEnd = new Date(props.dates.end.replace(" ", "T"))
+    const dateEnd = new Date(normalizeDate( props.dates.end ))
     dateEnd.setHours(0,0,0,0)
 
     // console.log(props.eventTitle)

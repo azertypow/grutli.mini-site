@@ -1,6 +1,18 @@
+function normalizeDate(dateString: string): Date {
+
+    dateString = dateString.replace(" ", "T")
+
+    if (dateString.includes('T') || dateString.includes(' ')) {
+        return new Date(dateString)
+    } else {
+        // Ajouter l'heure de midi pour éviter les problèmes de fuseau horaire
+        return new Date(dateString + 'T12:00:00')
+    }
+}
+
 export function formatDate(stringDate: string): string {
 
-    const startDate = new Date(stringDate.replace(" ", "T"))
+    const startDate = new Date(normalizeDate(stringDate))
 
     const options: Intl.DateTimeFormatOptions = {
         month: 'long',
@@ -26,7 +38,7 @@ export function formatTime(time: string): string {
 
 export function formatDate_byDay(stringDate: string): string {
 
-    const startDate = new Date(stringDate.replace(" ", "T"))
+    const startDate = new Date(normalizeDate(stringDate))
 
     const options: Intl.DateTimeFormatOptions = {
         weekday: 'long',

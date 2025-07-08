@@ -46,6 +46,7 @@ import {
     useParentSubPageForNavLinks
 } from "~/composables/cmsData";
 import type {IAppEventPropsData} from "~/components/AppEventItem.vue";
+import {normalizeDate} from "@vueuse/shared";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
@@ -68,7 +69,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
         if (!value.pageContent.content.datestart) return false
         if (!value.pageContent.content.dateend) return false
 
-        const eventDateEnd = new Date(value.pageContent.content.dateend)
+        const eventDateEnd = new Date( normalizeDate( value.pageContent.content.dateend ))
         const currentDate = new Date()
 
         eventDateEnd.setHours(0, 0, 0, 0)
@@ -88,7 +89,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
 
 
     const spectaclesPast = curentSeasonSpectacle.value.filter(event => {
-        const eventDateEnd = new Date(event.pageContent.content.dateend)
+        const eventDateEnd = new Date(normalizeDate( event.pageContent.content.dateend ))
         const currentDate = new Date()
 
         eventDateEnd.setHours(0, 0, 0, 0)
@@ -125,7 +126,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
         if (!value.pageContent.content.datestart) return false
         if (!value.pageContent.content.dateend) return false
 
-        const eventDateEnd = new Date(value.pageContent.content.dateend)
+        const eventDateEnd = new Date( normalizeDate( value.pageContent.content.dateend ))
         const currentDate = new Date()
 
         eventDateEnd.setHours(0, 0, 0, 0)
@@ -144,7 +145,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
 
 
     const spectaclesNotEnded: IAppEventPropsData[] = curentSeasonSpectacle.value.filter(event => {
-        const eventDateEnd = new Date(event.pageContent.content.dateend)
+        const eventDateEnd = new Date( normalizeDate( event.pageContent.content.dateend ))
         const currentDate = new Date()
 
         eventDateEnd.setHours(0, 0, 0, 0)
@@ -161,8 +162,8 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
     }) || []
 
     return [...pageSimpleToShowInCalendarNotPast, ...spectaclesNotEnded].sort((a, b) => {
-        const dateStart_a = new Date(a.datestart)
-        const dateStart_b = new Date(b.datestart)
+        const dateStart_a = new Date( normalizeDate( a.datestart ))
+        const dateStart_b = new Date( normalizeDate( b.datestart ))
 
         return dateStart_a.getTime() - dateStart_b.getTime()
     })

@@ -176,6 +176,7 @@ import {
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import {formatDate_byDay, formatDateStartAndDateEndToString, formatTime} from "~/utlis/formatDate";
 import {formatTitle} from "~/utlis/formatStringCiattion";
+import {normalizeDate} from "@vueuse/shared";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
@@ -213,7 +214,7 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
 
     pageData.value.pageContent.content.list_of_dates?.forEach(dateItem => {
         if( dateItem.list_of_dates_date ) {
-          const date = new Date(dateItem.list_of_dates_date)
+          const date = new Date( normalizeDate( dateItem.list_of_dates_date ))
           const mouthOfDate = date.toLocaleDateString('fr-FR', {month: 'long'})
 
           const indexOfMouthGroup = groupedDateByMouth.findIndex(value => value.mouth === mouthOfDate)
@@ -260,7 +261,7 @@ const firstAndLAstDate: ComputedRef<null | string> = computed(() => {
 
     const currentDate = new Date()
     currentDate.setHours(0, 0, 0, 0)
-    const dateEnd = new Date(pageData.value.pageContent.content.dateend.replace(" ", "T"))
+    const dateEnd = new Date( normalizeDate( pageData.value.pageContent.content.dateend.replace(" ", "T")) )
     dateEnd.setHours(0, 0, 0, 0)
 
     if (currentDate > dateEnd) return 'passé'

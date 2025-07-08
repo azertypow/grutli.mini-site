@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
+import {normalizeDate} from "@vueuse/shared";
 
 export interface IAppEventPropsData {
     dateend: string,
@@ -31,9 +32,11 @@ const props = defineProps<{
 
 const dateString: ComputedRef<string> = computed(() => {
 
+    console.log( 'props.app_event_data.dateend: ', props.app_event_data.dateend )
+
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
-    const dateEnd = new Date(props.app_event_data.dateend.replace(" ", "T"))
+    const dateEnd = new Date(normalizeDate( props.app_event_data.dateend ))
     dateEnd.setHours(0,0,0,0)
 
     if (currentDate > dateEnd) return 'passé'
