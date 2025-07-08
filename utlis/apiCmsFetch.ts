@@ -8,7 +8,6 @@ import type {
     ApiSimplePage,
     SiteInfo
 } from "~/utlis/ApiCmsTypes";
-import {useSiteInfo} from "~/composables/cmsData";
 
 const apiBaseUrl = 'https://grutli-admin.sdrvl.ch'
 // const apiBaseUrl = 'http://localhost:8000'
