@@ -293,5 +293,11 @@ const props = defineProps<{
   padding-left: 1rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+
+  .only-one & {
+    bottom: var(--app-gutter-xl);
+    left: calc( -1 * var(--app-gutter-xl) );
+    width: calc(100% +   2 * var(--app-gutter-xl));
+  }
 }
 </style>
