@@ -1,24 +1,8 @@
 <template>
   <section class="v-spectacle-slug"
   >
-    <AppMasonryColl>
-
-      <template #left>
-        <!-- [START] spectacles blocks array -->
-        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
-          <template v-if="index % 2 === 0">
-            <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-              <AppSpectacleSlugBlock
-                      :html_content="htmlContent"
-              />
-            </div>
-          </template>
-        </template>
-        <!-- [END] spectacles blocks array -->
-      </template>
-
-
-      <template #right>
+    <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
+      <div class="v-spectacle-slug__coll">
         <!-- [START] compagnie info -->
         <div class="v-spectacle-slug__coll__item">
           <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin app-font-mono"
@@ -34,21 +18,67 @@
           </div>
         </div>
         <!-- [END] compagnie info -->
-
         <!-- [START] spectacles blocks array -->
         <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
-          <template v-if="index % 2 !== 0">
-            <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
-              <AppSpectacleSlugBlock
-                      :html_content="htmlContent"
-              />
-            </div>
-          </template>
+          <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+            <AppSpectacleSlugBlock
+                    :html_content="htmlContent"
+            />
+          </div>
         </template>
         <!-- [END] spectacles blocks array -->
-      </template>
+      </div>
+    </template>
+    <template v-else>
+      <AppMasonryColl>
 
-    </AppMasonryColl>
+        <template #left>
+          <!-- [START] spectacles blocks array -->
+          <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+            <template v-if="index % 2 === 0">
+              <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+                <AppSpectacleSlugBlock
+                        :html_content="htmlContent"
+                />
+              </div>
+            </template>
+          </template>
+          <!-- [END] spectacles blocks array -->
+        </template>
+
+
+        <template #right>
+          <!-- [START] compagnie info -->
+          <div class="v-spectacle-slug__coll__item">
+            <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin app-font-mono"
+            >
+              <h1>{{pageData?.pageContent.content.title}}</h1>
+              <p style="margin:0; font-size: 1rem; line-height: 1.2; font-weight: 600" v-for="item of pageData?.pageContent.content.company">{{item.authors_name}}</p>
+            </div>
+
+            <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
+            >
+              <div v-html="pageData?.pageContent.content.event_intro" class="app-remove-first-child-margin"/>
+              <p>{{pageData?.pageContent.content.eventinfo}}</p>
+            </div>
+          </div>
+          <!-- [END] compagnie info -->
+
+          <!-- [START] spectacles blocks array -->
+          <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+            <template v-if="index % 2 !== 0">
+              <div class="v-spectacle-slug__coll__item app-remove-first-last-child-margin">
+                <AppSpectacleSlugBlock
+                        :html_content="htmlContent"
+                />
+              </div>
+            </template>
+          </template>
+          <!-- [END] spectacles blocks array -->
+        </template>
+
+      </AppMasonryColl>
+    </template>
   </section>
 </template>
 
@@ -117,6 +147,12 @@ onMounted(async () => {
   box-sizing: border-box;
   padding-left: var(--app-gutter-xl);
   padding-right: var(--app-gutter-xl);
+}
+
+.v-spectacle-slug__coll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-gutter-xl);
 }
 
 .v-spectacle-slug__coll__item {
