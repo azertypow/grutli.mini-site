@@ -70,17 +70,28 @@
           <div v-else-if="blockContent.type === 'imageGallery'"
                class="v-app-spectacle-slug-block__coll__content__text__gallery"
           >
-            <template v-for="image of blockContent.images">
-              <div class="v-app-spectacle-slug-block__coll__content__text__gallery__item">
-                <img class="v-app-spectacle-slug-block__coll__content__text__gallery__item__img"
-                     :src="image.resize.large"
-                     :alt="image.alt || 'pas de texte alt'"
-                >
-                <div class="v-app-spectacle-slug-block__coll__content__text__gallery__item__legendary"
-                >{{ image.photographer }}
+            <div class="v-app-spectacle-slug-block__coll__content__text__gallery__scroll"
+            >
+              <template v-for="image of blockContent.images">
+                <div class="v-app-spectacle-slug-block__coll__content__text__gallery__item">
+                  <img class="v-app-spectacle-slug-block__coll__content__text__gallery__item__img"
+                       :src="image.resize.large"
+                       :alt="image.alt || 'pas de texte alt'"
+                  >
+                  <div class="v-app-spectacle-slug-block__coll__content__text__gallery__item__legendary"
+                  >{{ image.photographer }}
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
+            </div>
+
+            <svg class="v-app-spectacle-slug-block__coll__content__text__gallery__ui-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 height="24px"
+                 width="24px"
+                 viewBox="0 -960 960 960"
+            ><path d="M200-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T240-480q0-17-11.5-28.5T200-520q-17 0-28.5 11.5T160-480q0 17 11.5 28.5T200-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Z"/></svg>
+
           </div>
         </template>
     </div>
@@ -168,15 +179,16 @@ const props = defineProps<{
 
 }
 
-.v-app-spectacle-slug-block__coll__content__text__gallery {
+.v-app-spectacle-slug-block__coll__content__text__gallery__scroll {
   position: relative;
   display: flex;
   flex-direction: row;
   gap: var(--app-gutter-xl);
   overflow-x: scroll;
   height: 50vh;
-  margin-top: var(--app-gutter-xl);
-  margin-bottom: var(--app-gutter-xl);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, .25);
+  backdrop-filter: blur(1rem);
 
   /***
   scroll
@@ -213,6 +225,24 @@ const props = defineProps<{
   }
 }
 
+.v-app-spectacle-slug-block__coll__content__text__gallery {
+  position: relative;
+  padding-bottom: 1rem;
+  margin-top: var(--app-gutter-xl);
+  margin-bottom: var(--app-gutter-xl);
+}
+
+.v-app-spectacle-slug-block__coll__content__text__gallery__ui-icon {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: 1rem;
+  width: auto;
+  display: block;
+  transform: translateX(-50%);
+  fill: var(--app-color-secondary);
+}
+
 .v-app-spectacle-slug-block__coll__content__text__gallery__item {
   position: relative;
 
@@ -222,7 +252,7 @@ const props = defineProps<{
     left: 0;
     background: white;
     width: 100%;
-    padding-left: var(--app-gutter);
+    padding-left: 1rem;
     padding-right: var(--app-gutter);
     box-sizing: border-box;
   }
