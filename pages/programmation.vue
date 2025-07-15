@@ -16,7 +16,7 @@
             </div>
           </template>
 
-          <h2>Évènements passés</h2>
+          <h2 v-if="elementPast.length">Évènements passés</h2>
 
           <template
                   v-for="event of elementPast"
