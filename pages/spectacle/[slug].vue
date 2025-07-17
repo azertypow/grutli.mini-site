@@ -47,22 +47,6 @@
 
 
 
-        <!-- [START] compagnie info -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
-             v-if="pageData?.pageContent.content.peoples && pageData?.pageContent.content.peoples.length > 0"
-        >
-          <div class="v-spectacle-slug__text-content__details__peoples app-remove-first-last-child-margin"
-               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
-          />
-          <div class="v-spectacle-slug__text-content__details__details app-remove-first-last-child-margin"
-               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
-          />
-        </div>
-        <!-- [END] compagnie info -->
-
-
-
-
         <!-- [START] 2 first blocks -->
         <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
           <img alt="image texte"
@@ -105,18 +89,6 @@
         </template>
         <!-- [END] spectacles blocks array -->
 
-        <!-- [START] compagnie info -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
-             v-if="pageData?.pageContent.content.peoples && pageData?.pageContent.content.peoples.length > 0"
-        >
-          <div class="v-spectacle-slug__text-content__details__peoples app-remove-first-last-child-margin"
-               v-html="pageData?.pageContent.content.peoples.replaceAll(':', '<br>')"
-          />
-          <div class="v-spectacle-slug__text-content__details__details app-remove-first-last-child-margin"
-               v-html="pageData?.pageContent.content.details.replaceAll(':', '<br>')"
-          />
-        </div>
-        <!-- [END] compagnie info -->
       </template>
 
 

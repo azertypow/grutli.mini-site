@@ -15,10 +15,8 @@ export type ApiCmsPageSpectacle = {
             cover: string,
             places: string,
             company: ApiCmsCompany[],
-            peoples: string,
             htmlcontent: ApiHTMLContent_Blocks[],
             htmlcontent_falk: ApiHTMLContent_Blocks[],
-            details: string,
             htmldetails?: ApiHTMLContent_Blocks[],
             uuid: string
             season: string
