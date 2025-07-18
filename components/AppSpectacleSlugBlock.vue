@@ -186,27 +186,18 @@ const props = defineProps<{
   gap: var(--app-gutter-xl);
   overflow-x: scroll;
   height: 50vh;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, .25);
-  backdrop-filter: blur(1rem);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 
   /***
   scroll
   */
 
-  /* CSS pseudos elements (firefox) */
-  scrollbar-width: thin;
+  /* CSS pseudos elements */
   scrollbar-color: var(--app-color-secondary) transparent;
-  scrollbar-gutter: stable both-edges;
-
-  /* WebKit (Chrome, Edge, Safari) */
-  &::-webkit-scrollbar {
-    width: 1rem;
-  }
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--app-color-secondary);
-    border-radius: 1rem;
   }
 
   &::-webkit-scrollbar-track {
@@ -222,6 +213,7 @@ const props = defineProps<{
     width: auto;
     height: 100%;
     flex-shrink: 0;
+    border-radius: 1rem;
   }
 }
 
@@ -255,6 +247,8 @@ const props = defineProps<{
     padding-left: 1rem;
     padding-right: var(--app-gutter);
     box-sizing: border-box;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
   }
 }
 
