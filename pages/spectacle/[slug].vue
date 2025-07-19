@@ -67,7 +67,6 @@
     <AppColl v-else>
 
       <template #left>
-        <!-- [START] 2 first blocks -->
         <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
           <img alt="image texte"
                v-if="pageData"
@@ -75,19 +74,18 @@
                :src="pageData?.cover[0].resize.xxl"
           />
         </div>
-        <!-- [END] 2 first blocks -->
 
-        <!-- [START] spectacles blocks array -->
-        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
-          <template v-if="index % 2 !== 0">
-            <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
-              <AppSpectacleSlugBlock
-                      :html_content="htmlContent"
-              />
-            </div>
-          </template>
-        </template>
-        <!-- [END] spectacles blocks array -->
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="
+              (pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0)
+              || (dateByMounth && dateByMounth.length > 0)
+             "
+        >
+          <AppSpectacleSlugDateDetails
+                  :date_by_mounth="dateByMounth"
+                  :content_html_details="pageData?.pageContent.content.htmldetails"
+          />
+        </div>
 
       </template>
 
@@ -106,29 +104,13 @@
 
         <!-- [START] spectacles blocks array -->
         <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
-          <template v-if="index % 2 === 0">
-            <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
-              <AppSpectacleSlugBlock
-                      :html_content="htmlContent"
-              />
-            </div>
-          </template>
+          <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+            <AppSpectacleSlugBlock
+                    :html_content="htmlContent"
+            />
+          </div>
         </template>
         <!-- [END] spectacles blocks array -->
-
-        <!-- [START] date details -->
-        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
-             v-if="
-              (pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0)
-              || (dateByMounth && dateByMounth.length > 0)
-             "
-        >
-          <AppSpectacleSlugDateDetails
-                  :date_by_mounth="dateByMounth"
-                  :content_html_details="pageData?.pageContent.content.htmldetails"
-          />
-        </div>
-        <!-- [END] date details -->
       </template>
 
     </AppColl>
