@@ -40,13 +40,15 @@ export function formatDate_byDay(stringDate: string): string {
 
     const startDate = new Date(normalizeDate(stringDate))
 
-    const options: Intl.DateTimeFormatOptions = {
+    const formatter_weekday = new Intl.DateTimeFormat('fr-FR', {
         weekday: 'long',
-        day: 'numeric'
-    }
-    const formatter = new Intl.DateTimeFormat('fr-FR', options)
+    })
 
-    return formatter.format(startDate)
+    const formatter_day = new Intl.DateTimeFormat('fr-FR', {
+        day: '2-digit'
+    })
+
+    return `${formatter_weekday.format(startDate).slice(0, 2)} ${formatter_day.format(startDate)}`
 }
 
 

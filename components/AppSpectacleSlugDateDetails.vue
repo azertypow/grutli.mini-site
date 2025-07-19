@@ -87,12 +87,14 @@ const props = defineProps<{
   width: 5.5em;
   flex-shrink: 0;
   text-transform: capitalize;
+  font-family: 'ABCOracleWebSite triple', monospace;
+  font-size: 1.1em;
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 2rem;
+  gap: .25rem 2rem;
 
   > span {
     flex-shrink: 0;
@@ -110,12 +112,17 @@ a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__i
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day {
   display: inline-block;
-  width: 6.5em;
+  width: 3em;
+  font-family: 'ABCOracleWebSite triple', monospace;
+  font-size: 1.1em;
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time {
   display: inline-block;
   width: 3.25em;
+  text-align: right;
+  font-family: 'ABCOracleWebSite triple', monospace;
+  font-size: 1.1em;
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax {
