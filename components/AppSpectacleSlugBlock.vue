@@ -142,6 +142,10 @@ const props = defineProps<{
 .v-app-spectacle-slug-block__coll__content__text__link {
   margin-top: .5rem;
 
+  &:first-child {
+    margin-top: 0;
+  }
+
   .app-button {
     margin-bottom: var(--app-gutter-xl);
     display: flex;
