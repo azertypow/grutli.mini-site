@@ -190,7 +190,6 @@ export interface SpectacleContentDetails {
     peoples: string;
     htmlcontent: string;
     htmlcontent_falk: string;
-    details: string;
     htmldetails?: string;
     uuid: string;
     season: string;
