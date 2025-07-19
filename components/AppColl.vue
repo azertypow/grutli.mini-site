@@ -1,12 +1,12 @@
 <template>
     <section
-        class="v-app-masonry-coll"
+        class="v-app-coll"
     >
-      <div class="v-app-masonry-coll__coll">
+      <div class="v-app-coll__coll">
         <slot name="left" />
       </div>
 
-      <div class="v-app-masonry-coll__coll" >
+      <div class="v-app-coll__coll" >
         <slot name="right"/>
       </div>
     </section>
@@ -29,14 +29,14 @@ const props = defineProps<{
 
 
 <style lang="scss" scoped >
-.v-app-masonry-coll {
+.v-app-coll {
   display: flex;
   width: 100%;
   flex-wrap: nowrap;
   gap: var(--app-gutter-xl);
 }
 
-.v-app-masonry-coll__coll {
+.v-app-coll__coll {
   width: 50%;
   display: flex;
   flex-wrap: nowrap;

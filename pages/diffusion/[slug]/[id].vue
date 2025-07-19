@@ -30,7 +30,7 @@
       </div>
     </template>
     <template v-else>
-      <AppMasonryColl>
+      <AppColl>
 
         <template #left>
           <!-- [START] spectacles blocks array -->
@@ -77,7 +77,7 @@
           <!-- [END] spectacles blocks array -->
         </template>
 
-      </AppMasonryColl>
+      </AppColl>
     </template>
   </section>
 </template>

@@ -64,7 +64,7 @@
 
     </template>
 
-    <AppMasonryColl v-else>
+    <AppColl v-else>
 
       <template #left>
         <!-- [START] 2 first blocks -->
@@ -131,7 +131,7 @@
         <!-- [END] date details -->
       </template>
 
-    </AppMasonryColl>
+    </AppColl>
   </section>
 </template>
 
