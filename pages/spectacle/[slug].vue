@@ -87,6 +87,7 @@
                  :src="pageData.cover[0].resize.xxl"
             />
             <div class="v-spectacle-slug__item__cover__photographer"
+                 v-if="pageData.cover[0].photographer && pageData.cover[0].photographer.length > 0"
             >{{ pageData.cover[0].photographer }}
             </div>
           </div>
@@ -115,6 +116,7 @@
                  :src="pageData.cover[0].resize.xxl"
             />
             <div class="v-spectacle-slug__item__cover__photographer"
+                 v-if="pageData.cover[0].photographer && pageData.cover[0].photographer.length > 0"
             >{{ pageData.cover[0].photographer }}
             </div>
           </div>
