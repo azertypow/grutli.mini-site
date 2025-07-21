@@ -198,7 +198,7 @@ onMounted(async () => {
   text-align: center;
 }
 
-.v-spectacle-slug__img {
+.v-spectacle-slug__item__cover__img {
   display: block;
   width: 100%;
   user-select: none;

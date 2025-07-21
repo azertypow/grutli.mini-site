@@ -331,25 +331,9 @@ export type ApiHTMLContent_break = ApiHTMLContent & {
 export type ApiHTMLContent_image = ApiHTMLContent & {
     type: 'image';
     content: {
-        image: string[];
+        image: string[]
     };
-    images?: Array<{
-        caption: string | null;
-        alt: string | null;
-        link: string | null;
-        photographer: string | null;
-        url: string;
-        mediaUrl: string;
-        width: number;
-        height: number;
-        resize: {
-            tiny: string;
-            small: string;
-            reg: string;
-            large: string;
-            xxl: string;
-        };
-    }>;
+    images?: ApiCmsImage[]
 }
 
 export type ApiHTMLContent_imageGallery = ApiHTMLContent & {

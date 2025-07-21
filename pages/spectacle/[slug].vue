@@ -77,12 +77,19 @@
 
 
         <!-- [START] cover -->
-        <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
-          <img alt="image texte"
-               v-if="pageData"
-               class="v-spectacle-slug__img"
-               :src="pageData?.cover[0].resize.xxl"
-          />
+        <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding"
+             v-if="pageData?.cover && pageData?.cover[0]"
+        >
+          <div class="v-spectacle-slug__item__cover">
+            <img alt="image texte"
+                 v-if="pageData"
+                 class="v-spectacle-slug__item__cover__img"
+                 :src="pageData.cover[0].resize.xxl"
+            />
+            <div class="v-spectacle-slug__item__cover__photographer"
+            >{{ pageData.cover[0].photographer }}
+            </div>
+          </div>
         </div>
         <!-- [END] cover -->
 
@@ -96,13 +103,21 @@
     <AppColl v-else>
 
       <template #left>
+
         <!-- [START] cover -->
-        <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
-          <img alt="image texte"
-               v-if="pageData"
-               class="v-spectacle-slug__img"
-               :src="pageData?.cover[0].resize.xxl"
-          />
+        <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding"
+             v-if="pageData?.cover && pageData?.cover[0]"
+        >
+          <div class="v-spectacle-slug__item__cover">
+            <img alt="image texte"
+                 v-if="pageData"
+                 class="v-spectacle-slug__item__cover__img"
+                 :src="pageData.cover[0].resize.xxl"
+            />
+            <div class="v-spectacle-slug__item__cover__photographer"
+            >{{ pageData.cover[0].photographer }}
+            </div>
+          </div>
         </div>
         <!-- [END] cover -->
 
@@ -396,16 +411,37 @@ onMounted(async () => {
   @extend .app-font-small;
 }
 
-.v-spectacle-slug__img {
+.v-spectacle-slug__item__cover {
+  position: relative;
+  width: 100%;
+}
+
+.v-spectacle-slug__item__cover__img {
   display: block;
   width: 100%;
   user-select: none;
   pointer-events: none;
-  position: sticky;
-  top: 0;
   height: auto;
   object-fit: cover;
   border-radius: 1rem;
+}
+
+.v-spectacle-slug__item__cover__photographer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  .only-one & {
+    bottom: var(--app-gutter-xl);
+    left: calc( -1 * var(--app-gutter-xl) );
+    width: calc(100% +   2 * var(--app-gutter-xl));
+  }
 }
 
 .v-spectacle-slug__text-content__details {
