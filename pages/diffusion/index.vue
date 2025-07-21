@@ -133,7 +133,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
 
 
 <style lang="scss" scoped >
-@use '../assets/style/typo';
+@use '@/assets/style/typo';
 
 .v-diffusion {
   bottom: 0;

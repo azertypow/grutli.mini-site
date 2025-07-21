@@ -6,8 +6,6 @@ export default defineNuxtConfig({
 
   devtools: { enabled: false },
 
-  modules: ['@nuxt/content'],
-
   css: [
       '~/assets/style/_main.scss'
   ],
@@ -28,12 +26,6 @@ export default defineNuxtConfig({
           async: true,
         }
       ]
-    }
-  },
-
-  content: {
-    experimental: {
-      clientDB: true
     }
   },
 

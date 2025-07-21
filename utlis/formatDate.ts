@@ -1,4 +1,4 @@
-function normalizeDate(dateString: string): Date {
+export function normalizeDate(dateString: string): Date {
 
     dateString = dateString.replace(" ", "T")
 
@@ -26,8 +26,8 @@ export function formatDate(stringDate: string): string {
 export function formatTime(time: string): string {
     const [hours, minutes] = time.split(':').map(Number);
 
-    const formattedHours = hours.toString();
-    const formattedMinutes = minutes.toString().padStart(2, '0');
+    const formattedHours = hours!.toString();
+    const formattedMinutes = minutes!.toString().padStart(2, '0');
 
     if (formattedMinutes === '00') {
         return `${formattedHours}h`;

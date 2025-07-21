@@ -46,7 +46,7 @@ import {
     useParentSubPageForNavLinks
 } from "~/composables/cmsData";
 import type {IAppEventPropsData} from "~/components/AppEventItem.vue";
-import {normalizeDate} from "@vueuse/shared";
+import {normalizeDate} from "~/utlis/formatDate";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null

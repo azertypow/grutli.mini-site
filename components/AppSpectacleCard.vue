@@ -38,8 +38,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type {ApiCmsCompany} from "~/utlis/ApiCmsTypes";
-import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
-import {normalizeDate} from "@vueuse/shared";
+import {formatDateStartAndDateEndToString, normalizeDate} from "~/utlis/formatDate";
 
 interface Props {
     to: string

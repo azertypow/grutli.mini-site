@@ -364,7 +364,6 @@ import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 import {stringStartWith} from "~/utlis/stringStartWith";
 import {setWindowsWidth} from "~/utlis/setWindowsWidth";
 import {handleTimeUpdate, playTimeOutTimer} from "~/utlis/views/app";
-import {clearTimeout} from "node:timers";
 
 const videoBackground = ref<HTMLVideoElement | null>(null)
 

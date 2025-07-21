@@ -15,8 +15,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import {formatDateStartAndDateEndToString} from "~/utlis/formatDate";
-import {normalizeDate} from "@vueuse/shared";
+import {formatDateStartAndDateEndToString, normalizeDate} from "~/utlis/formatDate";
 
 export interface IAppEventPropsData {
     dateend: string,

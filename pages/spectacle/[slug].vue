@@ -128,9 +128,8 @@ import {
     usePlacesInfo
 } from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
-import {formatDate_byDay, formatDateStartAndDateEndToString, formatTime} from "~/utlis/formatDate";
+import {formatDate_byDay, formatDateStartAndDateEndToString, formatTime, normalizeDate} from "~/utlis/formatDate";
 import {formatTitle} from "~/utlis/formatStringCiattion";
-import {normalizeDate} from "@vueuse/shared";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
