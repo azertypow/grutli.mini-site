@@ -10,7 +10,12 @@
     >
         {{dateFromTicketService}}
     </div>
-    <h2 class="v-app-spectacle-card__item__title app-font-h5 app-font-align-center">{{ title }}</h2>
+    <div>
+      <h3 class="v-app-spectacle-card__item__subtitle app-font-align-center"
+          v-if="subtitle"
+      >{{subtitle}}</h3>
+      <h2 class="v-app-spectacle-card__item__title app-font-h5 app-font-align-center">{{ title }}</h2>
+    </div>
     <div class="v-app-spectacle-card__item__info app-font-small"
          v-if="event_info"
     >
@@ -43,6 +48,7 @@ import {formatDateStartAndDateEndToString, normalizeDate} from "~/utlis/formatDa
 interface Props {
     to: string
     title: string
+    subtitle?: string
     peoples?: ApiCmsCompany[]
     eventTitle?: string[]
     dates?: {start: string, end: string}
@@ -134,6 +140,10 @@ const dateFromTicketService = computed(() => {
   font-size: 1rem;
   line-height: 1.2;
 }
+
+.v-app-spectacle-card__item__subtitle {
+  margin: 0;
+ }
 
 .v-app-spectacle-card__item__info {
   text-align: center;

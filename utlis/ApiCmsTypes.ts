@@ -4,6 +4,7 @@ export type ApiCmsPageSpectacle = {
     pageContent: {
         content: {
             title: string,
+            subtitle: string,
             eventtitle: string[],
             eventinfo: string,
             externalticketservicelink: string,
@@ -180,6 +181,7 @@ export interface SpectaclePageContent {
 
 export interface SpectacleContentDetails {
     title: string;
+    subtitle: string
     eventtitle: string[];
     eventinfo: string,
     externalticketservicelink: string,

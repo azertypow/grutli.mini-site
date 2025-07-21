@@ -14,6 +14,7 @@
                 <AppSpectacleCard
                         :to="'/spectacle/' + spectacle.pageContent.slug"
                         :title='spectacle.pageContent.content.title'
+                        :subtitle="spectacle.pageContent.content.subtitle"
                         :peoples="[{
                             authors_link: 'authors_link',
                             authors_name: `${formatDate(spectacle.pageContent.content.datestart)} - ${formatDate(spectacle.pageContent.content.dateend)}`,

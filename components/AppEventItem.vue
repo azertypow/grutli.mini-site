@@ -2,7 +2,12 @@
   <nuxt-link class="v-app-event-item"
              :to="app_event_data.slug"
   >
-    <h4 class="v-app-event-item__item__title">{{ app_event_data.title }}</h4>
+    <div class="v-app-event-item__item__title-container">
+      <h2 class="v-app-event-item__item__title-container__title">{{ app_event_data.title }}</h2>
+      <h3 class="v-app-event-item__item__title-container__subtitle app-font-h2"
+          v-if="app_event_data.subtitle"
+      >&ensp;|&ensp;{{ app_event_data.subtitle }}</h3>
+    </div>
     <div class="v-app-event-item__item__date">
         {{dateString}}
     </div>
@@ -22,6 +27,7 @@ export interface IAppEventPropsData {
     datestart: string,
     slug: string,
     title: string,
+    subtitle: string | null,
 }
 
 const props = defineProps<{
@@ -75,8 +81,17 @@ const dateString: ComputedRef<string> = computed(() => {
   }
 }
 
-.v-app-event-item__item__title {
+.v-app-event-item__item__title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.v-app-event-item__item__title-container__title {
   margin: 0;
   text-transform: none;
+}
+.v-app-event-item__item__title-container__subtitle {
+  margin: 0;
 }
 </style>

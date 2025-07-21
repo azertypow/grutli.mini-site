@@ -29,6 +29,7 @@
                       :event_info="value.pageContent.content.eventinfo"
                       :to="'/spectacle/' + value.pageContent.slug"
                       :title="value.pageContent.content.title"
+                      :subtitle="value.pageContent.content.subtitle"
                       :peoples="value.pageContent.content.company"
                       :event-title="value.pageContent.content.eventtitle"
                       :dates="{start: value.pageContent.content.datestart, end: value.pageContent.content.dateend}"

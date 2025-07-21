@@ -83,6 +83,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
             dateend: pageSimple.pageContent.content.dateend!,
             datestart: pageSimple.pageContent.content.datestart!,
             title: pageSimple.pageContent.content.title,
+            subtitle: null,
         } satisfies IAppEventPropsData
     }) || []
 
@@ -102,6 +103,7 @@ const elementPast: ComputedRef<IAppEventPropsData[]> = computed(() => {
             title: item.pageContent.content.title,
             datestart: item.pageContent.content.datestart,
             dateend: item.pageContent.content.dateend,
+            subtitle: item.pageContent.content.subtitle,
         } satisfies IAppEventPropsData
     }) || []
 
@@ -140,6 +142,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
             dateend: pageSimple.pageContent.content.dateend!,
             datestart: pageSimple.pageContent.content.datestart!,
             title: pageSimple.pageContent.content.title,
+            subtitle: null,
         } satisfies IAppEventPropsData
     }) || []
 
@@ -158,6 +161,7 @@ const elementsToShowNotEnded: ComputedRef<IAppEventPropsData[]> = computed(() =>
             title: item.pageContent.content.title,
             datestart: item.pageContent.content.datestart,
             dateend: item.pageContent.content.dateend,
+            subtitle: item.pageContent.content.subtitle,
         } satisfies IAppEventPropsData
     }) || []
 

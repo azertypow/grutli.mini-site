@@ -5,6 +5,7 @@
             v-if="data"
             :to="'/spectacle/' + data.pageContent.slug"
             :title="data.pageContent.content.title"
+            :subtitle="data.pageContent.content.subtitle"
             :peoples="data.pageContent.content.company"
             :event-title="data.pageContent.content.eventtitle"
             :dates="{start: data.pageContent.content.datestart, end: data.pageContent.content.dateend}"
