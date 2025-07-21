@@ -143,7 +143,6 @@ export interface Spectacle {
 }
 
 export interface ApiCmsImage {
-    caption: string;
     alt: string;
     link: string | null;
     photographer: string | null;
