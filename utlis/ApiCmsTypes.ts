@@ -309,8 +309,6 @@ export type ApiHTMLContent_textWithTitle = ApiHTMLContent & {
 export type ApiHTMLContent_video = ApiHTMLContent & {
     content: {
         url: string,
-        credit: string,
-        title: string
     },
     type: "video"
 }
