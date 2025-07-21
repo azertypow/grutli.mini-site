@@ -81,7 +81,7 @@
              v-if="pageData?.cover && pageData?.cover[0]"
         >
           <div class="v-spectacle-slug__item__cover">
-            <img alt="image texte"
+            <img :alt="pageData.cover[0].alt || 'pas de texte alt' "
                  v-if="pageData"
                  class="v-spectacle-slug__item__cover__img"
                  :src="pageData.cover[0].resize.xxl"
@@ -110,7 +110,7 @@
              v-if="pageData?.cover && pageData?.cover[0]"
         >
           <div class="v-spectacle-slug__item__cover">
-            <img alt="image texte"
+            <img :alt="pageData.cover[0].alt || 'pas de texte alt' "
                  v-if="pageData"
                  class="v-spectacle-slug__item__cover__img"
                  :src="pageData.cover[0].resize.xxl"
