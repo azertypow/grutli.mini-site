@@ -3,8 +3,8 @@
       <div class="v-erreur__item">
           <h3>Erreur</h3>
           <div>
-            <p v-if="!customMsg.msg" >La page que vous cherchez n'existe plus.</p>
-            <p v-else >{{customMsg.msg}}</p>
+            <p v-if="!customMsg" >La page que vous cherchez n'existe plus.</p>
+            <p v-else >{{customMsg}}</p>
             <nuxt-link href="/">Revenir à l'accueil</nuxt-link>
           </div>
       </div>
@@ -17,14 +17,11 @@
 
 <script setup lang="ts">
 
-import type {SiteInfo, SiteInfoPageSimple, Spectacle} from "~/utlis/ApiCmsTypes";
 import {
     useChildrenDetailsForNavLinks,
     useCurrentPageForNavLinks,
     useParentSubPageForNavLinks
 } from "~/composables/cmsData";
-import type {IAppEventPropsData} from "~/components/AppEventItem.vue";
-import {useUrlSearchParams} from "@vueuse/core";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
@@ -34,7 +31,7 @@ useHead({
     title: 'Oups'
 })
 
-const customMsg = useUrlSearchParams()
+const customMsg = useRouter().currentRoute.value.query.msg
 
 
 </script>
