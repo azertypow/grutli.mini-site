@@ -26,6 +26,27 @@
         </div>
         <!-- [END] gallery -->
 
+        <!-- [START] YouTube links -->
+        <template v-if="
+                pageData?.pageContent.content.youtube_links
+                && pageData?.pageContent.content.youtube_links.length > 0
+                "
+        >
+          <template v-for="youtube_link of pageData?.pageContent.content.youtube_links">
+            <div class="v-spectacle-slug__item">
+              <iframe class="v-spectacle-slug__youtube-link"
+                      :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(youtube_link.link_url)}`"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+              ></iframe>
+            </div>
+          </template>
+        </template>
+        <!-- [END] YouTube links -->
+
 
         <!-- [START] spectacles blocks array -->
         <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
@@ -92,6 +113,27 @@
           <AppGallery :gallery_data="pageData.pageContent.content.gallery" />
         </div>
         <!-- [END] gallery -->
+
+        <!-- [START] YouTube links -->
+        <template v-if="
+                pageData?.pageContent.content.youtube_links
+                && pageData?.pageContent.content.youtube_links.length > 0
+                "
+        >
+          <template v-for="youtube_link of pageData?.pageContent.content.youtube_links">
+            <div class="v-spectacle-slug__item">
+              <iframe class="v-spectacle-slug__youtube-link"
+                      :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(youtube_link.link_url)}`"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+              ></iframe>
+            </div>
+          </template>
+        </template>
+        <!-- [END] YouTube links -->
 
 
         <!-- [START] date details -->
@@ -289,6 +331,18 @@ onMounted(async () => {
   &.v-spectacle-slug__item--no-padding {
     padding: 0;
   }
+}
+
+.v-spectacle-slug__youtube-link {
+  display: block;
+  border: none;
+  overflow: hidden;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  background: var(--app-color-grey);
+  margin: calc( -1 * var(--app-gutter-xl) );
+  width: calc(100% +   2 * var(--app-gutter-xl));
 }
 
 .v-spectacle-slug__text-content {
