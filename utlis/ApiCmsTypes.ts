@@ -21,6 +21,11 @@ export type ApiCmsPageSpectacle = {
             uuid: string
             season: string
             list_of_dates: ApiCmsPageSpectacle_listOfDates[]
+            gallery: ApiCmsImage[]
+            youtube_links: {
+                link_url: string,
+                id: string,
+            }[]
         },
         translations: [],
         children: [],
@@ -356,23 +361,7 @@ export type ApiHTMLContent_imageGallery = ApiHTMLContent & {
         title: string
         image: string[];
     };
-    images: {
-        caption: string | null;
-        alt: string | null;
-        link: string | null;
-        photographer: string | null;
-        url: string;
-        mediaUrl: string;
-        width: number;
-        height: number;
-        resize: {
-            tiny: string;
-            small: string;
-            reg: string;
-            large: string;
-            xxl: string;
-        };
-    }[];
+    images: ApiCmsImage[];
 }
 
 export type ApiHTMLContent_Blocks =

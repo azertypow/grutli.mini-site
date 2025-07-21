@@ -5,7 +5,7 @@
     <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
 
       <div class="v-spectacle-slug__mobil-coll">
-        <!-- [START] 2 first blocks -->
+        <!-- [START] slug info -->
         <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
              v-if="pageData"
         >
@@ -16,7 +16,15 @@
                   :event_info="pageData?.pageContent.content.eventinfo"
           />
         </div>
-        <!-- [END] 2 first blocks -->
+        <!-- [END] slug info -->
+
+        <!-- [START] gallery -->
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData?.pageContent.content.gallery && pageData?.pageContent.content.gallery.length > 0"
+        >
+          <AppGallery :gallery_data="pageData.pageContent.content.gallery" />
+        </div>
+        <!-- [END] gallery -->
 
 
         <!-- [START] spectacles blocks array -->
@@ -47,7 +55,7 @@
 
 
 
-        <!-- [START] 2 first blocks -->
+        <!-- [START] cover -->
         <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
           <img alt="image texte"
                v-if="pageData"
@@ -55,7 +63,7 @@
                :src="pageData?.cover[0].resize.xxl"
           />
         </div>
-        <!-- [END] 2 first blocks -->
+        <!-- [END] cover -->
 
 
 
@@ -67,6 +75,7 @@
     <AppColl v-else>
 
       <template #left>
+        <!-- [START] cover -->
         <div class="v-spectacle-slug__item v-spectacle-slug__item--no-padding">
           <img alt="image texte"
                v-if="pageData"
@@ -74,7 +83,18 @@
                :src="pageData?.cover[0].resize.xxl"
           />
         </div>
+        <!-- [END] cover -->
 
+        <!-- [START] gallery -->
+        <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
+             v-if="pageData?.pageContent.content.gallery && pageData?.pageContent.content.gallery.length > 0"
+        >
+          <AppGallery :gallery_data="pageData.pageContent.content.gallery" />
+        </div>
+        <!-- [END] gallery -->
+
+
+        <!-- [START] date details -->
         <div class="v-spectacle-slug__item app-remove-first-last-child-margin"
              v-if="
               (pageData?.pageContent.content.htmldetails && pageData?.pageContent.content.htmldetails.length > 0)
@@ -86,12 +106,13 @@
                   :content_html_details="pageData?.pageContent.content.htmldetails"
           />
         </div>
+        <!-- [END] date details -->
 
       </template>
 
 
       <template #right>
-        <!-- [START] 2 first blocks -->
+        <!-- [START] slug info -->
         <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
           <app-spectacle-slug-info
                   :page_data="pageData"
@@ -100,7 +121,9 @@
                   :event_info="pageData?.pageContent.content.eventinfo"
           />
         </div>
-        <!-- [END] 2 first blocks -->
+        <!-- [END] slug info -->
+
+
 
         <!-- [START] spectacles blocks array -->
         <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
