@@ -17,7 +17,11 @@
                         :subtitle="spectacle.pageContent.content.subtitle"
                         :peoples="[{
                             authors_link: 'authors_link',
-                            authors_name: `${formatDate(spectacle.pageContent.content.datestart)} - ${formatDate(spectacle.pageContent.content.dateend)}`,
+                            authors_name:
+                            spectacle.pageContent.content.datestart === spectacle.pageContent.content.dateend ?
+                              `${formatDate(spectacle.pageContent.content.datestart)}`
+                              : `${formatDate(spectacle.pageContent.content.datestart)} - ${formatDate(spectacle.pageContent.content.dateend)}`
+                            ,
                             id: 'id'
                         }]"
                 />
