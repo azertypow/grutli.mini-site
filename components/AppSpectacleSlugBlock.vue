@@ -11,9 +11,12 @@
           <div v-if="blockContent.type === 'link'"
                class="v-app-spectacle-slug-block__coll__content__text__link"
           >
-            <a class="app-button app-button-grey app-button-grey--with-glow-effect"
+            <a class="app-button app-button-grey app-button-grey--with-glow-effect app-button-small-hover-effect"
                target="_blank"
                :href="blockContent.content.link"
+               :class="{
+                  'is-solo-in-block': only_one_in_block,
+               }"
             >
               <span>{{ blockContent.content.text }}</span>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -91,6 +94,7 @@ import type {ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 
 const props = defineProps<{
     html_content?: ApiHTMLContent_Blocks[]
+    only_one_in_block: boolean
 }>()
 </script>
 
@@ -126,27 +130,6 @@ const props = defineProps<{
 
   &:first-child {
     margin-top: 0;
-  }
-
-  .app-button {
-    margin-bottom: var(--app-gutter-xl);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    border-radius: .75rem;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    transform: none;
-    white-space: wrap;
-
-    svg {
-      display: block;
-      height: 1rem;
-      width: auto;
-      flex-shrink: 0;
-      fill: var(--app-color-primary);
-    }
   }
 }
 .v-app-spectacle-slug-block__coll__content__text__link:last-child > *:last-child{

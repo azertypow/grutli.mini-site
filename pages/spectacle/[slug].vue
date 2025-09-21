@@ -53,6 +53,7 @@
           <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
             <AppSpectacleSlugBlock
                     :html_content="htmlContent"
+                    :only_one_in_block="splitHtmlContentByBreakBlock!.length < 2"
             />
           </div>
         </template>
@@ -189,6 +190,7 @@
           <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
             <AppSpectacleSlugBlock
                     :html_content="htmlContent"
+                    :only_one_in_block="splitHtmlContentByBreakBlock!.length < 2"
             />
           </div>
         </template>

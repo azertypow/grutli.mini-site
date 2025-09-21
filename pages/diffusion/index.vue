@@ -8,6 +8,7 @@
           <AppBlockContent
                   v-for="htmlContentBlock of pageData.pageContent.content.htmlcontent"
                   :html_content_block="htmlContentBlock"
+                  :only_one_in_block="pageData.pageContent.content.htmlcontent.length < 2"
           />
         </div>
       </template>
@@ -166,6 +167,11 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
 
   &.has-only-image {
     padding: 0;
+  }
+
+  &.has-only-one-link {
+    padding: 0;
+    background: transparent;
   }
 
   &.v-diffusion__item--link {

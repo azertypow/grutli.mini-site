@@ -11,11 +11,13 @@
         <div v-if="html_content_block.type === 'link'"
              class="v-app-block-content__coll__content__text__link"
         >
-          <a class="app-button app-button-grey app-button-grey--with-glow-effect"
+          <a class="app-button app-button-grey app-button-grey--with-glow-effect app-button-small-hover-effect"
+             :class="{
+              'is-solo-in-block': only_one_in_block,
+             }"
              :href="html_content_block.content.link"
           >
             <span>{{html_content_block.content.text}}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
           </a>
         </div>
 
@@ -75,6 +77,7 @@ import {formatTitle} from "~/utlis/formatStringCiattion";
 
 const data = defineProps<{
     html_content_block: ApiHTMLContent_Blocks
+    only_one_in_block: boolean
 }>()
 </script>
 
@@ -84,6 +87,7 @@ const data = defineProps<{
 
 <style lang="scss" scoped >
 .v-app-block-content {
+  text-align: center;
   &.textWithTitle {
     margin-top: 1rem;
     margin-bottom: .5rem;
@@ -104,26 +108,6 @@ const data = defineProps<{
 
 .v-app-block-content__coll__content__text__link {
   margin-bottom: var(--app-gutter-xl);
-
-  .app-button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: wrap;
-    background: white;
-    border-radius: .75rem;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    transform: none;
-
-    svg {
-      display: block;
-      height: 1rem;
-      width: auto;
-      flex-shrink: 0;
-      fill: var(--app-color-primary);
-    }
-  }
 }
 
 .v-app-block-content__coll__content__text__youtube {

@@ -18,12 +18,6 @@
                    :href=" '/' + childLink.pageContent.uri"
         >
           <span>{{ childLink.pageContent.content.title }}</span>
-          <svg xmlns="http://www.w3.org/2000/svg"
-               height="1rem"
-               width="1rem"
-               viewBox="0 -960 960 960" fill="black">
-            <path d="m480-320 160-160-160-160-56 56 64 64H320v80h168l-64 64 56 56Zm0 240q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
-          </svg>
         </nuxt-link>
       </div>
 
@@ -34,7 +28,8 @@
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.content.htmlcontent_falk.length"
                    :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                    }"
               >
                 <h2 class="v-slug__item__title"
@@ -44,6 +39,7 @@
                 <AppBlockContent
                         v-for="htmlContentBlock of content.content.htmlcontent_falk"
                         :html_content_block="htmlContentBlock"
+                        :only_one_in_block="content.content.htmlcontent_falk.length < 2"
                 />
               </div>
             </template>
@@ -64,7 +60,8 @@
             <div class="v-slug__item app-remove-first-last-child-margin"
                  v-if="content.type === 'section-block-content'"
                  :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'link',
                    }"
             >
               <h2 class="v-slug__item__title"
@@ -74,6 +71,7 @@
               <AppBlockContent
                       v-for="htmlContentBlock of content.content.htmlcontent"
                       :html_content_block="htmlContentBlock"
+                      :only_one_in_block="content.content.htmlcontent.length < 2"
               />
             </div>
             <div class="v-slug__item"
@@ -101,7 +99,8 @@
                   <div  class="v-slug__item app-remove-first-last-child-margin"
                         v-if="content.content.htmlcontent_falk.length"
                         :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                       }"
                   >
                     <h2 class="v-slug__item__title"
@@ -111,6 +110,7 @@
                     <AppBlockContent
                             v-for="htmlContentBlock of content.content.htmlcontent_falk"
                             :html_content_block="htmlContentBlock"
+                            :only_one_in_block="content.content.htmlcontent_falk.length < 2"
                     />
                   </div>
                 </template>
@@ -131,7 +131,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -141,6 +142,7 @@
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
+                          :only_one_in_block="content.content.htmlcontent.length < 2"
                   />
                 </div>
                 <div class="v-slug__item"
@@ -167,7 +169,8 @@
                   <div class="v-slug__item app-remove-first-last-child-margin"
                        v-if="content.content.htmlcontent_falk.length"
                        :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                    }"
                   >
                     <h2 class="v-slug__item__title"
@@ -177,6 +180,7 @@
                     <AppBlockContent
                             v-for="htmlContentBlock of content.content.htmlcontent_falk"
                             :html_content_block="htmlContentBlock"
+                            :only_one_in_block="content.content.htmlcontent_falk.length < 2"
                     />
                   </div>
                 </template>
@@ -197,7 +201,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -207,6 +212,7 @@
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
+                          :only_one_in_block="content.content.htmlcontent.length < 2"
                   />
                 </div>
                 <div class="v-slug__item"
@@ -235,12 +241,6 @@
                        :href=" '/' + childLink.pageContent.uri"
             >
               <span>{{ childLink.pageContent.content.title }}</span>
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   height="1rem"
-                   width="1rem"
-                   viewBox="0 -960 960 960" fill="black">
-                <path d="m480-320 160-160-160-160-56 56 64 64H320v80h168l-64 64 56 56Zm0 240q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
-              </svg>
             </nuxt-link>
           </div>
 
@@ -251,7 +251,8 @@
                   <div class="v-slug__item app-remove-first-last-child-margin"
                        v-if="content.content.htmlcontent_falk.length"
                        :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                    }"
                   >
                     <h2 class="v-slug__item__title"
@@ -261,6 +262,7 @@
                     <AppBlockContent
                             v-for="htmlContentBlock of content.content.htmlcontent_falk"
                             :html_content_block="htmlContentBlock"
+                            :only_one_in_block="content.content.htmlcontent_falk.length < 2"
                     />
                   </div>
                 </template>
@@ -281,7 +283,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -291,6 +294,7 @@
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
+                          :only_one_in_block="content.content.htmlcontent.length < 2"
                   />
                 </div>
                 <div class="v-slug__item"
@@ -315,7 +319,8 @@
                   <div  class="v-slug__item app-remove-first-last-child-margin"
                         v-if="content.content.htmlcontent_falk.length"
                         :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                       }"
                   >
                     <h2 class="v-slug__item__title"
@@ -325,6 +330,7 @@
                     <AppBlockContent
                             v-for="htmlContentBlock of content.content.htmlcontent_falk"
                             :html_content_block="htmlContentBlock"
+                            :only_one_in_block="content.content.htmlcontent.length < 2"
                     />
                   </div>
                 </template>
@@ -345,7 +351,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -355,6 +362,7 @@
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
+                          :only_one_in_block="content.content.htmlcontent.length < 2"
                   />
                 </div>
                 <div class="v-slug__item"
@@ -376,12 +384,6 @@
                        :href=" '/' + childLink.pageContent.uri"
             >
               <span>{{ childLink.pageContent.content.title }}</span>
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   height="1rem"
-                   width="1rem"
-                   viewBox="0 -960 960 960" fill="black">
-                <path d="m480-320 160-160-160-160-56 56 64 64H320v80h168l-64 64 56 56Zm0 240q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
-              </svg>
             </nuxt-link>
           </div>
 
@@ -399,7 +401,8 @@
                   <div class="v-slug__item app-remove-first-last-child-margin"
                        v-if="content.content.htmlcontent_falk.length"
                        :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                    }"
                   >
                     <h2 class="v-slug__item__title"
@@ -409,6 +412,7 @@
                     <AppBlockContent
                             v-for="htmlContentBlock of content.content.htmlcontent_falk"
                             :html_content_block="htmlContentBlock"
+                            :only_one_in_block="content.content.htmlcontent_falk.length < 2"
                     />
                   </div>
                 </template>
@@ -429,7 +433,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image'
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0].type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0].type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -439,6 +444,7 @@
                   <AppBlockContent
                           v-for="htmlContentBlock of content.content.htmlcontent"
                           :html_content_block="htmlContentBlock"
+                          :only_one_in_block="content.content.htmlcontent.length < 2"
                   />
                 </div>
                 <div class="v-slug__item"
@@ -636,11 +642,6 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   align-items: center;
   justify-content: center;
   gap: var(--app-gutter);
-
-  > svg {
-    display: block;
-    fill: currentColor;
-  }
 }
 
 .v-slug__item {
@@ -659,6 +660,11 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
 
   &.has-only-image {
     padding: 0;
+  }
+
+  &.has-only-one-link {
+    padding: 0;
+    background: transparent;
   }
 }
 
