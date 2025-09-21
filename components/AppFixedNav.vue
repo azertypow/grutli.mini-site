@@ -18,18 +18,6 @@
         </nuxt-link>
       </template>
 
-      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
-                 href="/diffusion"
-      >
-        Diffusion
-      </nuxt-link>
-
-      <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
-                 href="/archive"
-      >
-        Archives
-      </nuxt-link>
-
       <a :href="ticketInfos.page_content.shop"
          v-if="ticketInfos"
          target="_blank"
