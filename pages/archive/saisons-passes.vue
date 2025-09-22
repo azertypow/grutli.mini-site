@@ -92,7 +92,6 @@ onMounted(async () => {
 
 <style lang="scss" scoped >
 h2 {
-  font-size: 1rem;
   margin-bottom: 0;
 }
 

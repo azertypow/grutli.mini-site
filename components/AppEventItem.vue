@@ -4,7 +4,7 @@
   >
     <div class="v-app-event-item__item__title-container">
       <h2 class="v-app-event-item__item__title-container__title">{{ app_event_data.title }}</h2>
-      <h3 class="v-app-event-item__item__title-container__subtitle app-font-h2"
+      <h3 class="v-app-event-item__item__title-container__subtitle"
           v-if="app_event_data.subtitle"
       >&ensp;|&ensp;{{ app_event_data.subtitle }}</h3>
     </div>
@@ -83,15 +83,29 @@ const dateString: ComputedRef<string> = computed(() => {
 
 .v-app-event-item__item__title-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 1100px) {
+    align-items: center;
+  }
 }
 
 .v-app-event-item__item__title-container__title {
   margin: 0;
   text-transform: none;
+  text-align: left;
+
+  @media (max-width: 1100px) {
+    text-align: center;
+  }
 }
 .v-app-event-item__item__title-container__subtitle {
   margin: 0;
+  text-align: left;
+
+  @media (max-width: 1100px) {
+    text-align: center;
+  }
 }
 </style>

@@ -8,7 +8,7 @@
           <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin app-font-mono"
           >
             <h1>{{pageData?.pageContent.content.title}}</h1>
-            <p style="margin:0; font-size: 1rem; line-height: 1.2; font-weight: 600" v-for="item of pageData?.pageContent.content.company">{{item.authors_name}}</p>
+            <p style="margin:0;" v-for="item of pageData?.pageContent.content.company">{{item.authors_name}}</p>
           </div>
 
           <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"
@@ -55,7 +55,7 @@
             <div class="v-spectacle-slug__coll__text-content__details__peoples app-remove-first-last-child-margin app-font-mono"
             >
               <h1>{{pageData?.pageContent.content.title}}</h1>
-              <p style="margin:0; font-size: 1rem; line-height: 1.2; font-weight: 600" v-for="item of pageData?.pageContent.content.company">{{item.authors_name}}</p>
+              <p style="margin:0;" v-for="item of pageData?.pageContent.content.company">{{item.authors_name}}</p>
             </div>
 
             <div class="v-spectacle-slug__coll__text-content__details__details app-remove-first-last-child-margin"

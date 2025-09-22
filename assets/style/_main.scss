@@ -123,6 +123,11 @@ blockquote {
   }
 }
 
+.app-remove-margin {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 
 // vue transitions
 
@@ -165,4 +170,22 @@ blockquote {
   .v-transition-opacity__translate {
     transform: translateY(-1rem);
   }
+}
+
+
+.app-card {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: var(--app-bg-glow-color);
+  -webkit-backdrop-filter: var(--app-bg-glow-filter);
+  backdrop-filter: var(--app-bg-glow-filter);
+  border-radius: 1rem;
+  text-align: center;
+  text-decoration: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--app-gutter);
 }

@@ -48,9 +48,11 @@
         >{{ first_and_last_date }}</div>
         <div>{{ place_name }}</div>
       </div>
-      <h1 class="v-app-spectacle-slug-info__coll__text-content__title app-font-align-center app-font-h3">
+      <h1 class="v-app-spectacle-slug-info__coll__text-content__title app-font-align-center app-font-h1">
         {{ page_data?.pageContent.content.title }}</h1>
-      <h2 class="v-app-spectacle-slug-info__coll__text-content__subtitle app-font-align-center app-font-small app-font-mono--force">{{page_data?.pageContent.content.subtitle}}</h2>
+      <h2 class="v-app-spectacle-slug-info__coll__text-content__subtitle app-font-align-center app-font-small app-font-mono--force"
+          v-if="page_data?.pageContent.content.subtitle"
+      >{{page_data?.pageContent.content.subtitle}}</h2>
       <div class="v-app-spectacle-slug-info__coll__text-content__is-cover app-font-align-center app-font-small"
            v-if="page_data?.pageContent.content.iscover === 'true'"
       >
@@ -138,13 +140,11 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__text-content__subtitle {
   margin-bottom: .5rem;
-  margin-top: -.5rem;
-  font-variation-settings: "slnt" 0, "wght" 400;
 }
 
 .v-app-spectacle-slug-info__coll__text-content__date_and_place {
   box-sizing: border-box;
-  padding: 1rem 0 1rem;
+  padding: 1rem 0 .5rem;
   text-align: center;
 }
 

@@ -105,7 +105,6 @@ onMounted(() => {
 }
 
 .v-archive-directions-passes__wrap__item__title {
-  font-size: 1rem;
   margin: 0;
 }
 

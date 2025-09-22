@@ -376,6 +376,11 @@
           </template>
         </div>
         <div class="v-slug__masonry-coll">
+
+          <h1 class="app-card app-remove-last-child-margin app-remove-margin"
+          >{{pageData?.pageContent.content.title}}
+          </h1>
+
           <div class="v-slug__children-link"
                v-if="childrenDetailsForNavLinks"
           >
@@ -631,17 +636,23 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: .5rem;
   background: var(--app-bg-glow-color);
   backdrop-filter: var(--app-bg-glow-filter);
   border-radius: 1rem;
   text-align: center;
   text-decoration: none;
-
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: var(--app-gutter);
+  transition: transform .2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.01);
+    background: black;
+    color: white;
+  }
 }
 
 .v-slug__item {
@@ -677,10 +688,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   margin-left: auto;
   margin-right: auto;
   font-family: 'ABCOracleWebSite triple', monospace;
-  font-weight: normal;
   font-variation-settings: "slnt" 0, "wght" 600;
-  line-height: 1.15em;
-  font-size: 1rem;
   max-width: 15em;
 }
 

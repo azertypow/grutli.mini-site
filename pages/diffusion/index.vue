@@ -212,10 +212,7 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   margin-left: auto;
   margin-right: auto;
   font-family: 'ABCOracleWebSite triple', monospace;
-  font-weight: normal;
   font-variation-settings: "slnt" 0, "wght" 600;
-  line-height: 1.15em;
-  font-size: 1rem;
   max-width: 15em;
 }
 

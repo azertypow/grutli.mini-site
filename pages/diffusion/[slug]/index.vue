@@ -15,7 +15,7 @@
             >
 
               <template #header>
-                <div style="font-size: 1rem; line-height: 1.2" class="app-font-h5 app-font-align-center">
+                <div class="app-font-h5 app-font-align-center">
                   <template v-for="(people, index) of pageChildren.company">
                     <template v-if="index > 0">, </template>{{people.authors_name}}
                   </template>
@@ -27,7 +27,7 @@
               </template>
 
               <template #footer>
-                <div class="app-font-mono" style="font-style: italic; font-weight: 600">
+                <div class="app-font-mono">
                   {{pageChildren.title}}
                 </div>
               </template>

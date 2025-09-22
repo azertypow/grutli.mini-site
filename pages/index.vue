@@ -5,7 +5,7 @@
            v-if="currentSeason"
       >
         <div class="v-index__season-title__info">{{currentSeason.content.dateinformation}}</div>
-        <div class="v-index__season-title__title"
+        <div class="v-index__season-title__title app-font-h1"
         >{{currentSeason.content.title}}
         </div>
         <div class="v-index__season-title__subscription">
@@ -157,8 +157,6 @@ const spectacleToShowInHome: ComputedRef<Spectacle[]> = computed(() => {
 }
 
 .v-index__season-title__title {
-  font-size: 1rem;
-  font-weight: 600;
   margin-top: .25rem;
 }
 
