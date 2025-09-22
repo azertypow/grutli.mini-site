@@ -11,13 +11,13 @@
         <div v-if="html_content_block.type === 'link'"
              class="v-app-block-content__coll__content__text__link"
         >
-          <a class="app-button app-button-grey app-button-grey--with-glow-effect app-button-small-hover-effect"
+          <a class="app-button app-button-grey app-button-grey--with-glow-effect app-button-small-hover-effect app-button--text-wrap"
              :class="{
               'is-solo-in-block': only_one_in_block,
              }"
              :href="html_content_block.content.link"
           >
-            <span>{{html_content_block.content.text}}</span>
+            {{html_content_block.content.text}}
           </a>
         </div>
 
