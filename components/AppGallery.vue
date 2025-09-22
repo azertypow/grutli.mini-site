@@ -7,7 +7,7 @@
         <div class="v-app-gallery__item">
           <img class="v-app-gallery__item__img"
                :src="image.resize.large"
-               :alt="image.alt || 'pas de texte alt'"
+               :alt="image.alt || ''"
           >
           <div class="v-app-gallery__item__legendary"
           >{{ image.photographer }}
