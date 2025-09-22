@@ -24,6 +24,10 @@ a {
   padding: var(--app-gutter-xl);
   border-radius: var(--app-gutter-xl);
   text-decoration: none;
+
+  &.app-button--text-wrap {
+    white-space: normal;
+  }
 }
 
 .app-button-grey {
