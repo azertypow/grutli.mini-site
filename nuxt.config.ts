@@ -15,6 +15,13 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/',
     head: {
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+        }
+      ],
       title: 'Scènes du Grutli',
       htmlAttrs: {
         lang: 'fr'
