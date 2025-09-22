@@ -57,7 +57,6 @@ defineProps<{
   flex-direction: row;
   gap: var(--app-gutter-xl);
   overflow-x: scroll;
-  height: 50vh;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 
@@ -68,12 +67,17 @@ defineProps<{
   /* CSS pseudos elements */
   scrollbar-color: var(--app-color-secondary) transparent;
 
+  &::-webkit-scrollbar {
+    width: auto;
+  }
+
   &::-webkit-scrollbar-thumb {
     background-color: var(--app-color-secondary);
+    border-radius: 1rem;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: white;
+    background-color: transparent;
   }
 
   /***
@@ -83,7 +87,7 @@ defineProps<{
   img {
     display: block;
     width: auto;
-    height: 100%;
+    height: 50vh;
     flex-shrink: 0;
     border-radius: 1rem;
   }
