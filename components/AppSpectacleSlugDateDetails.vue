@@ -21,7 +21,7 @@
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax app-font-extra-small"
                         v-if="date.isRelax === 'true'"
                   >
-                    relax
+                    Relax
                   </span>
                 </component>
           </div>
