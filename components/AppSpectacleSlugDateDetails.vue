@@ -18,7 +18,7 @@
                 >
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day" >{{ date.day }}</span>
                   <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time" >{{ date.time }}</span>
-                  <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax"
+                  <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax app-font-extra-small"
                         v-if="date.isRelax === 'true'"
                   >
                     relax
@@ -126,7 +126,7 @@ a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__i
   position: absolute;
   padding: .15em .5em .25em;
   border-radius: 1em;
-  transform: translate(-15%, 0%) rotate(10deg);
+  transform: translate(0, 0) rotate(-10deg);
   line-height: 1em;
 
   background: black;
