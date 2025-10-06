@@ -150,23 +150,23 @@ type SubscriberDataToSend = {
 const listOfNewsletterGroups = [
     {
         name: "Principale",
-        text: "sur la saison",
+        text: "de la saison",
     },
     {
         name: "RELAX",
-        text: "sur les mesures d’accessibilité",
+        text: "des mesures d’accessibilité",
     },
     {
         name: "Bureau des Cies",
-        text: "sur le Bureau des Compagnies<br>(destiné aux artistes)",
+        text: "du Bureau des Compagnies<br>(destiné aux artistes)",
     },
     {
         name: "Ecoles",
-        text: "sur l’offre pour les écoles",
+        text: "de l’offre pour les écoles",
     },
     {
         name: "Programmatrices",
-        text: "sur la diffusion des spectacles<br>(destiné à la profession)"
+        text: "de la diffusion des spectacles<br>(destiné à la profession)"
     },
 ] satisfies NewsLetterGroupes
 
