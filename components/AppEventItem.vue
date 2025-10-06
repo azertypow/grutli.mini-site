@@ -6,7 +6,7 @@
       <h2 class="v-app-event-item__item__title-container__title">{{ app_event_data.title }}</h2>
       <h3 class="v-app-event-item__item__title-container__subtitle"
           v-if="app_event_data.subtitle"
-      >&ensp;|&ensp;{{ app_event_data.subtitle }}</h3>
+      >{{ app_event_data.subtitle }}</h3>
     </div>
     <div class="v-app-event-item__item__date">
         {{dateString}}
