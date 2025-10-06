@@ -676,6 +676,12 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   &.has-only-one-link {
     padding: 0;
     background: transparent;
+
+      transition: transform .25s ease-in-out;
+
+      &:hover {
+          transform: scale(1.01);
+      }
   }
 }
 

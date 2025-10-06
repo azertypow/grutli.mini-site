@@ -11,7 +11,7 @@
           <div v-if="blockContent.type === 'link'"
                class="v-app-spectacle-slug-block__coll__content__text__link"
           >
-            <a class="app-button app-button-grey app-button-grey--with-glow-effect app-button-small-hover-effect app-button--text-wrap"
+            <a class="app-button app-button--text-wrap"
                target="_blank"
                :href="blockContent.content.link"
                :class="{
