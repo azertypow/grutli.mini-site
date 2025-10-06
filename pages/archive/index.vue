@@ -33,7 +33,7 @@ const props = defineProps<{
 }>()
 
 useHead({
-  title: 'Archive des Scènes du Grutli',
+  title: 'Archives des Scènes du Grutli',
 })
 
 onMounted(() => {
