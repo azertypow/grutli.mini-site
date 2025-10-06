@@ -49,14 +49,26 @@
 
 
         <!-- [START] spectacles blocks array -->
-        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
-          <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
-            <AppSpectacleSlugBlock
-                    :html_content="htmlContent"
-                    :only_one_in_block="splitHtmlContentByBreakBlock!.length < 2"
-            />
-          </div>
+        <template v-if="useFalkIsActive().value">
+            <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock_falc">
+                <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+                    <AppSpectacleSlugBlock
+                        :html_content="htmlContent"
+                        :only_one_in_block="splitHtmlContentByBreakBlock_falc!.length < 2"
+                    />
+                </div>
+            </template>
         </template>
+          <template v-else>
+            <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+                    <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+                        <AppSpectacleSlugBlock
+                            :html_content="htmlContent"
+                            :only_one_in_block="splitHtmlContentByBreakBlock!.length < 2"
+                        />
+                    </div>
+            </template>
+          </template>
         <!-- [END] spectacles blocks array -->
 
 
@@ -186,14 +198,26 @@
 
 
         <!-- [START] spectacles blocks array -->
-        <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
-          <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
-            <AppSpectacleSlugBlock
-                    :html_content="htmlContent"
-                    :only_one_in_block="splitHtmlContentByBreakBlock!.length < 2"
-            />
-          </div>
-        </template>
+          <template v-if="useFalkIsActive().value">
+              <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock_falc">
+                  <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+                      <AppSpectacleSlugBlock
+                          :html_content="htmlContent"
+                          :only_one_in_block="splitHtmlContentByBreakBlock_falc!.length < 2"
+                      />
+                  </div>
+              </template>
+          </template>
+          <template v-else>
+            <template v-for="(htmlContent, index) of splitHtmlContentByBreakBlock">
+              <div class="v-spectacle-slug__item app-remove-first-last-child-margin">
+                <AppSpectacleSlugBlock
+                        :html_content="htmlContent"
+                        :only_one_in_block="splitHtmlContentByBreakBlock!.length < 2"
+                />
+              </div>
+            </template>
+          </template>
         <!-- [END] spectacles blocks array -->
       </template>
 
@@ -207,13 +231,15 @@ import {fetchPageSpectacle} from "~/utlis/apiCmsFetch";
 import type {ApiCmsPageSpectacle, ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 import {
     useChildrenDetailsForNavLinks,
-    useCurrentPageForNavLinks,
+    useCurrentPageForNavLinks, useFalkIsActive,
     useParentSubPageForNavLinks,
     usePlacesInfo
 } from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
 import {formatDate_byDay, formatDateStartAndDateEndToString, formatTime, normalizeDate} from "~/utlis/formatDate";
 import {formatTitle} from "~/utlis/formatStringCiattion";
+import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
+import AppBlockContent from "~/components/AppBlockContent.vue";
 
 useCurrentPageForNavLinks().value = null
 useParentSubPageForNavLinks().value = null
@@ -231,7 +257,25 @@ const splitHtmlContentByBreakBlock: ComputedRef<ApiHTMLContent_Blocks[][] | null
         if (block.type === 'break') {
             arrayToReturn.push([])
         } else {
-            arrayToReturn[arrayToReturn.length - 1].push(block)
+            arrayToReturn[arrayToReturn.length - 1]?.push(block)
+        }
+    }
+
+    return arrayToReturn.filter(value => value.length > 0)
+
+})
+
+const splitHtmlContentByBreakBlock_falc: ComputedRef<ApiHTMLContent_Blocks[][] | null> = computed(() => {
+    if (!pageData.value) return null
+
+    const arrayToReturn: ApiHTMLContent_Blocks[][] = [[]]
+
+    for (const block of pageData.value.pageContent.content.htmlcontent_falk) {
+
+        if (block.type === 'break') {
+            arrayToReturn.push([])
+        } else {
+            arrayToReturn[arrayToReturn.length - 1]?.push(block)
         }
     }
 
