@@ -28,8 +28,8 @@
               <div class="v-slug__item app-remove-first-last-child-margin"
                    v-if="content.content.htmlcontent_falk.length"
                    :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'link',
                    }"
               >
                 <h2 class="v-slug__item__title"
@@ -60,8 +60,8 @@
             <div class="v-slug__item app-remove-first-last-child-margin"
                  v-if="content.type === 'section-block-content'"
                  :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'link',
                    }"
             >
               <h2 class="v-slug__item__title"
@@ -99,8 +99,8 @@
                   <div  class="v-slug__item app-remove-first-last-child-margin"
                         v-if="content.content.htmlcontent_falk.length"
                         :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'link',
                       }"
                   >
                     <h2 class="v-slug__item__title"
@@ -131,8 +131,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -169,8 +169,8 @@
                   <div class="v-slug__item app-remove-first-last-child-margin"
                        v-if="content.content.htmlcontent_falk.length"
                        :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'link',
                    }"
                   >
                     <h2 class="v-slug__item__title"
@@ -201,8 +201,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -251,8 +251,8 @@
                   <div class="v-slug__item app-remove-first-last-child-margin"
                        v-if="content.content.htmlcontent_falk.length"
                        :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'link',
                    }"
                   >
                     <h2 class="v-slug__item__title"
@@ -283,8 +283,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -319,8 +319,8 @@
                   <div  class="v-slug__item app-remove-first-last-child-margin"
                         v-if="content.content.htmlcontent_falk.length"
                         :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'link',
                       }"
                   >
                     <h2 class="v-slug__item__title"
@@ -351,8 +351,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
@@ -406,8 +406,8 @@
                   <div class="v-slug__item app-remove-first-last-child-margin"
                        v-if="content.content.htmlcontent_falk.length"
                        :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk.length < 2 && content.content.htmlcontent_falk[0]?.type === 'link',
                    }"
                   >
                     <h2 class="v-slug__item__title"
@@ -438,8 +438,8 @@
                 <div class="v-slug__item app-remove-first-last-child-margin"
                      v-if="content.type === 'section-block-content'"
                      :class="{
-                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent[0]?.type === 'image',
-                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent_falk[0]?.type === 'link',
+                       'has-only-image': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'image',
+                       'has-only-one-link': (!content.content.titre || content.content.titre.length === 0) && content.content.htmlcontent.length < 2 && content.content.htmlcontent[0]?.type === 'link',
                    }"
                 >
                   <h2 class="v-slug__item__title"
