@@ -36,8 +36,7 @@
             <div class="v-spectacle-slug__item">
               <iframe class="v-spectacle-slug__youtube-link"
                       :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(youtube_link.link_url)}`"
-                      title="YouTube video player"
-                      frameborder="0"
+                      :title="`Vidéo du spectacle ${pageData?.pageContent.content.title}`"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerpolicy="strict-origin-when-cross-origin"
                       allowfullscreen
@@ -94,7 +93,7 @@
              v-if="pageData?.cover && pageData?.cover[0]"
         >
           <div class="v-spectacle-slug__item__cover">
-            <img :alt="pageData.cover[0].alt || 'pas de texte alt' "
+            <img :alt="pageData.cover[0].alt || `Image de couverture du spectacle ${pageData.pageContent.content.title}` "
                  v-if="pageData"
                  class="v-spectacle-slug__item__cover__img"
                  :src="pageData.cover[0].resize.xxl"
@@ -123,7 +122,7 @@
              v-if="pageData?.cover && pageData?.cover[0]"
         >
           <div class="v-spectacle-slug__item__cover">
-            <img :alt="pageData.cover[0].alt || 'pas de texte alt' "
+            <img :alt="pageData.cover[0].alt || `Image de couverture du spectacle ${pageData.pageContent.content.title}` "
                  v-if="pageData"
                  class="v-spectacle-slug__item__cover__img"
                  :src="pageData.cover[0].resize.xxl"
@@ -154,8 +153,7 @@
             <div class="v-spectacle-slug__item">
               <iframe class="v-spectacle-slug__youtube-link"
                       :src="`https://www.youtube-nocookie.com/embed/${getYoutubeVideoIDFromUrl(youtube_link.link_url)}`"
-                      title="YouTube video player"
-                      frameborder="0"
+                      :title="`Vidéo du spectacle ${pageData?.pageContent.content.title}`"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerpolicy="strict-origin-when-cross-origin"
                       allowfullscreen

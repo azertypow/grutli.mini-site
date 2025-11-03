@@ -1,7 +1,7 @@
 <template>
     <section class="v-archive-index"
     >
-<!--      <h1 class="v-archive-index__title">Archive</h1>-->
+      <h1 class="sr-only">Archive</h1>
       <div class="v-archive-index__wrap">
 
         <nuxt-link  class="v-archive-index__wrap__item"

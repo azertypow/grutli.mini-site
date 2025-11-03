@@ -5,9 +5,9 @@
            v-if="currentSeason"
       >
         <div class="v-index__season-title__info">{{currentSeason.content.dateinformation}}</div>
-        <div class="v-index__season-title__title app-font-h1"
+        <h1 class="v-index__season-title__title app-font-h1"
         >{{currentSeason.content.title}}
-        </div>
+        </h1>
         <div class="v-index__season-title__subscription">
           <a  class="app-button-grey app-button-grey--with-glow-effect app-font-small"
               target="_blank"

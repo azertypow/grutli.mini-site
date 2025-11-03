@@ -1,6 +1,7 @@
 <template>
     <section class="v-programmation"
     >
+      <h1 class="sr-only">Programmation</h1>
       <div class="v-programmation__list">
         <template v-if="siteInfo === null">
           chargement…

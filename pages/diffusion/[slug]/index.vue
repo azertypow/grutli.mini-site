@@ -1,6 +1,7 @@
 <template>
   <section class="v-diffusion-slug"
   >
+    <h1 class="sr-only">{{pageData?.pageContent.content.title || 'Diffusion'}}</h1>
     <div class="v-diffusion-slug__list-wrap"
     >
       <div class="v-diffusion-slug__list"
