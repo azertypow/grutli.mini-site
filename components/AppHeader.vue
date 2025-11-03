@@ -24,6 +24,7 @@
           <button class="app-button-grey app-font-small app-button-grey--with-glow-effect v-app-header__social"
                   style="font-size: 0.5rem; text-transform: uppercase;"
                   @click="useAppNewsletterIsOpen().value = true"
+                  aria-label="S'inscrire à la newsletter"
           >
             <svg id="Layer_1"
                  xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +32,7 @@
                  viewBox="0 0 20 15"
                  style="height: .4rem;"
             >
+              <title>Newsletter</title>
               <path class="st0" d="M.53,0h18.94c.51,0,.72.66.31.96l-8.15,5.98c-.97.71-2.29.71-3.25,0L.22.95C-.19.65.02,0,.53,0ZM2.11,15h15.77c1.17,0,2.11-.94,2.11-2.11V3.48c0-.35-.39-.54-.67-.34l-6.81,5c-.75.55-1.63.83-2.51.83s-1.76-.28-2.51-.83L.67,3.13C.39,2.93,0,3.13,0,3.47v9.42C0,14.06.95,15,2.11,15Z"/>
             </svg>
           </button>
@@ -38,8 +40,10 @@
           <a class="v-app-header__social app-button-grey app-button-grey--with-glow-effect"
              href="https://www.facebook.com/legrutli/friends_likes/?locale=fr_FR"
              target="_blank"
+             aria-label="Le Grütli sur Facebook"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+              <title>Facebook</title>
               <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
             </svg>
           </a>
@@ -47,32 +51,42 @@
           <a class="v-app-header__social app-button-grey app-button-grey--with-glow-effect"
              href="https://www.instagram.com/legrutli_artsvivants/"
              target="_blank"
+             aria-label="Le Grütli sur Instagram"
           >
             <svg style="height: .65rem"
                     fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+              <title>Instagram</title>
               <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
             </svg>
           </a>
 
-          <div class="v-app-header__falk-ui app-button-grey app-button-grey--with-glow-effect" @click="useFalkIsActive().value = !useFalkIsActive().value">
+          <button class="v-app-header__falk-ui app-button-grey app-button-grey--with-glow-effect" @click="useFalkIsActive().value = !useFalkIsActive().value" role="button" :aria-pressed="useFalkIsActive().value">
             <div>FALC</div>
             <svg v-if="useFalkIsActive().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black">
+              <title>Désactiver le mode FALC</title>
               <path d="M280-240q-100 0-170-70T40-480q0-100 70-170t170-70h400q100 0 170 70t70 170q0 100-70 170t-170 70H280Zm0-80h400q66 0 113-47t47-113q0-66-47-113t-113-47H280q-66 0-113 47t-47 113q0 66 47 113t113 47Zm400-40q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM480-480Z"/>
             </svg>
             <svg v-else
                     xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+              <title>Activer le mode FALC</title>
               <path d="M280-240q-100 0-170-70T40-480q0-100 70-170t170-70h400q100 0 170 70t70 170q0 100-70 170t-170 70H280Zm0-80h400q66 0 113-47t47-113q0-66-47-113t-113-47H280q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-40q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm200-120Z"/>
             </svg>
-          </div>
+          </button>
         </div>
 
         <template v-if="useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value">
-          <div class="v-app-header__toggle-menu app-button-grey app-button-grey--with-glow-effect"
+          <button class="v-app-header__toggle-menu app-button-grey app-button-grey--with-glow-effect"
                @click="useMenuIsOpen().value = !useMenuIsOpen().value"
+               role="button"
+               :aria-expanded="useMenuIsOpen().value"
           >
-            <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-            <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-          </div>
+            <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+              <title>Fermer le menu</title>
+              <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+              <title>Ouvrir le menu</title>
+              <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+          </button>
         </template>
 
       </div>
