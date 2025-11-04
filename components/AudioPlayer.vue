@@ -21,13 +21,14 @@
             </template>
           </div>
           <div class="v-audio-player__container__header__ui">
-            <div @click="togglePlayerIsOpen">
+            <button @click="togglePlayerIsOpen">
               <svg v-if="playerIsOpen"
-                      xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m136-80-56-56 264-264H160v-80h320v320h-80v-184L136-80Zm344-400v-320h80v184l264-264 56 56-264 264h184v80H480Z"/></svg>
+                      xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m136-80-56-56 264-264H160v-80h320v320h-80v-184L136-80Zm344-400v-320h80v184l264-264 56 56-264 264h184v80H480Z"
+              /></svg>
               <svg v-else
                    xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-120v-320h80v184l504-504H520v-80h320v320h-80v-184L256-200h184v80H120Z"/></svg>
-            </div>
-            <div @click="toggleSoundcloudStatus"
+            </button>
+            <button @click="toggleSoundcloudStatus"
             >
               <svg xmlns="http://www.w3.org/2000/svg"
                    height="24px"
@@ -47,7 +48,7 @@
               >
                 <path d="M360-320h80v-320h-80v320Zm160 0h80v-320h-80v320ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
               </svg>
-            </div>
+            </button>
           </div>
         </div>
         <div class="v-audio-player__iframe-container">
