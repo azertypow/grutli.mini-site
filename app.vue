@@ -2,42 +2,45 @@
   <div class="app-app"
        :class="useRouter().currentRoute.value.name"
   >
+    <!-- Skip link pour accessibilité clavier -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
     <transition name="v-transition-opacity">
         <AppNewsletter  v-if="useAppNewsletterIsOpen().value === true" />
     </transition>
 
     <transition name="v-fade">
-        <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value ">
+        <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value " aria-live="polite" aria-label="Chargement du contenu">
           <img class="app-app__loader-container__img"
-               src="/loader-20250612.gif"/>
+               src="/loader-20250612.gif"
+               alt="Chargement en cours"/>
         </div>
     </transition>
 
     <template v-if=" useAppContentIsLoaded().value ">
-      <div class="app-app__header"
+      <header class="app-app__header"
            :class="{
                 'window-is-scroll-to-bottom': windowIsScrollToBottom,
             }"
       >
         <AppHeader/>
-      </div>
-      <div class="app-app__content">
+      </header>
+      <main id="main-content" class="app-app__content">
         <NuxtPage/>
-      </div>
+      </main>
 
       <AudioPlayer
               v-if="usePlayerAudioParams().value?.soundcloud_url"
       />
 
-      <div class="app-app__cookie" v-if="useShowCookieBanner().value">
+      <div class="app-app__cookie" v-if="useShowCookieBanner().value" role="dialog" aria-labelledby="cookie-title" aria-modal="false">
         <div>
-          <div>
-            En poursuivant la navigation sur ce site, vous acceptez l’utilisation des cookies tiers liés à la plateforme tel que YouTube, SoundCloud, etc.
+          <div id="cookie-title">
+            En poursuivant la navigation sur ce site, vous acceptez l'utilisation des cookies tiers liés à la plateforme tel que YouTube, SoundCloud, etc.
           </div>
           <div>
-            <div class="app-button-grey" @click="handleCookieBannerClick()" >refuser</div>
-            <div class="app-button-grey" @click="handleCookieBannerClick()" >accepter</div>
+            <button class="app-button-grey" @click="handleCookieBannerClick()" type="button" aria-label="Refuser les cookies">refuser</button>
+            <button class="app-button-grey" @click="handleCookieBannerClick()" type="button" aria-label="Accepter les cookies">accepter</button>
           </div>
         </div>
       </div>
@@ -64,11 +67,14 @@
                   <div>{{ news.text }}</div>
                 </div>
               </a>
-              <svg class="app-app__news__wrap__container__close-ui"
-                   @click="toggleItemState(news.id)"
-                   xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
-                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-              </svg>
+              <button class="app-app__news__wrap__container__close-ui"
+                      @click="toggleItemState(news.id)"
+                      type="button"
+                      :aria-label="`Fermer l'annonce : ${news.text}`">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true">
+                  <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+              </button>
             </div>
           </template>
           <template v-else>
@@ -80,11 +86,14 @@
                 <div>{{ news.text }}</div>
                 <div>{{ news.text }}</div>
               </div>
-              <svg class="app-app__news__wrap__container__close-ui"
-                   @click="toggleItemState(news.id)"
-                   xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
-                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-              </svg>
+              <button class="app-app__news__wrap__container__close-ui"
+                      @click="toggleItemState(news.id)"
+                      type="button"
+                      :aria-label="`Fermer l'annonce : ${news.text}`">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true">
+                  <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+              </button>
             </div>
           </template>
         </template>
@@ -92,12 +101,14 @@
 
       <video class="app-app__video-bg"
              v-if="currentSeason"
-             :src="currentSeason[0].content.video_url"
+             :src="currentSeason[0]?.content.video_url"
              muted
              loop
              autoplay
              playsinline
              ref="videoBackground"
+             aria-hidden="true"
+             :title="`Vidéo d'ambiance - ${currentSeason[0]?.content.title}`"
       />
     </template>
   </div>
@@ -250,15 +261,35 @@
 }
 
 .app-app__news__wrap__container__close-ui {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
   width: auto;
+  min-width: 2rem;
+  padding: 0 0.25rem;
   z-index: 10;
-  background: white;
+  background: inherit;
+  border: none;
   cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+
+  svg {
+    display: block;
+  }
 }
 
 .app-app__video-bg {

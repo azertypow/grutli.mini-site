@@ -4,18 +4,28 @@
           'v-app-newsletter--ok': subscriberApiStatus === 'ok',
           'v-app-newsletter--error': subscriberApiStatus === 'error',
          }"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="newsletter-title"
+         @keydown.esc="useAppNewsletterIsOpen().value = false"
     >
       <div class="v-app-newsletter__overlay"
            @click="useAppNewsletterIsOpen().value = false"
+           aria-hidden="true"
       />
       <div class="v-app-newsletter__wrap v-transition-opacity__translate">
 
-        <svg class="v-app-newsletter__wrap__close-ui"
-             @click="useAppNewsletterIsOpen().value = false"
-             xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        <button class="v-app-newsletter__wrap__close-ui"
+                @click="useAppNewsletterIsOpen().value = false"
+                type="button"
+                aria-label="Fermer la fenêtre d'inscription">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true">
+            <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+          </svg>
+        </button>
 
         <div class="v-app-newsletter__wrap__header">
-          <h1 class="v-app-newsletter__wrap__header__title">Inscription à nos actualités</h1>
+          <h1 id="newsletter-title" class="v-app-newsletter__wrap__header__title">Inscription à nos actualités</h1>
         </div>
 
         <form class="v-app-newsletter__wrap__form"
@@ -44,6 +54,9 @@
                       type="email"
                       v-model="form.email"
                       placeholder="votre@email.com"
+                      required
+                      aria-required="true"
+                      autocomplete="email"
                       style="
                         display: block;
                         font-size: var(--app-font-size);
@@ -70,8 +83,9 @@
                      "
               >Pour recevoir les informations&nbsp;:</label>
 
-              <div style="max-width: 15rem; width: 100%; display: flex; flex-direction: column; gap: .5rem;">
-                <div v-for="group in listOfNewsletterGroups" :key="group.name"
+              <fieldset style="max-width: 15rem; width: 100%; display: flex; flex-direction: column; gap: .5rem; border: none; padding: 0; margin: 0;">
+                <legend class="sr-only">Choix des newsletters</legend>
+                <div v-for="(group, index) in listOfNewsletterGroups" :key="group.name"
                      style="
                       display: flex;
                       flex-direction: row;
@@ -80,17 +94,20 @@
                     "
                 >
                   <input
+                          :id="`newsletter-group-${index}`"
                           type="checkbox"
                           :value="group.name"
                           v-model="form.groups"
                   />
-                  <label v-html="group.text"/>
+                  <label :for="`newsletter-group-${index}`" v-html="group.text"/>
                 </div>
-              </div>
+              </fieldset>
             </div>
           </template>
 
-          <p class="v-app-newsletter__msg">
+          <p class="v-app-newsletter__msg"
+             role="status"
+             :aria-live="subscriberApiStatus === 'error' ? 'assertive' : 'polite'">
             <template v-if="subscriberApiMessage" >{{ subscriberApiMessage }}</template>
             <template v-else>&nbsp;</template>
           </p>
@@ -262,15 +279,38 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
 }
 
 .v-app-newsletter__wrap__close-ui {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: .5rem;
   right: .5rem;
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
   z-index: 10;
-  fill: var(--app-color-secondary);
+  background: transparent;
+  border: none;
   cursor: pointer;
+  border-radius: 0.25rem;
+  transition: transform 0.2s ease;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: var(--app-color-secondary);
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 }
 
 .v-app-newsletter__wrap__header {
