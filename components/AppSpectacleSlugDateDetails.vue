@@ -2,7 +2,9 @@
     <section class="v-app-spectacle-slug-date-details">
       <div id="dates-details"></div>
       <div v-if="date_by_mounth"
-           style="margin-bottom: 1rem"
+           :class="{
+            'width-margin': content_html_details?.length && content_html_details?.length > 0
+           }"
       >
         <div v-for="dateGroup of date_by_mounth.toReversed()"
              class="v-app-spectacle-slug-date-details__coll__text-content__details__dates"
@@ -131,5 +133,9 @@ a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__i
 
   background: black;
   color: white;
+}
+
+.width-margin {
+  margin-bottom: 1rem;
 }
 </style>
