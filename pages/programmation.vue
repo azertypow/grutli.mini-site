@@ -1,7 +1,7 @@
 <template>
     <section class="v-programmation"
     >
-      <h1>Programmation</h1>
+      <h1 class="v-programmation__title" >Programmation</h1>
       <div class="v-programmation__list">
         <template v-if="siteInfo === null">
           chargement…
@@ -210,5 +210,13 @@ const curentSeasonSpectacle: ComputedRef<Spectacle[]> = computed(() => {
 .v-programmation__item {
   width: 100%;
   margin-top: 1rem;
+}
+
+.v-programmation__title {
+  text-align: center;
+
+  .nuxt-watch-falk-is-active & {
+    text-align: left;
+  }
 }
 </style>
