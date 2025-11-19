@@ -247,6 +247,7 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
   justify-content: center;
   align-items: center;
   padding: var(--app-gutter-xl);
+  background: transparent;
 }
 
 .v-app-newsletter__overlay {
