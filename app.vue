@@ -46,7 +46,7 @@
       </div>
 
       <div class="app-app__news"
-           v-if="newsList"
+           v-if="newsList && !useFalkIsActive().value"
       >
         <template
                 v-for="news of newsListToShow"
@@ -178,6 +178,11 @@
     opacity: 0;
     pointer-events: none !important;
   }
+
+  .nuxt-watch-falk-is-active & {
+    opacity: 1;
+    pointer-events: initial;
+  }
 }
 
 .app-app__content {
@@ -303,6 +308,10 @@
   z-index: -1;
   pointer-events: none;
   user-select: none;
+
+  .nuxt-watch-falk-is-active & {
+    display: none !important;
+  }
 }
 
 // vue transition

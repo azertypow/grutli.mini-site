@@ -50,6 +50,10 @@ a {
       background: black !important;
     }
   }
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
+  }
 }
 
 .app-button-grey {
@@ -95,6 +99,10 @@ a {
       color: white;
       background: black;
     }
+  }
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
   }
 }
 

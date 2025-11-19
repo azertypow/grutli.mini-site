@@ -392,6 +392,10 @@ onMounted(async () => {
   &.v-spectacle-slug__item--no-padding {
     padding: 0;
   }
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
+  }
 }
 
 .v-spectacle-slug__youtube-link {

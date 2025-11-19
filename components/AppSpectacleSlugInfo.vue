@@ -60,18 +60,16 @@
       </div>
 
       <div class="v-app-spectacle-slug-info__coll__text-content__company app-font-mono">
-        <div v-for="companyPeople of page_data?.pageContent.content.company">
+        <h5 v-for="companyPeople of page_data?.pageContent.content.company">
           <template v-if="companyPeople.authors_link">
             <a target="_blank" :href="companyPeople.authors_link">
               {{ companyPeople.authors_name }}
             </a>
           </template>
           <template v-else>
-            <div>
               {{ companyPeople.authors_name }}
-            </div>
           </template>
-        </div>
+        </h5>
       </div>
     </section>
 </template>
@@ -117,6 +115,12 @@ const props = defineProps<{
   margin-bottom: 0;
   padding: .25rem var(--app-gutter-xl);
   margin-left: calc( -1 * var(--app-gutter-xl) );
+
+  .nuxt-watch-falk-is-active & {
+    background: white;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+  }
 }
 
 .v-app-spectacle-slug-info__coll__header__ticket {
@@ -155,5 +159,12 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__text-content__company {
   text-align: center;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: normal;
+    font-variation-settings: "slnt" 0, "wght" 400;
+  }
 }
 </style>

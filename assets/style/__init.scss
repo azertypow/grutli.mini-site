@@ -18,6 +18,7 @@ html {
 
   &.nuxt-watch-falk-is-active {
     background-image: none;
+    background-color: white;
   }
 }
 
@@ -39,4 +40,8 @@ body {
 button {
   all: unset;
   cursor: pointer;
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
+  }
 }
