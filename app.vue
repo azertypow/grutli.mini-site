@@ -186,7 +186,7 @@
 
   .nuxt-watch-falk-is-active & {
     opacity: 1;
-    pointer-events: initial;
+    pointer-events: initial !important;
   }
 }
 
