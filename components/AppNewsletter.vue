@@ -1,22 +1,19 @@
 <template>
-    <dialog class="v-app-newsletter"
+    <dialog
+         ref="dialogRef"
+         class="v-app-newsletter"
          :class="{
           'v-app-newsletter--ok': subscriberApiStatus === 'ok',
           'v-app-newsletter--error': subscriberApiStatus === 'error',
          }"
-         role="dialog"
-         aria-modal="true"
          aria-labelledby="newsletter-title"
-         @keydown.esc="useAppNewsletterIsOpen().value = false"
+         @close="handleClose"
+         @click.self="handleClose"
     >
-      <div class="v-app-newsletter__overlay"
-           @click="useAppNewsletterIsOpen().value = false"
-           aria-hidden="true"
-      />
       <div class="v-app-newsletter__wrap v-transition-opacity__translate">
 
         <button class="v-app-newsletter__wrap__close-ui"
-                @click="useAppNewsletterIsOpen().value = false"
+                @click="handleClose"
                 type="button"
                 aria-label="Fermer la fenêtre d'inscription">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true">
@@ -195,6 +192,32 @@ const form = ref<SubscriberDataToSend>({
     groups: [],
 });
 
+const dialogRef = ref<HTMLDialogElement | null>(null)
+const isOpen = useAppNewsletterIsOpen()
+
+// Gérer l'ouverture/fermeture du dialog avec l'API native
+watch(isOpen, (newValue) => {
+  console.log('isOpen', newValue)
+
+    if (!dialogRef.value) return
+
+    if (newValue) {
+        dialogRef.value.showModal()
+        // Focus automatique sur le premier champ
+        nextTick(() => {
+            const emailInput = dialogRef.value?.querySelector('#email') as HTMLInputElement
+            emailInput?.focus()
+        })
+    } else {
+        dialogRef.value.close()
+    }
+})
+
+// Gérer la fermeture avec ESC ou clic sur le backdrop
+const handleClose = () => {
+    isOpen.value = false
+}
+
 const handleSubmit = async () => {
     subscriberApiMessage.value = 'Envoi en cours...'
     subscriberApiStatus.value = 'sending'
@@ -250,7 +273,6 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
 
 .v-app-newsletter__wrap {
   position: relative;
-  z-index: 1;
   width: 100%;
   max-height: 80vh;
   overflow: auto;
@@ -259,6 +281,7 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
   max-width: 25rem;
   padding: 2rem;
   box-sizing: border-box;
+  margin: auto;
 
   @media (max-width: 600px) {
     padding-left: var(--app-gutter-xl);
