@@ -51,7 +51,9 @@
             </button>
           </div>
         </div>
-        <div class="v-audio-player__iframe-container">
+        <div class="v-audio-player__iframe-container"
+             v-if="playerIsOpen"
+        >
           <iframe width="100%"
                   ref="player"
                   scrolling="no"
