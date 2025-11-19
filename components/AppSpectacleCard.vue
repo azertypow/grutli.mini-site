@@ -11,20 +11,17 @@
         {{dateFromTicketService}}
     </div>
     <div>
+      <div class="v-app-spectacle-card__item__info"
+           v-if="event_info"
+      >
+        <div class="v-app-spectacle-card__item__info__wrap app-font-small app-font-mono">
+          {{event_info}}
+        </div>
+      </div>
       <h2 class="v-app-spectacle-card__item__title app-font-without-max-width app-font-align-center">{{ title }}</h2>
       <h3 class="v-app-spectacle-card__item__subtitle app-font-align-center"
           v-if="subtitle"
       >{{subtitle}}</h3>
-    </div>
-    <div class="v-app-spectacle-card__item__info app-font-small"
-         v-if="event_info"
-    >
-      <div class="v-app-spectacle-card__item__info__wrap">
-        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
-        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
-        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
-        <div class="v-app-spectacle-card__item__info__wrap__text">{{event_info}}</div>
-      </div>
     </div>
     <div class="v-app-spectacle-card__item__peoples app-font-base app-font-small app-font-align-center"
          v-if="peoples"
@@ -145,36 +142,18 @@ const dateFromTicketService = computed(() => {
 
 .v-app-spectacle-card__item__info {
   text-align: center;
-  font-style: italic;
   margin-bottom: 0;
-  background: var(--app-color-primary);
-  overflow: hidden;
   position: relative;
-  height: 1rem;
-  padding-left: var(--app-gutter);
-  padding-right: var(--app-gutter);
-  transform: translate3d(0, 50%, 1rem);
-
-  .nuxt-watch-falk-is-active & {
-    display: none;
-  }
+  display: flex;
+  justify-content: center;
+  transform: translateY(-50%);
 }
 
 .v-app-spectacle-card__item__info__wrap {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  animation: app-app__news__wrap--animation--variante linear 20s infinite;
-  width: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
+  margin: 0;
+  background: var(--app-color-primary);
+  padding: .15rem .5rem;
+  border-radius: 1rem;
+  font-variation-settings: "slnt" 0, "wght" 600;
 }
-
-.v-app-spectacle-card__item__info__wrap__text {
-  white-space: nowrap;
-  padding-right: 2rem;
-  line-height: 1rem;
-}
-
 </style>
