@@ -106,7 +106,7 @@
 
       <video class="app-app__video-bg"
              v-if="currentSeason"
-             :src="currentSeason[0]?.content.video_url"
+              src='/videos/251119_Grutli_web-home_loop.mp4'
              muted
              loop
              autoplay
