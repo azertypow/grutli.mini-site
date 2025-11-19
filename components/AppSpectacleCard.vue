@@ -155,5 +155,10 @@ const dateFromTicketService = computed(() => {
   padding: .15rem .5rem;
   border-radius: 1rem;
   font-variation-settings: "slnt" 0, "wght" 600;
+
+  .nuxt-watch-falk-is-active & {
+    background: white;
+    border: solid 1px;
+  }
 }
 </style>

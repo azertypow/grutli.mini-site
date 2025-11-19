@@ -181,6 +181,7 @@ function toggleSoundcloudStatus() {
 
   .nuxt-watch-falk-is-active & {
     border-top: solid 1px;
+    background: white;
   }
 }
 
