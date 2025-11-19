@@ -55,6 +55,7 @@
         >
           <iframe width="100%"
                   ref="player"
+                  :inert="!playerIsOpen"
                   scrolling="no"
                   frameborder="no"
                   allow="autoplay"
