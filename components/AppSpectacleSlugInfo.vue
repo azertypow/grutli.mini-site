@@ -144,6 +144,7 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-info__coll__text-content__subtitle {
   margin-bottom: .5rem;
+  font-style: italic;
 }
 
 .v-app-spectacle-slug-info__coll__text-content__date_and_place {
