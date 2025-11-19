@@ -252,3 +252,8 @@ blockquote {
   justify-content: center;
   gap: var(--app-gutter);
 }
+
+*::selection {
+  color: white;
+  background-color: var(--app-color-primary);
+}
