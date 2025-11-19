@@ -236,28 +236,16 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
 
 <style lang="scss" scoped >
 .v-app-newsletter {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: none;
   padding: var(--app-gutter-xl);
-}
+  max-width: none;
+  max-height: none;
+  background: transparent;
 
-.v-app-newsletter__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  //background: rgba(0, 0, 0, 0.85);
-  z-index: 0;
-  backdrop-filter: blur(2rem);
+  &::backdrop {
+    backdrop-filter: blur(2rem);
+    background: rgba(0, 0, 0, 0.1);
+  }
 }
 
 .v-app-newsletter__wrap {
