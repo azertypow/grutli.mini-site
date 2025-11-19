@@ -1,7 +1,7 @@
 <template>
     <nav class="v-app-header" aria-label="Navigation principale">
       <div class="v-app-header__left">
-        <nuxt-link class="app-font-small app-font-mono app-font-mono--force app-button-grey app-button-grey--with-glow-effect"
+        <nuxt-link class="v-app-header__logo app-font-small app-font-mono app-font-mono--force app-button-grey app-button-grey--with-glow-effect"
                    to="/"
                    style="padding-left: .75rem; padding-right: .75rem"
                    aria-label="Retour à l'accueil - Scènes du Grütli"
@@ -146,6 +146,11 @@
   width: auto;
   margin-bottom: 0;
   flex-shrink: 0;
+}
+
+.v-app-header__logo {
+  padding: 0.44rem 0.75rem;
+  border-radius: 40rem;
 }
 
 .v-app-header__right {

@@ -145,8 +145,8 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   gap: var(--app-gutter-xl);
   align-items: flex-start;
   box-sizing: border-box;
-  padding-left: var(--app-gutter-xl);
-  padding-right: var(--app-gutter-xl);
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
   flex-direction: row;
 }
 

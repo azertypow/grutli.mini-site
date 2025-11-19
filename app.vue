@@ -230,8 +230,8 @@
 
 .app-app__news__wrap__container {
   box-sizing: border-box;
-  padding-left: var(--app-gutter-xl);
-  padding-right: var(--app-gutter-xl);
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
   white-space: nowrap;
   position: relative;
   height: 1rem;

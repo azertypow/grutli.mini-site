@@ -43,8 +43,8 @@ const customMsg = useRouter().currentRoute.value.query.msg
 <style lang="scss" scoped >
 .v-erreur {
   box-sizing: border-box;
-  padding-left: var(--app-gutter-xl);
-  padding-right: var(--app-gutter-xl);
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
 }
 
 .v-erreur__list {

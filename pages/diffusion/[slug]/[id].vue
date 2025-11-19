@@ -148,8 +148,8 @@ onMounted(async () => {
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  padding-left: var(--app-gutter-xl);
-  padding-right: var(--app-gutter-xl);
+  padding-left: var(--app-gutter);
+  padding-right: var(--app-gutter);
 }
 
 .v-spectacle-slug__coll {
