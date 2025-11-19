@@ -1,5 +1,5 @@
 <template>
-    <div class="v-app-newsletter"
+    <dialog class="v-app-newsletter"
          :class="{
           'v-app-newsletter--ok': subscriberApiStatus === 'ok',
           'v-app-newsletter--error': subscriberApiStatus === 'error',
@@ -128,7 +128,7 @@
         </form>
       </div>
 
-    </div>
+    </dialog>
 </template>
 
 

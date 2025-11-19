@@ -154,6 +154,10 @@ const dateFromTicketService = computed(() => {
   padding-left: var(--app-gutter);
   padding-right: var(--app-gutter);
   transform: translate3d(0, 50%, 1rem);
+
+  .nuxt-watch-falk-is-active & {
+    display: none;
+  }
 }
 
 .v-app-spectacle-card__item__info__wrap {

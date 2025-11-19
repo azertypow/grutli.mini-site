@@ -653,6 +653,10 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
     background: black;
     color: white;
   }
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
+  }
 }
 
 .v-slug__item {
