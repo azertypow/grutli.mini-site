@@ -79,6 +79,10 @@ const dateString: ComputedRef<string> = computed(() => {
   .nuxt-watch-falk-is-active & {
     color: black;
   }
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px currentColor;
+  }
 }
 
 .v-app-event-item__item__title-container {
