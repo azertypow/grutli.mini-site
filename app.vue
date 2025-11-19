@@ -27,6 +27,11 @@
       </header>
       <main id="main-content" class="app-app__content">
         <NuxtPage/>
+
+        <div class="app-app__content__footer" v-if="useRouter().currentRoute.value.path !== '/plan-du-site'">
+          <nuxt-link to="plan-du-site" >plan du site</nuxt-link>
+        </div>
+
       </main>
 
       <AudioPlayer
@@ -188,6 +193,19 @@
 .app-app__content {
   max-width: 44rem;
   margin: auto;
+}
+
+.app-app__content__footer {
+  display: flex;
+  justify-content: center;
+  font-size: .5rem;
+  color: black;
+  opacity: .5;
+  margin-top: 1rem;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .app-app__news {
