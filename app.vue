@@ -9,6 +9,13 @@
         <AppNewsletter  v-if="useAppNewsletterIsOpen().value === true" />
     </transition>
 
+    <div style="position: fixed; top: 0; left: 0;width: 100%; z-index: 1000">
+      <SoundCloudPlayer
+        url="https://soundcloud.com/scenes-du-grutli-2025/presentation-de-saison-larbre-monde?si=120d53d033fb4bce87c8f93dee316279&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+      />
+      <SoundCloudControler/>
+    </div>
+
     <transition name="v-fade">
         <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value " aria-live="polite" aria-label="Chargement du contenu">
           <img class="app-app__loader-container__img"
