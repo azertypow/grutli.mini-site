@@ -70,3 +70,5 @@ export const useAppSeasons_active: () => Ref<ApiSeasons_value[] | null> = () => 
 export const useWindowsWidthIsSmallerThan1200pxCSSBreakpoint: () => Ref<boolean> = () => useState('useWindowsWidthIsSmallerThan1200pxCSSBreakpoint', () => true)
 
 export const usePlayerAudioParams: () => Ref<null | ApiCms_global_soundcloud_player> = () => useState('usePlayerAudioUrl', () => null)
+
+export const useSoundCloudUrl: () => Ref<string | null> = () => useState('useSoundCloudUrl', () => null)
