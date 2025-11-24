@@ -28,7 +28,7 @@
       <main id="main-content" class="app-app__content">
         <NuxtPage/>
 
-        <div class="app-app__content__footer" v-if="useRouter().currentRoute.value.path !== '/plan-du-site'">
+        <div class="app-app__content__footer" v-if="useRouter().currentRoute.value.path === '/'">
           <nuxt-link to="plan-du-site" >plan du site</nuxt-link>
         </div>
 
