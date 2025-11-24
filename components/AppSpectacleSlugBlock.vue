@@ -74,6 +74,11 @@
             </h2>
             <AppGallery :gallery_data="blockContent.images" />
           </div>
+
+
+          <div v-else-if="blockContent.type === 'soundCloudPlayer'">
+            {{blockContent.content.url}}
+          </div>
         </template>
     </div>
 </template>

@@ -328,6 +328,13 @@ export type ApiHTMLContent_break = ApiHTMLContent & {
     type: "break"
 }
 
+export type ApiHTMLContent_video_soundCloudPlayer = ApiHTMLContent & {
+    content: {
+        url: string,
+    },
+    type: "soundCloudPlayer"
+}
+
 
 
 export type ApiHTMLContent_image = ApiHTMLContent & {
@@ -356,6 +363,7 @@ export type ApiHTMLContent_Blocks =
     | ApiHTMLContent_video
     | ApiHTMLContent_quote
     | ApiHTMLContent_break
+    | ApiHTMLContent_video_soundCloudPlayer
 
 export type ApiSimplePage = {
     pageContent: ApiSimplePage_PageContent;
