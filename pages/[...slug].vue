@@ -687,6 +687,10 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
           transform: scale(1.01);
       }
   }
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
+  }
 }
 
 .v-slug__item--image {
