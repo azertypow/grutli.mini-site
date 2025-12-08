@@ -77,7 +77,10 @@
 
 
           <div v-else-if="blockContent.type === 'soundCloudPlayer'">
-            {{blockContent.content.url}}
+            <SoundCloudPlayer
+              :url="blockContent.content.url"
+              :title="blockContent.content.title"
+            />
           </div>
         </template>
     </div>

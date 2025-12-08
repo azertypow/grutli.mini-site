@@ -30,13 +30,13 @@ const embedUrl = computed(() => {
     const params = new URLSearchParams({
       url: cleanUrl,
       color: '#ff5500',
-      auto_play: 'true',
+      auto_play: 'false',
       hide_related: 'false',
-      show_comments: 'true',
-      show_user: 'true',
+      show_comments: 'false',
+      show_user: 'false',
       show_reposts: 'false',
       show_teaser: 'false',
-      visual: 'true'
+      visual: 'false'
     })
 
     return `https://w.soundcloud.com/player/?${params.toString()}`
@@ -67,15 +67,22 @@ function loadSoundCloudAPI(): Promise<unknown> {
 async function initSoundCloud() {
   try {
     await loadSoundCloudAPI()
-    console.log('SoundCloud API chargée avec succès.')
+    console.info('SoundCloud API loaded')
 
     if (SC === undefined) throw new Error('SC undefined')
     if (player.value === null) throw new Error('player is null')
 
     widget = SC.Widget(player.value)
 
-    // Lancer la lecture automatiquement
-    widget?.bind(SC.Widget.Events.READY, () => {
+    widget.bind(SC.Widget.Events.PLAY, () => {
+      console.info('SoundCloud player playing')
+    })
+    widget.bind(SC.Widget.Events.PAUSE, () => {
+      console.info('SoundCloud player pause')
+    })
+
+    // start to play
+    widget.bind(SC.Widget.Events.READY, () => {
       widget?.play()
     })
 
@@ -84,7 +91,6 @@ async function initSoundCloud() {
   }
 }
 
-// Observer les changements de l'URL
 watch(soundCloudUrl, async (newUrl) => {
   if (newUrl) {
     await nextTick()

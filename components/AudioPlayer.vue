@@ -53,14 +53,7 @@
         </div>
         <div class="v-audio-player__iframe-container"
         >
-          <iframe width="100%"
-                  ref="player"
-                  :inert="!playerIsOpen"
-                  scrolling="no"
-                  frameborder="no"
-                  allow="autoplay"
-                  :src="`https://w.soundcloud.com/player/?url=${soundCloudAudioUrl_withoutParams}&color=%23ff7f65&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=false&show_teaser=false&visual=true&show_playcount=false&show_artwork=fase`">
-          </iframe>
+          <SoundCloudControler/>
         </div>
       </div>
     </section>
@@ -97,50 +90,7 @@ function togglePlayerIsOpen() {
 }
 
 
-declare const SC: undefined | ApiSoundCloud
-function loadSoundCloudAPI(): Promise<unknown> {
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = 'https://w.soundcloud.com/player/api.js'
-        script.onload = resolve
-        script.onerror = reject
-        document.head.appendChild(script)
-    })
-}
-
-async function initSoundCloud() {
-    try {
-        await loadSoundCloudAPI()
-        console.log('SoundCloud API chargée avec succès.')
-
-        // Une fois l’API chargée, initialise le widget
-
-        if (SC === undefined) throw new Error('SC undefined')
-        if (player.value === null) throw new Error('player is null')
-
-        widget = SC.Widget(player.value)
-        widget?.bind(SC.Widget.Events.PLAY, () => {
-            playerIsPaused.value = false
-        })
-
-        widget?.bind(SC.Widget.Events.PAUSE, () => {
-            playerIsPaused.value = true
-        })
-
-        widget?.bind(SC.Widget.Events.FINISH, () => {
-            playerIsPaused.value = true
-        })
-
-    } catch (error) {
-        console.error('Erreur lors du chargement de la SoundCloud API :', error)
-    }
-
-}
-
 onMounted(() => {
-    nextTick(() => {
-      initSoundCloud()
-    })
     document.body.classList.add('has-player')
 })
 

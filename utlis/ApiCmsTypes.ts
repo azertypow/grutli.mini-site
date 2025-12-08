@@ -331,6 +331,7 @@ export type ApiHTMLContent_break = ApiHTMLContent & {
 export type ApiHTMLContent_video_soundCloudPlayer = ApiHTMLContent & {
     content: {
         url: string,
+        title: string,
     },
     type: "soundCloudPlayer"
 }
