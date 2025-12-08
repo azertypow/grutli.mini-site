@@ -132,7 +132,7 @@ export interface PageContentDetails {
     showincalendar?: "true" | "false",
     datestart?: string,
     dateend?: string,
-    showinnavigation: 'true' | 'false'; // Probablement un boolean représenté en string ("true" / "false").
+    showinnavigation: 'true' | 'false';
     showinhome: 'true' | 'false';
     content: string
     uuid: string;
