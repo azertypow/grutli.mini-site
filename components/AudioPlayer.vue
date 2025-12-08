@@ -6,7 +6,9 @@
     >
       <div class="v-audio-player__container app-font-extra-small">
         <div class="v-audio-player__container__header">
-          <div class="v-audio-player__container__header__title">
+          <div class="v-audio-player__container__header__title"
+               v-if="!soundCloudUrl"
+          >
             <div class="v-audio-player__container__header__title__text"
                  v-if="soundCloudAudioParams?.text"
             >
@@ -29,6 +31,7 @@
                    xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-120v-320h80v184l504-504H520v-80h320v320h-80v-184L256-200h184v80H120Z"/></svg>
             </button>
             <button @click="toggleSoundcloudStatus"
+                    v-if="!soundCloudUrl"
             >
               <svg xmlns="http://www.w3.org/2000/svg"
                    height="24px"
@@ -54,6 +57,16 @@
         <div class="v-audio-player__iframe-container"
         >
           <SoundCloudControler/>
+          <iframe width="100%"
+                  v-if="!soundCloudUrl"
+                  ref="player"
+                  height="166"
+                  :inert="!playerIsOpen"
+                  scrolling="no"
+                  frameborder="no"
+                  allow="autoplay"
+                  :src="`https://w.soundcloud.com/player/?url=${soundCloudAudioUrl_withoutParams}&color=%23ff7f65&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=false&show_teaser=false&visual=true&show_playcount=false&show_artwork=fase`">
+          </iframe>
         </div>
       </div>
     </section>
@@ -66,7 +79,9 @@
 <script setup lang="ts">
 
 import type {ApiSoundCloud, ApiSoundCloud_Widget} from "~/utlis/ApiSoundCloud";
-import {usePlayerAudioParams} from "~/composables/cmsData";
+import {usePlayerAudioParams, useSoundCloudUrl} from "~/composables/cmsData";
+
+const soundCloudUrl = useSoundCloudUrl()
 
 const player: Ref<null | HTMLIFrameElement> = ref(null)
 const playerIsPaused: Ref<boolean> = ref(true)
@@ -89,8 +104,50 @@ function togglePlayerIsOpen() {
         : document.body.classList.remove('player-is-open')
 }
 
+declare const SC: undefined | ApiSoundCloud
+function loadSoundCloudAPI(): Promise<unknown> {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = 'https://w.soundcloud.com/player/api.js'
+    script.onload = resolve
+    script.onerror = reject
+    document.head.appendChild(script)
+  })
+}
+
+async function initSoundCloud() {
+  try {
+    await loadSoundCloudAPI()
+    console.log('SoundCloud API chargée avec succès.')
+
+    // Une fois l’API chargée, initialise le widget
+
+    if (SC === undefined) throw new Error('SC undefined')
+    if (player.value === null) throw new Error('player is null')
+
+    widget = SC.Widget(player.value)
+    widget?.bind(SC.Widget.Events.PLAY, () => {
+      playerIsPaused.value = false
+    })
+
+    widget?.bind(SC.Widget.Events.PAUSE, () => {
+      playerIsPaused.value = true
+    })
+
+    widget?.bind(SC.Widget.Events.FINISH, () => {
+      playerIsPaused.value = true
+    })
+
+  } catch (error) {
+    console.error('Erreur lors du chargement de la SoundCloud API :', error)
+  }
+
+}
 
 onMounted(() => {
+    nextTick(() => {
+      initSoundCloud()
+    })
     document.body.classList.add('has-player')
 })
 
