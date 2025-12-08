@@ -79,7 +79,7 @@
 <script setup lang="ts">
 
 import type {ApiSoundCloud, ApiSoundCloud_Widget} from "~/utlis/ApiSoundCloud";
-import {usePlayerAudioParams, useSoundCloudUrl} from "~/composables/cmsData";
+import {usePlayerAudioParams, usePlayerIsOpen, useSoundCloudUrl} from "~/composables/cmsData";
 
 const soundCloudUrl = useSoundCloudUrl()
 
@@ -87,7 +87,7 @@ const player: Ref<null | HTMLIFrameElement> = ref(null)
 const playerIsPaused: Ref<boolean> = ref(true)
 let widget: null | ApiSoundCloud_Widget = null
 
-const playerIsOpen = ref(false)
+const playerIsOpen = usePlayerIsOpen()
 const soundCloudAudioParams = usePlayerAudioParams()
 const soundCloudAudioUrl_withoutParams: ComputedRef<string | null> = computed(() => {
     if( !soundCloudAudioParams.value ) return null

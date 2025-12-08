@@ -72,3 +72,5 @@ export const useWindowsWidthIsSmallerThan1200pxCSSBreakpoint: () => Ref<boolean>
 export const usePlayerAudioParams: () => Ref<null | ApiCms_global_soundcloud_player> = () => useState('usePlayerAudioUrl', () => null)
 
 export const useSoundCloudUrl: () => Ref<string | null> = () => useState('useSoundCloudUrl', () => null)
+
+export const usePlayerIsOpen: () => Ref<boolean> = () => useState('usePlayerIsOpen', () => false)

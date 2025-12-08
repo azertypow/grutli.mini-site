@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSoundCloudUrl } from '~/composables/cmsData'
+import {usePlayerIsOpen, useSoundCloudUrl} from '~/composables/cmsData'
 
 const props = defineProps<{
   url?: string
@@ -34,10 +34,13 @@ const props = defineProps<{
 }>()
 
 const soundCloudUrlStore = useSoundCloudUrl()
+const playerIsOpen = usePlayerIsOpen()
 
 function playSound() {
   if (props.url) {
     soundCloudUrlStore.value = props.url
+    playerIsOpen.value = true
+    document.body.classList.add('player-is-open')
   }
 }
 
