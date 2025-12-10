@@ -114,7 +114,7 @@ const splitHtmlContentByBreakBlock: ComputedRef<ApiHTMLContent_Blocks[][] | null
         if (block.type === 'break') {
             arrayToReturn.push([])
         } else {
-            arrayToReturn[arrayToReturn.length - 1].push(block)
+            arrayToReturn[arrayToReturn.length - 1]?.push(block)
         }
     }
 
