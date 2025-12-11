@@ -311,7 +311,7 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
                   dates: [itemToPush],
               })
           } else {
-              groupedDateByMouth[indexOfMouthGroup].dates.push(itemToPush)
+              groupedDateByMouth[indexOfMouthGroup]?.dates.push(itemToPush)
           }
         }
     })
