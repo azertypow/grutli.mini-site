@@ -1,10 +1,11 @@
 <template>
-    <nav class="v-app-header" aria-label="Navigation principale">
+    <nav class="v-app-header" aria-label="Navigation principale" ref="app_navigation">
       <div class="v-app-header__left">
         <nuxt-link class="v-app-header__logo app-font-small app-font-mono app-font-mono--force app-button-grey app-button-grey--with-glow-effect"
                    to="/"
                    style="padding-left: .75rem; padding-right: .75rem"
                    aria-label="Retour à l'accueil - Scènes du Grütli"
+                   tabindex="1"
         >
           Scènes
           <br>du Grütli
@@ -12,7 +13,6 @@
       </div>
 
       <div class="v-app-header__navigation"
-           ref="app-footer"
            v-if="useMenuIsOpen().value"
            role="navigation"
            aria-label="Menu de navigation"
@@ -29,6 +29,7 @@
                   @click="useAppNewsletterIsOpen().value = true"
                   type="button"
                   aria-label="S'inscrire à la newsletter"
+                  tabindex="1"
           >
             <svg id="Layer_1"
                  xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +47,7 @@
              target="_blank"
              aria-label="Suivez-nous sur Facebook (ouvre dans un nouvel onglet)"
              rel="noopener noreferrer"
+             tabindex="1"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16" aria-hidden="true">
               <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
@@ -57,6 +59,7 @@
              target="_blank"
              aria-label="Suivez-nous sur Instagram (ouvre dans un nouvel onglet)"
              rel="noopener noreferrer"
+             tabindex="1"
           >
             <svg style="height: .65rem"
                     fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -68,11 +71,12 @@
                   @click="useFalkIsActive().value = !useFalkIsActive().value"
                   type="button"
                   :aria-label="useFalkIsActive().value ? 'Désactiver le mode Facile à Lire et à Comprendre' : 'Activer le mode Facile à Lire et à Comprendre'"
-                  :aria-pressed="useFalkIsActive().value.toString()"
+                  :aria-checked="useFalkIsActive().value.toString()"
                   role="switch"
                   :class="{
                     'is-active': useFalkIsActive().value
                   }"
+                  tabindex="1"
           >
             <div aria-hidden="true">Vue simplifiée</div>
           </button>
@@ -84,6 +88,7 @@
                   type="button"
                   :aria-label="useMenuIsOpen().value ? 'Fermer le menu' : 'Ouvrir le menu'"
                   :aria-expanded="useMenuIsOpen().value.toString()"
+                  tabindex="1"
           >
             <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
             <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
@@ -252,12 +257,21 @@ import {
 const windowIsScrollToBottom = useWindowIsScrollToBottom()
 const beforeScrollPosition = ref(window.scrollY)
 
+const app_navigation = ref<HTMLElement>()
+
 onMounted(() => {
     setWindowScrollStatus()
     window.addEventListener('scroll', setWindowScrollStatus)
     window.addEventListener('resize', () => {
         useMenuIsOpen().value = !useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value
     })
+})
+
+watch(useMenuIsOpen(), () => {
+    if (useMenuIsOpen().value) {
+      console.log(app_navigation.value?.querySelector("a"))
+        app_navigation.value?.querySelector("a")?.focus()
+    }
 })
 
 function setWindowScrollStatus() {

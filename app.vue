@@ -5,6 +5,7 @@
     <!-- Skip link pour accessibilité clavier -->
     <a href="#main-content" class="skip-link"
        :inert="useAppNewsletterIsOpen().value === true"
+       tabindex="1"
     >Aller au contenu principal</a>
 
     <dialog class="app-app__newsletter-container"

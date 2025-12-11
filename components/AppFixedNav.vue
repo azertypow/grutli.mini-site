@@ -4,6 +4,7 @@
     <div class="v-slug__listed-pages">
       <nuxt-link class="app-button-grey app-font-small app-button-grey--with-glow-effect"
                  href="/programmation"
+                 tabindex="1"
       >
         Programmation
       </nuxt-link>
@@ -13,6 +14,7 @@
                    :class="{
                       'dont-show': getFirstPath(useRoute().path) === page.uri,
                    }"
+                   tabindex="1"
         >
           {{ page.title }}
         </nuxt-link>
@@ -22,6 +24,7 @@
          v-if="ticketInfos"
          target="_blank"
          class="app-button-grey app-font-small app-button-grey--with-glow-effect"
+         tabindex="1"
       >Billetterie</a>
 
     </div>

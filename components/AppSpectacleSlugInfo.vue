@@ -13,6 +13,7 @@
              v-if="page_data?.pageContent.content.externalticketservicelink"
              :href="page_data.pageContent.content.externalticketservicelink"
              target="_blank"
+             tabindex="1"
           >
             <template v-if="page_data.pageContent.content.externalticketservicename">
               {{ page_data.pageContent.content.externalticketservicename }}
@@ -24,6 +25,7 @@
           <a class="app-button-grey app-font-small"
              href="#dates-details"
              v-if="page_data && page_data.pageContent.content.list_of_dates.length !== 0"
+             tabindex="1"
           >
             <template v-if="page_data.pageContent.content.list_of_dates.length > 1">
               Dates & horaires
