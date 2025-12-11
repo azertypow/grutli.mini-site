@@ -3,16 +3,26 @@
        :class="useRouter().currentRoute.value.name"
   >
     <!-- Skip link pour accessibilité clavier -->
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <a href="#main-content" class="skip-link"
+       :inert="useAppNewsletterIsOpen().value === true"
+    >Aller au contenu principal</a>
 
-    <transition name="v-transition-opacity">
-        <AppNewsletter  v-if="useAppNewsletterIsOpen().value === true" />
-    </transition>
+    <dialog class="app-app__newsletter-container"
+            :open="useAppNewsletterIsOpen().value === true"
+            autofocus
+            role="alertdialog"
+            aria-modal="true"
+    >
+        <AppNewsletter/>
+    </dialog>
 
     <transition name="v-fade">
-        <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value " aria-live="polite" aria-label="Chargement du contenu">
+        <div class="app-app__loader-container" v-if=" !useAppContentIsLoaded().value " aria-live="polite" aria-label="Chargement du contenu"
+             :inert="useAppNewsletterIsOpen().value === true"
+        >
           <img class="app-app__loader-container__img"
                src="/loader-20250612.gif"
+               aria-hidden="true"
                alt="Chargement en cours"/>
           <p class="app-app__loader-container__text_information_for_reduce_motion">Chargement du contenu…</p>
         </div>
@@ -20,13 +30,16 @@
 
     <template v-if=" useAppContentIsLoaded().value ">
       <header class="app-app__header"
-           :class="{
+              :class="{
                 'window-is-scroll-to-bottom': windowIsScrollToBottom,
-            }"
+              }"
+              :inert="useAppNewsletterIsOpen().value === true"
       >
         <AppHeader/>
       </header>
-      <main id="main-content" class="app-app__content">
+      <main id="main-content" class="app-app__content"
+            :inert="useAppNewsletterIsOpen().value === true"
+      >
         <NuxtPage/>
 
         <div class="app-app__content__footer" v-if="useRouter().currentRoute.value.path === '/'">
@@ -37,9 +50,12 @@
 
       <AudioPlayer
               v-if="usePlayerAudioParams().value?.soundcloud_url"
+              :inert="useAppNewsletterIsOpen().value === true"
       />
 
-      <div class="app-app__cookie" v-if="useShowCookieBanner().value" role="dialog" aria-labelledby="cookie-title" aria-modal="false">
+      <div class="app-app__cookie" v-if="useShowCookieBanner().value" role="dialog" aria-labelledby="cookie-title" aria-modal="false"
+           :inert="useAppNewsletterIsOpen().value === true"
+      >
         <div>
           <div id="cookie-title">
             En poursuivant la navigation sur ce site, vous acceptez l'utilisation des cookies tiers liés à la plateforme tel que YouTube, SoundCloud, etc.
@@ -53,6 +69,7 @@
 
       <div class="app-app__news"
            v-if="newsList && !useFalkIsActive().value"
+           :inert="useAppNewsletterIsOpen().value === true"
       >
         <template
                 v-for="news of newsListToShow"
@@ -115,6 +132,7 @@
              ref="videoBackground"
              aria-hidden="true"
              :title="`Vidéo d'ambiance - ${currentSeason[0]?.content.title}`"
+             inert
       />
     </template>
   </div>

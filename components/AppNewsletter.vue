@@ -1,5 +1,5 @@
 <template>
-    <dialog class="v-app-newsletter"
+    <div class="v-app-newsletter"
          :class="{
           'v-app-newsletter--ok': subscriberApiStatus === 'ok',
           'v-app-newsletter--error': subscriberApiStatus === 'error',
@@ -64,6 +64,7 @@
                         border-radius: 1rem;
                         border: solid 1px;
                       "
+                      ref="newsletter_first_focused"
               />
             </div>
 
@@ -128,7 +129,7 @@
         </form>
       </div>
 
-    </dialog>
+    </div>
 </template>
 
 
@@ -136,6 +137,9 @@
 
 
 <script setup lang="ts">
+
+const newsletter_first_focused = ref<HTMLElement>()
+
 type SubscriptionResponse = {
     error: unknown,
     message: string,
@@ -227,6 +231,10 @@ async function requestSubscription(): Promise<SubscriptionResponse> {
 
     return await sendSSubscription.json() satisfies SubscriptionResponse
 }
+
+watch(useAppNewsletterIsOpen, (isOpen) => {
+  if(isOpen.value) newsletter_first_focused.value?.focus()
+})
 
 </script>
 
