@@ -56,6 +56,7 @@
                       placeholder="votre@email.com"
                       required
                       aria-required="true"
+                      :aria-invalid="validationErrors.groups ? 'true' : 'false'"
                       autocomplete="email"
                       style="
                         display: block;
@@ -84,7 +85,9 @@
                      "
               >Pour recevoir les informations&nbsp;:</label>
 
-              <fieldset style="max-width: 15rem; width: 100%; display: flex; flex-direction: column; gap: .5rem; border: none; padding: 0; margin: 0;">
+              <fieldset style="max-width: 15rem; width: 100%; display: flex; flex-direction: column; gap: .5rem; border: none; padding: 0; margin: 0;"
+                        aria-required="true"
+                        :aria-invalid="validationErrors.groups ? 'true' : 'false'">
                 <legend class="sr-only">Choix des newsletters</legend>
                 <div v-for="(group, index) in listOfNewsletterGroups" :key="group.name"
                      style="
@@ -99,6 +102,7 @@
                           type="checkbox"
                           :value="group.name"
                           v-model="form.groups"
+                          aria-required="true"
                   />
                   <label :for="`newsletter-group-${index}`" v-html="group.text"/>
                 </div>
@@ -107,7 +111,7 @@
           </template>
 
           <p class="v-app-newsletter__msg"
-             role="status"
+             :role="subscriberApiStatus === 'error' ? 'alert' : 'status'"
              :aria-live="subscriberApiStatus === 'error' ? 'assertive' : 'polite'">
             <template v-if="subscriberApiMessage" >{{ subscriberApiMessage }}</template>
             <template v-else>&nbsp;</template>
@@ -194,12 +198,38 @@ const listOfNewsletterGroups = [
 const subscriberApiMessage = ref('')
 const subscriberApiStatus: Ref<'ok' | 'error' | 'sending' | null> = ref(null)
 
+const validationErrors = ref({
+    email: false,
+    groups: false,
+})
+
 const form = ref<SubscriberDataToSend>({
     email: '',
     groups: [],
 });
 
 const handleSubmit = async () => {
+    // Reset validation errors
+    validationErrors.value = {
+        email: false,
+        groups: false,
+    }
+
+    // Client-side validation
+    if (!form.value.email || form.value.email.trim() === '') {
+        validationErrors.value.email = true
+        subscriberApiMessage.value = 'Votre adresse courriel est obligatoire'
+        subscriberApiStatus.value = 'error'
+        return
+    }
+
+    if (form.value.groups.length === 0) {
+        validationErrors.value.groups = true
+        subscriberApiMessage.value = 'Vous devez sélectionner au moins 1 choix de newsletter'
+        subscriberApiStatus.value = 'error'
+        return
+    }
+
     subscriberApiMessage.value = 'Envoi en cours...'
     subscriberApiStatus.value = 'sending'
 
@@ -211,6 +241,10 @@ const handleSubmit = async () => {
     if( subscriptionResponse.status === 'ok' ) {
         form.value.email = ''
         form.value.groups = []
+        validationErrors.value = {
+            email: false,
+            groups: false,
+        }
     }
 
     console.info( subscriptionResponse.status, subscriptionResponse.error )
