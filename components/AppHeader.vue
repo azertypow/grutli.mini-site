@@ -167,11 +167,21 @@
   flex-direction: column;
   margin-bottom: 0;
   flex-shrink: 0;
+
+  @media (max-width: 1200px) {
+    flex-shrink: 1;
+  }
 }
 
 .v-app-header__right__top {
   display: flex;
   gap: var(--app-gutter);
+
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    justify-content: flex-end;
+  }
 }
 
 .v-app-header__social {
