@@ -25,6 +25,7 @@
           <div class="v-audio-player__container__header__ui">
             <button @click="togglePlayerIsOpen"
                     :aria-label="toggleButtonAriaLabelText"
+                    :aria-expanded="playerIsOpen"
             >
               <svg v-if="playerIsOpen"
                       xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m136-80-56-56 264-264H160v-80h320v320h-80v-184L136-80Zm344-400v-320h80v184l264-264 56 56-264 264h184v80H480Z"
@@ -68,6 +69,7 @@
                   scrolling="no"
                   frameborder="no"
                   allow="autoplay"
+                  :title="soundCloudAudioParams?.text ? `Lecteur audio: ${soundCloudAudioParams.text}` : 'Lecteur audio SoundCloud'"
                   :src="`https://w.soundcloud.com/player/?url=${soundCloudAudioUrl_withoutParams}&color=%23ff7f65&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=false&show_teaser=false&visual=true&show_playcount=false&show_artwork=fase`">
           </iframe>
         </div>
