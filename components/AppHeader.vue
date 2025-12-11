@@ -71,14 +71,14 @@
                   @click="useFalkIsActive().value = !useFalkIsActive().value"
                   type="button"
                   :aria-label="useFalkIsActive().value ? 'Désactiver le mode Facile à Lire et à Comprendre' : 'Activer le mode Facile à Lire et à Comprendre'"
-                  :aria-checked="useFalkIsActive().value.toString()"
+                  :aria-checked="useFalkIsActive().value"
                   role="switch"
                   :class="{
                     'is-active': useFalkIsActive().value
                   }"
                   tabindex="1"
           >
-            <div aria-hidden="true">Vue simplifiée</div>
+            <span aria-hidden="true">Vue simplifiée</span>
           </button>
         </div>
 
@@ -87,7 +87,7 @@
                   @click="useMenuIsOpen().value = !useMenuIsOpen().value"
                   type="button"
                   :aria-label="useMenuIsOpen().value ? 'Fermer le menu' : 'Ouvrir le menu'"
-                  :aria-expanded="useMenuIsOpen().value.toString()"
+                  :aria-expanded="useMenuIsOpen().value"
                   tabindex="1"
           >
             <svg v-if="useMenuIsOpen().value" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
