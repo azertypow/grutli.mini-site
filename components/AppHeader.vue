@@ -55,7 +55,7 @@
           </a>
 
           <a class="v-app-header__social app-button-grey app-button-grey--with-glow-effect"
-             href="https://www.instagram.com/legrutli_artsvivants/"
+             href="https://www.instagram.com/scenes_du_grutli/"
              target="_blank"
              aria-label="Suivez-nous sur Instagram (ouvre dans un nouvel onglet)"
              rel="noopener noreferrer"
