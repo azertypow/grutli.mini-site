@@ -23,7 +23,9 @@
             </template>
           </div>
           <div class="v-audio-player__container__header__ui">
-            <button @click="togglePlayerIsOpen">
+            <button @click="togglePlayerIsOpen"
+                    :aria-label="toggleButtonAriaLabelText"
+            >
               <svg v-if="playerIsOpen"
                       xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m136-80-56-56 264-264H160v-80h320v320h-80v-184L136-80Zm344-400v-320h80v184l264-264 56 56-264 264h184v80H480Z"
               /></svg>
@@ -31,6 +33,7 @@
                    xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-120v-320h80v184l504-504H520v-80h320v320h-80v-184L256-200h184v80H120Z"/></svg>
             </button>
             <button @click="toggleSoundcloudStatus"
+                    :aria-label="playButtonAriaLabelText"
                     v-if="!soundCloudUrl"
             >
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +99,9 @@ const soundCloudAudioUrl_withoutParams: ComputedRef<string | null> = computed(()
     const audioUrl = new URL(soundCloudAudioParams.value.soundcloud_url)
     return audioUrl.origin + audioUrl.pathname
 })
+
+const toggleButtonAriaLabelText = computed(() => playerIsOpen.value ? 'fermer le lecteur audio' : 'ouvrir le lecteur audio')
+const playButtonAriaLabelText = computed(() => playerIsPaused.value ? 'lancer la lecture audio' : 'mettre l\'audio en pause')
 
 function togglePlayerIsOpen() {
     playerIsOpen.value = !playerIsOpen.value
