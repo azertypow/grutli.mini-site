@@ -14,6 +14,7 @@
           <img class="app-app__loader-container__img"
                src="/loader-20250612.gif"
                alt="Chargement en cours"/>
+          <p class="app-app__loader-container__text_information_for_reduce_motion">Chargement du contenu…</p>
         </div>
     </transition>
 

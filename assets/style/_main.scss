@@ -225,6 +225,10 @@ blockquote {
 }
 
 // Support prefers-reduced-motion
+.app-app__loader-container__text_information_for_reduce_motion {
+  display: none;
+  margin: 0;
+}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -234,6 +238,19 @@ blockquote {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .app-app__video-bg {
+    display: none !important;
+  }
+
+  .app-app__loader-container__img {
+    display: none !important;
+  }
+
+  .app-app__loader-container__text_information_for_reduce_motion {
+    display: block;
+  }
+
 }
 
 .app-card {
