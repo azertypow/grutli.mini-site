@@ -2,10 +2,12 @@
   <section class="v-app-gallery"
   >
     <div class="v-app-gallery__scroll"
+         tabindex="0"
     >
       <template v-for="image of gallery_data">
         <div class="v-app-gallery__item">
           <img class="v-app-gallery__item__img"
+               tabindex="0"
                :src="image.resize.large"
                :alt="image.alt || ''"
           >
