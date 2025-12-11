@@ -269,8 +269,7 @@ onMounted(() => {
 
 watch(useMenuIsOpen(), () => {
     if (useMenuIsOpen().value) {
-      console.log(app_navigation.value?.querySelector("a"))
-        app_navigation.value?.querySelector("a")?.focus()
+      app_navigation.value?.querySelector("a")?.focus()
     }
 })
 
