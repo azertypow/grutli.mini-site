@@ -437,7 +437,7 @@ import {
     usePlacesInfo, usePlayerAudioParams, useShowCookieBanner,
     useSiteInfo, useTicketServiceInfo, useWindowIsScrollToBottom, useWindowsWidthIsSmallerThan1200pxCSSBreakpoint
 } from "~/composables/cmsData";
-import {initGoogleAnalytics} from "~/utlis/googleAnalytics";
+import {initGA} from "~/utlis/initGA";
 import type {ApiSeasons, ApiSeasons_value} from "~/utlis/ApiCmsTypes";
 import {stringStartWith} from "~/utlis/stringStartWith";
 import {setWindowsWidth} from "~/utlis/setWindowsWidth";
@@ -475,7 +475,7 @@ onMounted(async () => {
     if( useWindowsWidthIsSmallerThan1200pxCSSBreakpoint().value ) useMenuIsOpen().value = false
 
 
-    initGoogleAnalytics()
+    initGA()
 
     window.setTimeout(() => useAppContentIsLoaded().value = true, 5_000)
     Promise.all([
