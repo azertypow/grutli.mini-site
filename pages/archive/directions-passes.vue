@@ -13,7 +13,7 @@
       </a>
 
       <a class="v-archive-directions-passes__wrap__item"
-         href="/erreur?msg=archivage+en+cours"
+         href="https://2018.grutli.ch/"
          target="_blank"
       >
         <p  class="v-archive-directions-passes__wrap__item__info">2012-2018</p>
