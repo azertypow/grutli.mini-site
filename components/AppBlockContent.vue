@@ -56,10 +56,15 @@
             >{{html_content_block.content.title}}</h5>
             <div class="v-app-block-content__coll__content__text__gallery__images"
             >
-                <img v-for="image of html_content_block.images"
-                     :src="image.resize.large"
+              <div class="v-app-block-content__coll__content__text__gallery__images__item"
+                   v-for="image of html_content_block.images">
+                <img :src="image.resize.large"
                      :alt="image.alt || 'pas de texte alt'"
                 >
+                <div class="v-app-block-content__coll__content__text__gallery__images__item__legendary"
+                >{{ image.photographer }}
+                </div>
+              </div>
             </div>
         </div>
     </section>
@@ -152,7 +157,8 @@ const data = defineProps<{
 }
 
 .v-app-block-content__coll__content__text__gallery__title {
-  margin-bottom: 0rem;
+  margin-bottom: .25em;
+  text-align: center;
 }
 
 .v-app-block-content__coll__content__text__gallery__images {
@@ -199,8 +205,26 @@ const data = defineProps<{
     width: auto;
     height: 100%;
     flex-shrink: 0;
+    border-radius: 1rem;
   }
 }
+
+.v-app-block-content__coll__content__text__gallery__images__item {
+  position: relative;
+}
+.v-app-block-content__coll__content__text__gallery__images__item__legendary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: white;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: var(--app-gutter);
+  box-sizing: border-box;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
 </style>
 
 <style lang="scss">
