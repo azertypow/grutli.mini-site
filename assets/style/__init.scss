@@ -31,6 +31,7 @@ body {
   width: 100%;
   justify-content: center;
   font-variation-settings: "slnt" 0, "wght" 400;
+  font-feature-settings: "ss19";
 
   &.newsletter-is-open {
     overflow: hidden;
