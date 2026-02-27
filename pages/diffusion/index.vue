@@ -2,15 +2,29 @@
   <section class="v-diffusion"
   >
     <template v-if="pageData">
-      <template v-for="content of pageData.pageContent.content.htmlcontent">
-        <div class="v-diffusion__item app-remove-first-last-child-margin"
-        >
-          <AppBlockContent
-                  v-for="htmlContentBlock of pageData.pageContent.content.htmlcontent"
-                  :html_content_block="htmlContentBlock"
-                  :only_one_in_block="pageData.pageContent.content.htmlcontent.length < 2"
-          />
-        </div>
+      <template v-if="useFalkIsActive().value">
+        <template v-for="content of pageData.pageContent.content.htmlcontent_falk">
+          <div class="v-diffusion__item app-remove-first-last-child-margin"
+          >
+            <AppBlockContent
+                    v-for="htmlContentBlock of pageData.pageContent.content.htmlcontent_falk"
+                    :html_content_block="htmlContentBlock"
+                    :only_one_in_block="pageData.pageContent.content.htmlcontent.length < 2"
+            />
+          </div>
+        </template>
+      </template>
+      <template v-else>
+        <template v-for="content of pageData.pageContent.content.htmlcontent">
+          <div class="v-diffusion__item app-remove-first-last-child-margin"
+          >
+            <AppBlockContent
+              v-for="htmlContentBlock of pageData.pageContent.content.htmlcontent"
+              :html_content_block="htmlContentBlock"
+              :only_one_in_block="pageData.pageContent.content.htmlcontent.length < 2"
+            />
+          </div>
+        </template>
       </template>
 
       <div class="v-diffusion__item__wrapper">
@@ -62,9 +76,6 @@ onMounted(async () => {
         useHead({
             title: pageData.value?.pageContent.content.title
         })
-
-        console.log( pageData.value )
-
 
         useCurrentPageForNavLinks().value = null
         // get_childrenDetailsForNavLinks(value)
@@ -160,6 +171,10 @@ async function get_childrenDetailsForNavLinks(value: ApiSimplePage | null): Prom
   box-sizing: border-box;
   padding: var(--app-gutter-xl);
   padding-top: 1.25rem;
+
+  .nuxt-watch-falk-is-active & {
+    border: solid 1px black;
+  }
 
   @media (min-width: 1200px) {
     width: calc(50% - (var(--app-gutter-xl) / 2));

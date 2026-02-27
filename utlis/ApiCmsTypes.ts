@@ -410,6 +410,7 @@ export type ApiPage_template_diffusion = {
         "content": {
             "title": string,
             "htmlcontent": ApiHTMLContent_Blocks[],
+            "htmlcontent_falk": ApiHTMLContent_Blocks[],
             "uuid": string
         },
         translations: any[];
