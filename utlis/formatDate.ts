@@ -51,6 +51,21 @@ export function formatDate_byDay(stringDate: string): string {
     return `${formatter_weekday.format(startDate).slice(0, 2)} ${formatter_day.format(startDate)}`
 }
 
+export function formatDate_byDay_falc(stringDate: string): string {
+
+  const startDate = new Date(normalizeDate(stringDate))
+
+  const formatter_weekday = new Intl.DateTimeFormat('fr-FR', {
+    weekday: 'long',
+  })
+
+  const formatter_day = new Intl.DateTimeFormat('fr-FR', {
+    day: '2-digit'
+  })
+
+  return `${formatter_weekday.format(startDate)} ${formatter_day.format(startDate)}`
+}
+
 
 export function formatDateStartAndDateEndToString(startDate: string, endDate: string): string {
     const startDateString = formatDate(startDate)

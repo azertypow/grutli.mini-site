@@ -234,7 +234,13 @@ import {
     usePlacesInfo
 } from "~/composables/cmsData";
 import {getYoutubeVideoIDFromUrl} from "~/utlis/videoHelper";
-import {formatDate_byDay, formatDateStartAndDateEndToString, formatTime, normalizeDate} from "~/utlis/formatDate";
+import {
+  formatDate_byDay,
+  formatDate_byDay_falc,
+  formatDateStartAndDateEndToString,
+  formatTime,
+  normalizeDate
+} from "~/utlis/formatDate";
 import {formatTitle} from "~/utlis/formatStringCiattion";
 import AppSpectacleCardLoader from "~/components/AppSpectacleCardLoader.vue";
 import AppBlockContent from "~/components/AppBlockContent.vue";
@@ -281,14 +287,18 @@ const splitHtmlContentByBreakBlock_falc: ComputedRef<ApiHTMLContent_Blocks[][] |
 
 })
 
-const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, time: string, url?: string}[] }[]> = computed(() => {
+const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, day_falc: string, time: string, url?: string}[] }[]> = computed(() => {
     if (!pageData.value) return null
 
     const groupedDateByMouth: {
         mouth: string
         url?: string
         isRelax?: 'true' | 'false'
-        dates: {day: string, time: string}[]
+        dates: {
+          day: string,
+          time: string
+          day_falc: string
+        }[]
     }[] = []
 
     pageData.value.pageContent.content.list_of_dates?.forEach(dateItem => {
@@ -300,6 +310,7 @@ const dateByMounth: ComputedRef<null | { mouth: string; dates: {day: string, tim
 
           const itemToPush = {
               day: formatDate_byDay(dateItem.list_of_dates_date),
+              day_falc: formatDate_byDay_falc(dateItem.list_of_dates_date),
               time: dateItem.list_of_dates_hour ? formatTime(dateItem.list_of_dates_hour) : '',
               url: dateItem.list_of_dates_ticket_link,
               isRelax: dateItem.list_of_dates_is_relax,

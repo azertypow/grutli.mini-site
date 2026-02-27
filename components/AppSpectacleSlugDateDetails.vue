@@ -1,34 +1,67 @@
 <template>
     <section class="v-app-spectacle-slug-date-details">
       <div id="dates-details"></div>
-      <div v-if="date_by_mounth"
-           :class="{
-            'width-margin': content_html_details?.length && content_html_details?.length > 0
-           }"
-      >
-        <div v-for="dateGroup of date_by_mounth.toReversed()"
-             class="v-app-spectacle-slug-date-details__coll__text-content__details__dates"
+
+      <template v-if="useFalkIsActive().value">
+        <div v-if="date_by_mounth"
+             :class="{
+              'width-margin': content_html_details?.length && content_html_details?.length > 0
+             }"
         >
-          <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
-          <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days">
-                <component
-                        :is="date.url ? 'a' : 'div'"
-                        target="_blank"
-                        v-for="date of dateGroup.dates"
-                        :href="date.url || undefined"
-                        class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item"
+          <div v-for="dateGroup of date_by_mounth.toReversed()"
+               class="v-app-spectacle-slug-date-details__coll__text-content__details__dates"
+          >
+            <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
+            <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days">
+              <component
+                :is="date.url ? 'a' : 'div'"
+                target="_blank"
+                v-for="date of dateGroup.dates"
+                :href="date.url || undefined"
+                class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item"
+              >
+                <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day" >{{ date.day_falc }}</span>
+                <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time" >{{ date.time }}</span>
+                <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax app-font-extra-small"
+                      v-if="date.isRelax === 'true'"
                 >
-                  <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day" >{{ date.day }}</span>
-                  <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time" >{{ date.time }}</span>
-                  <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax app-font-extra-small"
-                        v-if="date.isRelax === 'true'"
-                  >
-                    Relax
-                  </span>
-                </component>
+                      Relax
+                    </span>
+              </component>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
+      <template v-else>
+        <div v-if="date_by_mounth"
+             :class="{
+              'width-margin': content_html_details?.length && content_html_details?.length > 0
+             }"
+        >
+          <div v-for="dateGroup of date_by_mounth.toReversed()"
+               class="v-app-spectacle-slug-date-details__coll__text-content__details__dates"
+          >
+            <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth">{{ dateGroup.mouth }}</div>
+            <div class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days">
+                  <component
+                          :is="date.url ? 'a' : 'div'"
+                          target="_blank"
+                          v-for="date of dateGroup.dates"
+                          :href="date.url || undefined"
+                          class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item"
+                  >
+                    <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__day" >{{ date.day }}</span>
+                    <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__time" >{{ date.time }}</span>
+                    <span class="v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item__relax app-font-extra-small"
+                          v-if="date.isRelax === 'true'"
+                    >
+                      Relax
+                    </span>
+                  </component>
+            </div>
+          </div>
+        </div>
+      </template>
       <template v-for="content of content_html_details">
         <div class="app-remove-first-last-child-margin v-app-spectacle-slug-date-details__detailsHtml">
           <div v-if="content.type === 'text'"
@@ -56,7 +89,7 @@ import { defineProps } from 'vue'
 import type {ApiHTMLContent_Blocks} from "~/utlis/ApiCmsTypes";
 
 const props = defineProps<{
-    date_by_mounth: null | { mouth: string; dates: {day: string, time: string, url?: string, isRelax?: 'true' | 'false'}[] }[]
+    date_by_mounth: null | { mouth: string; dates: {day: string, day_falc: string, time: string, url?: string, isRelax?: 'true' | 'false'}[] }[]
     content_html_details?: ApiHTMLContent_Blocks[]
 }>()
 </script>
@@ -83,6 +116,11 @@ const props = defineProps<{
     flex-direction: column;
     gap: .5rem;
   }
+
+  .nuxt-watch-falk-is-active & {
+    flex-wrap: wrap;
+    gap: .25rem;
+  }
 }
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__mouth {
@@ -105,6 +143,22 @@ const props = defineProps<{
 
 .v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item {
   display: block;
+  text-decoration: none;
+
+  .nuxt-watch-falk-is-active & {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    //width: 100%;
+    border: solid 1px currentColor;
+    padding: .05rem .5rem;
+    border-radius: 1rem;
+
+    > * {
+      width: auto;
+    }
+  }
 }
 a.v-app-spectacle-slug-date-details__coll__text-content__details__dates__days__item {
   border-bottom: 2px solid currentColor;
