@@ -3,29 +3,13 @@
   >
     <h1 class="v-archive-directions-passes__title" style="margin-bottom: 2rem">Directions passées</h1>
     <div class="v-archive-directions-passes__wrap">
-
       <a class="v-archive-directions-passes__wrap__item"
-         target="_blank"
-         href="https://2024.grutli.ch/"
-      >
-        <p  class="v-archive-directions-passes__wrap__item__info">2018-2024</p>
-        <h2 class="v-archive-directions-passes__wrap__item__title">Barbara Giongo & Nataly Sugnaux Hernandez</h2>
-      </a>
-
-      <a class="v-archive-directions-passes__wrap__item"
-         href="https://2018.grutli.ch/"
+         v-for="archive in archives"
+         :href="archive.url"
          target="_blank"
       >
-        <p  class="v-archive-directions-passes__wrap__item__info">2012-2018</p>
-        <h2 class="v-archive-directions-passes__wrap__item__title">Frédéric Polier</h2>
-      </a>
-
-      <a class="v-archive-directions-passes__wrap__item"
-         href="/erreur?msg=archivage+en+cours"
-         target="_blank"
-      >
-        <p  class="v-archive-directions-passes__wrap__item__info">2009-2012</p>
-        <h2 class="v-archive-directions-passes__wrap__item__title">Michèle Pralong<br>et Maya Bösch</h2>
+        <p  class="v-archive-directions-passes__wrap__item__info">{{archive.date}}</p>
+        <h2 class="v-archive-directions-passes__wrap__item__title">{{archive.title}}</h2>
       </a>
 
     </div>
@@ -39,6 +23,8 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import {useCurrentPageForNavLinks} from "~/composables/cmsData";
+import {fetchPage} from "~/utlis/apiCmsFetch";
+import type {ApiSimplePage} from "~/utlis/ApiCmsTypes";
 
 const props = defineProps<{
   message?: string
@@ -48,8 +34,21 @@ useHead({
   title: 'Directions passées des Scènes du Grutli',
 })
 
+const archives: Ref<{
+  date: string
+  id: string
+  title: string
+  url: string
+}[]> = ref([])
+
 onMounted(() => {
+    fetchPage('archives').then(async (value: ApiSimplePage | null) => {
+      console.log('value', value)
+      if (value) archives.value = value.pageContent.content.archives as any
+    })
+
     useCurrentPageForNavLinks().value = null
+
 })
 
 </script>
