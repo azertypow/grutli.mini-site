@@ -19,6 +19,22 @@
         >
           <span>{{ childLink.pageContent.content.title }}</span>
         </nuxt-link>
+
+        <template v-if="useRoute().path === '/professionnel-les'">
+          <nuxt-link class="v-slug__children-link__link"
+                     href="/diffusion"
+          >
+            <span>Diffusion</span>
+          </nuxt-link>
+        </template>
+        <template v-else-if="useRoute().path === '/les-scenes-du-grutli'">
+          <nuxt-link class="v-slug__children-link__link"
+                     href="/archive"
+          >
+            <span>Archive</span>
+          </nuxt-link>
+        </template>
+
       </div>
 
       <template v-if="pageData">
@@ -242,6 +258,21 @@
             >
               <span>{{ childLink.pageContent.content.title }}</span>
             </nuxt-link>
+
+            <template v-if="useRoute().path === '/professionnel-les'">
+              <nuxt-link class="v-slug__children-link__link"
+                         href="/diffusion"
+              >
+                <span>Diffusion</span>
+              </nuxt-link>
+            </template>
+            <template v-else-if="useRoute().path === '/les-scenes-du-grutli'">
+              <nuxt-link class="v-slug__children-link__link"
+                         href="/archive"
+              >
+                <span>Archive</span>
+              </nuxt-link>
+            </template>
           </div>
 
           <template v-if="pageData">
@@ -390,6 +421,21 @@
             >
               <span>{{ childLink.pageContent.content.title }}</span>
             </nuxt-link>
+
+            <template v-if="useRoute().path === '/professionnel-les'">
+              <nuxt-link class="v-slug__children-link__link"
+                         href="/diffusion"
+              >
+                <span>Diffusion</span>
+              </nuxt-link>
+            </template>
+            <template v-else-if="useRoute().path === '/les-scenes-du-grutli'">
+              <nuxt-link class="v-slug__children-link__link"
+                         href="/archive"
+              >
+                <span>Archive</span>
+              </nuxt-link>
+            </template>
           </div>
 
 
